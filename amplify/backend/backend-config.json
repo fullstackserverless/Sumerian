@@ -1,0 +1,10 @@
+{
+	"auth": {
+		"sumeriand19db3e7": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	}
+}
