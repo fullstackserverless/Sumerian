@@ -11,38 +11,29 @@ import { StatusBar } from 'react-native'
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance'
 import Amplify from '@aws-amplify/core'
 import * as Keychain from 'react-native-keychain'
-import { AmplifyProvider } from 'aws-amplify-react-hooks'
 import { Auth, API, graphqlOperation } from 'aws-amplify'
 import SplashScreen from 'react-native-splash-screen'
 import { ThemeProvider, DarkTheme, LightTheme } from './theme'
 import AppNavigator from './AppNavigator'
 import awsconfig from '../aws-exports'
 
-const client = {
-  Auth,
-  API,
-  graphqlOperation
-}
-
-AmplifyProvider(client)
-
 const MEMORY_KEY_PREFIX = '@MyStorage:'
-let dataMemory = {}
+let dataMemory: any = {}
 
 class MyStorage {
   static syncPromise = null
 
-  static setItem(key, value) {
+  static setItem(key: string, value: string) {
     Keychain.setGenericPassword(MEMORY_KEY_PREFIX + key, value)
     dataMemory[key] = value
     return dataMemory[key]
   }
 
-  static getItem(key) {
+  static getItem(key: string) {
     return Object.prototype.hasOwnProperty.call(dataMemory, key) ? dataMemory[key] : undefined
   }
 
-  static removeItem(key) {
+  static removeItem(key: string) {
     Keychain.resetGenericPassword()
     return delete dataMemory[key]
   }
@@ -74,11 +65,9 @@ const App = (): ReactElement => {
     <>
       <StatusBar barStyle={`${color}-content`} />
       <AppearanceProvider>
-        <AmplifyProvider client={client}>
-          <ThemeProvider theme={theme}>
-            <AppNavigator />
-          </ThemeProvider>
-        </AmplifyProvider>
+        <ThemeProvider theme={theme}>
+          <AppNavigator />
+        </ThemeProvider>
       </AppearanceProvider>
     </>
   )

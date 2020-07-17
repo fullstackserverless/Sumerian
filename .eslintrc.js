@@ -5,11 +5,11 @@ module.exports = {
   plugins: ['react', 'react-native', 'jsx-a11y', 'import', 'react-hooks'],
   parserOptions: {
     ecmaFeatures: {
-      jsx: true,
-    },
+      jsx: true
+    }
   },
   env: {
-    'react-native/react-native': true,
+    'react-native/react-native': true
   },
   rules: {
     'no-param-reassign': 0,
@@ -52,13 +52,13 @@ module.exports = {
     'react-native/no-inline-styles': 0,
     'react-native/no-color-literals': 0,
     'react-native/no-raw-text': 0,
-    'consistent-return': 0,
+    'consistent-return': 0
   },
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.js', '.ios.js', '.android.js'],
-      },
-    },
-  },
-};
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
+      }
+    }
+  }
+}

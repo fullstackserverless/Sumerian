@@ -1,18 +1,24 @@
-import React, { memo, useState, useEffect, useReducer } from 'react'
+import React, { memo, useState, useEffect } from 'react'
 import { Platform, StyleSheet, View } from 'react-native'
 import { useTheme } from '@react-navigation/native'
-import { getStatusBarHeight } from 'react-native-iphone-x-helper'
-import { Boho, Space, BG } from '../../../components'
+import VideoPlayer from 'react-native-video-controls'
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center'
+  },
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0
   }
 })
 
-const Tab0 = memo(() => {
+const Tab0 = memo(({ navigation }) => {
   const [loading, setLoading] = useState(false)
   const { dark } = useTheme()
 
@@ -20,16 +26,16 @@ const Tab0 = memo(() => {
     //setLoading(true)
   }, [])
 
-  const { container } = styles
+  const { container, backgroundVideo } = styles
   return (
-    <BG title={dark ? 'shakti0B' : 'shakti0W'} loading={loading}>
-      <View style={container}>
-        <Space height={Platform.OS === 'ios' ? getStatusBarHeight() : 20} />
-        <Space height={Platform.OS === 'ios' ? 10 : 20} />
-        <Boho title={dark ? 'BohoB' : 'BohoW'} />
-      </View>
-    </BG>
+    <>
+      <View style={container}></View>
+    </>
   )
 })
 
 export { Tab0 }
+// ;<VideoPlayer
+//   source={{ uri: 'https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/Alphabet.mov' }}
+//   navigator={navigation}
+// />

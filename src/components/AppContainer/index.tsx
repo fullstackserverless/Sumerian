@@ -4,7 +4,7 @@ import StatusBarAlert from 'react-native-statusbar-alert'
 import { useTheme } from '@react-navigation/native'
 import { Header } from '../Header'
 import { Space } from '../Space'
-import { Loading } from '../Loading'
+import { Spin } from '../Spin'
 import { black, white } from '../../constants'
 
 const styles = StyleSheet.create({
@@ -69,7 +69,7 @@ const AppContainer = memo<AppContainerT>(
         )}
         <>
           {loading ? (
-            <Loading />
+            <Spin />
           ) : (
             <>
               {!flatList ? (

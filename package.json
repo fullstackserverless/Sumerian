@@ -8,7 +8,7 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "postinstall": "cd ./ios && pod install && cd .."
+    "postinstall": "cd ./ios && npx pod-install && cd .."
   },
   "precommit": "lint",
   "dependencies": {
@@ -42,6 +42,8 @@
     "react-native-swift": "^1.2.3",
     "react-native-track-player": "^1.2.3",
     "react-native-vector-icons": "^7.0.0",
+    "react-native-video": "^4.4.5",
+    "react-native-video-controls": "^2.6.0",
     "yup": "^0.29.1"
   },
   "devDependencies": {

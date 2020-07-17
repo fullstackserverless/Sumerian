@@ -7,21 +7,18 @@ import { primary, secondary, black, white } from '../../constants'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingTop: 200
   }
 })
 
-interface LoadingT {
-  paddingTop: number
-}
-
-const Loading = ({ paddingTop = 0 }: LoadingT) => {
+const Spin = () => {
   const { dark } = useTheme()
   return (
-    <View style={[styles.container, { backgroundColor: dark ? black : white, paddingTop }]}>
+    <View style={[styles.container, { backgroundColor: dark ? black : white }]}>
       <Spinner size={65} type="Pulse" color={dark ? secondary : primary} />
     </View>
   )
 }
 
-export { Loading }
+export { Spin }
