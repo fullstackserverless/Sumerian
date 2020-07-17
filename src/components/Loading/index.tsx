@@ -12,14 +12,32 @@ const styles = StyleSheet.create({
 })
 
 interface LoadingT {
-  paddingTop: number
+  paddingTop?: number
+  size?: number
+  type?:
+    | 'CircleFlip'
+    | 'Bounce'
+    | 'Wave'
+    | 'WanderingCubes'
+    | 'Pulse'
+    | 'ChasingDots'
+    | 'ThreeBounce'
+    | 'Circle'
+    | '9CubeGrid'
+    | 'WordPress'
+    | 'FadingCircle'
+    | 'FadingCircleAlt'
+    | 'Arc'
+    | 'ArcAlt'
+    | 'Plane'
+    | undefined
 }
 
-const Loading = ({ paddingTop = 0 }: LoadingT) => {
+const Loading = ({ paddingTop = 0, size = 65, type = 'Pulse' }: LoadingT) => {
   const { dark } = useTheme()
   return (
     <View style={[styles.container, { backgroundColor: dark ? black : white, paddingTop }]}>
-      <Spinner size={65} type="Pulse" color={dark ? secondary : primary} />
+      <Spinner size={size} type={type} color={dark ? secondary : primary} />
     </View>
   )
 }

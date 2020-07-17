@@ -3,7 +3,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { enableScreens } from 'react-native-screens' // eslint-disable-line
 import { Stack0 } from './screens'
-import { Tab0, Tab1, Tab2, Tab3, Tab4 } from './screens/TabBottom'
+import { Tab1, Tab2, Tab3, Tab4 } from './screens/TabBottom'
+import { Tab0Main, Tab0Add, Tab0Detail } from './screens/TabBottom/Tab0'
 import { SignUp, SignIn, ConfirmSignUp, User, Forgot, ForgotPassSubmit, Hello } from './screens/Authenticator'
 import TopTabNavigator from './TopTabNavigator'
 
@@ -18,15 +19,24 @@ export type RootStackParamList = {
   CONFIRM_SIGN_UP: { email: string; password: string }
   USER: undefined
   Stack0: undefined
-  Stack2: undefined
+  TAB0_MAIN: undefined
+  TAB0_DETAIL: {
+    item: {
+      title: string
+      description: string
+      img: string
+      uri: string
+      owner: string
+    }
+  }
 }
 
 const Stack = createNativeStackNavigator()
 
 const Tab = (): React.ReactElement => {
   return (
-    <TopTabNavigator.Navigator initialRouteName="TabTop2">
-      <TopTabNavigator.Screen name="TabTop0" component={Tab0} />
+    <TopTabNavigator.Navigator initialRouteName="TabTop0">
+      <TopTabNavigator.Screen name="TabTop0" component={Tab0Main} />
       <TopTabNavigator.Screen name="TabTop1" component={Tab1} />
       <TopTabNavigator.Screen name="TabTop2" component={Tab2} />
       <TopTabNavigator.Screen name="TabTop3" component={Tab3} />
@@ -53,6 +63,9 @@ const AppNavigator = (): React.ReactElement => {
         <Stack.Screen name="CONFIRM_SIGN_UP" component={ConfirmSignUp} />
         <Stack.Screen name="USER" component={User} />
         <Stack.Screen name="Stack0" component={Stack0} />
+        <Stack.Screen name="TAB0_MAIN" component={Tab0Main} />
+        <Stack.Screen name="TAB0_DETAIL" component={Tab0Detail} />
+        <Stack.Screen name="TAB0_ADD" component={Tab0Add} />
       </Stack.Navigator>
     </SafeAreaProvider>
   )

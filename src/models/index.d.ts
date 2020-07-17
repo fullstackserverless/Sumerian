@@ -4,42 +4,11 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
-export declare class Element {
-  readonly id: string;
-  readonly air: boolean;
-  readonly fire: boolean;
-  readonly water: boolean;
-  readonly earth: boolean;
-  readonly owner?: string;
-  constructor(init: ModelInit<Element>);
-  static copyOf(source: Element, mutator: (draft: MutableModel<Element>) => MutableModel<Element> | void): Element;
-}
-
-export declare class Playlist {
-  readonly id: string;
-  readonly url: string;
-  readonly title: string;
-  readonly artist: string;
-  readonly artwork: string;
-  readonly duration?: number;
-  readonly owner?: string;
-  constructor(init: ModelInit<Playlist>);
-  static copyOf(source: Playlist, mutator: (draft: MutableModel<Playlist>) => MutableModel<Playlist> | void): Playlist;
-}
-
-export declare class Image {
+export declare class English {
   readonly id: string;
   readonly title: string;
   readonly uri: string;
   readonly owner?: string;
-  constructor(init: ModelInit<Image>);
-  static copyOf(source: Image, mutator: (draft: MutableModel<Image>) => MutableModel<Image> | void): Image;
-}
-
-export declare class Gallery {
-  readonly id: string;
-  readonly uri: string;
-  readonly owner?: string;
-  constructor(init: ModelInit<Gallery>);
-  static copyOf(source: Gallery, mutator: (draft: MutableModel<Gallery>) => MutableModel<Gallery> | void): Gallery;
+  constructor(init: ModelInit<English>);
+  static copyOf(source: English, mutator: (draft: MutableModel<English>) => MutableModel<English> | void): English;
 }

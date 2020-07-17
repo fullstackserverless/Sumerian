@@ -24,7 +24,7 @@ const Hello = ({ navigation }: HelloT): ReactElement => {
           const { username, password } = credentials
           const user = await Auth.signIn(username, password)
           setLoading(false)
-          user && onScreen('USER', navigation)()
+          user && onScreen('MAIN', navigation)()
         } else {
           setLoading(false)
         }

@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
 const RED = '#FC2847'
 
 interface AppContainerT {
+  admin?: boolean
   flatList?: boolean
   iconLeft?: string
   onPress?: ((event: GestureResponderEvent) => void) | undefined
@@ -35,6 +36,7 @@ interface AppContainerT {
 
 const AppContainer = memo<AppContainerT>(
   ({
+    admin = false,
     flatList = false,
     iconLeft = 'angle-dobule-left',
     onPress = null,
@@ -47,6 +49,7 @@ const AppContainer = memo<AppContainerT>(
   }) => {
     const { container, sub } = styles
     const { dark } = useTheme()
+    console.log('admin', admin)
     return (
       <View style={[container, { backgroundColor: dark ? black : white }]}>
         <StatusBarAlert
@@ -65,6 +68,7 @@ const AppContainer = memo<AppContainerT>(
             onPressRight={onPressRight}
             iconLeft={iconLeft}
             iconRight={iconRight}
+            admin={admin}
           />
         )}
         <>

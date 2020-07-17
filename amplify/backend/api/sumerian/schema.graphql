@@ -1,0 +1,8 @@
+type English @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
+  id: ID!
+  title: String!
+  description: String!
+  img: String!
+  uri: String!
+  owner: String
+}

@@ -4,11 +4,8 @@ import { schema } from './schema';
 
 
 
-const { Element, Playlist, Image, Gallery } = initSchema(schema);
+const { English } = initSchema(schema);
 
 export {
-  Element,
-  Playlist,
-  Image,
-  Gallery
+  English
 };
