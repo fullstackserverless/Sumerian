@@ -27,7 +27,7 @@ const SignIn = ({ navigation }: SignUpT): ReactElement => {
       const { email, password } = values
       const user = await Auth.signIn(email, password)
       await Keychain.setInternetCredentials('auth', email, password)
-      user && onScreen('USER', navigation)()
+      user && onScreen('MAIN', navigation)()
       setLoading(false)
     } catch (err) {
       setLoading(false)
@@ -48,7 +48,7 @@ const SignIn = ({ navigation }: SignUpT): ReactElement => {
   return (
     <>
       <AppContainer onPress={goBack(navigation)} title="Sign In" loading={loading}>
-        <Space height={140} />
+        <Space height={100} />
         <Formik
           initialValues={{ email: 'raoffonom@icloud.com', password: 'qwerty123' }}
           onSubmit={(values): Promise<void> => _onPress(values)}

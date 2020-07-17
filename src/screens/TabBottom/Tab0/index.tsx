@@ -17,7 +17,7 @@ const Tab0 = memo(() => {
   const { dark } = useTheme()
 
   useEffect(() => {
-    setLoading(true)
+    //setLoading(true)
   }, [])
 
   const { container } = styles

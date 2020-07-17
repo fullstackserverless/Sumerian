@@ -1,7 +1,6 @@
 // @flow
 import React, { memo } from 'react'
-import { StyleSheet, Image } from 'react-native'
-import type { ImageStyleProp } from 'react-native/Libraries/StyleSheet/StyleSheet'
+import { StyleSheet, Image, ImageStyle, StyleProp } from 'react-native'
 import { ifIphoneX } from 'react-native-iphone-x-helper'
 import { ICONS } from './images'
 
@@ -13,22 +12,22 @@ const styles = StyleSheet.create({
         height: 40
       },
       {
-        width: 35,
+        width: 65,
         height: 35
       }
     )
   }
 })
 
-type TabT = {
-  title: string,
-  imageStyle: ImageStyleProp
+interface TabT {
+  title: string
+  imageStyle: StyleProp<ImageStyle>
 }
 
 const Tab = memo<TabT>(({ title, imageStyle }) => {
   const { img } = styles
 
-  const source = () => ICONS.filter(x => x.title === title)[0].path
+  const source = () => ICONS.filter((x) => x.title === title)[0].path
 
   return <Image source={source()} style={[img, imageStyle]} />
 })

@@ -1,37 +1,5 @@
 export const ICONS = [
   {
-    path: require('./TabBottom0.png'),
-    title: 'TabBottom0'
-  },
-  {
-    path: require('./TabBottom0Disable.png'),
-    title: 'TabBottom0Disable'
-  },
-  {
-    path: require('./TabBottom1.png'),
-    title: 'TabBottom1'
-  },
-  {
-    path: require('./TabBottom1Disable.png'),
-    title: 'TabBottom1Disable'
-  },
-  {
-    path: require('./TabBottom2.png'),
-    title: 'TabBottom2'
-  },
-  {
-    path: require('./TabBottom2Disable.png'),
-    title: 'TabBottom2Disable'
-  },
-  {
-    path: require('./TabBottom3.png'),
-    title: 'TabBottom3'
-  },
-  {
-    path: require('./TabBottom3Disable.png'),
-    title: 'TabBottom3Disable'
-  },
-  {
     path: require('./TabTop0B.png'),
     title: 'TabTop0B'
   },

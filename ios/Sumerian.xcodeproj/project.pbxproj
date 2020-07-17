@@ -19,6 +19,7 @@
 		3BA531C5EF8C41B8AD3866F7 /* IBM-Logo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 069011C691154E1DBE9B353D /* IBM-Logo.ttf */; };
 		6DE1035BF7DE317FE9E328C2 /* libPods-Sumerian.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B32E30124374EF66F22F144 /* libPods-Sumerian.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8B59DC37A7C4437AB6F6B762 /* etna-free-font.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4A35CADBF6C74C7A88963F1D /* etna-free-font.otf */; };
 		C5A2E9E15985BB9A5A338FCD /* libPods-Sumerian-SumerianTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F36FD6641BD6D81442298FE /* libPods-Sumerian-SumerianTests.a */; };
 		F222BDAF46B548F1A777EE29 /* 3270Narrow.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66837611B6614C3CB174017D /* 3270Narrow.ttf */; };
 		F33DC404810B468DB2AAE7C2 /* TheDolbak-Brush.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5749AC04CE364340A9C6A136 /* TheDolbak-Brush.ttf */; };
@@ -46,8 +47,10 @@
 		00E356EE1AD99517003FC87E /* SumerianTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SumerianTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* SumerianTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SumerianTests.m; sourceTree = "<group>"; };
-		069011C691154E1DBE9B353D /* IBM-Logo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "IBM-Logo.ttf"; path = "../assets/fonts/IBM-Logo.ttf"; sourceTree = "<group>"; };
+		069011C691154E1DBE9B353D /* IBM-Logo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBM-Logo.ttf"; path = "../assets/fonts/IBM-Logo.ttf"; sourceTree = "<group>"; };
+		095CD5F5195C47638B3988AA /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		0B32E30124374EF66F22F144 /* libPods-Sumerian.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Sumerian.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C9E5A5AC72B4A71860FEFAE /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		0F36FD6641BD6D81442298FE /* libPods-Sumerian-SumerianTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Sumerian-SumerianTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* Sumerian.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sumerian.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Sumerian/AppDelegate.h; sourceTree = "<group>"; };
@@ -55,18 +58,33 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Sumerian/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sumerian/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Sumerian/main.m; sourceTree = "<group>"; };
+		1CB8C986BC234532A9F919E4 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Sumerian-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sumerian-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Sumerian-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sumerian-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5749AC04CE364340A9C6A136 /* TheDolbak-Brush.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "TheDolbak-Brush.ttf"; path = "../assets/fonts/TheDolbak-Brush.ttf"; sourceTree = "<group>"; };
-		66837611B6614C3CB174017D /* 3270Narrow.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = 3270Narrow.ttf; path = ../assets/fonts/3270Narrow.ttf; sourceTree = "<group>"; };
-		70C45373164443DF8C2475D3 /* KLMN_Flash_Pix.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = KLMN_Flash_Pix.ttf; path = ../assets/fonts/KLMN_Flash_Pix.ttf; sourceTree = "<group>"; };
+		2E9ACFAB456E4A8FBF2988CA /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		4A35CADBF6C74C7A88963F1D /* etna-free-font.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "etna-free-font.otf"; path = "../assets/fonts/etna-free-font.otf"; sourceTree = "<group>"; };
+		5749AC04CE364340A9C6A136 /* TheDolbak-Brush.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "TheDolbak-Brush.ttf"; path = "../assets/fonts/TheDolbak-Brush.ttf"; sourceTree = "<group>"; };
+		642F0AAF00A44BED94B85385 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		66837611B6614C3CB174017D /* 3270Narrow.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = 3270Narrow.ttf; path = ../assets/fonts/3270Narrow.ttf; sourceTree = "<group>"; };
+		699A736B67294BA09CAC4E1D /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		70C45373164443DF8C2475D3 /* KLMN_Flash_Pix.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = KLMN_Flash_Pix.ttf; path = ../assets/fonts/KLMN_Flash_Pix.ttf; sourceTree = "<group>"; };
+		7EB1616576C047E39C6BC97C /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
+		8042FA068E8D4ED6BDD2FC21 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Sumerian/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		920AE01196CF291853BA329C /* Pods-Sumerian-SumerianTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sumerian-SumerianTests.release.xcconfig"; path = "Target Support Files/Pods-Sumerian-SumerianTests/Pods-Sumerian-SumerianTests.release.xcconfig"; sourceTree = "<group>"; };
+		9AAD354763904A0C8CC6B7CB /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		A73D6623F5213E78782B8867 /* Pods-Sumerian.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sumerian.release.xcconfig"; path = "Target Support Files/Pods-Sumerian/Pods-Sumerian.release.xcconfig"; sourceTree = "<group>"; };
+		B1C7A52D19FE41F8A30AA96D /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		C1FC06A5F50347D7B0A0F81A /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		C7EB2973F5544022A3C07EFD /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		CACE01B67FF140A2BAEC98B2 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		D5B2C53165757B8DB1E88994 /* Pods-Sumerian-SumerianTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sumerian-SumerianTests.debug.xcconfig"; path = "Target Support Files/Pods-Sumerian-SumerianTests/Pods-Sumerian-SumerianTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D764DD7558F547D198D2EE7A /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
+		D86F2225998941FEB4035985 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F3E913972B31574447799D3B /* Pods-Sumerian.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sumerian.debug.xcconfig"; path = "Target Support Files/Pods-Sumerian/Pods-Sumerian.debug.xcconfig"; sourceTree = "<group>"; };
+		FFC60786AF344A6B99C0761B /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,9 +170,25 @@
 				069011C691154E1DBE9B353D /* IBM-Logo.ttf */,
 				70C45373164443DF8C2475D3 /* KLMN_Flash_Pix.ttf */,
 				5749AC04CE364340A9C6A136 /* TheDolbak-Brush.ttf */,
+				4A35CADBF6C74C7A88963F1D /* etna-free-font.otf */,
+				CACE01B67FF140A2BAEC98B2 /* AntDesign.ttf */,
+				642F0AAF00A44BED94B85385 /* Entypo.ttf */,
+				B1C7A52D19FE41F8A30AA96D /* EvilIcons.ttf */,
+				699A736B67294BA09CAC4E1D /* Feather.ttf */,
+				C1FC06A5F50347D7B0A0F81A /* FontAwesome.ttf */,
+				FFC60786AF344A6B99C0761B /* FontAwesome5_Brands.ttf */,
+				2E9ACFAB456E4A8FBF2988CA /* FontAwesome5_Regular.ttf */,
+				7EB1616576C047E39C6BC97C /* FontAwesome5_Solid.ttf */,
+				1CB8C986BC234532A9F919E4 /* Fontisto.ttf */,
+				C7EB2973F5544022A3C07EFD /* Foundation.ttf */,
+				0C9E5A5AC72B4A71860FEFAE /* Ionicons.ttf */,
+				8042FA068E8D4ED6BDD2FC21 /* MaterialCommunityIcons.ttf */,
+				D86F2225998941FEB4035985 /* MaterialIcons.ttf */,
+				095CD5F5195C47638B3988AA /* Octicons.ttf */,
+				9AAD354763904A0C8CC6B7CB /* SimpleLineIcons.ttf */,
+				D764DD7558F547D198D2EE7A /* Zocial.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -199,7 +233,6 @@
 				D5B2C53165757B8DB1E88994 /* Pods-Sumerian-SumerianTests.debug.xcconfig */,
 				920AE01196CF291853BA329C /* Pods-Sumerian-SumerianTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -349,6 +382,7 @@
 				3BA531C5EF8C41B8AD3866F7 /* IBM-Logo.ttf in Resources */,
 				09A8439ED74F4FC49B615CE2 /* KLMN_Flash_Pix.ttf in Resources */,
 				F33DC404810B468DB2AAE7C2 /* TheDolbak-Brush.ttf in Resources */,
+				8B59DC37A7C4437AB6F6B762 /* etna-free-font.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,7 +6,8 @@
  * @flow
  */
 ///* eslint-disable */
-import React, { useEffect } from 'react'
+import React, { useEffect, ReactElement } from 'react'
+import { StatusBar } from 'react-native'
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance'
 import Amplify from '@aws-amplify/core'
 import * as Keychain from 'react-native-keychain'
@@ -60,16 +61,18 @@ Amplify.configure({
   storage: MyStorage
 })
 
-const App: () => React$Node = () => {
+const App = (): ReactElement => {
   //const [value] = useState(false)
   const scheme = useColorScheme()
-  const theme = scheme === 'dark' ? DarkTheme : LightTheme
+  const theme = scheme !== 'dark' ? DarkTheme : LightTheme
 
   useEffect(() => {
     SplashScreen.hide()
   }, [])
+  const color = scheme !== 'dark' ? 'light' : 'dark'
   return (
     <>
+      <StatusBar barStyle={`${color}-content`} />
       <AppearanceProvider>
         <AmplifyProvider client={client}>
           <ThemeProvider theme={theme}>
