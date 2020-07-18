@@ -12,7 +12,9 @@ YellowBox.ignoreWarnings([
   'RCTRootView cancelTouches',
   'not authenticated',
   'Sending `onAnimatedValueUpdate`',
-  'Animated: `useNativeDriver`'
+  'Animated: `useNativeDriver`',
+  "Can't perform a React",
+  'DataStore - Connection failed: {"errors":[{"message":"Validation error of type UnknownArgument: Unknown field argument owner'
 ])
 
 AppRegistry.registerComponent(appName, () => App)

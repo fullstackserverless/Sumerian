@@ -7,6 +7,8 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 export declare class English {
   readonly id: string;
   readonly title: string;
+  readonly description: string;
+  readonly img: string;
   readonly uri: string;
   readonly owner?: string;
   constructor(init: ModelInit<English>);

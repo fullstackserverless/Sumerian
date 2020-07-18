@@ -7,6 +7,7 @@ export const onCreateEnglish = /* GraphQL */ `
     onCreateEnglish {
       id
       title
+      description
       img
       uri
       owner
@@ -23,6 +24,7 @@ export const onUpdateEnglish = /* GraphQL */ `
     onUpdateEnglish {
       id
       title
+      description
       img
       uri
       owner
@@ -39,6 +41,7 @@ export const onDeleteEnglish = /* GraphQL */ `
     onDeleteEnglish {
       id
       title
+      description
       img
       uri
       owner

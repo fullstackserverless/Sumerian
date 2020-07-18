@@ -10,6 +10,15 @@ import TopTabNavigator from './TopTabNavigator'
 
 enableScreens()
 
+export interface ObjT {
+  id: string
+  title: string
+  description: string
+  img: string
+  uri: string
+  owner?: string
+}
+
 export type RootStackParamList = {
   HELLO: undefined
   SIGN_UP: undefined
@@ -20,15 +29,8 @@ export type RootStackParamList = {
   USER: undefined
   Stack0: undefined
   TAB0_MAIN: undefined
-  TAB0_DETAIL: {
-    item: {
-      title: string
-      description: string
-      img: string
-      uri: string
-      owner: string
-    }
-  }
+  TAB0_DETAIL: ObjT
+  TAB0_ADD: ObjT
 }
 
 const Stack = createNativeStackNavigator()

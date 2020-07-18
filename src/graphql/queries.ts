@@ -18,6 +18,7 @@ export const syncEnglishes = /* GraphQL */ `
       items {
         id
         title
+        description
         img
         uri
         owner
@@ -37,6 +38,7 @@ export const getEnglish = /* GraphQL */ `
     getEnglish(id: $id) {
       id
       title
+      description
       img
       uri
       owner
@@ -58,6 +60,7 @@ export const listEnglishs = /* GraphQL */ `
       items {
         id
         title
+        description
         img
         uri
         owner

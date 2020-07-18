@@ -10,6 +10,7 @@ export const createEnglish = /* GraphQL */ `
     createEnglish(input: $input, condition: $condition) {
       id
       title
+      description
       img
       uri
       owner
@@ -29,6 +30,7 @@ export const updateEnglish = /* GraphQL */ `
     updateEnglish(input: $input, condition: $condition) {
       id
       title
+      description
       img
       uri
       owner
@@ -48,6 +50,7 @@ export const deleteEnglish = /* GraphQL */ `
     deleteEnglish(input: $input, condition: $condition) {
       id
       title
+      description
       img
       uri
       owner

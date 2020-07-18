@@ -32,6 +32,7 @@ interface AppContainerT {
   message?: string
   title?: string
   loading?: boolean
+  error?: string
 }
 
 const AppContainer = memo<AppContainerT>(
@@ -49,7 +50,6 @@ const AppContainer = memo<AppContainerT>(
   }) => {
     const { container, sub } = styles
     const { dark } = useTheme()
-    console.log('admin', admin)
     return (
       <View style={[container, { backgroundColor: dark ? black : white }]}>
         <StatusBarAlert

@@ -6,3 +6,39 @@ type English @model @auth(rules: [{ allow: owner, ownerField: "owner", operation
   uri: String!
   owner: String
 }
+
+type JavaScript @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
+  id: ID!
+  title: String!
+  description: String!
+  img: String!
+  uri: String!
+  owner: String
+}
+
+type ReactNative @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
+  id: ID!
+  title: String!
+  description: String!
+  img: String!
+  uri: String!
+  owner: String
+}
+
+type TypeScript @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
+  id: ID!
+  title: String!
+  description: String!
+  img: String!
+  uri: String!
+  owner: String
+}
+
+type AWSAmplify @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
+  id: ID!
+  title: String!
+  description: String!
+  img: String!
+  uri: String!
+  owner: String
+}

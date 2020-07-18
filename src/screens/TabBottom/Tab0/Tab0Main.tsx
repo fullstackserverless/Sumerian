@@ -1,42 +1,66 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, ReactElement } from 'react'
 import { FlatList, Text } from 'react-native'
-import VideoPlayer from 'react-native-video-controls'
 import { Auth } from 'aws-amplify'
 import { AppContainer, Space, Header, Card } from '../../../components'
 import { DataStore } from '@aws-amplify/datastore'
 import { English } from '../../../models'
 import { goBack, onScreen, classicRose } from '../../../constants'
+import { ObjT } from '../../../AppNavigator'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { RouteProp } from '@react-navigation/native'
+import { RootStackParamList } from '../../../AppNavigator'
 
-const Tab0Main = ({ navigation }) => {
+type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB0_MAIN'>
+type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB0_MAIN'>
+
+type Tab0MainT = {
+  navigation: ProfileScreenNavigationProp
+  route: ProfileScreenRouteProp
+}
+
+interface ItemT {
+  item: ObjT
+}
+
+const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
   const [data, updateData] = useState([
     {
-      id: 0,
+      id: '0',
       title: 'Alphabet',
-      description: 'info',
+      description: 'Learning the basics of the English language.',
       img: 'https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/Alphabet.png',
       uri: 'https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/Alphabet.mov'
     }
   ])
+  const [error, setError] = useState<string>('')
 
   const fetchJobs = async () => {
-    //const arr = await DataStore.query(English)
-    //updateData(arr)
+    try {
+      const arr = await DataStore.query(English)
+      updateData(arr)
+    } catch (err) {
+      setError(err)
+    }
   }
 
   useEffect(() => {
-    // fetchJobs()
-    // const subscription = DataStore.observe(English).subscribe(() => fetchJobs())
-    // return () => {
-    //   subscription.unsubscribe()
-    // }
-  }, [data])
+    fetchJobs()
+    const subscription = DataStore.observe(English).subscribe(() => fetchJobs())
+    return () => {
+      subscription.unsubscribe()
+    }
+  }, [navigation])
 
-  const _renderItem = ({ item }) => {
-    const owner = Auth.user.attributes.sub
-    const check = owner === item.owner
+  const _renderItem = ({ item }: ItemT) => {
+    const admin = Auth.user.signInUserSession.idToken.payload['cognito:groups'][0] === 'admin'
     return (
       <>
-        <Card item={item} onPress={onScreen('TAB0_DETAIL', navigation, item)} />
+        <Card
+          admin={admin}
+          item={item}
+          onPress={onScreen('TAB0_DETAIL', navigation, item)}
+          onPressAdmin={onScreen('TAB0_ADD', navigation, item)}
+        />
         <Space height={20} />
       </>
     )
@@ -44,9 +68,8 @@ const Tab0Main = ({ navigation }) => {
 
   const _keyExtractor = (obj: any) => obj.id.toString()
 
-  console.log('data', data)
   return (
-    <AppContainer onPress={goBack(navigation)} flatList>
+    <AppContainer onPress={goBack(navigation)} flatList error={error}>
       <FlatList
         scrollEventThrottle={16}
         data={data}
@@ -70,7 +93,3 @@ const Tab0Main = ({ navigation }) => {
 }
 
 export { Tab0Main }
-// ;<VideoPlayer
-//   source={{ uri: 'https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/Alphabet.mov' }}
-//   navigator={navigation}
-// />

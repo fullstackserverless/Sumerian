@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { TextInput, StyleSheet, Text, Platform } from 'react-native'
 import { useTheme } from '@react-navigation/native'
 import { ScaledSheet } from 'react-native-size-matters'
-import { W, primary, secondary, gray, dimGray, lightGray, Etna, KLMN, Dolbak, Narrow } from '../../constants'
+import { W, primary, secondary, gray, dimGray, classicRose, Etna, KLMN, Dolbak, Narrow } from '../../constants'
 
 const styles = StyleSheet.create({
   inputStyle: {
@@ -23,6 +23,7 @@ interface InputT {
   name?: string
   value?: string
   placeholder?: string
+  color?: string
   errors?: object
   touched?: object
   onChangeText?: (e: string | React.ChangeEvent<any>) => void
@@ -60,7 +61,8 @@ const Input = memo<InputT>(
     keyboardType,
     multiline,
     numberOfLines,
-    autoCapitalize
+    autoCapitalize,
+    color
   }) => {
     const { inputStyle, errorStyle } = styles
 
@@ -85,7 +87,7 @@ const Input = memo<InputT>(
       {
         fontFamily: KLMN,
         color: dimGray,
-        borderBottomColor: dark ? primary : secondary,
+        borderBottomColor: classicRose,
         fontSize: Platform.OS === 'ios' ? '15@s' : '15@s'
       }
     ]
