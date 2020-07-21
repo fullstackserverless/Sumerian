@@ -38,7 +38,7 @@ const ForgotPassSubmit = ({ route, navigation }: ForgotPassSubmitT): ReactElemen
 
   return (
     <>
-      <AppContainer title="Confirmation" onPress={goBack(navigation)} loading={loading}>
+      <AppContainer title="Confirmation" onPress={goBack(navigation)} loading={loading} message={error}>
         <Space height={Platform.OS === 'ios' ? 20 : 150} />
         <Formik
           initialValues={{ email: route.params.email, code: '', password: '', passwordConfirmation: '' }}

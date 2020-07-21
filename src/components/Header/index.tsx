@@ -16,11 +16,11 @@ const styles = StyleSheet.create({
   },
   iconLeftStyle: {
     fontSize: 35,
-    left: Platform.OS === 'ios' ? 0 : 25
+    left: Platform.OS === 'ios' ? 5 : 25
   },
   rightIconStyle: {
-    fontSize: 37,
-    marginRight: 20
+    fontSize: 35,
+    right: Platform.OS === 'ios' ? 20 : 25
   }
 })
 

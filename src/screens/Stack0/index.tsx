@@ -31,6 +31,7 @@ const Stack0 = memo(
     const [loading, setLoading] = useState(false)
 
     const key = useCallback(async () => {
+      setLoading(true)
       //await Keychain.resetInternetCredentials('auth')
       try {
         const credentials = await Keychain.getInternetCredentials('auth')

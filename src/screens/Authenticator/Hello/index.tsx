@@ -5,6 +5,8 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import { AppContainer, Button, Space, Txt } from '../../../components'
 import { onScreen } from '../../../constants'
 import { RootStackParamList } from '../../../AppNavigator'
+import { DataStore } from '@aws-amplify/datastore'
+import { Profile } from '../../../models'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'HELLO'>
 
@@ -13,8 +15,24 @@ type HelloT = {
 }
 
 const Hello = ({ navigation }: HelloT): ReactElement => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string>('')
+
+  // const deleteObj = async () => {
+  //   try {
+  //     setLoading(true)
+  //     const obj = await DataStore.query(Profile, '6e684533-8bbd-4ef4-b23b-56cffe1533d0')
+  //     console.log('obj', obj)
+  //     const del = await DataStore.delete(obj)
+  //     console.log('del', del)
+  //     setLoading(false)
+  //   } catch (err) {
+  //     setError(err)
+  //   }
+  // }
+
   useEffect(() => {
+    // deleteObj()
     setLoading(true)
     const key = async (): Promise<void> => {
       try {
@@ -29,12 +47,13 @@ const Hello = ({ navigation }: HelloT): ReactElement => {
           setLoading(false)
         }
       } catch (err) {
-        console.log('error', err) // eslint-disable-line
+        setError(err.message)
         setLoading(false)
       }
     }
     key()
-  }, []) // eslint-disable-line
+  }, [])
+
   return (
     <AppContainer loading={loading}>
       <Space height={200} />

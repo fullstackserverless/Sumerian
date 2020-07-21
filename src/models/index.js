@@ -4,8 +4,13 @@ import { schema } from './schema';
 
 
 
-const { English } = initSchema(schema);
+const { Profile, English, JavaScript, ReactNative, TypeScript, Amplify } = initSchema(schema);
 
 export {
-  English
+  Profile,
+  English,
+  JavaScript,
+  ReactNative,
+  TypeScript,
+  Amplify
 };

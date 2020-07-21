@@ -1,23 +1,23 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
     "Parameters": {
-        "authsumeriand19db3e7UserPoolId": {
+        "authsumerianf29a2284UserPoolId": {
             "Type": "String",
-            "Default": "authsumeriand19db3e7UserPoolId"
+            "Default": "authsumerianf29a2284UserPoolId"
         },
         
-        "authsumeriand19db3e7IdentityPoolId": {
+        "authsumerianf29a2284IdentityPoolId": {
             "Type": "String",
-            "Default": "authsumeriand19db3e7IdentityPoolId"
+            "Default": "authsumerianf29a2284IdentityPoolId"
         },
         
-        "authsumeriand19db3e7AppClientID": {
+        "authsumerianf29a2284AppClientID": {
             "Type": "String",
-            "Default": "authsumeriand19db3e7AppClientID"
+            "Default": "authsumerianf29a2284AppClientID"
         },
-        "authsumeriand19db3e7AppClientIDWeb": {
+        "authsumerianf29a2284AppClientIDWeb": {
             "Type": "String",
-            "Default": "authsumeriand19db3e7AppClientIDWeb"
+            "Default": "authsumerianf29a2284AppClientIDWeb"
         },
         "AuthRoleArn": {
             "Type": "String"
@@ -55,7 +55,7 @@
               },
               
               "UserPoolId" : {
-                "Ref": "authsumeriand19db3e7UserPoolId"
+                "Ref": "authsumerianf29a2284UserPoolId"
               } 
             }
         },
@@ -68,7 +68,7 @@
                         "",
                         [
                           {
-                            "Ref": "authsumeriand19db3e7UserPoolId"
+                            "Ref": "authsumerianf29a2284UserPoolId"
                           },
                           "-adminGroupRole"
                         ]
@@ -85,7 +85,61 @@
                             },
                             "Action": "sts:AssumeRoleWithWebIdentity",
                             "Condition": {
-                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authsumeriand19db3e7IdentityPoolId"}},
+                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authsumerianf29a2284IdentityPoolId"}},
+                              "ForAnyValue:StringLike": {"cognito-identity.amazonaws.com:amr": "authenticated"}
+                            }
+                        }
+                    ]
+                }
+            }
+        },
+     
+    
+        "editorsGroup": {
+          "Type" : "AWS::Cognito::UserPoolGroup",
+          "Properties" : {
+              "GroupName" : "editors",
+              "Precedence" : 2,
+              
+              "RoleArn" : {
+                "Fn::GetAtt": [
+                    "editorsGroupRole",
+                    "Arn"
+                ]
+              },
+              
+              "UserPoolId" : {
+                "Ref": "authsumerianf29a2284UserPoolId"
+              } 
+            }
+        },
+        
+        "editorsGroupRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "RoleName":{
+                    "Fn::Join": [
+                        "",
+                        [
+                          {
+                            "Ref": "authsumerianf29a2284UserPoolId"
+                          },
+                          "-editorsGroupRole"
+                        ]
+                    ]
+                },
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Sid": "",
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Federated": "cognito-identity.amazonaws.com"
+                            },
+                            "Action": "sts:AssumeRoleWithWebIdentity",
+                            "Condition": {
+                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authsumerianf29a2284IdentityPoolId"}},
                               "ForAnyValue:StringLike": {"cognito-identity.amazonaws.com:amr": "authenticated"}
                             }
                         }
@@ -111,7 +165,7 @@
                                 "",
                                 [
                                   
-                                  "sumeriand19db3e7",
+                                  "sumerianf29a2284",
                                   "-ExecutionRole-",
                                   {
                                     "Ref": "env"
@@ -270,16 +324,16 @@
                     "Ref": "UnauthRoleArn"
                 },
                 "identityPoolId": {
-                    "Ref": "authsumeriand19db3e7IdentityPoolId"
+                    "Ref": "authsumerianf29a2284IdentityPoolId"
                 },
                 "userPoolId": {
-                    "Ref": "authsumeriand19db3e7UserPoolId"
+                    "Ref": "authsumerianf29a2284UserPoolId"
                 },
                 "appClientIDWeb": {
-                    "Ref": "authsumeriand19db3e7AppClientIDWeb"
+                    "Ref": "authsumerianf29a2284AppClientIDWeb"
                 },
                 "appClientID": {
-                    "Ref": "authsumeriand19db3e7AppClientID"
+                    "Ref": "authsumerianf29a2284AppClientID"
                 },
                 "region": {
                     "Ref": "AWS::Region"
@@ -299,6 +353,17 @@
             "Value": {
                 "Fn::GetAtt": [
                     "adminGroupRole",
+                    "Arn"
+                ]
+            }
+         
+        },
+        
+      
+        "editorsGroupRole": {
+            "Value": {
+                "Fn::GetAtt": [
+                    "editorsGroupRole",
                     "Arn"
                 ]
             }

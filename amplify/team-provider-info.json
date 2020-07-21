@@ -1,19 +1,19 @@
 {
-    "dev": {
+    "prod": {
         "awscloudformation": {
-            "AuthRoleName": "amplify-sumerian-dev-155113-authRole",
-            "UnauthRoleArn": "arn:aws:iam::123118798050:role/amplify-sumerian-dev-155113-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::123118798050:role/amplify-sumerian-dev-155113-authRole",
+            "AuthRoleName": "amplify-sumerian-prod-212854-authRole",
+            "UnauthRoleArn": "arn:aws:iam::123118798050:role/amplify-sumerian-prod-212854-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::123118798050:role/amplify-sumerian-prod-212854-authRole",
             "Region": "us-east-1",
-            "DeploymentBucketName": "amplify-sumerian-dev-155113-deployment",
-            "UnauthRoleName": "amplify-sumerian-dev-155113-unauthRole",
-            "StackName": "amplify-sumerian-dev-155113",
-            "StackId": "arn:aws:cloudformation:us-east-1:123118798050:stack/amplify-sumerian-dev-155113/1caab470-c689-11ea-a7a3-127e1ad2bd25",
-            "AmplifyAppId": "djz28vh3x8ozj"
+            "DeploymentBucketName": "amplify-sumerian-prod-212854-deployment",
+            "UnauthRoleName": "amplify-sumerian-prod-212854-unauthRole",
+            "StackName": "amplify-sumerian-prod-212854",
+            "StackId": "arn:aws:cloudformation:us-east-1:123118798050:stack/amplify-sumerian-prod-212854/1d7d3c30-caa6-11ea-9a34-120fbf0f0187",
+            "AmplifyAppId": "duo6sh4783qny"
         },
         "categories": {
             "auth": {
-                "sumeriand19db3e7": {}
+                "sumerianf29a2284": {}
             }
         }
     }

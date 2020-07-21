@@ -1,3 +1,12 @@
+type Profile @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  email: String!
+  uri: String!
+  owner: String
+}
+
 type English @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
   id: ID!
   title: String!
@@ -34,7 +43,7 @@ type TypeScript @model @auth(rules: [{ allow: owner, ownerField: "owner", operat
   owner: String
 }
 
-type AWSAmplify @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
+type Amplify @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
   id: ID!
   title: String!
   description: String!

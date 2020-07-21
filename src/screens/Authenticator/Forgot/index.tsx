@@ -34,7 +34,7 @@ const Forgot = ({ route, navigation }: ForgotT): ReactElement => {
 
   return (
     <>
-      <AppContainer title="Forgot" onPress={goBack(navigation)} loading={loading}>
+      <AppContainer title="Forgot" onPress={goBack(navigation)} loading={loading} message={error}>
         <Formik
           initialValues={{ email: route.params.email }}
           onSubmit={(values): Promise<void> => _onPress(values)}

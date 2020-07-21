@@ -1,10 +1,9 @@
 {
     "auth": {
-        "sumeriand19db3e7": {
+        "sumerianf29a2284": {
             "service": "Cognito",
             "providerPlugin": "awscloudformation",
-            "dependsOn": [],
-            "customAuth": false
+            "dependsOn": []
         },
         "userPoolGroups": {
             "service": "Cognito-UserPool-Groups",
@@ -12,7 +11,7 @@
             "dependsOn": [
                 {
                     "category": "auth",
-                    "resourceName": "sumeriand19db3e7",
+                    "resourceName": "sumerianf29a2284",
                     "attributes": [
                         "UserPoolId",
                         "AppClientIDWeb",
@@ -33,7 +32,7 @@
                     "defaultAuthentication": {
                         "authenticationType": "AMAZON_COGNITO_USER_POOLS",
                         "userPoolConfig": {
-                            "userPoolId": "authsumeriand19db3e7"
+                            "userPoolId": "authsumerianf29a2284"
                         }
                     }
                 }
@@ -45,14 +44,14 @@
             "dependsOn": [
                 {
                     "category": "auth",
-                    "resourceName": "sumeriand19db3e7",
+                    "resourceName": "sumerianf29a2284",
                     "attributes": [
                         "UserPoolId"
                     ]
                 },
                 {
                     "category": "function",
-                    "resourceName": "AdminQueriesa207a2e7",
+                    "resourceName": "AdminQueriesfa9d51ce",
                     "attributes": [
                         "Arn",
                         "Name"
@@ -62,14 +61,14 @@
         }
     },
     "function": {
-        "AdminQueriesa207a2e7": {
+        "AdminQueriesfa9d51ce": {
             "service": "Lambda",
             "providerPlugin": "awscloudformation",
             "build": true,
             "dependsOn": [
                 {
                     "category": "auth",
-                    "resourceName": "sumeriand19db3e7",
+                    "resourceName": "sumerianf29a2284",
                     "attributes": [
                         "UserPoolId"
                     ]

@@ -17,8 +17,8 @@ type ConfirmSignUpT = {
 }
 
 const ConfirmSignUp = ({ route, navigation }: ConfirmSignUpT): ReactElement => {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string>('')
 
   const _onPress = async (values: { code: string }): Promise<void> => {
     setLoading(true)
@@ -28,7 +28,7 @@ const ConfirmSignUp = ({ route, navigation }: ConfirmSignUpT): ReactElement => {
       const { email, password } = route.params
       await Auth.confirmSignUp(email, code, { forceAliasCreation: true })
       const user = await Auth.signIn(email, password)
-      user && onScreen('MAIN', navigation)()
+      user && onScreen('SIGN_UP_USERNAME', navigation, route.params)()
       setLoading(false)
     } catch (err) {
       setLoading(false)

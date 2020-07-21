@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 
 interface TabT {
   title: string
-  imageStyle: StyleProp<ImageStyle>
+  imageStyle?: StyleProp<ImageStyle>
 }
 
 const Tab = memo<TabT>(({ title, imageStyle }) => {

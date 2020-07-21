@@ -49,10 +49,14 @@ const SignUp = ({ navigation }: SignUpT): ReactElement => {
 
   return (
     <>
-      <AppContainer onPress={goBack(navigation)} title="Sign Up" loading={loading}>
+      <AppContainer onPress={goBack(navigation)} title="Sign Up" loading={loading} message={error}>
         <Space height={80} />
         <Formik
-          initialValues={{ email: 'raoffonom@icloud.com', password: 'qwerty123', passwordConfirmation: 'qwerty123' }}
+          initialValues={{
+            email: 'reactnativeinitru@gmail.com',
+            password: 'qwerty123',
+            passwordConfirmation: 'qwerty123'
+          }}
           onSubmit={(values): Promise<void> => _onPress(values)}
           validationSchema={Yup.object().shape({
             email: Yup.string().email().required(),

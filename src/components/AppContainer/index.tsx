@@ -25,14 +25,15 @@ interface AppContainerT {
   admin?: boolean
   flatList?: boolean
   iconLeft?: string
+  colorLeft?: string
   onPress?: ((event: GestureResponderEvent) => void) | undefined
   onPressRight?: ((event: GestureResponderEvent) => void) | undefined
   iconRight?: string
+  colorRight?: string
   children?: React.ReactNode
   message?: string
   title?: string
   loading?: boolean
-  error?: string
 }
 
 const AppContainer = memo<AppContainerT>(
@@ -40,6 +41,8 @@ const AppContainer = memo<AppContainerT>(
     admin = false,
     flatList = false,
     iconLeft = 'angle-dobule-left',
+    colorLeft,
+    colorRight,
     onPress = null,
     onPressRight = null,
     iconRight,
@@ -68,6 +71,8 @@ const AppContainer = memo<AppContainerT>(
             onPressRight={onPressRight}
             iconLeft={iconLeft}
             iconRight={iconRight}
+            colorLeft={colorLeft}
+            colorRight={colorRight}
             admin={admin}
           />
         )}

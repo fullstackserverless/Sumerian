@@ -47,7 +47,7 @@ const SignIn = ({ navigation }: SignUpT): ReactElement => {
 
   return (
     <>
-      <AppContainer onPress={goBack(navigation)} title="Sign In" loading={loading}>
+      <AppContainer onPress={goBack(navigation)} title="Sign In" loading={loading} message={error}>
         <Space height={100} />
         <Formik
           initialValues={{ email: 'raoffonom@icloud.com', password: 'qwerty123' }}

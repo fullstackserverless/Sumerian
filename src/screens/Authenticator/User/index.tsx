@@ -35,7 +35,7 @@ const User = ({ navigation }: UserT): ReactElement => {
   }
 
   return (
-    <AppContainer message={error} loading={loading}>
+    <AppContainer loading={loading} message={error}>
       <Button title="Sign Out" onPress={_onPress} />
     </AppContainer>
   )
