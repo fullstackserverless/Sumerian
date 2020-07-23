@@ -24,12 +24,18 @@ import TopTabNavigator from './TopTabNavigator'
 
 enableScreens()
 
+export interface S3ObjectT {
+  bucket: string
+  region: string
+  key: string
+}
+
 export interface ObjT {
   id: string
   title: string
   description: string
   img: string
-  uri: string
+  avatar: S3ObjectT
   owner?: string
 }
 
@@ -37,8 +43,9 @@ export interface UserT {
   id: string
   firstName: string
   lastName: string
-  uri: string
+  avatar: S3ObjectT
   email: string
+  owner?: string
 }
 
 export type RootStackParamList = {
@@ -77,6 +84,7 @@ const Stack = createNativeStackNavigator()
 
 const TabsTop = (): React.ReactElement => {
   return (
+    // @ts-expect-error
     <TopTabNavigator.Navigator initialRouteName="TabTop0">
       <TopTabNavigator.Screen name="TabTop0" component={Tab0Main} />
       <TopTabNavigator.Screen name="TabTop1" component={Tab1Main} />
@@ -89,12 +97,11 @@ const TabsTop = (): React.ReactElement => {
 
 const Tab = () => {
   return (
-    <>
-      <TabNavigator.Navigator initialRouteName="TAB_BOTTOM_0">
-        <TabNavigator.Screen name="TAB_BOTTOM_0" component={TabsTop} />
-        <TabNavigator.Screen name="TAB_BOTTOM_1" component={TabBottom1} />
-      </TabNavigator.Navigator>
-    </>
+    // @ts-expect-error
+    <TabNavigator.Navigator initialRouteName="TAB_BOTTOM_0">
+      <TabNavigator.Screen name="TAB_BOTTOM_0" component={TabsTop} />
+      <TabNavigator.Screen name="TAB_BOTTOM_1" component={TabBottom1} />
+    </TabNavigator.Navigator>
   )
 }
 {

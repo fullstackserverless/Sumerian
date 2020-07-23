@@ -18,24 +18,26 @@ const Hello = ({ navigation }: HelloT): ReactElement => {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
 
-  // const deleteObj = async () => {
-  //   try {
-  //     setLoading(true)
-  //     const obj = await DataStore.query(Profile, '6e684533-8bbd-4ef4-b23b-56cffe1533d0')
-  //     console.log('obj', obj)
-  //     const del = await DataStore.delete(obj)
-  //     console.log('del', del)
-  //     setLoading(false)
-  //   } catch (err) {
-  //     setError(err)
-  //   }
-  // }
+  const deleteObj = async () => {
+    try {
+      setLoading(true)
+      const obj = await DataStore.query(Profile, '7ffd536a-a0ac-4958-9021-7d2ca7116634')
+      console.log('obj', obj)
+      const del = await DataStore.delete(obj)
+      console.log('del', del)
+      setLoading(false)
+    } catch (err) {
+      setError(err)
+    }
+  }
 
   useEffect(() => {
     // deleteObj()
+
     setLoading(true)
     const key = async (): Promise<void> => {
       try {
+        //await Keychain.resetInternetCredentials('auth')
         const credentials = await Keychain.getInternetCredentials('auth')
 
         if (credentials) {

@@ -1,6 +1,8 @@
-import React, { memo, useState } from 'react'
-import { StyleSheet, Image, StyleProp, ViewStyle, TouchableOpacity, View } from 'react-native'
+import React, { memo, useState, useEffect } from 'react'
+import { StyleSheet, Image, StyleProp, ViewStyle, TouchableOpacity, View, ImageSourcePropType } from 'react-native'
 import { primary, secondary } from '../../constants'
+import { fetchImage } from '../../screens/helper'
+import { S3ObjectT } from '../../AppNavigator'
 
 const styles = StyleSheet.create({
   container: {
@@ -73,13 +75,13 @@ const styles = StyleSheet.create({
 type sizeType = 'xLarge' | 'large' | 'medium' | 'small'
 
 interface AvatarT {
-  uri: string
+  avatar: S3ObjectT
   onPress?: () => void
   size?: sizeType
   viewStyle?: StyleProp<ViewStyle>
 }
 
-const Avatar = memo<AvatarT>(({ uri, size = 'large', onPress, viewStyle }) => {
+const Avatar = memo<AvatarT>(({ avatar, size = 'large', onPress, viewStyle }) => {
   const {
     container,
     small,
@@ -119,6 +121,22 @@ const Avatar = memo<AvatarT>(({ uri, size = 'large', onPress, viewStyle }) => {
       large: blueLarge,
       xLarge: blueXLarge
     }[status])
+
+  const [uri, setUri] = useState<ImageSourcePropType>()
+
+  const fetchData = async () => {
+    try {
+      const check = avatar.key !== ''
+      const uri = await fetchImage(avatar)
+      check && setUri(uri)
+    } catch (error) {
+      console.log('error', error)
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [avatar])
 
   return (
     <>

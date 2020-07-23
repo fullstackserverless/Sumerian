@@ -1,9 +1,10 @@
 {
     "auth": {
-        "sumerianf29a2284": {
+        "sumerian27351455": {
             "service": "Cognito",
             "providerPlugin": "awscloudformation",
-            "dependsOn": []
+            "dependsOn": [],
+            "customAuth": false
         },
         "userPoolGroups": {
             "service": "Cognito-UserPool-Groups",
@@ -11,7 +12,7 @@
             "dependsOn": [
                 {
                     "category": "auth",
-                    "resourceName": "sumerianf29a2284",
+                    "resourceName": "sumerian27351455",
                     "attributes": [
                         "UserPoolId",
                         "AppClientIDWeb",
@@ -32,7 +33,7 @@
                     "defaultAuthentication": {
                         "authenticationType": "AMAZON_COGNITO_USER_POOLS",
                         "userPoolConfig": {
-                            "userPoolId": "authsumerianf29a2284"
+                            "userPoolId": "authsumerian27351455"
                         }
                     }
                 }
@@ -44,14 +45,14 @@
             "dependsOn": [
                 {
                     "category": "auth",
-                    "resourceName": "sumerianf29a2284",
+                    "resourceName": "sumerian27351455",
                     "attributes": [
                         "UserPoolId"
                     ]
                 },
                 {
                     "category": "function",
-                    "resourceName": "AdminQueriesfa9d51ce",
+                    "resourceName": "AdminQueries3df2b305",
                     "attributes": [
                         "Arn",
                         "Name"
@@ -60,15 +61,21 @@
             ]
         }
     },
+    "storage": {
+        "s3bc1b40e9": {
+            "service": "S3",
+            "providerPlugin": "awscloudformation"
+        }
+    },
     "function": {
-        "AdminQueriesfa9d51ce": {
+        "AdminQueries3df2b305": {
             "service": "Lambda",
             "providerPlugin": "awscloudformation",
             "build": true,
             "dependsOn": [
                 {
                     "category": "auth",
-                    "resourceName": "sumerianf29a2284",
+                    "resourceName": "sumerian27351455",
                     "attributes": [
                         "UserPoolId"
                     ]

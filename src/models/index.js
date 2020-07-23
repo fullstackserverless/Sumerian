@@ -4,7 +4,7 @@ import { schema } from './schema';
 
 
 
-const { Profile, English, JavaScript, ReactNative, TypeScript, Amplify } = initSchema(schema);
+const { Profile, English, JavaScript, ReactNative, TypeScript, Amplify, S3Object } = initSchema(schema);
 
 export {
   Profile,
@@ -12,5 +12,6 @@ export {
   JavaScript,
   ReactNative,
   TypeScript,
-  Amplify
+  Amplify,
+  S3Object
 };

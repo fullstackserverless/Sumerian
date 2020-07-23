@@ -53,7 +53,7 @@ const SignUp = ({ navigation }: SignUpT): ReactElement => {
         <Space height={80} />
         <Formik
           initialValues={{
-            email: 'reactnativeinitru@gmail.com',
+            email: 'raoffonom@icloud.com',
             password: 'qwerty123',
             passwordConfirmation: 'qwerty123'
           }}

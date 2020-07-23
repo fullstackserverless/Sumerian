@@ -1,53 +1,21 @@
-type Profile @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
+type Profile
+  @model
+  @auth(
+    rules: [
+      { allow: owner, ownerField: "owner", operations: [create, update, delete] }
+      { allow: groups, groups: ["admin"] }
+    ]
+  ) {
   id: ID!
   firstName: String!
   lastName: String!
   email: String!
-  uri: String!
+  avatar: S3Object!
   owner: String
 }
 
-type English @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
-  id: ID!
-  title: String!
-  description: String!
-  img: String!
-  uri: String!
-  owner: String
-}
-
-type JavaScript @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
-  id: ID!
-  title: String!
-  description: String!
-  img: String!
-  uri: String!
-  owner: String
-}
-
-type ReactNative @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
-  id: ID!
-  title: String!
-  description: String!
-  img: String!
-  uri: String!
-  owner: String
-}
-
-type TypeScript @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
-  id: ID!
-  title: String!
-  description: String!
-  img: String!
-  uri: String!
-  owner: String
-}
-
-type Amplify @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
-  id: ID!
-  title: String!
-  description: String!
-  img: String!
-  uri: String!
-  owner: String
+type S3Object {
+  bucket: String!
+  region: String!
+  key: String!
 }
