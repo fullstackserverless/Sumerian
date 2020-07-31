@@ -3,8 +3,14 @@ type Profile @model @auth(rules: [{ allow: owner, ownerField: "owner", operation
   firstName: String!
   lastName: String!
   email: String!
-  uri: String!
+  avatar: S3Object!
   owner: String
+}
+
+type S3Object {
+  bucket: String!
+  region: String!
+  key: String!
 }
 
 type English @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
@@ -13,6 +19,7 @@ type English @model @auth(rules: [{ allow: owner, ownerField: "owner", operation
   description: String!
   img: String!
   uri: String!
+  json: String!
   owner: String
 }
 
@@ -22,6 +29,7 @@ type JavaScript @model @auth(rules: [{ allow: owner, ownerField: "owner", operat
   description: String!
   img: String!
   uri: String!
+  json: String!
   owner: String
 }
 
@@ -31,6 +39,7 @@ type ReactNative @model @auth(rules: [{ allow: owner, ownerField: "owner", opera
   description: String!
   img: String!
   uri: String!
+  json: String!
   owner: String
 }
 
@@ -40,6 +49,7 @@ type TypeScript @model @auth(rules: [{ allow: owner, ownerField: "owner", operat
   description: String!
   img: String!
   uri: String!
+  json: String!
   owner: String
 }
 
@@ -49,5 +59,6 @@ type Amplify @model @auth(rules: [{ allow: owner, ownerField: "owner", operation
   description: String!
   img: String!
   uri: String!
+  json: String!
   owner: String
 }

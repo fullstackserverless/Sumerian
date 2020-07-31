@@ -1,6 +1,10 @@
-import React, { memo, useState } from 'react'
-import { StyleSheet, Image, StyleProp, ViewStyle, TouchableOpacity, View } from 'react-native'
+import React, { memo, useState, useEffect } from 'react'
+import { StyleSheet, StyleProp, ViewStyle, TouchableOpacity, View, ImageSourcePropType } from 'react-native'
 import { primary, secondary } from '../../constants'
+import { fetchImage } from '../../screens/helper'
+import { S3ObjectT } from '../../AppNavigator'
+import { Loading } from '../Loading'
+import FastImage from 'react-native-fast-image'
 
 const styles = StyleSheet.create({
   container: {
@@ -73,13 +77,14 @@ const styles = StyleSheet.create({
 type sizeType = 'xLarge' | 'large' | 'medium' | 'small'
 
 interface AvatarT {
-  uri: string
+  loading: boolean
+  avatar: S3ObjectT
   onPress?: () => void
   size?: sizeType
   viewStyle?: StyleProp<ViewStyle>
 }
 
-const Avatar = memo<AvatarT>(({ uri, size = 'large', onPress, viewStyle }) => {
+const Avatar = memo<AvatarT>(({ loading, avatar, size = 'large', onPress, viewStyle }) => {
   const {
     container,
     small,
@@ -120,17 +125,45 @@ const Avatar = memo<AvatarT>(({ uri, size = 'large', onPress, viewStyle }) => {
       xLarge: blueXLarge
     }[status])
 
+  const [uri, setUri] = useState<string>()
+
+  const fetchData = async () => {
+    try {
+      const check = avatar.key !== ''
+      const uri = await fetchImage(avatar)
+      check && setUri(uri)
+    } catch (error) {
+      console.log('error', error)
+    }
+  }
+
+  const getSize = (x: sizeType): number =>
+    ({
+      xLarge: 150,
+      large: 90,
+      medium: 60,
+      small: 40
+    }[x])
+
+  useEffect(() => {
+    fetchData()
+  }, [avatar])
+
   return (
     <>
       <TouchableOpacity onPress={onPress} style={[container, viewStyle]}>
         <View style={[pink(size), { backgroundColor: secondary }]}>
-          <View style={[blue(size), { backgroundColor: primary }]}>
-            {uri ? (
-              <Image style={ava(size)} source={{ uri }} />
-            ) : (
-              <Image style={ava(size)} source={require('./pickaface.png')} />
-            )}
-          </View>
+          {loading ? (
+            <Loading type="Pulse" size={getSize(size)} loading={loading} />
+          ) : (
+            <View style={[blue(size), { backgroundColor: primary }]}>
+              {uri === undefined ? (
+                <FastImage style={ava(size)} source={require('./pickaface.png')} />
+              ) : (
+                <FastImage style={ava(size)} source={{ uri, cache: FastImage.cacheControl.immutable }} />
+              )}
+            </View>
+          )}
         </View>
       </TouchableOpacity>
     </>

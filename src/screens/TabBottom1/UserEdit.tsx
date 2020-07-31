@@ -1,14 +1,21 @@
 import React, { useState, ReactElement, useRef, useEffect } from 'react'
-import ImagePicker from 'react-native-image-crop-picker'
-import { Formik } from 'formik'
+import { Auth, API, graphqlOperation } from 'aws-amplify'
+import { Formik, FormikProps } from 'formik'
 import * as Yup from 'yup'
+// @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
+import { useTheme } from '@react-navigation/native'
 import { RouteProp } from '@react-navigation/native'
 import { DataStore } from '@aws-amplify/datastore'
 import { Profile } from '../../models'
 import { AppContainer, Avatar, Space, Button, Input } from '../../components'
-import { goBack } from '../../constants'
-import { RootStackParamList, UserT } from '../../AppNavigator'
+import { goBack, white, black } from '../../constants'
+import { RootStackParamList, S3ObjectT, UserT } from '../../AppNavigator'
+import config from '../../../aws-exports'
+import { updateImage, pickAva } from '../../screens/helper'
+import { updateProfile } from '../../graphql/mutations'
+
+const { aws_user_files_s3_bucket_region: region, aws_user_files_s3_bucket: bucket } = config
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'USER_EDIT'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'USER_EDIT'>
@@ -21,15 +28,19 @@ type UserEditT = {
 const UserEdit = ({ route, navigation }: UserEditT): ReactElement => {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
-  const [uri, setUri] = useState<string>('')
-  const formikRef = useRef()
+  const formikRef = useRef<FormikProps<any>>()
+  const [avatar, setAvatar] = useState<S3ObjectT>({
+    bucket: '',
+    region: '',
+    key: ''
+  })
 
-  const [input, setObj] = useState({
+  const [input, setObj] = useState<UserT>({
     id: '0',
     firstName: '',
     lastName: '',
     email: '',
-    uri: ''
+    avatar
   })
 
   useEffect(() => {
@@ -37,61 +48,67 @@ const UserEdit = ({ route, navigation }: UserEditT): ReactElement => {
     const obj = route.params
     if (typeof obj !== 'undefined') {
       setObj(obj)
+      // @ts-expect-error
       const { setFieldValue } = formikRef.current
-      const { id, firstName, lastName, email, uri } = obj
+      const { id, firstName, lastName, email } = obj
       setFieldValue('id', id)
       setFieldValue('firstName', firstName)
       setFieldValue('lastName', lastName)
       setFieldValue('email', email)
-      setFieldValue('uri', uri)
-      setUri(uri)
+      setAvatar(obj.avatar)
       setLoading(false)
     }
   }, [route.params])
 
-  const updateObj = async ({ id, firstName, lastName, email, uri }: UserT) => {
+  const updateObj = async (input: UserT) => {
     try {
       setLoading(true)
-      const original = await DataStore.query(Profile, id)
-      const update = await DataStore.save(
-        Profile.copyOf(original, (updated) => {
-          updated.firstName = firstName
-          updated.lastName = lastName
-          updated.email = email
-          updated.uri = uri
-        })
-      )
-      update && goBack(navigation)()
+      await API.graphql(graphqlOperation(updateProfile, { input }))
+      goBack(navigation)()
       setLoading(false)
     } catch (err) {
       setError(err)
     }
   }
 
-  const pickSingleBase64 = (cropit: boolean) => {
-    ImagePicker.openPicker({
-      width: 100,
-      height: 100,
-      cropping: cropit,
-      includeBase64: true,
-      includeExif: true
-    })
-      .then((image) => {
-        setUri(`data:${image.mime};base64, ${image.data}`)
-        setError('')
-      })
-      .catch((e) => setError(e))
+  const _onPress = async (values: { firstName: string; lastName: string }): Promise<void> => {
+    setLoading(true)
+    if (avatar.key === '') {
+      setError('Pick a face')
+      setLoading(false)
+    } else {
+      const { firstName, lastName } = values
+      const { email } = route.params
+      const owner = await Auth.currentAuthenticatedUser()
+      const key = avatar.key
+      const fileForUpload = {
+        bucket,
+        key,
+        region
+      }
+      updateObj({ id: input.id, firstName, lastName, email, owner: owner.username, avatar: fileForUpload })
+      setLoading(false)
+    }
   }
+
+  const onPressAva = async () => {
+    const ava = await pickAva()
+    const image = await updateImage(avatar.key, ava)
+    setAvatar(image)
+  }
+
+  const { dark } = useTheme()
+  const color = dark ? white : black
 
   return (
     <>
-      <AppContainer onPress={goBack(navigation)} title=" " loading={loading} message={error}>
-        <Avatar size="xLarge" uri={uri} onPress={() => pickSingleBase64(false)} />
+      <AppContainer onPress={goBack(navigation)} title=" " loading={loading} colorLeft={white}>
+        <Avatar size="xLarge" avatar={avatar} onPress={onPressAva} loading={loading} />
         <Space height={30} />
         <Formik
-          innerRef={formikRef}
+          innerRef={(r) => (formikRef.current = r || undefined)}
           initialValues={input}
-          onSubmit={(values): Promise<void> => updateObj(values)}
+          onSubmit={(values): Promise<void> => _onPress(values)}
           validationSchema={Yup.object().shape({
             firstName: Yup.string().min(2).required(),
             lastName: Yup.string().min(2).required()
@@ -108,6 +125,7 @@ const UserEdit = ({ route, navigation }: UserEditT): ReactElement => {
                 touched={touched}
                 errors={errors}
                 autoCapitalize="none"
+                color={color}
               />
               <Input
                 name="lastName"
@@ -118,9 +136,10 @@ const UserEdit = ({ route, navigation }: UserEditT): ReactElement => {
                 touched={touched}
                 errors={errors}
                 autoCapitalize="none"
+                color={color}
               />
               <Space height={30} />
-              <Button title="Sign Up" onPress={handleSubmit} />
+              <Button title="Done" onPress={handleSubmit} color={white} />
             </>
           )}
         </Formik>

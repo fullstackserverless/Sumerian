@@ -4,15 +4,13 @@ import YouTube from 'react-native-youtube'
 import { W } from '../../constants'
 
 const styles = StyleSheet.create({
-  container: { alignSelf: 'stretch', height: W }
+  container: { alignSelf: 'stretch', height: W - 90 }
 })
 
 type YouTubePlayerT = {
   uri: string
 }
 
-const YouTubePlayer = memo(({ uri }: YouTubePlayerT) => (
-  <YouTube videoId={uri} play fullscreen loop style={styles.container} />
-))
+const YouTubePlayer = memo(({ uri }: YouTubePlayerT) => <YouTube videoId={uri} loop style={styles.container} />)
 
 export { YouTubePlayer }

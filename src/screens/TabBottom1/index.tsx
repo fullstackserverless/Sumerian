@@ -1,13 +1,15 @@
 import React, { memo, useEffect, useState } from 'react'
+// @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
-import { DataStore } from '@aws-amplify/datastore'
-import { Auth } from 'aws-amplify'
+import { Auth, API, graphqlOperation } from 'aws-amplify'
 import * as Keychain from 'react-native-keychain'
+import { listProfiles } from '../../../src/graphql/queries'
 import { RootStackParamList, UserT } from '../../AppNavigator'
-import { AppContainer } from '../../components'
-import { HeaderMaster, Button } from '../../components'
-import { Profile } from '../../models'
-import { goHome, onScreen } from '../../constants'
+import { AppContainer, HeaderMaster, Button } from '../../components'
+import { useTheme } from '@react-navigation/native'
+import { goHome, onScreen, white, black } from '../../constants'
+import { onUpdateProfile } from '../../graphql/subscriptions'
+import { UpdateProfileInput } from '../../API'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB_BOTTOM_1'>
 
@@ -16,22 +18,37 @@ type TabBottom1T = {
 }
 
 const TabBottom1 = memo(({ navigation }: TabBottom1T) => {
-  const [loading, setLoading] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string>('')
+
   const [data, updateData] = useState<UserT>({
     id: '0',
     firstName: '',
     lastName: '',
     email: '',
-    uri: ''
+    avatar: {
+      bucket: '',
+      region: '',
+      key: ''
+    }
   })
 
   const fetchData = async () => {
     const credentials = await Keychain.getInternetCredentials('auth')
     if (credentials) {
       const { username } = credentials
-      const obj = await DataStore.query(Profile, (c) => c.email('eq', username))
-      obj && updateData(obj[0])
+      const obj = await API.graphql(
+        graphqlOperation(listProfiles, {
+          filter: {
+            email: {
+              eq: username
+            }
+          }
+        })
+      )
+      // @ts-expect-error
+      obj && updateData(obj.data.listProfiles.items[0])
+      obj && setLoading(false)
     } else {
       setLoading(false)
     }
@@ -39,9 +56,14 @@ const TabBottom1 = memo(({ navigation }: TabBottom1T) => {
 
   useEffect(() => {
     fetchData()
-    const subscription = DataStore.observe(Profile).subscribe(() => fetchData())
+    let isSubscribed: boolean = true // eslint-disable-line
+    // @ts-expect-error
+    const subscriptionUpdate = API.graphql(graphqlOperation(onUpdateProfile)).subscribe({
+      next: (obj: any) => updateData(obj.value.data.onUpdateProfile)
+    })
     return () => {
-      subscription.unsubscribe()
+      subscriptionUpdate.unsubscribe()
+      isSubscribed = false
     }
   }, [navigation])
 
@@ -57,10 +79,13 @@ const TabBottom1 = memo(({ navigation }: TabBottom1T) => {
     }
   }
 
+  const { dark } = useTheme()
+  const color = dark ? white : black
+
   return (
     <AppContainer loading={loading} message={error}>
-      <HeaderMaster user={data} onPress={onScreen('USER_EDIT', navigation, data)} />
-      <Button title="Sign Out" onPress={_onPress} />
+      <HeaderMaster user={data} onPress={onScreen('USER_EDIT', navigation, data)} loading={loading} />
+      <Button title="Sign Out" onPress={_onPress} color={color} />
     </AppContainer>
   )
 })

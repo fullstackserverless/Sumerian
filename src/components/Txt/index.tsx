@@ -21,13 +21,11 @@ import {
 const styles = ScaledSheet.create({
   h0Style: {
     fontSize: Platform.OS === 'ios' ? '35@s' : '35@s',
-    fontFamily: Etna,
-    color: secondary
+    fontFamily: Etna
   },
   h0StyleDark: {
     fontSize: Platform.OS === 'ios' ? '35@s' : '35@s',
-    fontFamily: Etna,
-    color: primary
+    fontFamily: Etna
   },
   h1Style: {
     fontSize: Platform.OS === 'ios' ? '15@s' : '15@s',
@@ -132,13 +130,11 @@ const styles = ScaledSheet.create({
   },
   h8Style: {
     fontSize: Platform.OS === 'ios' ? '16@s' : '16@s',
-    fontFamily: Narrow,
-    color: secondary
+    fontFamily: Narrow
   },
   h8StyleDark: {
     fontSize: Platform.OS === 'ios' ? '16@s' : '16@s',
-    fontFamily: Narrow,
-    color: primary
+    fontFamily: Narrow
   },
   h9Style: {
     fontSize: Platform.OS === 'ios' ? '16@s' : '16@s',
@@ -146,6 +142,14 @@ const styles = ScaledSheet.create({
   },
   h9StyleDark: {
     fontSize: Platform.OS === 'ios' ? '16@s' : '16@s',
+    fontFamily: Narrow
+  },
+  errorStyle: {
+    fontSize: Platform.OS === 'ios' ? '35@s' : '35@s',
+    fontFamily: Narrow
+  },
+  errorStyleDark: {
+    fontSize: Platform.OS === 'ios' ? '35@s' : '35@s',
     fontFamily: Narrow
   },
   bodyStyle: {
@@ -187,16 +191,17 @@ interface TxtT {
   h7?: boolean
   h8?: boolean
   h9?: boolean
+  color?: string
   body?: boolean
+  error?: boolean
   title: string
   numberOfLines?: number
   ellipsizeMode?: 'head' | 'middle' | 'tail' | 'clip'
   textStyle?: StyleProp<TextStyle>
-  viewStyle?: StyleProp<ViewStyle>
 }
 
 const Txt = memo<TxtT>(
-  ({ h0, h1, h2, h3, h4, h5, h6, h7, h8, h9, body, title, textStyle, numberOfLines, ellipsizeMode }) => {
+  ({ h0, h1, h2, h3, h4, h5, h6, h7, h8, h9, body, title, textStyle, numberOfLines, ellipsizeMode, error, color }) => {
     const { dark } = useTheme()
     const {
       h0Style,
@@ -210,6 +215,7 @@ const Txt = memo<TxtT>(
       h8Style,
       h9Style,
       bodyStyle,
+      errorStyle,
       h0StyleDark,
       h1StyleDark,
       h2StyleDark,
@@ -220,7 +226,8 @@ const Txt = memo<TxtT>(
       h7StyleDark,
       h8StyleDark,
       h9StyleDark,
-      bodyStyleDark
+      bodyStyleDark,
+      errorStyleDark
     } = styles
     return (
       <Text
@@ -228,7 +235,7 @@ const Txt = memo<TxtT>(
         ellipsizeMode={ellipsizeMode}
         style={[
           textStyle,
-          h0 && StyleSheet.flatten([dark ? h0StyleDark : h0Style]),
+          h0 && StyleSheet.flatten([dark ? h0StyleDark : h0Style, { color }]),
           h1 && StyleSheet.flatten([dark ? h1StyleDark : h1Style]),
           h2 && StyleSheet.flatten([dark ? h2StyleDark : h2Style]),
           h3 && StyleSheet.flatten([dark ? h3StyleDark : h3Style]),
@@ -238,6 +245,7 @@ const Txt = memo<TxtT>(
           h7 && StyleSheet.flatten([dark ? h7StyleDark : h7Style]),
           h8 && StyleSheet.flatten([dark ? h8StyleDark : h8Style]),
           h9 && StyleSheet.flatten([dark ? h9StyleDark : h9Style]),
+          error && StyleSheet.flatten([dark ? errorStyleDark : errorStyle]),
           body && StyleSheet.flatten([dark ? bodyStyleDark : bodyStyle])
         ]}
       >

@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
   iconLeftStyle: {
     fontSize: 35,
-    left: Platform.OS === 'ios' ? 5 : 25
+    left: Platform.OS === 'ios' ? 10 : 25
   },
   rightIconStyle: {
     fontSize: 35,
@@ -28,11 +28,11 @@ interface HeaderT {
   admin?: boolean
   title?: string
   iconLeft?: string
-  iconRight?: string
+  iconRight?: string | null
   colorLeft?: string
   colorRight?: string
-  onPress?: ((event: GestureResponderEvent) => void) | undefined
-  onPressRight?: ((event: GestureResponderEvent) => void) | undefined
+  onPress?: (event: GestureResponderEvent) => void
+  onPressRight?: (event: GestureResponderEvent) => void
 }
 
 const Header = memo<HeaderT>(({ admin = false, iconLeft, iconRight, colorLeft, colorRight, onPress, onPressRight }) => {
@@ -41,7 +41,6 @@ const Header = memo<HeaderT>(({ admin = false, iconLeft, iconRight, colorLeft, c
   const color = dark ? primary : secondary
   const x = isIphoneX() ? 30 : 30
   const paddingTop = admin ? 0 : x
-
   return (
     <View style={container}>
       {iconLeft && (

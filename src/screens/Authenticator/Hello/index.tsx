@@ -1,12 +1,13 @@
 import React, { useEffect, useState, ReactElement } from 'react'
-import { Auth } from 'aws-amplify'
+import { Auth, API, graphqlOperation } from 'aws-amplify'
 import * as Keychain from 'react-native-keychain'
+// @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppContainer, Button, Space, Txt } from '../../../components'
-import { onScreen } from '../../../constants'
+import { onScreen, white, black } from '../../../constants'
 import { RootStackParamList } from '../../../AppNavigator'
-import { DataStore } from '@aws-amplify/datastore'
-import { Profile } from '../../../models'
+
+import { useTheme } from '@react-navigation/native'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'HELLO'>
 
@@ -18,50 +19,44 @@ const Hello = ({ navigation }: HelloT): ReactElement => {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
 
-  // const deleteObj = async () => {
-  //   try {
-  //     setLoading(true)
-  //     const obj = await DataStore.query(Profile, '6e684533-8bbd-4ef4-b23b-56cffe1533d0')
-  //     console.log('obj', obj)
-  //     const del = await DataStore.delete(obj)
-  //     console.log('del', del)
-  //     setLoading(false)
-  //   } catch (err) {
-  //     setError(err)
-  //   }
-  // }
+  const { dark } = useTheme()
+  const color = dark ? white : black
 
-  useEffect(() => {
-    // deleteObj()
-    setLoading(true)
-    const key = async (): Promise<void> => {
-      try {
-        const credentials = await Keychain.getInternetCredentials('auth')
+  const key = async (): Promise<void> => {
+    try {
+      //await Keychain.resetInternetCredentials('auth')
+      const credentials = await Keychain.getInternetCredentials('auth')
 
-        if (credentials) {
-          const { username, password } = credentials
-          const user = await Auth.signIn(username, password)
-          setLoading(false)
-          user && onScreen('MAIN', navigation)()
-        } else {
-          setLoading(false)
-        }
-      } catch (err) {
-        setError(err.message)
+      if (credentials) {
+        const { username, password } = credentials
+        const user = await Auth.signIn(username, password)
+        setLoading(false)
+        user && onScreen('MAIN', navigation)()
+      } else {
         setLoading(false)
       }
+    } catch (err) {
+      setError(err.message)
+      setLoading(false)
     }
+  }
+
+  useEffect(() => {
+    //deleteObj()
+
+    setLoading(true)
+
     key()
   }, [])
 
   return (
     <AppContainer loading={loading}>
       <Space height={200} />
-      <Button title="Sign In" onPress={onScreen('SIGN_IN', navigation)} />
+      <Button title="Sign In" onPress={onScreen('SIGN_IN', navigation)} color={color} />
       <Space height={10} />
       <Txt h6 title="or" textStyle={{ alignSelf: 'center' }} />
       <Space height={15} />
-      <Button title="Sign Up" onPress={onScreen('SIGN_UP', navigation)} />
+      <Button title="Sign Up" onPress={onScreen('SIGN_UP', navigation)} color={color} />
     </AppContainer>
   )
 }

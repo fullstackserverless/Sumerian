@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
 import { StyleSheet, View, ScrollView, GestureResponderEvent } from 'react-native'
+// @ts-expect-error
 import StatusBarAlert from 'react-native-statusbar-alert'
 import { useTheme } from '@react-navigation/native'
 import { Header } from '../Header'
@@ -25,9 +26,10 @@ interface AppContainerT {
   admin?: boolean
   flatList?: boolean
   iconLeft?: string
+  color?: string
   colorLeft?: string
   onPress?: ((event: GestureResponderEvent) => void) | undefined
-  onPressRight?: ((event: GestureResponderEvent) => void) | undefined
+  onPressRight?: (event: GestureResponderEvent) => void
   iconRight?: string
   colorRight?: string
   children?: React.ReactNode
@@ -41,6 +43,7 @@ const AppContainer = memo<AppContainerT>(
     admin = false,
     flatList = false,
     iconLeft = 'angle-dobule-left',
+    color = white,
     colorLeft,
     colorRight,
     onPress = null,
@@ -53,8 +56,10 @@ const AppContainer = memo<AppContainerT>(
   }) => {
     const { container, sub } = styles
     const { dark } = useTheme()
+    const backgroundColor = dark ? black : color
+
     return (
-      <View style={[container, { backgroundColor: dark ? black : white }]}>
+      <View style={[container, { backgroundColor }]}>
         <StatusBarAlert
           visible={message !== ''}
           message={message}

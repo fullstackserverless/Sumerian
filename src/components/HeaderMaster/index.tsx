@@ -1,10 +1,11 @@
-import React, { memo } from 'react'
+import React, { memo, useState, useEffect } from 'react'
 import { Platform, StyleSheet, TouchableOpacity } from 'react-native'
 import { Background } from '../Background'
 import { Txt } from '../Txt'
 import { Avatar } from '../Avatar'
 import { Space } from '../Space'
 import { Device } from '../../constants'
+import { UserT } from '../../AppNavigator'
 
 const styles = StyleSheet.create({
   container: {
@@ -58,22 +59,18 @@ const styles = StyleSheet.create({
 })
 
 interface HeaderMasterT {
-  user: {
-    firstName: string
-    lastName: string
-    uri: string
-    email: string
-  }
+  loading: boolean
+  user: UserT
   onPress?: () => void
 }
 
-const HeaderMaster = memo(({ user, onPress }: HeaderMasterT) => {
+const HeaderMaster = memo(({ loading, user, onPress }: HeaderMasterT) => {
   const { container, avatarStyle, h2 } = styles
-  const { firstName, lastName, email, uri } = user
+  const { firstName, lastName, email, avatar } = user
   return (
     <TouchableOpacity style={container} onPress={onPress}>
       <Background>
-        <Avatar uri={uri} viewStyle={avatarStyle} size="xLarge" onPress={onPress} />
+        <Avatar avatar={avatar} viewStyle={avatarStyle} size="xLarge" onPress={onPress} loading={loading} />
       </Background>
       <Txt h2 title={`${firstName} ${lastName}`} textStyle={h2} />
       <Space height={10} />

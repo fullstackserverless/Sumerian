@@ -1,4 +1,5 @@
 import React, { memo, useEffect, useState } from 'react'
+// @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RootStackParamList } from '../../AppNavigator'
 import { Txt } from '../../components'

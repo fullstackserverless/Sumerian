@@ -1,15 +1,20 @@
-import React, { useState, ReactElement, useEffect } from 'react'
-import { Auth } from 'aws-amplify'
-import ImagePicker from 'react-native-image-crop-picker'
-import { Formik } from 'formik'
+import React, { useState, ReactElement, useRef } from 'react'
+import { Auth, API, graphqlOperation } from 'aws-amplify'
+import { Formik, FormikProps } from 'formik'
 import * as Yup from 'yup'
+// @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
-import { DataStore } from '@aws-amplify/datastore'
-import { Profile } from '../../../models'
-import { AppContainer, Avatar, Space, Button, Input, TextError } from '../../../components'
-import { onScreen, goBack } from '../../../constants'
-import { RootStackParamList } from '../../../AppNavigator'
+
+import { createProfile } from '../../../graphql/mutations'
+import { AppContainer, Avatar, Space, Button, Input } from '../../../components'
+import { onScreen, goBack, white, black } from '../../../constants'
+import { RootStackParamList, S3ObjectT, UserT } from '../../../AppNavigator'
+import config from '../../../../aws-exports'
+import { pickAva, createImage } from '../../../screens/helper'
+import { useTheme } from '@react-navigation/native'
+
+const { aws_user_files_s3_bucket_region: region, aws_user_files_s3_bucket: bucket } = config
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'SIGN_UP_USERNAME'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'SIGN_UP_USERNAME'>
@@ -19,63 +24,67 @@ type SignUpUsernameT = {
   route: ProfileScreenRouteProp
 }
 
-interface ObjT {
-  firstName: string
-  lastName: string
-  uri: string
-  email: string
-  owner: string
-}
-
 const SignUpUsername = ({ route, navigation }: SignUpUsernameT): ReactElement => {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
-  const [uri, setUri] = useState<string>('')
+  const formikRef = useRef<FormikProps<any>>()
+  const [avatar, setAvatar] = useState<S3ObjectT>({
+    bucket: '',
+    region: '',
+    key: ''
+  })
 
-  const createObj = async (values: ObjT) => {
+  const createObj = async (values: UserT) => {
     setLoading(true)
     try {
-      const obj = await DataStore.save(new Profile({ ...values }))
+      const obj = await API.graphql(graphqlOperation(createProfile, { input: values }))
       console.log('obj', obj)
-      //obj && onScreen('MAIN', navigation)()
+      obj && onScreen('MAIN', navigation)()
       setLoading(false)
     } catch (err) {
-      setError(err)
+      console.log('err', err)
+      //setError(err.message)
     }
   }
 
   const _onPress = async (values: { firstName: string; lastName: string }): Promise<void> => {
-    if (uri === '') {
+    setLoading(true)
+    if (avatar.key === '') {
       setError('Pick a face')
+      setLoading(false)
     } else {
       const { firstName, lastName } = values
       const { email } = route.params
       const owner = await Auth.currentAuthenticatedUser()
-      //console.log('owner', owner)
-      //createObj({ firstName, lastName, uri, email, owner: owner.username })
+      const key = avatar.key
+      const fileForUpload = {
+        bucket,
+        key,
+        region
+      }
+      // @ts-expect-error
+      createObj({ firstName, lastName, email, owner: owner.username, avatar: fileForUpload })
+      setLoading(false)
     }
   }
 
-  const pickSingleBase64 = (cropit: boolean) => {
-    ImagePicker.openPicker({
-      width: 100,
-      height: 100,
-      cropping: cropit,
-      includeBase64: true,
-      includeExif: true
-    })
-      .then((image) => {
-        setUri(`data:${image.mime};base64, ${image.data}`)
-        setError('')
-      })
-      .catch((e) => setError(e))
+  const onPressAva = async () => {
+    setLoading(true)
+    const ava = await pickAva()
+    const image = await createImage(ava)
+    setAvatar(image)
+    setLoading(false)
   }
 
+  const { dark } = useTheme()
+  const color = dark ? white : black
+
   return (
-    <AppContainer onPress={goBack(navigation)} title="Sign Up" loading={loading} message={error}>
-      <Avatar size="xLarge" uri={uri} onPress={() => pickSingleBase64(false)} />
+    <AppContainer onPress={goBack(navigation)} title="Sign Up" message={error} colorLeft={color}>
+      <Avatar size="xLarge" avatar={avatar} onPress={onPressAva} loading={loading} />
       <Space height={30} />
       <Formik
+        innerRef={(r) => (formikRef.current = r || undefined)}
         initialValues={{ firstName: 'Play', lastName: 'Ra' }}
         onSubmit={(values): Promise<void> => _onPress(values)}
         validationSchema={Yup.object().shape({
@@ -94,6 +103,7 @@ const SignUpUsername = ({ route, navigation }: SignUpUsernameT): ReactElement =>
               touched={touched}
               errors={errors}
               autoCapitalize="none"
+              color={color}
             />
             <Input
               name="lastName"
@@ -104,9 +114,11 @@ const SignUpUsername = ({ route, navigation }: SignUpUsernameT): ReactElement =>
               touched={touched}
               errors={errors}
               autoCapitalize="none"
+              color={color}
             />
             <Space height={30} />
-            <Button title="Sign Up" onPress={handleSubmit} />
+            <Button title="Sign Up" onPress={handleSubmit} color={color} />
+            <Space height={150} />
           </>
         )}
       </Formik>

@@ -2,11 +2,13 @@ import React, { useState, ReactElement } from 'react'
 import { Auth } from 'aws-amplify'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+// @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
 import { AppContainer, Button, Input } from '../../../components'
-import { onScreen, goBack } from '../../../constants'
+import { onScreen, goBack, white, black } from '../../../constants'
 import { RootStackParamList } from '../../../AppNavigator'
+import { useTheme } from '@react-navigation/native'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'FORGOT'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'FORGOT'>
@@ -32,9 +34,12 @@ const Forgot = ({ route, navigation }: ForgotT): ReactElement => {
     }
   }
 
+  const { dark } = useTheme()
+  const color = dark ? white : black
+
   return (
     <>
-      <AppContainer title="Forgot" onPress={goBack(navigation)} loading={loading} message={error}>
+      <AppContainer title="Forgot" onPress={goBack(navigation)} loading={loading} message={error} colorLeft={color}>
         <Formik
           initialValues={{ email: route.params.email }}
           onSubmit={(values): Promise<void> => _onPress(values)}
@@ -53,8 +58,9 @@ const Forgot = ({ route, navigation }: ForgotT): ReactElement => {
                 touched={touched}
                 errors={errors}
                 autoCapitalize="none"
+                color={color}
               />
-              <Button title="Confirm" onPress={handleSubmit} />
+              <Button title="Confirm" onPress={handleSubmit} color={color} />
             </>
           )}
         </Formik>

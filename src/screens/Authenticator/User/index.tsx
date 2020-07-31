@@ -1,6 +1,7 @@
 import React, { useState, useEffect, ReactElement } from 'react'
 import { Auth } from 'aws-amplify'
 import * as Keychain from 'react-native-keychain'
+// @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppContainer, Button } from '../../../components'
 import { goHome } from '../../../constants'

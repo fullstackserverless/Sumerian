@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { enableScreens } from 'react-native-screens' // eslint-disable-line
 import { Stack0 } from './screens'
-import { Tab0Main, Tab0Add, Tab0Detail } from './screens/TabBottom0/Tab0'
+import { Tab0Main, Tab0Add, Tab0Detail, Tab0Test } from './screens/TabBottom0/Tab0'
 import { Tab1Main, Tab1Add, Tab1Detail } from './screens/TabBottom0/Tab1'
 import { Tab2Main, Tab2Add, Tab2Detail } from './screens/TabBottom0/Tab2'
 import { Tab3Main, Tab3Add, Tab3Detail } from './screens/TabBottom0/Tab3'
@@ -24,12 +24,19 @@ import TopTabNavigator from './TopTabNavigator'
 
 enableScreens()
 
+export interface S3ObjectT {
+  bucket: string
+  region: string
+  key: string
+}
+
 export interface ObjT {
-  id: string
+  id?: string
   title: string
   description: string
   img: string
   uri: string
+  json: string
   owner?: string
 }
 
@@ -37,8 +44,16 @@ export interface UserT {
   id: string
   firstName: string
   lastName: string
-  uri: string
+  avatar: S3ObjectT
   email: string
+  owner?: string
+}
+
+export interface TestT {
+  id: string
+  name: string
+  title: string
+  url: string
 }
 
 export type RootStackParamList = {
@@ -55,6 +70,7 @@ export type RootStackParamList = {
   TAB0_MAIN: undefined
   TAB0_DETAIL: ObjT
   TAB0_ADD: ObjT
+  TAB0_TEST: { data: TestT }
   TAB1_MAIN: undefined
   TAB1_DETAIL: ObjT
   TAB1_ADD: ObjT
@@ -77,6 +93,7 @@ const Stack = createNativeStackNavigator()
 
 const TabsTop = (): React.ReactElement => {
   return (
+    // @ts-expect-error
     <TopTabNavigator.Navigator initialRouteName="TabTop0">
       <TopTabNavigator.Screen name="TabTop0" component={Tab0Main} />
       <TopTabNavigator.Screen name="TabTop1" component={Tab1Main} />
@@ -89,12 +106,11 @@ const TabsTop = (): React.ReactElement => {
 
 const Tab = () => {
   return (
-    <>
-      <TabNavigator.Navigator initialRouteName="TAB_BOTTOM_0">
-        <TabNavigator.Screen name="TAB_BOTTOM_0" component={TabsTop} />
-        <TabNavigator.Screen name="TAB_BOTTOM_1" component={TabBottom1} />
-      </TabNavigator.Navigator>
-    </>
+    // @ts-expect-error
+    <TabNavigator.Navigator initialRouteName="TAB_BOTTOM_0">
+      <TabNavigator.Screen name="TAB_BOTTOM_0" component={TabsTop} />
+      <TabNavigator.Screen name="TAB_BOTTOM_1" component={TabBottom1} />
+    </TabNavigator.Navigator>
   )
 }
 {
@@ -125,6 +141,7 @@ const AppNavigator = (): React.ReactElement => {
         <Stack.Screen name="TAB0_MAIN" component={Tab0Main} />
         <Stack.Screen name="TAB0_DETAIL" component={Tab0Detail} />
         <Stack.Screen name="TAB0_ADD" component={Tab0Add} />
+        <Stack.Screen name="TAB0_TEST" component={Tab0Test} />
 
         <Stack.Screen name="TAB1_MAIN" component={Tab1Main} />
         <Stack.Screen name="TAB1_DETAIL" component={Tab1Detail} />

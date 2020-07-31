@@ -5,9 +5,9 @@
 		"env": {
 			"Type": "String"
 		},
-		"authsumerianf29a2284UserPoolId": {
+		"authsumerian6d661324UserPoolId": {
 			"Type": "String",
-			"Default": "authsumerianf29a2284UserPoolId"
+			"Default": "authsumerian6d661324UserPoolId"
 		}
 	},
 	"Conditions": {
@@ -32,12 +32,12 @@
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"AdminQueriesfa9d51ce",
+						"AdminQueriesb3519c8c",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"AdminQueriesfa9d51ce",
+									"AdminQueriesb3519c8c",
 									"-",
 									{
 										"Ref": "env"
@@ -52,9 +52,9 @@
 						"ENV": {
 							"Ref": "env"
 						},
-						"GROUP": "editors",
+						"GROUP": "Admin",
 						"USERPOOL": {
-							"Ref": "authsumerianf29a2284UserPoolId"
+							"Ref": "authsumerian6d661324UserPoolId"
 						}
 					}
 				},
@@ -67,8 +67,8 @@
 				"Runtime": "nodejs10.x",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "amplify-sumerian-prod-212854-deployment",
-					"S3Key": "amplify-builds/AdminQueriesfa9d51ce-505937535a455058484d-build.zip"
+					"S3Bucket": "amplify-sumerian-prod-111218-deployment",
+					"S3Key": "amplify-builds/AdminQueriesb3519c8c-6d75714241437761454d-build.zip"
 				}
 			}
 		},
@@ -78,12 +78,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"AdminQueriesfa9d51ceLambdaRole",
+						"AdminQueriesb3519c8cLambdaRole",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"AdminQueriesfa9d51ceLambdaRole",
+									"AdminQueriesb3519c8cLambdaRole",
 									"-",
 									{
 										"Ref": "env"
@@ -178,7 +178,7 @@
 										},
 										":userpool/",
 										{
-											"Ref": "authsumerianf29a2284UserPoolId"
+											"Ref": "authsumerian6d661324UserPoolId"
 										}
 									]
 								]

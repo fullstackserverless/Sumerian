@@ -3,6 +3,7 @@ import { View } from 'react-native'
 import { DataStore } from '@aws-amplify/datastore'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+// @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
 import { JavaScript } from '../../../models'
@@ -19,11 +20,11 @@ type Tab1AddT = {
 }
 
 const Tab1Add = ({ route, navigation }: Tab1AddT): ReactElement => {
-  const [loading, setLoading] = useState(false)
-  const [check, setOwner] = useState(false)
-  const [error, setError] = useState('')
+  const [loading, setLoading] = useState<boolean>(false)
+  const [check, setOwner] = useState<boolean>(false)
+  const [error, setError] = useState<string>('')
 
-  const [input, setObj] = useState({
+  const [input, setObj] = useState<ObjT>({
     id: '',
     title: 'Data types',
     description: 'Learning the basics of the Java Script language.',
@@ -31,7 +32,7 @@ const Tab1Add = ({ route, navigation }: Tab1AddT): ReactElement => {
     uri: 'https://s3.eu-central-1.wasabisys.com/ghashtag/JSForKids/DataTypes'
   })
 
-  const formikRef = useRef()
+  const formikRef: any = useRef(null)
 
   useEffect(() => {
     const obj = route.params
@@ -88,7 +89,7 @@ const Tab1Add = ({ route, navigation }: Tab1AddT): ReactElement => {
   }
 
   return (
-    <AppContainer onPress={goBack(navigation)} loading={loading} error={error}>
+    <AppContainer onPress={goBack(navigation)} loading={loading} message={error}>
       <Header onPress={goBack(navigation)} iconLeft="angle-dobule-left" colorLeft={classicRose} />
       <Space height={20} />
       <Formik

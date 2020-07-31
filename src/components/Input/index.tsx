@@ -76,8 +76,8 @@ const Input = memo<InputT>(
       inputStyle,
       {
         fontFamily: KLMN,
-        color: dark ? primary : secondary,
-        borderBottomColor: dark ? primary : secondary,
+        color,
+        borderBottomColor: color,
         fontSize: Platform.OS === 'ios' ? '15@s' : '15@s'
       }
     ]

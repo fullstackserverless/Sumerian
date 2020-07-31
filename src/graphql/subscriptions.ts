@@ -9,11 +9,12 @@ export const onCreateProfile = /* GraphQL */ `
       firstName
       lastName
       email
-      uri
+      avatar {
+        bucket
+        region
+        key
+      }
       owner
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -26,11 +27,12 @@ export const onUpdateProfile = /* GraphQL */ `
       firstName
       lastName
       email
-      uri
+      avatar {
+        bucket
+        region
+        key
+      }
       owner
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -43,11 +45,12 @@ export const onDeleteProfile = /* GraphQL */ `
       firstName
       lastName
       email
-      uri
+      avatar {
+        bucket
+        region
+        key
+      }
       owner
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -61,10 +64,8 @@ export const onCreateEnglish = /* GraphQL */ `
       description
       img
       uri
+      json
       owner
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -78,10 +79,8 @@ export const onUpdateEnglish = /* GraphQL */ `
       description
       img
       uri
+      json
       owner
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -95,10 +94,8 @@ export const onDeleteEnglish = /* GraphQL */ `
       description
       img
       uri
+      json
       owner
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -112,10 +109,8 @@ export const onCreateJavaScript = /* GraphQL */ `
       description
       img
       uri
+      json
       owner
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -129,10 +124,8 @@ export const onUpdateJavaScript = /* GraphQL */ `
       description
       img
       uri
+      json
       owner
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -146,10 +139,8 @@ export const onDeleteJavaScript = /* GraphQL */ `
       description
       img
       uri
+      json
       owner
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -163,10 +154,8 @@ export const onCreateReactNative = /* GraphQL */ `
       description
       img
       uri
+      json
       owner
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -180,10 +169,8 @@ export const onUpdateReactNative = /* GraphQL */ `
       description
       img
       uri
+      json
       owner
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -197,10 +184,8 @@ export const onDeleteReactNative = /* GraphQL */ `
       description
       img
       uri
+      json
       owner
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -214,10 +199,8 @@ export const onCreateTypeScript = /* GraphQL */ `
       description
       img
       uri
+      json
       owner
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -231,10 +214,8 @@ export const onUpdateTypeScript = /* GraphQL */ `
       description
       img
       uri
+      json
       owner
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -248,10 +229,8 @@ export const onDeleteTypeScript = /* GraphQL */ `
       description
       img
       uri
+      json
       owner
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -265,10 +244,8 @@ export const onCreateAmplify = /* GraphQL */ `
       description
       img
       uri
+      json
       owner
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -282,10 +259,8 @@ export const onUpdateAmplify = /* GraphQL */ `
       description
       img
       uri
+      json
       owner
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -299,10 +274,8 @@ export const onDeleteAmplify = /* GraphQL */ `
       description
       img
       uri
+      json
       owner
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }

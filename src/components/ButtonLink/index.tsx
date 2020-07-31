@@ -1,6 +1,7 @@
 import React, { memo } from 'react'
 import { StyleSheet, StyleProp, ViewStyle, TextStyle, TouchableOpacity } from 'react-native'
 import { Txt } from '../Txt'
+import { white } from '../../constants'
 
 const styles = StyleSheet.create({
   container: {
@@ -9,7 +10,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start'
   },
   h: {
-    textDecorationLine: 'underline'
+    textDecorationLine: 'underline',
+    color: white
   }
 })
 
@@ -24,7 +26,7 @@ const ButtonLink = memo<ButtonLinkT>(({ title, viewStyle, textStyle, onPress }) 
   const { container, h } = styles
   return (
     <TouchableOpacity onPress={onPress} style={[container, viewStyle]}>
-      <Txt h8 title={title} textStyle={[h, textStyle]} />
+      <Txt h8 title={title} textStyle={[h, textStyle]} color={white} />
     </TouchableOpacity>
   )
 })

@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
 interface LoadingT {
   paddingTop?: number
   size?: number
+  loading?: boolean
   type?:
     | 'CircleFlip'
     | 'Bounce'
@@ -33,11 +34,11 @@ interface LoadingT {
     | undefined
 }
 
-const Loading = ({ paddingTop = 0, size = 65, type = 'Pulse' }: LoadingT) => {
+const Loading = ({ loading, paddingTop = 0, size = 65, type = 'Pulse' }: LoadingT) => {
   const { dark } = useTheme()
   return (
     <View style={[styles.container, { backgroundColor: dark ? black : white, paddingTop }]}>
-      <Spinner size={size} type={type} color={dark ? secondary : primary} />
+      {loading && <Spinner size={size} type={type} color={dark ? secondary : primary} />}
     </View>
   )
 }

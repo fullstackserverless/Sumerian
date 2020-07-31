@@ -2,14 +2,19 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
-
+export declare class S3Object {
+  readonly bucket: string;
+  readonly region: string;
+  readonly key: string;
+  constructor(init: ModelInit<S3Object>);
+}
 
 export declare class Profile {
   readonly id: string;
   readonly firstName: string;
   readonly lastName: string;
   readonly email: string;
-  readonly uri: string;
+  readonly avatar: S3Object;
   readonly owner?: string;
   constructor(init: ModelInit<Profile>);
   static copyOf(source: Profile, mutator: (draft: MutableModel<Profile>) => MutableModel<Profile> | void): Profile;

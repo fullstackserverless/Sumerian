@@ -2,6 +2,7 @@ import React, { useState, useEffect, ReactElement } from 'react'
 import { FlatList } from 'react-native'
 import { Auth } from 'aws-amplify'
 import { DataStore } from '@aws-amplify/datastore'
+// @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
 import { JavaScript } from '../../../models'
@@ -22,7 +23,7 @@ interface ItemT {
 }
 
 const Tab1Main = ({ navigation }: Tab1MainT): ReactElement => {
-  const [data, updateData] = useState([
+  const [data, updateData] = useState<Array<ObjT>>([
     {
       id: '0',
       title: 'Alphabet',
@@ -32,6 +33,7 @@ const Tab1Main = ({ navigation }: Tab1MainT): ReactElement => {
     }
   ])
   const [error, setError] = useState<string>('')
+  const [admin, setAdmin] = useState<boolean>(false)
 
   const fetchData = async () => {
     try {
@@ -43,6 +45,13 @@ const Tab1Main = ({ navigation }: Tab1MainT): ReactElement => {
   }
 
   useEffect(() => {
+    // @ts-expect-error
+    const check = Auth.user.signInUserSession.idToken.payload['cognito:groups']
+
+    const adm =
+      // @ts-expect-error
+      check !== undefined ? Auth.user.signInUserSession.idToken.payload['cognito:groups'][0] === 'Admin' : false
+    setAdmin(adm)
     fetchData()
     const subscription = DataStore.observe(JavaScript).subscribe(() => fetchData())
     return () => {
@@ -51,7 +60,6 @@ const Tab1Main = ({ navigation }: Tab1MainT): ReactElement => {
   }, [navigation])
 
   const _renderItem = ({ item }: ItemT) => {
-    const admin = Auth.user.signInUserSession.idToken.payload['cognito:groups'][0] === 'admin'
     return (
       <>
         <Card
@@ -68,7 +76,7 @@ const Tab1Main = ({ navigation }: Tab1MainT): ReactElement => {
   const _keyExtractor = (obj: any) => obj.id.toString()
 
   return (
-    <AppContainer onPress={goBack(navigation)} flatList error={error}>
+    <AppContainer onPress={goBack(navigation)} flatList message={error}>
       <FlatList
         scrollEventThrottle={16}
         data={data}
@@ -79,10 +87,10 @@ const Tab1Main = ({ navigation }: Tab1MainT): ReactElement => {
           <Header
             onPressRight={onScreen('TAB1_ADD', navigation)}
             iconLeft="angle-dobule-left"
-            iconRight="plus-a"
+            iconRight={admin ? 'plus-a' : null}
             colorLeft="transparent"
             colorRight={mustard}
-            admin
+            admin={admin}
           />
         }
         stickyHeaderIndices={[0]}

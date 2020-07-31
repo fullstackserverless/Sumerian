@@ -3,10 +3,12 @@ import { Auth } from 'aws-amplify'
 import * as Keychain from 'react-native-keychain'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+// @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppContainer, Space, Button, Input, TextError } from '../../../components'
-import { onScreen, goBack } from '../../../constants'
+import { onScreen, goBack, white, black } from '../../../constants'
 import { RootStackParamList } from '../../../AppNavigator'
+import { useTheme } from '@react-navigation/native'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'SIGN_UP'>
 
@@ -47,63 +49,67 @@ const SignUp = ({ navigation }: SignUpT): ReactElement => {
     }
   }
 
+  const { dark } = useTheme()
+  const color = dark ? white : black
+
   return (
-    <>
-      <AppContainer onPress={goBack(navigation)} title="Sign Up" loading={loading} message={error}>
-        <Space height={80} />
-        <Formik
-          initialValues={{
-            email: 'reactnativeinitru@gmail.com',
-            password: 'qwerty123',
-            passwordConfirmation: 'qwerty123'
-          }}
-          onSubmit={(values): Promise<void> => _onPress(values)}
-          validationSchema={Yup.object().shape({
-            email: Yup.string().email().required(),
-            password: Yup.string().min(6).required(),
-            passwordConfirmation: Yup.string().min(6).required()
-          })}
-        >
-          {({ values, handleChange, errors, setFieldTouched, touched, handleSubmit }): ReactElement => (
-            <>
-              <Input
-                name="email"
-                value={values.email}
-                onChangeText={handleChange('email')}
-                onBlur={(): void => setFieldTouched('email')}
-                placeholder="E-mail"
-                touched={touched}
-                errors={errors}
-                autoCapitalize="none"
-              />
-              <Input
-                name="password"
-                value={values.password}
-                onChangeText={handleChange('password')}
-                onBlur={(): void => setFieldTouched('password')}
-                placeholder="Password"
-                touched={touched}
-                errors={errors}
-                secureTextEntry
-              />
-              <Input
-                name="passwordConfirmation"
-                value={values.passwordConfirmation}
-                onChangeText={handleChange('passwordConfirmation')}
-                onBlur={(): void => setFieldTouched('passwordConfirmation')}
-                placeholder="Password confirm"
-                touched={touched}
-                errors={errors}
-                secureTextEntry
-              />
-              <Space height={30} />
-              {error !== '' && <TextError title={error} textStyle={{ alignSelf: 'center' }} />}
-              <Button title="Sign Up" onPress={handleSubmit} />
-            </>
-          )}
-        </Formik>
-      </AppContainer>
-    </>
+    <AppContainer onPress={goBack(navigation)} title="Sign Up" loading={loading} message={error} colorLeft={color}>
+      <Formik
+        initialValues={{
+          email: 'raoffonom@icloud.com',
+          password: 'qwerty123',
+          passwordConfirmation: 'qwerty123'
+        }}
+        onSubmit={(values): Promise<void> => _onPress(values)}
+        validationSchema={Yup.object().shape({
+          email: Yup.string().email().required(),
+          password: Yup.string().min(6).required(),
+          passwordConfirmation: Yup.string().min(6).required()
+        })}
+      >
+        {({ values, handleChange, errors, setFieldTouched, touched, handleSubmit }): ReactElement => (
+          <>
+            <Input
+              name="email"
+              value={values.email}
+              onChangeText={handleChange('email')}
+              onBlur={(): void => setFieldTouched('email')}
+              placeholder="E-mail"
+              touched={touched}
+              errors={errors}
+              autoCapitalize="none"
+              color={color}
+            />
+            <Input
+              name="password"
+              value={values.password}
+              onChangeText={handleChange('password')}
+              onBlur={(): void => setFieldTouched('password')}
+              placeholder="Password"
+              touched={touched}
+              errors={errors}
+              secureTextEntry
+              color={color}
+            />
+            <Input
+              name="passwordConfirmation"
+              value={values.passwordConfirmation}
+              onChangeText={handleChange('passwordConfirmation')}
+              onBlur={(): void => setFieldTouched('passwordConfirmation')}
+              placeholder="Password confirm"
+              touched={touched}
+              errors={errors}
+              secureTextEntry
+              color={color}
+            />
+            <Space height={30} />
+            {error !== '' && <TextError title={error} textStyle={{ alignSelf: 'center' }} />}
+            <Button title="Sign Up" onPress={handleSubmit} color={color} />
+            <Space height={50} />
+          </>
+        )}
+      </Formik>
+    </AppContainer>
   )
 }
 

@@ -4,11 +4,13 @@ import { Auth } from 'aws-amplify'
 import * as Keychain from 'react-native-keychain'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+// @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
 import { AppContainer, Button, Space, Input, TextError } from '../../../components'
-import { onScreen, goBack } from '../../../constants'
+import { onScreen, goBack, white, black } from '../../../constants'
 import { RootStackParamList } from '../../../AppNavigator'
+import { useTheme } from '@react-navigation/native'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'FORGOT_PASSWORD_SUBMIT'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'FORGOT_PASSWORD_SUBMIT'>
@@ -36,9 +38,18 @@ const ForgotPassSubmit = ({ route, navigation }: ForgotPassSubmitT): ReactElemen
     }
   }
 
+  const { dark } = useTheme()
+  const color = dark ? white : black
+
   return (
     <>
-      <AppContainer title="Confirmation" onPress={goBack(navigation)} loading={loading} message={error}>
+      <AppContainer
+        title="Confirmation"
+        onPress={goBack(navigation)}
+        loading={loading}
+        message={error}
+        colorLeft={color}
+      >
         <Space height={Platform.OS === 'ios' ? 20 : 150} />
         <Formik
           initialValues={{ email: route.params.email, code: '', password: '', passwordConfirmation: '' }}
@@ -80,6 +91,7 @@ const ForgotPassSubmit = ({ route, navigation }: ForgotPassSubmitT): ReactElemen
                 touched={touched}
                 errors={errors}
                 secureTextEntry
+                color={color}
               />
               <Input
                 name="passwordConfirmation"
@@ -90,10 +102,11 @@ const ForgotPassSubmit = ({ route, navigation }: ForgotPassSubmitT): ReactElemen
                 touched={touched}
                 errors={errors}
                 secureTextEntry
+                color={color}
               />
               {error !== '' && <TextError title={error} textStyle={{ alignSelf: 'center' }} />}
               <Space height={30} />
-              <Button title="Confirm" onPress={handleSubmit} />
+              <Button title="Confirm" onPress={handleSubmit} color={color} />
             </>
           )}
         </Formik>

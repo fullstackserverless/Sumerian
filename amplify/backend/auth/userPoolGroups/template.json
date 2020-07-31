@@ -1,23 +1,23 @@
 {
     "AWSTemplateFormatVersion": "2010-09-09",
     "Parameters": {
-        "authsumerianf29a2284UserPoolId": {
+        "authsumerian6d661324UserPoolId": {
             "Type": "String",
-            "Default": "authsumerianf29a2284UserPoolId"
+            "Default": "authsumerian6d661324UserPoolId"
         },
         
-        "authsumerianf29a2284IdentityPoolId": {
+        "authsumerian6d661324IdentityPoolId": {
             "Type": "String",
-            "Default": "authsumerianf29a2284IdentityPoolId"
+            "Default": "authsumerian6d661324IdentityPoolId"
         },
         
-        "authsumerianf29a2284AppClientID": {
+        "authsumerian6d661324AppClientID": {
             "Type": "String",
-            "Default": "authsumerianf29a2284AppClientID"
+            "Default": "authsumerian6d661324AppClientID"
         },
-        "authsumerianf29a2284AppClientIDWeb": {
+        "authsumerian6d661324AppClientIDWeb": {
             "Type": "String",
-            "Default": "authsumerianf29a2284AppClientIDWeb"
+            "Default": "authsumerian6d661324AppClientIDWeb"
         },
         "AuthRoleArn": {
             "Type": "String"
@@ -41,26 +41,26 @@
     },
     "Resources": {
     
-        "adminGroup": {
+        "AdminGroup": {
           "Type" : "AWS::Cognito::UserPoolGroup",
           "Properties" : {
-              "GroupName" : "admin",
+              "GroupName" : "Admin",
               "Precedence" : 1,
               
               "RoleArn" : {
                 "Fn::GetAtt": [
-                    "adminGroupRole",
+                    "AdminGroupRole",
                     "Arn"
                 ]
               },
               
               "UserPoolId" : {
-                "Ref": "authsumerianf29a2284UserPoolId"
+                "Ref": "authsumerian6d661324UserPoolId"
               } 
             }
         },
         
-        "adminGroupRole": {
+        "AdminGroupRole": {
             "Type": "AWS::IAM::Role",
             "Properties": {
                 "RoleName":{
@@ -68,9 +68,9 @@
                         "",
                         [
                           {
-                            "Ref": "authsumerianf29a2284UserPoolId"
+                            "Ref": "authsumerian6d661324UserPoolId"
                           },
-                          "-adminGroupRole"
+                          "-AdminGroupRole"
                         ]
                     ]
                 },
@@ -85,61 +85,7 @@
                             },
                             "Action": "sts:AssumeRoleWithWebIdentity",
                             "Condition": {
-                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authsumerianf29a2284IdentityPoolId"}},
-                              "ForAnyValue:StringLike": {"cognito-identity.amazonaws.com:amr": "authenticated"}
-                            }
-                        }
-                    ]
-                }
-            }
-        },
-     
-    
-        "editorsGroup": {
-          "Type" : "AWS::Cognito::UserPoolGroup",
-          "Properties" : {
-              "GroupName" : "editors",
-              "Precedence" : 2,
-              
-              "RoleArn" : {
-                "Fn::GetAtt": [
-                    "editorsGroupRole",
-                    "Arn"
-                ]
-              },
-              
-              "UserPoolId" : {
-                "Ref": "authsumerianf29a2284UserPoolId"
-              } 
-            }
-        },
-        
-        "editorsGroupRole": {
-            "Type": "AWS::IAM::Role",
-            "Properties": {
-                "RoleName":{
-                    "Fn::Join": [
-                        "",
-                        [
-                          {
-                            "Ref": "authsumerianf29a2284UserPoolId"
-                          },
-                          "-editorsGroupRole"
-                        ]
-                    ]
-                },
-                "AssumeRolePolicyDocument": {
-                    "Version": "2012-10-17",
-                    "Statement": [
-                        {
-                            "Sid": "",
-                            "Effect": "Allow",
-                            "Principal": {
-                                "Federated": "cognito-identity.amazonaws.com"
-                            },
-                            "Action": "sts:AssumeRoleWithWebIdentity",
-                            "Condition": {
-                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authsumerianf29a2284IdentityPoolId"}},
+                              "StringEquals": {"cognito-identity.amazonaws.com:aud": {"Ref":"authsumerian6d661324IdentityPoolId"}},
                               "ForAnyValue:StringLike": {"cognito-identity.amazonaws.com:amr": "authenticated"}
                             }
                         }
@@ -165,7 +111,7 @@
                                 "",
                                 [
                                   
-                                  "sumerianf29a2284",
+                                  "sumerian6d661324",
                                   "-ExecutionRole-",
                                   {
                                     "Ref": "env"
@@ -324,16 +270,16 @@
                     "Ref": "UnauthRoleArn"
                 },
                 "identityPoolId": {
-                    "Ref": "authsumerianf29a2284IdentityPoolId"
+                    "Ref": "authsumerian6d661324IdentityPoolId"
                 },
                 "userPoolId": {
-                    "Ref": "authsumerianf29a2284UserPoolId"
+                    "Ref": "authsumerian6d661324UserPoolId"
                 },
                 "appClientIDWeb": {
-                    "Ref": "authsumerianf29a2284AppClientIDWeb"
+                    "Ref": "authsumerian6d661324AppClientIDWeb"
                 },
                 "appClientID": {
-                    "Ref": "authsumerianf29a2284AppClientID"
+                    "Ref": "authsumerian6d661324AppClientID"
                 },
                 "region": {
                     "Ref": "AWS::Region"
@@ -349,21 +295,10 @@
     
     "Outputs": {
       
-        "adminGroupRole": {
+        "AdminGroupRole": {
             "Value": {
                 "Fn::GetAtt": [
-                    "adminGroupRole",
-                    "Arn"
-                ]
-            }
-         
-        },
-        
-      
-        "editorsGroupRole": {
-            "Value": {
-                "Fn::GetAtt": [
-                    "editorsGroupRole",
+                    "AdminGroupRole",
                     "Arn"
                 ]
             }

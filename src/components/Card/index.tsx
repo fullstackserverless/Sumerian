@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   iconStyle: {
     alignSelf: 'flex-end',
     right: 10,
-    bottom: 45
+    bottom: 75
   }
 })
 
@@ -27,7 +27,6 @@ interface CardT {
   viewStyle?: StyleProp<ViewStyle>
   item: {
     title: string
-    uri: string
     img: string
   }
 }

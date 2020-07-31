@@ -31,10 +31,12 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "uri": {
-                    "name": "uri",
+                "avatar": {
+                    "name": "avatar",
                     "isArray": false,
-                    "type": "String",
+                    "type": {
+                        "nonModel": "S3Object"
+                    },
                     "isRequired": true,
                     "attributes": []
                 },
@@ -440,6 +442,33 @@ export const schema = {
         }
     },
     "enums": {},
-    "nonModels": {},
-    "version": "d326162db136ce03498f91cb6a2f1153"
+    "nonModels": {
+        "S3Object": {
+            "name": "S3Object",
+            "fields": {
+                "bucket": {
+                    "name": "bucket",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "region": {
+                    "name": "region",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "key": {
+                    "name": "key",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            }
+        }
+    },
+    "version": "f590d495ac97ce1a6f03be8a524975ff"
 };

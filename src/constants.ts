@@ -22,6 +22,8 @@ export const Narrow = '3270Narrow'
 export const win = Dimensions.get('window')
 export const W = win.width
 export const H = win.height
+export const errSoundOne = 'https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/00-Alphabet/mp3/error.wav'
+export const errSoundTwo = 'https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/00-Alphabet/mp3/error2.wav'
 
 export const Device = {
   // eslint-disable-next-line

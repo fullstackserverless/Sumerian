@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, ReactElement } from 'react'
 import { DataStore } from '@aws-amplify/datastore'
-import { Formik } from 'formik'
+import { Formik, FormikProps } from 'formik'
 import * as Yup from 'yup'
+// @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
 import { Amplify } from '../../../models'
@@ -18,11 +19,11 @@ type Tab4AddT = {
 }
 
 const Tab4Add = ({ route, navigation }: Tab4AddT): ReactElement => {
-  const [loading, setLoading] = useState(false)
-  const [check, setOwner] = useState(false)
-  const [error, setError] = useState('')
+  const [loading, setLoading] = useState<boolean>(false)
+  const [check, setOwner] = useState<boolean>(false)
+  const [error, setError] = useState<string>('')
 
-  const [input, setObj] = useState({
+  const [input, setObj] = useState<ObjT>({
     id: '',
     title: 'Authentication 🔐 FULL SETUP',
     description: 'Learning the basics of the AWS Amplify.',
@@ -30,7 +31,7 @@ const Tab4Add = ({ route, navigation }: Tab4AddT): ReactElement => {
     uri: 'QMObthDaewQ'
   })
 
-  const formikRef = useRef()
+  const formikRef: any = useRef(null)
 
   useEffect(() => {
     const obj = route.params
@@ -87,7 +88,7 @@ const Tab4Add = ({ route, navigation }: Tab4AddT): ReactElement => {
   }
 
   return (
-    <AppContainer onPress={goBack(navigation)} loading={loading} error={error}>
+    <AppContainer onPress={goBack(navigation)} loading={loading} message={error}>
       <Header onPress={goBack(navigation)} iconLeft="angle-dobule-left" colorLeft={classicRose} />
       <Space height={20} />
       <Formik
