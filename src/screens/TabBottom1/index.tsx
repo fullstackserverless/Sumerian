@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from 'react'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
-import { Auth, API, graphqlOperation } from 'aws-amplify'
+import { Auth, I18n, API, graphqlOperation } from 'aws-amplify'
 import * as Keychain from 'react-native-keychain'
 import { listProfiles } from '../../../src/graphql/queries'
 import { RootStackParamList, UserT } from '../../AppNavigator'
@@ -9,7 +9,6 @@ import { AppContainer, HeaderMaster, Button } from '../../components'
 import { useTheme } from '@react-navigation/native'
 import { goHome, onScreen, white, black } from '../../constants'
 import { onUpdateProfile } from '../../graphql/subscriptions'
-import { UpdateProfileInput } from '../../API'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB_BOTTOM_1'>
 
@@ -85,7 +84,7 @@ const TabBottom1 = memo(({ navigation }: TabBottom1T) => {
   return (
     <AppContainer loading={loading} message={error}>
       <HeaderMaster user={data} onPress={onScreen('USER_EDIT', navigation, data)} loading={loading} />
-      <Button title="Sign Out" onPress={_onPress} color={color} />
+      <Button title={I18n.get('signOut')} onPress={_onPress} color={color} />
     </AppContainer>
   )
 })

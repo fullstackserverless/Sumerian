@@ -1,5 +1,5 @@
 import React, { memo, useState, useEffect } from 'react'
-import { Platform, StyleSheet, TouchableOpacity } from 'react-native'
+import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { Background } from '../Background'
 import { Txt } from '../Txt'
 import { Avatar } from '../Avatar'
@@ -65,12 +65,12 @@ interface HeaderMasterT {
 }
 
 const HeaderMaster = memo(({ loading, user, onPress }: HeaderMasterT) => {
-  const { container, avatarStyle, h2 } = styles
-  const { firstName, lastName, email, avatar } = user
+  const { container, h2 } = styles
+  const { firstName, lastName, email } = user
   return (
     <TouchableOpacity style={container} onPress={onPress}>
       <Background>
-        <Avatar avatar={avatar} viewStyle={avatarStyle} size="xLarge" onPress={onPress} loading={loading} />
+        <View />
       </Background>
       <Txt h2 title={`${firstName} ${lastName}`} textStyle={h2} />
       <Space height={10} />
@@ -78,5 +78,5 @@ const HeaderMaster = memo(({ loading, user, onPress }: HeaderMasterT) => {
     </TouchableOpacity>
   )
 })
-
+//<Avatar avatar={avatar} viewStyle={avatarStyle} size="xLarge" onPress={onPress} loading={loading} />
 export { HeaderMaster }

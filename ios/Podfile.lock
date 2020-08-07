@@ -346,7 +346,9 @@ PODS:
     - TOCropViewController
   - RNKeychain (6.1.1):
     - React
-  - RNScreens (2.9.0):
+  - RNLocalize (1.4.1):
+    - React
+  - RNScreens (2.10.1):
     - React
   - RNVectorIcons (7.0.0):
     - React
@@ -424,6 +426,7 @@ DEPENDENCIES:
   - RNFastImage (from `../node_modules/react-native-fast-image`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNKeychain (from `../node_modules/react-native-keychain`)
+  - RNLocalize (from `../node_modules/react-native-localize`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - "toolbar-android (from `../node_modules/@react-native-community/toolbar-android`)"
@@ -527,6 +530,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-image-crop-picker"
   RNKeychain:
     :path: "../node_modules/react-native-keychain"
+  RNLocalize:
+    :path: "../node_modules/react-native-localize"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNVectorIcons:
@@ -588,7 +593,8 @@ SPEC CHECKSUMS:
   RNFastImage: e19ba191922e7dab9d932a4d59d62d76660aa222
   RNImageCropPicker: f0557a908758c4a3f83978894ec7227651529b45
   RNKeychain: db956c02a018f7dd3a0ea8a6cf3087bc1894bf2b
-  RNScreens: c526239bbe0e957b988dacc8d75ac94ec9cb19da
+  RNLocalize: 49634a6a605dcdeb319e9c42a5c2f1aec508694b
+  RNScreens: b748efec66e095134c7166ca333b628cd7e6f3e2
   RNVectorIcons: da6fe858f5a65d7bbc3379540a889b0b12aa5976
   SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
   SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21

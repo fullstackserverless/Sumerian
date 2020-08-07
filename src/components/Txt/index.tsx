@@ -20,11 +20,11 @@ import {
 
 const styles = ScaledSheet.create({
   h0Style: {
-    fontSize: Platform.OS === 'ios' ? '35@s' : '35@s',
+    fontSize: Platform.OS === 'ios' ? '32@s' : '35@s',
     fontFamily: Etna
   },
   h0StyleDark: {
-    fontSize: Platform.OS === 'ios' ? '35@s' : '35@s',
+    fontSize: Platform.OS === 'ios' ? '32@s' : '35@s',
     fontFamily: Etna
   },
   h1Style: {
@@ -45,7 +45,7 @@ const styles = ScaledSheet.create({
   },
   h2Style: {
     fontSize: Platform.OS === 'ios' ? '25@s' : '30@s',
-    fontFamily: Dolbak,
+    fontFamily: Etna,
     textShadowOffset: { width: 2, height: 1 },
     textShadowRadius: 1,
     textShadowColor: secondary,
@@ -53,7 +53,7 @@ const styles = ScaledSheet.create({
   },
   h2StyleDark: {
     fontSize: Platform.OS === 'ios' ? '25@s' : '30@s',
-    fontFamily: Dolbak,
+    fontFamily: Etna,
     textShadowOffset: { width: 2, height: 1 },
     textShadowRadius: 1,
     textShadowColor: primary,
@@ -145,7 +145,7 @@ const styles = ScaledSheet.create({
     fontFamily: Narrow
   },
   errorStyle: {
-    fontSize: Platform.OS === 'ios' ? '35@s' : '35@s',
+    fontSize: Platform.OS === 'ios' ? '23@s' : '23@s',
     fontFamily: Narrow
   },
   errorStyleDark: {

@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { StyleSheet, ImageBackground, View } from 'react-native'
+import { StyleSheet, ImageBackground, View, Image } from 'react-native'
 import { useTheme } from '@react-navigation/native'
 import { W } from '../../constants'
 
@@ -25,9 +25,13 @@ const Background = memo(({ children, uri, onPress }: BackgroundT) => {
   const background = dark ? require('./backgroundB.png') : require('./backgroundW.png')
   return (
     <View style={container}>
-      <ImageBackground style={img} source={uri ? { uri } : background}>
-        {children}
-      </ImageBackground>
+      {children ? (
+        <ImageBackground style={img} source={uri ? { uri } : background}>
+          {children}
+        </ImageBackground>
+      ) : (
+        <Image style={img} source={uri ? { uri } : background} />
+      )}
     </View>
   )
 })

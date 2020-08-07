@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   sub: {
     flex: 1,
     justifyContent: 'center',
-    paddingHorizontal: 10
+    alignItems: 'center'
   }
 })
 

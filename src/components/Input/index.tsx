@@ -2,7 +2,7 @@ import React, { memo } from 'react'
 import { TextInput, StyleSheet, Text, Platform } from 'react-native'
 import { useTheme } from '@react-navigation/native'
 import { ScaledSheet } from 'react-native-size-matters'
-import { W, primary, secondary, gray, dimGray, classicRose, Etna, KLMN, Dolbak, Narrow } from '../../constants'
+import { W, dimGray, classicRose, KLMN } from '../../constants'
 
 const styles = StyleSheet.create({
   inputStyle: {
@@ -66,11 +66,7 @@ const Input = memo<InputT>(
   }) => {
     const { inputStyle, errorStyle } = styles
 
-    const {
-      dark
-      //body: { fontFamily, fontSize },
-      //colors: { secondary, primary, placeholderTextColor }
-    } = useTheme()
+    const { dark } = useTheme()
 
     const input = [
       inputStyle,

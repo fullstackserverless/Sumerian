@@ -1,18 +1,18 @@
 import React, { useState, ReactElement, useRef, useEffect } from 'react'
-import { Auth, API, graphqlOperation } from 'aws-amplify'
+import { Auth, API, graphqlOperation, I18n } from 'aws-amplify'
 import { Formik, FormikProps } from 'formik'
 import * as Yup from 'yup'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { useTheme } from '@react-navigation/native'
 import { RouteProp } from '@react-navigation/native'
-import { DataStore } from '@aws-amplify/datastore'
-import { Profile } from '../../models'
-import { AppContainer, Avatar, Space, Button, Input } from '../../components'
+// import { DataStore } from '@aws-amplify/datastore'
+// import { Profile } from '../../models'
+import { AppContainer, Space, Button, Input } from '../../components'
 import { goBack, white, black } from '../../constants'
 import { RootStackParamList, S3ObjectT, UserT } from '../../AppNavigator'
 import config from '../../../aws-exports'
-import { updateImage, pickAva } from '../../screens/helper'
+//import { updateImage, pickAva } from '../../screens/helper'
 import { updateProfile } from '../../graphql/mutations'
 
 const { aws_user_files_s3_bucket_region: region, aws_user_files_s3_bucket: bucket } = config
@@ -73,37 +73,36 @@ const UserEdit = ({ route, navigation }: UserEditT): ReactElement => {
 
   const _onPress = async (values: { firstName: string; lastName: string }): Promise<void> => {
     setLoading(true)
-    if (avatar.key === '') {
-      setError('Pick a face')
-      setLoading(false)
-    } else {
-      const { firstName, lastName } = values
-      const { email } = route.params
-      const owner = await Auth.currentAuthenticatedUser()
-      const key = avatar.key
-      const fileForUpload = {
-        bucket,
-        key,
-        region
-      }
-      updateObj({ id: input.id, firstName, lastName, email, owner: owner.username, avatar: fileForUpload })
-      setLoading(false)
+    // if (avatar.key === '') {
+    //   setError('Pick a face')
+    //   setLoading(false)
+    // } else {
+    const { firstName, lastName } = values
+    const { email } = route.params
+    const owner = await Auth.currentAuthenticatedUser()
+    const key = avatar.key
+    const fileForUpload = {
+      bucket,
+      key,
+      region
     }
+    updateObj({ id: input.id, firstName, lastName, email, owner: owner.username, avatar: fileForUpload })
+    setLoading(false)
+    //}
   }
 
-  const onPressAva = async () => {
-    const ava = await pickAva()
-    const image = await updateImage(avatar.key, ava)
-    setAvatar(image)
-  }
+  // const onPressAva = async () => {
+  //   const ava = await pickAva()
+  //   const image = await updateImage(avatar.key, ava)
+  //   setAvatar(image)
+  // }
 
   const { dark } = useTheme()
   const color = dark ? white : black
 
   return (
     <>
-      <AppContainer onPress={goBack(navigation)} title=" " loading={loading} colorLeft={white}>
-        <Avatar size="xLarge" avatar={avatar} onPress={onPressAva} loading={loading} />
+      <AppContainer onPress={goBack(navigation)} title=" " loading={loading} colorLeft={black}>
         <Space height={30} />
         <Formik
           innerRef={(r) => (formikRef.current = r || undefined)}
@@ -121,7 +120,7 @@ const UserEdit = ({ route, navigation }: UserEditT): ReactElement => {
                 value={values.firstName}
                 onChangeText={handleChange('firstName')}
                 onBlur={(): void => setFieldTouched('firstName')}
-                placeholder="First name"
+                placeholder={I18n.get('firstName')}
                 touched={touched}
                 errors={errors}
                 autoCapitalize="none"
@@ -132,14 +131,14 @@ const UserEdit = ({ route, navigation }: UserEditT): ReactElement => {
                 value={values.lastName}
                 onChangeText={handleChange('lastName')}
                 onBlur={(): void => setFieldTouched('lastName')}
-                placeholder="Last name"
+                placeholder={I18n.get('lastName')}
                 touched={touched}
                 errors={errors}
                 autoCapitalize="none"
                 color={color}
               />
               <Space height={30} />
-              <Button title="Done" onPress={handleSubmit} color={white} />
+              <Button title={I18n.get('done')} onPress={handleSubmit} color={black} />
             </>
           )}
         </Formik>
@@ -147,5 +146,5 @@ const UserEdit = ({ route, navigation }: UserEditT): ReactElement => {
     </>
   )
 }
-
+//<Avatar size="xLarge" avatar={avatar} onPress={onPressAva} loading={loading} />
 export { UserEdit }

@@ -9,13 +9,16 @@
 import React, { useEffect, ReactElement } from 'react'
 import { StatusBar } from 'react-native'
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance'
-import Amplify from '@aws-amplify/core'
+
+import Amplify, { I18n } from '@aws-amplify/core'
 import * as Keychain from 'react-native-keychain'
-import { Auth, API, graphqlOperation } from 'aws-amplify'
 import SplashScreen from 'react-native-splash-screen'
 import { ThemeProvider, DarkTheme, LightTheme } from './theme'
 import AppNavigator from './AppNavigator'
 import awsconfig from '../aws-exports'
+import { dict } from './utils/dict'
+
+I18n.putVocabularies(dict)
 
 const MEMORY_KEY_PREFIX = '@MyStorage:'
 let dataMemory: any = {}
@@ -55,12 +58,12 @@ Amplify.configure({
 const App = (): ReactElement => {
   //const [value] = useState(false)
   const scheme = useColorScheme()
-  const theme = scheme !== 'dark' ? DarkTheme : LightTheme
+  const theme = scheme === 'dark' ? DarkTheme : LightTheme
 
   useEffect(() => {
     SplashScreen.hide()
   }, [])
-  const color = scheme !== 'dark' ? 'light' : 'dark'
+  const color = scheme === 'dark' ? 'light' : 'dark'
   return (
     <>
       <StatusBar barStyle={`${color}-content`} />

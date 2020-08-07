@@ -17,6 +17,7 @@ YellowBox.ignoreWarnings([
   "Can't perform a React",
   '[WARN]',
   'Trying to load',
+  'Setting a timer for a long period of time',
   'DataStore - Connection failed: {"errors":[{"message":"Validation error of type UnknownArgument: Unknown field argument owner'
 ])
 

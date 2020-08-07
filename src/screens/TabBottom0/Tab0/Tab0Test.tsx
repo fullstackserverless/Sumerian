@@ -1,9 +1,10 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import React, { useState, useRef, useEffect } from 'react'
+import { View } from 'react-native'
 import { shuffle } from 'lodash'
 import Video from 'react-native-video'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
+import { ScaledSheet, scale } from 'react-native-size-matters'
 import { RouteProp } from '@react-navigation/native'
 import { RootStackParamList, TestT } from '../../../AppNavigator'
 
@@ -18,13 +19,15 @@ type Tab0TestT = {
   route: ProfileScreenRouteProp
 }
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    height: 220
+    alignItems: 'flex-start',
+    height: scale(215),
+    paddingHorizontal: 10
   },
   display: {
     alignSelf: 'center'
@@ -49,7 +52,11 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
   const shake = () => {
     const shuff = shuffle(route.params)
     const sliceArray = shuff.splice(0, 9)
-    const random = shuffle(sliceArray)[0]
+    let random
+    random = shuffle(sliceArray)[0]
+    if (random === displayName) {
+      random = shuffle(sliceArray)[1]
+    }
     return { random, sliceArray }
   }
 
@@ -84,11 +91,7 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
   return (
     <AppContainer title=" " onPress={goBack(navigation)} colorLeft={white} color={classicRose}>
       <Video ref={playerRef} source={{ uri }} audioOnly />
-
-      {displayName.title.length < 1 && <Txt h0 title={displayName.title} textStyle={display} />}
-
-      <Space width={20} />
-
+      {displayName.title.length > 1 && <Txt h0 title={displayName.title} textStyle={display} color={white} />}
       <Space height={50} />
       <View style={container}>
         {randomData.map(({ id, name, title }) => (

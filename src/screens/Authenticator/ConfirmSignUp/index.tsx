@@ -1,5 +1,5 @@
 import React, { useState, ReactElement } from 'react'
-import { Auth } from 'aws-amplify'
+import { Auth, I18n } from 'aws-amplify'
 import { Formik } from 'formik'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
@@ -34,15 +34,10 @@ const ConfirmSignUp = ({ route, navigation }: ConfirmSignUpT): ReactElement => {
       setLoading(false)
     } catch (err) {
       setLoading(false)
-      setError(err.message)
-      if (err.code === 'UserNotConfirmedException') {
-        setError('Account not verified yet')
-      } else if (err.code === 'PasswordResetRequiredException') {
-        setError('Existing user found. Please reset your password')
-      } else if (err.code === 'NotAuthorizedException') {
-        setError('Forgot Password?')
-      } else if (err.code === 'UserNotFoundException') {
-        setError('User does not exist!')
+      if (err.code === 'CodeMismatchException') {
+        setError(I18n.get('invalidVerificationCode'))
+      } else {
+        setError(err.message)
       }
     }
   }
@@ -70,21 +65,22 @@ const ConfirmSignUp = ({ route, navigation }: ConfirmSignUpT): ReactElement => {
       >
         {({ values, handleChange, errors, setFieldTouched, touched, handleSubmit }): ReactElement => (
           <>
-            <Space height={100} />
+            <Space height={150} />
             <Input
               name="code"
               value={values.code}
               onChangeText={handleChange('code')}
               onBlur={(): void => setFieldTouched('code')}
-              placeholder="Insert code"
+              placeholder={I18n.get('insertCode')}
               touched={touched}
               errors={errors}
               color={color}
             />
-            <ButtonLink title="Resend code?" onPress={_onResend} textStyle={{ alignSelf: 'center' }} />
-            {error !== 'Forgot Password?' && <TextError title={error} />}
-            <Button title="Confirm" onPress={handleSubmit} color={color} />
-            <Space height={150} />
+            <ButtonLink title={I18n.get('resendCode')} onPress={_onResend} textStyle={{ alignSelf: 'center' }} />
+            {error !== '' && <TextError title={error} />}
+            <Space height={50} />
+            <Button title={I18n.get('confirm')} onPress={handleSubmit} color={color} />
+            <Space height={50} />
           </>
         )}
       </Formik>

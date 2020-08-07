@@ -1,5 +1,5 @@
 import React, { useState, ReactElement } from 'react'
-import { Auth } from 'aws-amplify'
+import { Auth, I18n } from 'aws-amplify'
 import * as Keychain from 'react-native-keychain'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
@@ -34,13 +34,13 @@ const SignIn = ({ navigation }: SignUpT): ReactElement => {
     } catch (err) {
       setLoading(false)
       if (err.code === 'UserNotConfirmedException') {
-        setError('Account not verified yet')
+        setError(I18n.get('accountNotVerifiedYet'))
       } else if (err.code === 'PasswordResetRequiredException') {
-        setError('Existing user found. Please reset your password')
+        setError(I18n.get('resetYourPassword'))
       } else if (err.code === 'NotAuthorizedException') {
-        setError('Forgot Password?')
+        setError(I18n.get('forgotPassword'))
       } else if (err.code === 'UserNotFoundException') {
-        setError('User does not exist!')
+        setError(I18n.get('userDoesNotExist'))
       } else {
         setError(err.code)
       }
@@ -51,9 +51,9 @@ const SignIn = ({ navigation }: SignUpT): ReactElement => {
   const color = dark ? white : black
 
   return (
-    <AppContainer onPress={goBack(navigation)} title="Sign In" loading={loading} message={error} colorLeft={color}>
+    <AppContainer onPress={goBack(navigation)} title="Sign In" loading={loading} colorLeft={color}>
       <Formik
-        initialValues={{ email: 'raoffonom@icloud.com', password: 'qwerty123' }}
+        initialValues={{ email: 'reactnativeinitru@gmail.com', password: 'qwerty123' }}
         onSubmit={(values): Promise<void> => _onPress(values)}
         validationSchema={Yup.object().shape({
           email: Yup.string().email().required(),
@@ -78,14 +78,14 @@ const SignIn = ({ navigation }: SignUpT): ReactElement => {
               value={values.password}
               onChangeText={handleChange('password')}
               onBlur={(): void => setFieldTouched('password')}
-              placeholder="Password"
+              placeholder={I18n.get('password')}
               touched={touched}
               errors={errors}
               secureTextEntry
               color={color}
             />
-            {error !== 'Forgot Password?' && <TextError title={error} textStyle={{ alignSelf: 'center' }} />}
-            {error === 'Forgot Password?' && (
+            {error !== I18n.get('forgotPassword') && <TextError title={error} textStyle={{ alignSelf: 'center' }} />}
+            {error === I18n.get('forgotPassword') && (
               <ButtonLink
                 title={error}
                 onPress={onScreen('FORGOT', navigation, userInfo)}
@@ -93,7 +93,7 @@ const SignIn = ({ navigation }: SignUpT): ReactElement => {
               />
             )}
             <Space height={30} />
-            <Button title="Sign In" onPress={handleSubmit} color={color} />
+            <Button title={I18n.get('signIn')} onPress={handleSubmit} color={color} />
           </>
         )}
       </Formik>

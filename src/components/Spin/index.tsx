@@ -16,7 +16,7 @@ const Spin = () => {
   const { dark } = useTheme()
   return (
     <View style={[styles.container, { backgroundColor: dark ? black : white }]}>
-      <Spinner size={65} type="Pulse" color={dark ? secondary : primary} />
+      <Spinner size={65} type="Pulse" color={secondary} />
     </View>
   )
 }

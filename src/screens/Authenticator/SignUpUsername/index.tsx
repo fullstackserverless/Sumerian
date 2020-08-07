@@ -1,5 +1,5 @@
 import React, { useState, ReactElement, useRef } from 'react'
-import { Auth, API, graphqlOperation } from 'aws-amplify'
+import { Auth, API, graphqlOperation, I18n } from 'aws-amplify'
 import { Formik, FormikProps } from 'formik'
 import * as Yup from 'yup'
 // @ts-expect-error
@@ -11,7 +11,7 @@ import { AppContainer, Avatar, Space, Button, Input } from '../../../components'
 import { onScreen, goBack, white, black } from '../../../constants'
 import { RootStackParamList, S3ObjectT, UserT } from '../../../AppNavigator'
 import config from '../../../../aws-exports'
-import { pickAva, createImage } from '../../../screens/helper'
+//import { pickAva, createImage } from '../../../screens/helper'
 import { useTheme } from '@react-navigation/native'
 
 const { aws_user_files_s3_bucket_region: region, aws_user_files_s3_bucket: bucket } = config
@@ -38,7 +38,7 @@ const SignUpUsername = ({ route, navigation }: SignUpUsernameT): ReactElement =>
     setLoading(true)
     try {
       const obj = await API.graphql(graphqlOperation(createProfile, { input: values }))
-      console.log('obj', obj)
+      //console.log('obj', obj)
       obj && onScreen('MAIN', navigation)()
       setLoading(false)
     } catch (err) {
@@ -49,43 +49,42 @@ const SignUpUsername = ({ route, navigation }: SignUpUsernameT): ReactElement =>
 
   const _onPress = async (values: { firstName: string; lastName: string }): Promise<void> => {
     setLoading(true)
-    if (avatar.key === '') {
-      setError('Pick a face')
-      setLoading(false)
-    } else {
-      const { firstName, lastName } = values
-      const { email } = route.params
-      const owner = await Auth.currentAuthenticatedUser()
-      const key = avatar.key
-      const fileForUpload = {
-        bucket,
-        key,
-        region
-      }
-      // @ts-expect-error
-      createObj({ firstName, lastName, email, owner: owner.username, avatar: fileForUpload })
-      setLoading(false)
+    // if (avatar.key === '') {
+    //   setError('Pick a face')
+    //   setLoading(false)
+    // } else {
+    const { firstName, lastName } = values
+    const { email } = route.params
+    const owner = await Auth.currentAuthenticatedUser()
+    const key = avatar.key
+    const fileForUpload = {
+      bucket,
+      key,
+      region
     }
+    // @ts-expect-error
+    createObj({ firstName, lastName, email, owner: owner.username, avatar: fileForUpload })
+    setLoading(false)
+    //}
   }
 
-  const onPressAva = async () => {
-    setLoading(true)
-    const ava = await pickAva()
-    const image = await createImage(ava)
-    setAvatar(image)
-    setLoading(false)
-  }
+  // const onPressAva = async () => {
+  //   setLoading(true)
+  //   const ava = await pickAva()
+  //   const image = await createImage(ava)
+  //   setAvatar(image)
+  //   setLoading(false)
+  // }
 
   const { dark } = useTheme()
   const color = dark ? white : black
 
   return (
     <AppContainer onPress={goBack(navigation)} title="Sign Up" message={error} colorLeft={color}>
-      <Avatar size="xLarge" avatar={avatar} onPress={onPressAva} loading={loading} />
       <Space height={30} />
       <Formik
         innerRef={(r) => (formikRef.current = r || undefined)}
-        initialValues={{ firstName: 'Play', lastName: 'Ra' }}
+        initialValues={{ firstName: '', lastName: '' }}
         onSubmit={(values): Promise<void> => _onPress(values)}
         validationSchema={Yup.object().shape({
           firstName: Yup.string().min(2).required(),
@@ -99,7 +98,7 @@ const SignUpUsername = ({ route, navigation }: SignUpUsernameT): ReactElement =>
               value={values.firstName}
               onChangeText={handleChange('firstName')}
               onBlur={(): void => setFieldTouched('firstName')}
-              placeholder="First name"
+              placeholder={I18n.get('firstName')}
               touched={touched}
               errors={errors}
               autoCapitalize="none"
@@ -110,20 +109,21 @@ const SignUpUsername = ({ route, navigation }: SignUpUsernameT): ReactElement =>
               value={values.lastName}
               onChangeText={handleChange('lastName')}
               onBlur={(): void => setFieldTouched('lastName')}
-              placeholder="Last name"
+              placeholder={I18n.get('lastName')}
               touched={touched}
               errors={errors}
               autoCapitalize="none"
               color={color}
             />
             <Space height={30} />
-            <Button title="Sign Up" onPress={handleSubmit} color={color} />
-            <Space height={150} />
+            <Button title={I18n.get('signUp')} onPress={handleSubmit} color={color} />
+            <Space height={50} />
           </>
         )}
       </Formik>
     </AppContainer>
   )
 }
+//<Avatar size="xLarge" avatar={avatar} onPress={onPressAva} loading={loading} />
 
 export { SignUpUsername }

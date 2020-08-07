@@ -41,6 +41,7 @@ const Header = memo<HeaderT>(({ admin = false, iconLeft, iconRight, colorLeft, c
   const color = dark ? primary : secondary
   const x = isIphoneX() ? 30 : 30
   const paddingTop = admin ? 0 : x
+
   return (
     <View style={container}>
       {iconLeft && (

@@ -1,5 +1,5 @@
 import React, { useState, ReactElement } from 'react'
-import { Auth } from 'aws-amplify'
+import { Auth, I18n } from 'aws-amplify'
 import * as Keychain from 'react-native-keychain'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
@@ -23,7 +23,7 @@ const SignUp = ({ navigation }: SignUpT): ReactElement => {
   const _onPress = async (values: { email: string; password: string; passwordConfirmation: string }): Promise<void> => {
     const { email, password, passwordConfirmation } = values
     if (password !== passwordConfirmation) {
-      setError('Passwords do not match!')
+      setError(I18n.get('passwordsDoNotMatch'))
     } else {
       setLoading(true)
       setError('')
@@ -35,13 +35,15 @@ const SignUp = ({ navigation }: SignUpT): ReactElement => {
       } catch (err) {
         setLoading(false)
         if (err.code === 'UserNotConfirmedException') {
-          setError('Account not verified yet')
+          setError(I18n.get('accountNotVerifiedYet'))
         } else if (err.code === 'PasswordResetRequiredException') {
-          setError('Existing user found. Please reset your password')
+          setError(I18n.get('resetYourPassword'))
+        } else if (err.code === 'UsernameExistsException') {
+          setError(I18n.get('usernameExistsException'))
         } else if (err.code === 'NotAuthorizedException') {
-          setError('Forgot Password?')
+          setError(I18n.get('forgotPassword'))
         } else if (err.code === 'UserNotFoundException') {
-          setError('User does not exist!')
+          setError(I18n.get('userDoesNotExist'))
         } else {
           setError(err.code)
         }
@@ -53,10 +55,10 @@ const SignUp = ({ navigation }: SignUpT): ReactElement => {
   const color = dark ? white : black
 
   return (
-    <AppContainer onPress={goBack(navigation)} title="Sign Up" loading={loading} message={error} colorLeft={color}>
+    <AppContainer onPress={goBack(navigation)} title="Sign Up" loading={loading} colorLeft={color}>
       <Formik
         initialValues={{
-          email: 'raoffonom@icloud.com',
+          email: 'reactnativeinitru@gmail.com',
           password: 'qwerty123',
           passwordConfirmation: 'qwerty123'
         }}
@@ -85,7 +87,7 @@ const SignUp = ({ navigation }: SignUpT): ReactElement => {
               value={values.password}
               onChangeText={handleChange('password')}
               onBlur={(): void => setFieldTouched('password')}
-              placeholder="Password"
+              placeholder={I18n.get('password')}
               touched={touched}
               errors={errors}
               secureTextEntry
@@ -96,7 +98,7 @@ const SignUp = ({ navigation }: SignUpT): ReactElement => {
               value={values.passwordConfirmation}
               onChangeText={handleChange('passwordConfirmation')}
               onBlur={(): void => setFieldTouched('passwordConfirmation')}
-              placeholder="Password confirm"
+              placeholder={I18n.get('passwordConfirmation')}
               touched={touched}
               errors={errors}
               secureTextEntry
@@ -104,7 +106,8 @@ const SignUp = ({ navigation }: SignUpT): ReactElement => {
             />
             <Space height={30} />
             {error !== '' && <TextError title={error} textStyle={{ alignSelf: 'center' }} />}
-            <Button title="Sign Up" onPress={handleSubmit} color={color} />
+            <Space height={20} />
+            <Button title={I18n.get('signUp')} onPress={handleSubmit} color={color} />
             <Space height={50} />
           </>
         )}

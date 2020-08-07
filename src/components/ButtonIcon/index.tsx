@@ -1,11 +1,12 @@
 import React, { memo } from 'react'
-import { Platform, StyleProp, ViewStyle, View, StyleSheet, TouchableOpacity } from 'react-native'
+import { Platform, StyleProp, ViewStyle, View, TouchableOpacity } from 'react-native'
+import { ScaledSheet, scale } from 'react-native-size-matters'
 import Emoji from 'react-native-emoji'
 import { useTheme } from '@react-navigation/native'
-import { black, white, primary, secondary } from '../../constants'
+import { black, white } from '../../constants'
 import { Txt } from '../Txt'
 
-const diameter = 100
+const diameter = scale(88)
 
 const circle = {
   width: diameter,
@@ -13,7 +14,7 @@ const circle = {
   borderRadius: diameter / 2
 }
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   container: {
     alignSelf: 'center'
   },
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
   },
   emoji: {
     left: Platform.OS === 'ios' ? 1 : 0,
-    fontSize: Platform.OS === 'ios' ? 55 : 16
+    fontSize: Platform.OS === 'ios' ? '50@s' : '50@s'
   }
 })
 
@@ -54,7 +55,7 @@ const ButtonIcon = memo<ButtonIconT>(({ name, onPress, viewStyle, color }) => {
       <View style={[blue, { backgroundColor: white }]}>
         <View style={[pink, { backgroundColor: white }]}>
           <View style={[iconBg, { backgroundColor }]}>
-            {name.length > 1 ? <Emoji name={name} style={emoji} /> : <Txt h0 title={name} color={white} />}
+            {name.length > 3 ? <Emoji name={name} style={emoji} /> : <Txt h0 title={name} color={white} />}
           </View>
         </View>
       </View>

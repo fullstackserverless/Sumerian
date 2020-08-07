@@ -2,9 +2,10 @@ import React, { memo } from 'react'
 import { Platform, StyleProp, ViewStyle, View, StyleSheet, TouchableOpacity } from 'react-native'
 import Emoji from 'react-native-emoji'
 import { useTheme } from '@react-navigation/native'
-import { black, white, primary, secondary } from '../../constants'
+import { black, white } from '../../constants'
+import { ScaledSheet, scale } from 'react-native-size-matters'
 
-const diametr = 60
+const diametr = scale(60)
 
 const circle = {
   width: diametr,
@@ -12,7 +13,7 @@ const circle = {
   borderRadius: diametr / 2
 }
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   container: {
     alignSelf: 'center'
   },
@@ -32,8 +33,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   emoji: {
-    left: Platform.OS === 'ios' ? 3 : 0,
-    fontSize: Platform.OS === 'ios' ? 30 : 30
+    left: Platform.OS === 'ios' ? scale(3) : 0,
+    fontSize: Platform.OS === 'ios' ? '30@s' : '30@s'
   }
 })
 

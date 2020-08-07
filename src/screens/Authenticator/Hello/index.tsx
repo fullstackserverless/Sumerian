@@ -1,9 +1,11 @@
 import React, { useEffect, useState, ReactElement } from 'react'
-import { Auth, API, graphqlOperation } from 'aws-amplify'
+import { StyleSheet } from 'react-native'
+import { Auth, I18n } from 'aws-amplify'
 import * as Keychain from 'react-native-keychain'
+//import I18n from '../../../utils'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
-import { AppContainer, Button, Space, Txt } from '../../../components'
+import { AppContainer, Button, Space, Txt, Sumerian } from '../../../components'
 import { onScreen, white, black } from '../../../constants'
 import { RootStackParamList } from '../../../AppNavigator'
 
@@ -14,6 +16,16 @@ type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'HELL
 type HelloT = {
   navigation: ProfileScreenNavigationProp
 }
+
+const styles = StyleSheet.create({
+  img: {
+    justifyContent: 'center',
+    alignSelf: 'center',
+    height: 150,
+    width: 150
+  },
+  h6: { alignSelf: 'center' }
+})
 
 const Hello = ({ navigation }: HelloT): ReactElement => {
   const [loading, setLoading] = useState<boolean>(false)
@@ -43,20 +55,21 @@ const Hello = ({ navigation }: HelloT): ReactElement => {
 
   useEffect(() => {
     //deleteObj()
-
     setLoading(true)
-
     key()
   }, [])
 
+  const { img, h6 } = styles
+
   return (
     <AppContainer loading={loading}>
-      <Space height={200} />
-      <Button title="Sign In" onPress={onScreen('SIGN_IN', navigation)} color={color} />
+      <Sumerian imageStyle={img} />
+      <Space height={100} />
+      <Button title={I18n.get('signIn')} onPress={onScreen('SIGN_IN', navigation)} color={color} />
       <Space height={10} />
-      <Txt h6 title="or" textStyle={{ alignSelf: 'center' }} />
+      <Txt h6 title={I18n.get('or')} textStyle={h6} />
       <Space height={15} />
-      <Button title="Sign Up" onPress={onScreen('SIGN_UP', navigation)} color={color} />
+      <Button title={I18n.get('signUp')} onPress={onScreen('SIGN_UP', navigation)} color={color} />
     </AppContainer>
   )
 }

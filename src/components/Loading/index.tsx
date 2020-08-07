@@ -38,7 +38,7 @@ const Loading = ({ loading, paddingTop = 0, size = 65, type = 'Pulse' }: Loading
   const { dark } = useTheme()
   return (
     <View style={[styles.container, { backgroundColor: dark ? black : white, paddingTop }]}>
-      {loading && <Spinner size={size} type={type} color={dark ? secondary : primary} />}
+      {loading && <Spinner size={size} type={type} color={secondary} />}
     </View>
   )
 }

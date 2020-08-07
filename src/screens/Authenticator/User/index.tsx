@@ -4,7 +4,7 @@ import * as Keychain from 'react-native-keychain'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppContainer, Button } from '../../../components'
-import { goHome } from '../../../constants'
+import { goHome, white } from '../../../constants'
 import { RootStackParamList } from '../../../AppNavigator'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'HELLO'>

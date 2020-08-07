@@ -3,7 +3,7 @@ type Profile @model @auth(rules: [{ allow: owner, ownerField: "owner", operation
   firstName: String!
   lastName: String!
   email: String!
-  avatar: S3Object!
+  avatar: S3Object
   owner: String
 }
 
