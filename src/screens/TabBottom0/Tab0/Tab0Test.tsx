@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { View } from 'react-native'
+import { View, Platform, PermissionsAndroid } from 'react-native'
 import { shuffle } from 'lodash'
 import Video from 'react-native-video'
 // @ts-expect-error
@@ -10,6 +10,7 @@ import { RootStackParamList, TestT } from '../../../AppNavigator'
 
 import { AppContainer, Txt, Space, ButtonIcon, ButtonIconCircle } from '../../../components'
 import { goBack, classicRose, errSoundOne, errSoundTwo, white } from '../../../constants'
+//import { useExitOnBack } from '../../../hooks'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB0_TEST'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB0_TEST'>
@@ -59,8 +60,26 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
     }
     return { random, sliceArray }
   }
+  const permissions = async () => {
+    if (Platform.OS === 'android') {
+      try {
+        const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.RECORD_AUDIO, {
+          title: 'title',
+          message: 'message',
+          buttonPositive: 'OK'
+        })
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        } else {
+          return
+        }
+      } catch (err) {
+        return
+      }
+    }
+  }
 
   useEffect(() => {
+    permissions()
     const { random, sliceArray } = shake()
     setDisplayName(random)
     updateData(sliceArray)
@@ -87,9 +106,10 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
     setBool(true)
     playerRef.current?.seek(0)
   }
-
+  //useExitOnBack()
+  const color = Platform.OS === 'ios' ? white : classicRose
   return (
-    <AppContainer title=" " onPress={goBack(navigation)} colorLeft={white} color={classicRose}>
+    <AppContainer title=" " onPress={goBack(navigation)} colorLeft={color} color={classicRose}>
       <Video ref={playerRef} source={{ uri }} audioOnly />
       {displayName.title.length > 1 && <Txt h0 title={displayName.title} textStyle={display} color={white} />}
       <Space height={50} />

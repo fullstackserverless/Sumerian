@@ -2,7 +2,7 @@ import React from 'react'
 import { useFocusEffect } from '@react-navigation/native'
 import { BackHandler } from 'react-native'
 
-function UseExitOnBack() {
+function useExitOnBack() {
   useFocusEffect(
     React.useCallback(() => {
       const handleBackPress = () => {
@@ -15,4 +15,4 @@ function UseExitOnBack() {
   )
 }
 
-export { UseExitOnBack }
+export { useExitOnBack }

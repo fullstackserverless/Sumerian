@@ -253,7 +253,7 @@ PODS:
     - React
   - react-native-netinfo (5.9.5):
     - React
-  - react-native-safe-area-context (3.1.1):
+  - react-native-safe-area-context (3.1.3):
     - React
   - react-native-spinkit (1.4.1):
     - React
@@ -573,7 +573,7 @@ SPEC CHECKSUMS:
   React-jsinspector: fc661eff8edbfb7e22119382c13f33bcadde0f3c
   react-native-appearance: 0f0e5fc2fcef70e03d48c8fe6b00b9158c2ba8aa
   react-native-netinfo: a53b00d949b6456913aaf507d9dba90c4008c611
-  react-native-safe-area-context: 344b969c45af3d8464d36e8dea264942992ef033
+  react-native-safe-area-context: b0bdaac4c56a861b06aaf1569efd1121c6a2427e
   react-native-spinkit: da294fd828216ad211fe36a5c14c1e09f09e62db
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   react-native-track-player: 28b96dd6404dea3eee80e67b74507679235a8dfb

@@ -16,10 +16,12 @@ const styles = StyleSheet.create({
   },
   iconLeftStyle: {
     fontSize: 35,
+    width: 50,
     left: Platform.OS === 'ios' ? 10 : 25
   },
   rightIconStyle: {
     fontSize: 35,
+    width: 50,
     right: Platform.OS === 'ios' ? 20 : 25
   }
 })

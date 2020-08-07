@@ -4,7 +4,8 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
 import { RootStackParamList, TestT } from '../../../AppNavigator'
 import { I18n } from 'aws-amplify'
-import { AppContainer, YouTubePlayer, Button, Space, UseExitOnBack } from '../../../components'
+import { AppContainer, YouTubePlayer, Button, Space } from '../../../components'
+//import { useExitOnBack } from '../../../hooks'
 import { goBack, classicRose, onScreen, white } from '../../../constants'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB0_DETAIL'>
@@ -30,6 +31,7 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
   const fetchData = async () => {
     const response = await fetch(json)
     const data = await response.json()
+    console.log('data', data)
     setData(data)
   }
 
@@ -37,7 +39,7 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
     fetchData()
   }, [navigation])
 
-  UseExitOnBack()
+  //useExitOnBack()
   return (
     <AppContainer title=" " onPress={goBack(navigation)} colorLeft={white} color={classicRose}>
       <YouTubePlayer uri={uri} />
