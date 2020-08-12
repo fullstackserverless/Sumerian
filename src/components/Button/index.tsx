@@ -1,23 +1,22 @@
 import React, { memo } from 'react'
 import { Platform, StyleProp, TextStyle, View, TouchableOpacity } from 'react-native'
 import { useTheme } from '@react-navigation/native'
-import { ScaledSheet, scale } from 'react-native-size-matters'
+import { ScaledSheet, scale, ms, s } from 'react-native-size-matters'
 import { W, white, black } from '../../constants'
 import { Txt } from '../Txt'
 
 const styles = ScaledSheet.create({
   container: {
-    borderWidth: 2,
     alignSelf: 'center',
-    borderRadius: scale(30)
+    width: W - (Platform.OS === 'ios' ? ms(130, 1.8) : ms(130, 1.8)),
+    height: Platform.OS === 'ios' ? ms(60) : ms(70),
+    borderRadius: Platform.OS === 'ios' ? scale(30) : scale(35),
+    borderWidth: 1,
+    paddingTop: Platform.OS === 'ios' ? s(3) : s(0),
+    justifyContent: 'center'
   },
   h: {
-    width: W - (Platform.OS === 'ios' ? scale(120) : scale(100)),
-    paddingTop: Platform.OS === 'ios' ? scale(15) : scale(5),
-    paddingBottom: scale(12),
-    textAlign: 'center',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 1
+    textAlign: 'center'
   }
 })
 

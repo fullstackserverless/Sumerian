@@ -1,8 +1,8 @@
 import React, { useEffect, useState, ReactElement } from 'react'
 import { StyleSheet } from 'react-native'
-import { Auth, I18n } from 'aws-amplify'
+import { Auth } from 'aws-amplify'
 import * as Keychain from 'react-native-keychain'
-//import I18n from '../../../utils'
+import I18n from '../../../utils'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppContainer, Button, Space, Txt, Sumerian } from '../../../components'
@@ -65,11 +65,11 @@ const Hello = ({ navigation }: HelloT): ReactElement => {
     <AppContainer loading={loading}>
       <Sumerian imageStyle={img} />
       <Space height={100} />
-      <Button title={I18n.get('signIn')} onPress={onScreen('SIGN_IN', navigation)} color={color} />
+      <Button title={I18n.t('signIn')} onPress={onScreen('SIGN_IN', navigation)} color={color} />
       <Space height={10} />
-      <Txt h6 title={I18n.get('or')} textStyle={h6} />
+      <Txt h6 title={I18n.t('or')} textStyle={h6} />
       <Space height={15} />
-      <Button title={I18n.get('signUp')} onPress={onScreen('SIGN_UP', navigation)} color={color} />
+      <Button title={I18n.t('signUp')} onPress={onScreen('SIGN_UP', navigation)} color={color} />
     </AppContainer>
   )
 }

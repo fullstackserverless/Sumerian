@@ -1,6 +1,5 @@
 import React, { memo } from 'react'
-import { TextInput, StyleSheet, Text, Platform } from 'react-native'
-import { useTheme } from '@react-navigation/native'
+import { TextInput, StyleSheet, KeyboardAvoidingView, Text, Platform } from 'react-native'
 import { ScaledSheet } from 'react-native-size-matters'
 import { W, dimGray, classicRose, KLMN } from '../../constants'
 
@@ -66,12 +65,10 @@ const Input = memo<InputT>(
   }) => {
     const { inputStyle, errorStyle } = styles
 
-    const { dark } = useTheme()
-
     const input = [
       inputStyle,
       {
-        fontFamily: KLMN,
+        fontFamily: 'Avenir Next',
         color,
         borderBottomColor: color,
         fontSize: Platform.OS === 'ios' ? '15@s' : '15@s'
@@ -81,7 +78,7 @@ const Input = memo<InputT>(
     const placeholderStyle = [
       inputStyle,
       {
-        fontFamily: KLMN,
+        fontFamily: 'Avenir Next',
         color: dimGray,
         borderBottomColor: classicRose,
         fontSize: Platform.OS === 'ios' ? '15@s' : '15@s'

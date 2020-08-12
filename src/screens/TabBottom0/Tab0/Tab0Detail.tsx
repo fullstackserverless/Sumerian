@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
 import { RootStackParamList, TestT } from '../../../AppNavigator'
-import { I18n } from 'aws-amplify'
 import { AppContainer, YouTubePlayer, Button, Space } from '../../../components'
+import I18n from '../../../utils'
 //import { useExitOnBack } from '../../../hooks'
 import { goBack, classicRose, onScreen, white } from '../../../constants'
 
@@ -31,7 +31,6 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
   const fetchData = async () => {
     const response = await fetch(json)
     const data = await response.json()
-    console.log('data', data)
     setData(data)
   }
 
@@ -43,8 +42,8 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
   return (
     <AppContainer title=" " onPress={goBack(navigation)} colorLeft={white} color={classicRose}>
       <YouTubePlayer uri={uri} />
-      <Space height={70} />
-      <Button title={I18n.get('test')} onPress={onScreen('TAB0_TEST', navigation, data)} color={classicRose} />
+      <Space height={10} />
+      <Button title={I18n.t('test')} onPress={onScreen('TAB0_TEST', navigation, data)} color={classicRose} />
     </AppContainer>
   )
 }

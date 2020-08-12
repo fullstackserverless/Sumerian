@@ -5,7 +5,6 @@
 import { AppRegistry, YellowBox } from 'react-native'
 import App from './src'
 import { name as appName } from './app.json'
-import TrackPlayer from 'react-native-track-player'
 
 YellowBox.ignoreWarnings([
   'Warning: AsyncStorage',
@@ -22,4 +21,3 @@ YellowBox.ignoreWarnings([
 ])
 
 AppRegistry.registerComponent(appName, () => App)
-TrackPlayer.registerPlaybackService(() => require('./service.ts'))

@@ -1,7 +1,8 @@
 import React, { memo, useEffect, useState } from 'react'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
-import { Auth, I18n, API, graphqlOperation } from 'aws-amplify'
+import I18n from '../../utils'
+import { Auth, API, graphqlOperation } from 'aws-amplify'
 import * as Keychain from 'react-native-keychain'
 import { listProfiles } from '../../../src/graphql/queries'
 import { RootStackParamList, UserT } from '../../AppNavigator'
@@ -84,7 +85,7 @@ const TabBottom1 = memo(({ navigation }: TabBottom1T) => {
   return (
     <AppContainer loading={loading} message={error}>
       <HeaderMaster user={data} onPress={onScreen('USER_EDIT', navigation, data)} loading={loading} />
-      <Button title={I18n.get('signOut')} onPress={_onPress} color={color} />
+      <Button title={I18n.t('signOut')} onPress={_onPress} color={color} />
     </AppContainer>
   )
 })

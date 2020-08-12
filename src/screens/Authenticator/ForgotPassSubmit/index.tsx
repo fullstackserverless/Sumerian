@@ -4,6 +4,7 @@ import { Auth } from 'aws-amplify'
 import * as Keychain from 'react-native-keychain'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import I18n from '../../../utils'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
@@ -78,7 +79,7 @@ const ForgotPassSubmit = ({ route, navigation }: ForgotPassSubmitT): ReactElemen
                 value={values.code}
                 onChangeText={handleChange('code')}
                 onBlur={(): void => setFieldTouched('code')}
-                placeholder="Code"
+                placeholder={I18n.t('insertCode')}
                 touched={touched}
                 errors={errors}
               />
@@ -87,7 +88,7 @@ const ForgotPassSubmit = ({ route, navigation }: ForgotPassSubmitT): ReactElemen
                 value={values.password}
                 onChangeText={handleChange('password')}
                 onBlur={(): void => setFieldTouched('password')}
-                placeholder="Password"
+                placeholder={I18n.t('password')}
                 touched={touched}
                 errors={errors}
                 secureTextEntry
@@ -98,7 +99,7 @@ const ForgotPassSubmit = ({ route, navigation }: ForgotPassSubmitT): ReactElemen
                 value={values.passwordConfirmation}
                 onChangeText={handleChange('passwordConfirmation')}
                 onBlur={(): void => setFieldTouched('passwordConfirmation')}
-                placeholder="Password confirm"
+                placeholder={I18n.t('passwordConfirmation')}
                 touched={touched}
                 errors={errors}
                 secureTextEntry
@@ -106,7 +107,7 @@ const ForgotPassSubmit = ({ route, navigation }: ForgotPassSubmitT): ReactElemen
               />
               {error !== '' && <TextError title={error} textStyle={{ alignSelf: 'center' }} />}
               <Space height={30} />
-              <Button title="Confirm" onPress={handleSubmit} color={color} />
+              <Button title={I18n.t('confirm')} onPress={handleSubmit} color={color} />
             </>
           )}
         </Formik>

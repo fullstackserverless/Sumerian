@@ -1,13 +1,13 @@
-import React, { memo, useState, useEffect } from 'react'
-import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native'
+import React, { memo } from 'react'
+import { Platform, TouchableOpacity } from 'react-native'
 import { Background } from '../Background'
 import { Txt } from '../Txt'
-import { Avatar } from '../Avatar'
+import { ScaledSheet, s } from 'react-native-size-matters'
 import { Space } from '../Space'
 import { Device } from '../../constants'
 import { UserT } from '../../AppNavigator'
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   container: {
     flex: 1,
     top: 12,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   h2: {
     textAlign: 'center',
-    top: 80
+    top: s(200)
   }
 })
 
@@ -70,11 +70,10 @@ const HeaderMaster = memo(({ loading, user, onPress }: HeaderMasterT) => {
   return (
     <TouchableOpacity style={container} onPress={onPress}>
       <Background>
-        <View />
+        <Txt h2 title={`${firstName} ${lastName}`} textStyle={h2} />
+        <Space height={10} />
+        <Txt h3 title={email} textStyle={h2} />
       </Background>
-      <Txt h2 title={`${firstName} ${lastName}`} textStyle={h2} />
-      <Space height={10} />
-      <Txt h3 title={email} textStyle={h2} />
     </TouchableOpacity>
   )
 })

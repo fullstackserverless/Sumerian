@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   rightIconStyle: {
     fontSize: 35,
     width: 50,
-    right: Platform.OS === 'ios' ? 20 : 25
+    right: 0
   }
 })
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, ReactElement } from 'react'
 import { Auth } from 'aws-amplify'
 import * as Keychain from 'react-native-keychain'
+import I18n from '../../../utils'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppContainer, Button } from '../../../components'
@@ -37,7 +38,7 @@ const User = ({ navigation }: UserT): ReactElement => {
 
   return (
     <AppContainer loading={loading} message={error}>
-      <Button title="Sign Out" onPress={_onPress} />
+      <Button title={I18n.t('signOut')} onPress={_onPress} />
     </AppContainer>
   )
 }

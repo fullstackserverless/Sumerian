@@ -1,6 +1,7 @@
 import React, { useState, ReactElement } from 'react'
-import { Auth, I18n } from 'aws-amplify'
+import { Auth } from 'aws-amplify'
 import { Formik } from 'formik'
+import I18n from '../../../utils'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
@@ -35,7 +36,7 @@ const ConfirmSignUp = ({ route, navigation }: ConfirmSignUpT): ReactElement => {
     } catch (err) {
       setLoading(false)
       if (err.code === 'CodeMismatchException') {
-        setError(I18n.get('invalidVerificationCode'))
+        setError(I18n.t('invalidVerificationCode'))
       } else {
         setError(err.message)
       }
@@ -71,15 +72,15 @@ const ConfirmSignUp = ({ route, navigation }: ConfirmSignUpT): ReactElement => {
               value={values.code}
               onChangeText={handleChange('code')}
               onBlur={(): void => setFieldTouched('code')}
-              placeholder={I18n.get('insertCode')}
+              placeholder={I18n.t('insertCode')}
               touched={touched}
               errors={errors}
               color={color}
             />
-            <ButtonLink title={I18n.get('resendCode')} onPress={_onResend} textStyle={{ alignSelf: 'center' }} />
+            <ButtonLink title={I18n.t('resendCode')} onPress={_onResend} textStyle={{ alignSelf: 'center' }} />
             {error !== '' && <TextError title={error} />}
             <Space height={50} />
-            <Button title={I18n.get('confirm')} onPress={handleSubmit} color={color} />
+            <Button title={I18n.t('confirm')} onPress={handleSubmit} color={color} />
             <Space height={50} />
           </>
         )}

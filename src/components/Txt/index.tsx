@@ -3,28 +3,15 @@ import { Platform, StyleProp, TextStyle, ViewStyle, Text, StyleSheet } from 'rea
 import { useTheme } from '@react-navigation/native'
 import { ScaledSheet } from 'react-native-size-matters'
 import { ifIphoneX } from 'react-native-iphone-x-helper'
-import {
-  W,
-  white,
-  black,
-  primary,
-  secondary,
-  gray,
-  dimGray,
-  lightGray,
-  Etna,
-  KLMN,
-  Dolbak,
-  Narrow
-} from '../../constants'
+import { W, white, black, primary, secondary, gray, dimGray, lightGray, Etna, KLMN, Narrow } from '../../constants'
 
 const styles = ScaledSheet.create({
   h0Style: {
-    fontSize: Platform.OS === 'ios' ? '32@s' : '35@s',
+    fontSize: Platform.OS === 'ios' ? '32@ms' : '35@ms',
     fontFamily: Etna
   },
   h0StyleDark: {
-    fontSize: Platform.OS === 'ios' ? '32@s' : '35@s',
+    fontSize: Platform.OS === 'ios' ? '32@ms' : '35@ms',
     fontFamily: Etna
   },
   h1Style: {
@@ -101,7 +88,7 @@ const styles = ScaledSheet.create({
   },
   h6Style: {
     fontSize: Platform.OS === 'ios' ? '13@s' : '13@s',
-    fontFamily: KLMN,
+    fontFamily: 'Avenir Next',
     width: W - 90,
     textAlign: 'center',
     textShadowOffset: { width: 1, height: 1 },
@@ -110,7 +97,7 @@ const styles = ScaledSheet.create({
   },
   h6StyleDark: {
     fontSize: Platform.OS === 'ios' ? '13@s' : '13@s',
-    fontFamily: KLMN,
+    fontFamily: 'Avenir Next',
     width: W - 90,
     textAlign: 'center',
     textShadowOffset: { width: 1, height: 1 },

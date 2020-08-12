@@ -122,7 +122,7 @@ const AppNavigator = (): React.ReactElement => {
     <SafeAreaProvider>
       <Stack.Navigator
         screenOptions={{
-          headerShown: true
+          headerShown: false
         }}
         initialRouteName="HELLO"
       >

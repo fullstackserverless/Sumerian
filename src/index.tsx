@@ -10,15 +10,12 @@ import React, { useEffect, ReactElement } from 'react'
 import { StatusBar } from 'react-native'
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance'
 
-import Amplify, { I18n } from '@aws-amplify/core'
+import Amplify from '@aws-amplify/core'
 import * as Keychain from 'react-native-keychain'
 import SplashScreen from 'react-native-splash-screen'
 import { ThemeProvider, DarkTheme, LightTheme } from './theme'
 import AppNavigator from './AppNavigator'
 import awsconfig from '../aws-exports'
-import { dict } from './utils/dict'
-
-I18n.putVocabularies(dict)
 
 const MEMORY_KEY_PREFIX = '@MyStorage:'
 let dataMemory: any = {}

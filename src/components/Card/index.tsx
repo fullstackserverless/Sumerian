@@ -1,10 +1,11 @@
 import React, { memo, useState } from 'react'
-import { StyleSheet, Image, StyleProp, ViewStyle, TouchableOpacity, View } from 'react-native'
-import { W, primary, secondary } from '../../constants'
+import { Image, StyleProp, ViewStyle, TouchableOpacity } from 'react-native'
+import { ScaledSheet, s } from 'react-native-size-matters'
+import { W } from '../../constants'
 import { Loading } from '../Loading'
 import { ButtonIconCircle } from '../ButtonIconCircle'
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   container: {
     alignSelf: 'center'
   },
@@ -15,7 +16,7 @@ const styles = StyleSheet.create({
   },
   iconStyle: {
     alignSelf: 'flex-end',
-    right: 10,
+    right: s(10),
     bottom: 75
   }
 })
@@ -37,13 +38,11 @@ const Card = memo(({ admin, item, onPress, onPressAdmin, viewStyle }: CardT) => 
   const { img } = item
 
   return (
-    <>
-      <TouchableOpacity onPress={onPress} style={[container, viewStyle]}>
-        <Image style={imageStyle} source={{ uri: img }} onLoadEnd={(): void => setValue(true)} />
-        {!value && <Loading type="Pulse" />}
-        {admin && <ButtonIconCircle name=":lower_left_ballpoint_pen:" viewStyle={iconStyle} onPress={onPressAdmin} />}
-      </TouchableOpacity>
-    </>
+    <TouchableOpacity onPress={onPress} style={[container, viewStyle]}>
+      <Image style={imageStyle} source={{ uri: img }} onLoadEnd={(): void => setValue(true)} />
+      {!value && <Loading type="Pulse" />}
+      {admin && <ButtonIconCircle name=":lower_left_ballpoint_pen:" viewStyle={iconStyle} onPress={onPressAdmin} />}
+    </TouchableOpacity>
   )
 })
 

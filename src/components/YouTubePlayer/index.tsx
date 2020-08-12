@@ -4,7 +4,7 @@ import YouTube from 'react-native-youtube'
 import { W } from '../../constants'
 
 const styles = StyleSheet.create({
-  container: { alignSelf: 'stretch', height: W - 90 }
+  container: { alignSelf: 'stretch', height: W - 120 }
 })
 
 type YouTubePlayerT = {

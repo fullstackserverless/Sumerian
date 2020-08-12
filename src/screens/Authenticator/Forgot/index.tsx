@@ -2,6 +2,7 @@ import React, { useState, ReactElement } from 'react'
 import { Auth } from 'aws-amplify'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import I18n from '../../../utils'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
@@ -60,7 +61,7 @@ const Forgot = ({ route, navigation }: ForgotT): ReactElement => {
                 autoCapitalize="none"
                 color={color}
               />
-              <Button title="Confirm" onPress={handleSubmit} color={color} />
+              <Button title={I18n.t('confirm')} onPress={handleSubmit} color={color} />
             </>
           )}
         </Formik>

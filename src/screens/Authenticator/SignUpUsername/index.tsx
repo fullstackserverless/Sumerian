@@ -1,7 +1,8 @@
 import React, { useState, ReactElement, useRef } from 'react'
-import { Auth, API, graphqlOperation, I18n } from 'aws-amplify'
+import { Auth, API, graphqlOperation } from 'aws-amplify'
 import { Formik, FormikProps } from 'formik'
 import * as Yup from 'yup'
+import I18n from '../../../utils'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
@@ -98,7 +99,7 @@ const SignUpUsername = ({ route, navigation }: SignUpUsernameT): ReactElement =>
               value={values.firstName}
               onChangeText={handleChange('firstName')}
               onBlur={(): void => setFieldTouched('firstName')}
-              placeholder={I18n.get('firstName')}
+              placeholder={I18n.t('firstName')}
               touched={touched}
               errors={errors}
               autoCapitalize="none"
@@ -109,14 +110,14 @@ const SignUpUsername = ({ route, navigation }: SignUpUsernameT): ReactElement =>
               value={values.lastName}
               onChangeText={handleChange('lastName')}
               onBlur={(): void => setFieldTouched('lastName')}
-              placeholder={I18n.get('lastName')}
+              placeholder={I18n.t('lastName')}
               touched={touched}
               errors={errors}
               autoCapitalize="none"
               color={color}
             />
             <Space height={30} />
-            <Button title={I18n.get('signUp')} onPress={handleSubmit} color={color} />
+            <Button title={I18n.t('signUp')} onPress={handleSubmit} color={color} />
             <Space height={50} />
           </>
         )}

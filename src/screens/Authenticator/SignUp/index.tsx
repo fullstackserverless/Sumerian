@@ -1,8 +1,9 @@
 import React, { useState, ReactElement } from 'react'
-import { Auth, I18n } from 'aws-amplify'
+import { Auth } from 'aws-amplify'
 import * as Keychain from 'react-native-keychain'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import I18n from '../../../utils'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppContainer, Space, Button, Input, TextError } from '../../../components'
@@ -23,7 +24,7 @@ const SignUp = ({ navigation }: SignUpT): ReactElement => {
   const _onPress = async (values: { email: string; password: string; passwordConfirmation: string }): Promise<void> => {
     const { email, password, passwordConfirmation } = values
     if (password !== passwordConfirmation) {
-      setError(I18n.get('passwordsDoNotMatch'))
+      setError(I18n.t('passwordsDoNotMatch'))
     } else {
       setLoading(true)
       setError('')
@@ -35,15 +36,15 @@ const SignUp = ({ navigation }: SignUpT): ReactElement => {
       } catch (err) {
         setLoading(false)
         if (err.code === 'UserNotConfirmedException') {
-          setError(I18n.get('accountNotVerifiedYet'))
+          setError(I18n.t('accountNotVerifiedYet'))
         } else if (err.code === 'PasswordResetRequiredException') {
-          setError(I18n.get('resetYourPassword'))
+          setError(I18n.t('resetYourPassword'))
         } else if (err.code === 'UsernameExistsException') {
-          setError(I18n.get('usernameExistsException'))
+          setError(I18n.t('usernameExistsException'))
         } else if (err.code === 'NotAuthorizedException') {
-          setError(I18n.get('forgotPassword'))
+          setError(I18n.t('forgotPassword'))
         } else if (err.code === 'UserNotFoundException') {
-          setError(I18n.get('userDoesNotExist'))
+          setError(I18n.t('userDoesNotExist'))
         } else {
           setError(err.code)
         }
@@ -53,14 +54,18 @@ const SignUp = ({ navigation }: SignUpT): ReactElement => {
 
   const { dark } = useTheme()
   const color = dark ? white : black
-
+  // initialValues={{
+  //   email: 'reactnativeinitru@gmail.com',
+  //   password: 'qwerty123',
+  //   passwordConfirmation: 'qwerty123'
+  // }}
   return (
     <AppContainer onPress={goBack(navigation)} title="Sign Up" loading={loading} colorLeft={color}>
       <Formik
         initialValues={{
-          email: 'reactnativeinitru@gmail.com',
-          password: 'qwerty123',
-          passwordConfirmation: 'qwerty123'
+          email: '',
+          password: '',
+          passwordConfirmation: ''
         }}
         onSubmit={(values): Promise<void> => _onPress(values)}
         validationSchema={Yup.object().shape({
@@ -87,7 +92,7 @@ const SignUp = ({ navigation }: SignUpT): ReactElement => {
               value={values.password}
               onChangeText={handleChange('password')}
               onBlur={(): void => setFieldTouched('password')}
-              placeholder={I18n.get('password')}
+              placeholder={I18n.t('password')}
               touched={touched}
               errors={errors}
               secureTextEntry
@@ -98,7 +103,7 @@ const SignUp = ({ navigation }: SignUpT): ReactElement => {
               value={values.passwordConfirmation}
               onChangeText={handleChange('passwordConfirmation')}
               onBlur={(): void => setFieldTouched('passwordConfirmation')}
-              placeholder={I18n.get('passwordConfirmation')}
+              placeholder={I18n.t('passwordConfirmation')}
               touched={touched}
               errors={errors}
               secureTextEntry
@@ -107,7 +112,7 @@ const SignUp = ({ navigation }: SignUpT): ReactElement => {
             <Space height={30} />
             {error !== '' && <TextError title={error} textStyle={{ alignSelf: 'center' }} />}
             <Space height={20} />
-            <Button title={I18n.get('signUp')} onPress={handleSubmit} color={color} />
+            <Button title={I18n.t('signUp')} onPress={handleSubmit} color={color} />
             <Space height={50} />
           </>
         )}

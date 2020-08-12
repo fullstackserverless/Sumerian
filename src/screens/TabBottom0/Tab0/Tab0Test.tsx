@@ -110,18 +110,20 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
   const color = Platform.OS === 'ios' ? white : classicRose
   return (
     <AppContainer title=" " onPress={goBack(navigation)} colorLeft={color} color={classicRose}>
-      <Video ref={playerRef} source={{ uri }} audioOnly />
-      {displayName.title.length > 1 && <Txt h0 title={displayName.title} textStyle={display} color={white} />}
-      <Space height={50} />
-      <View style={container}>
-        {randomData.map(({ id, name, title }) => (
-          <ButtonIcon key={id} name={name} onPress={() => onPress(title)} color={classicRose} />
-        ))}
+      <View>
+        <Video ref={playerRef} source={{ uri }} audioOnly />
+        {displayName.title.length > 1 && <Txt h0 title={displayName.title} textStyle={display} color={white} />}
+        <Space height={50} />
+        <View style={container}>
+          {randomData.map(({ id, name, title }) => (
+            <ButtonIcon key={id} name={name} onPress={() => onPress(title)} color={classicRose} />
+          ))}
+        </View>
+        <Space height={20} />
+        <Txt error title={String(bool)} textStyle={[display, { color: bool ? 'green' : 'red' }]} />
+        <Space height={20} />
+        <ButtonIconCircle name=":sound:" onPress={onPressPlay} color={classicRose} />
       </View>
-      <Space height={20} />
-      <Txt error title={String(bool)} textStyle={[display, { color: bool ? 'green' : 'red' }]} />
-      <Space height={20} />
-      <ButtonIconCircle name=":sound:" onPress={onPressPlay} color={classicRose} />
     </AppContainer>
   )
 }
