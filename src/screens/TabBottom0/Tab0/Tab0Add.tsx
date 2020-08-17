@@ -24,11 +24,11 @@ const Tab0Add = ({ route, navigation }: Tab0AddT): ReactElement => {
   const [error, setError] = useState<string>('')
 
   const [input, setJob] = useState<ObjT>({
-    title: 'Alphabet',
+    title: 'Animals',
     description: 'Learning the basics of the English language.',
-    img: 'https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/00-Alphabet/Alphabet.png',
+    img: 'https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/03-Animals/5-Animals.jpg',
     uri: 'LLTxI1jyo-4',
-    json: 'https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/00-Alphabet/data.json'
+    json: 'https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/03-Animals/data.json'
   })
 
   const formikRef: any = useRef(null)
@@ -87,8 +87,7 @@ const Tab0Add = ({ route, navigation }: Tab0AddT): ReactElement => {
   }
 
   return (
-    <AppContainer onPress={goBack(navigation)} loading={loading} color={classicRose}>
-      <Header onPress={goBack(navigation)} iconLeft="angle-dobule-left" colorLeft={white} />
+    <AppContainer title=" " onPress={goBack(navigation)} colorLeft={white} color={classicRose}>
       <Space height={70} />
       <Formik
         innerRef={formikRef}

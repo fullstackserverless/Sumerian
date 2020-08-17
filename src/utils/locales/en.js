@@ -18,5 +18,6 @@ export default {
   firstName: 'First name',
   lastName: 'Last name',
   done: 'Done',
-  test: 'Test'
+  test: 'Test',
+  learn: 'Learn'
 }

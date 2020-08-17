@@ -17,7 +17,7 @@ const styles = ScaledSheet.create({
   iconStyle: {
     alignSelf: 'flex-end',
     right: s(10),
-    bottom: 75
+    bottom: s(50)
   }
 })
 

@@ -1,16 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { View, Platform, PermissionsAndroid } from 'react-native'
+import { View, Dimensions, Platform, PermissionsAndroid } from 'react-native'
 import { shuffle } from 'lodash'
 import Video from 'react-native-video'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
-import { ScaledSheet, scale } from 'react-native-size-matters'
+import { ScaledSheet, s, ms } from 'react-native-size-matters'
 import { RouteProp } from '@react-navigation/native'
 import { RootStackParamList, TestT } from '../../../AppNavigator'
 
 import { AppContainer, Txt, Space, ButtonIcon, ButtonIconCircle } from '../../../components'
-import { goBack, classicRose, errSoundOne, errSoundTwo, white } from '../../../constants'
-//import { useExitOnBack } from '../../../hooks'
+import { goBack, classicRose, errSoundOne, errSoundTwo, white, isPortrait, W } from '../../../constants'
+import { useOrientation } from '../../../hooks'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB0_TEST'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB0_TEST'>
@@ -22,16 +22,17 @@ type Tab0TestT = {
 
 const styles = ScaledSheet.create({
   container: {
-    flex: 1,
+    alignSelf: 'center'
+    //paddingHorizontal: s(10)
+  },
+  display: {},
+  sub: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    height: scale(215),
-    paddingHorizontal: 10
-  },
-  display: {
-    alignSelf: 'center'
+    position: 'absolute',
+    bottom: s(-10)
   }
 })
 
@@ -40,7 +41,7 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
   const defautState = {
     id: '0',
     name: '',
-    title: '',
+    title: ' ',
     url: ''
   }
 
@@ -48,7 +49,7 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
   const [displayName, setDisplayName] = useState<TestT>(defautState)
   const [count, setCount] = useState<number>(0)
 
-  const { container, display } = styles
+  const { container, display, sub } = styles
 
   const shake = () => {
     const shuff = shuffle(route.params)
@@ -60,6 +61,7 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
     }
     return { random, sliceArray }
   }
+
   const permissions = async () => {
     if (Platform.OS === 'android') {
       try {
@@ -106,24 +108,32 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
     setBool(true)
     playerRef.current?.seek(0)
   }
-  //useExitOnBack()
+
   const color = Platform.OS === 'ios' ? white : classicRose
+
+  const orientation = useOrientation()
+  const width = orientation === 'LANDSCAPE' ? ms(450, 0.7) : ms(300, 0.7)
+  const height = orientation === 'LANDSCAPE' ? ms(150, 0.9) : s(200)
+  const bottom = orientation === 'LANDSCAPE' ? s(-30) : s(-50)
   return (
-    <AppContainer title=" " onPress={goBack(navigation)} colorLeft={color} color={classicRose}>
-      <View>
+    <AppContainer
+      title={displayName.title}
+      onPress={goBack(navigation)}
+      colorLeft={color}
+      color={classicRose}
+      iconLeft=":back:"
+      iconRight=":loud_sound:"
+      onPressRight={onPressPlay}
+    >
+      <View style={[container, { height, width }]}>
         <Video ref={playerRef} source={{ uri }} audioOnly />
-        {displayName.title.length > 1 && <Txt h0 title={displayName.title} textStyle={display} color={white} />}
-        <Space height={50} />
-        <View style={container}>
+        <View style={sub}>
           {randomData.map(({ id, name, title }) => (
             <ButtonIcon key={id} name={name} onPress={() => onPress(title)} color={classicRose} />
           ))}
         </View>
-        <Space height={20} />
-        <Txt error title={String(bool)} textStyle={[display, { color: bool ? 'green' : 'red' }]} />
-        <Space height={20} />
-        <ButtonIconCircle name=":sound:" onPress={onPressPlay} color={classicRose} />
       </View>
+      <Txt error title={String(bool)} textStyle={[display, { bottom, color: bool ? 'green' : 'red' }]} />
     </AppContainer>
   )
 }

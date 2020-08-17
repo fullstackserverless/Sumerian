@@ -19,7 +19,7 @@ type English @model @auth(rules: [{ allow: owner, ownerField: "owner", operation
   description: String!
   img: String!
   uri: String!
-  json: String!
+  json: String
   owner: String
 }
 
@@ -29,7 +29,7 @@ type JavaScript @model @auth(rules: [{ allow: owner, ownerField: "owner", operat
   description: String!
   img: String!
   uri: String!
-  json: String!
+  json: String
   owner: String
 }
 
@@ -39,7 +39,7 @@ type ReactNative @model @auth(rules: [{ allow: owner, ownerField: "owner", opera
   description: String!
   img: String!
   uri: String!
-  json: String!
+  json: String
   owner: String
 }
 
@@ -49,7 +49,7 @@ type TypeScript @model @auth(rules: [{ allow: owner, ownerField: "owner", operat
   description: String!
   img: String!
   uri: String!
-  json: String!
+  json: String
   owner: String
 }
 
@@ -59,6 +59,6 @@ type Amplify @model @auth(rules: [{ allow: owner, ownerField: "owner", operation
   description: String!
   img: String!
   uri: String!
-  json: String!
+  json: String
   owner: String
 }

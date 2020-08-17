@@ -29,7 +29,7 @@ interface AppContainerT {
   color?: string
   colorLeft?: string
   onPress?: ((event: GestureResponderEvent) => void) | undefined
-  onPressRight?: (event: GestureResponderEvent) => void
+  onPressRight?: (event: GestureResponderEvent) => void | undefined
   iconRight?: string
   colorRight?: string
   children?: React.ReactNode
@@ -42,10 +42,8 @@ const AppContainer = memo<AppContainerT>(
   ({
     admin = false,
     flatList = false,
-    iconLeft = 'angle-dobule-left',
+    iconLeft = ':back:',
     color = white,
-    colorLeft,
-    colorRight,
     onPress = null,
     onPressRight = null,
     iconRight,
@@ -76,8 +74,6 @@ const AppContainer = memo<AppContainerT>(
             onPressRight={onPressRight}
             iconLeft={iconLeft}
             iconRight={iconRight}
-            colorLeft={colorLeft}
-            colorRight={colorRight}
             admin={admin}
           />
         )}
@@ -92,9 +88,7 @@ const AppContainer = memo<AppContainerT>(
                   <Space height={60} />
                 </ScrollView>
               ) : (
-                <>
-                  <View style={sub}>{children}</View>
-                </>
+                <View style={sub}>{children}</View>
               )}
             </>
           )}

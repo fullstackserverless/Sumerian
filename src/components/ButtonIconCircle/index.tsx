@@ -5,7 +5,7 @@ import { useTheme } from '@react-navigation/native'
 import { black, white } from '../../constants'
 import { ScaledSheet, scale } from 'react-native-size-matters'
 
-const diametr = scale(60)
+const diametr = scale(40)
 
 const circle = {
   width: diametr,
@@ -34,7 +34,7 @@ const styles = ScaledSheet.create({
   },
   emoji: {
     left: Platform.OS === 'ios' ? scale(3) : 0,
-    fontSize: Platform.OS === 'ios' ? '30@s' : '30@s'
+    fontSize: Platform.OS === 'ios' ? '20@s' : '20@s'
   }
 })
 

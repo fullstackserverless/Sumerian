@@ -18,5 +18,6 @@ export default {
   firstName: 'Имя',
   lastName: 'Фамилия',
   done: 'Сохранить',
-  test: 'Тест'
+  test: 'Тест',
+  learn: 'Учить'
 }

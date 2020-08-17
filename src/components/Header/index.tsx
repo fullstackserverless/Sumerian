@@ -1,28 +1,48 @@
 import React, { memo } from 'react'
-import { Platform, TouchableOpacity, View, StyleSheet, GestureResponderEvent } from 'react-native'
-import { isIphoneX } from 'react-native-iphone-x-helper'
-import { useTheme } from '@react-navigation/native'
-import Fontisto from 'react-native-vector-icons/Fontisto'
-import { primary, secondary, W } from '../../constants'
+import { TouchableOpacity, View, GestureResponderEvent, Platform } from 'react-native'
+import { ifIphoneX } from 'react-native-iphone-x-helper'
+import Emoji from 'react-native-emoji'
+import { ScaledSheet, s, ms } from 'react-native-size-matters'
+import { W, white, H } from '../../constants'
+import { Txt } from '../Txt'
+import { useOrientation } from '../../hooks'
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    width: W,
+    alignItems: 'center',
     paddingBottom: 20
   },
-  iconLeftStyle: {
-    fontSize: 35,
-    width: 50,
+  leftIconStyle: {
+    fontSize: 40,
+    width: 60,
+    height: 60,
+    textAlign: 'center',
+    top: 20,
     left: Platform.OS === 'ios' ? 10 : 25
   },
   rightIconStyle: {
-    fontSize: 35,
-    width: 50,
-    right: 0
+    fontSize: 40,
+    width: 60,
+    height: 60,
+    textAlign: 'center',
+    top: 20
+    //paddingHorizontal: Platform.OS === 'ios' ? 10 : 25
+  },
+  titleStyle: {
+    color: '#fff',
+    fontSize: 28,
+    width: W - s(120),
+    textAlign: 'center',
+    ...ifIphoneX(
+      {
+        paddingTop: s(75)
+      },
+      {
+        paddingTop: ms(35, 0.5)
+      }
+    )
   }
 })
 
@@ -31,34 +51,35 @@ interface HeaderT {
   title?: string
   iconLeft?: string
   iconRight?: string | null
-  colorLeft?: string
-  colorRight?: string
   onPress?: (event: GestureResponderEvent) => void
   onPressRight?: (event: GestureResponderEvent) => void
 }
 
-const Header = memo<HeaderT>(({ admin = false, iconLeft, iconRight, colorLeft, colorRight, onPress, onPressRight }) => {
-  const { container, iconLeftStyle, rightIconStyle } = styles
-  const { dark } = useTheme()
-  const color = dark ? primary : secondary
-  const x = isIphoneX() ? 30 : 30
-  const paddingTop = admin ? 0 : x
-
+const Header = memo<HeaderT>(({ title, admin = false, iconLeft, iconRight, onPress, onPressRight }) => {
+  const { container, leftIconStyle, rightIconStyle, titleStyle } = styles
+  const orientation = useOrientation()
+  const width = orientation === 'LANDSCAPE' ? H : W
   return (
-    <View style={container}>
+    <View style={[container, { width }]}>
       {iconLeft && (
         <TouchableOpacity onPress={onPress}>
-          <Fontisto name={iconLeft} style={[iconLeftStyle, { paddingTop }]} color={colorLeft ? colorLeft : color} />
+          <Emoji name={iconLeft} style={leftIconStyle} />
         </TouchableOpacity>
       )}
-
+      {title && <Txt h0 title={title} color={white} textStyle={titleStyle} />}
       {iconRight && (
         <TouchableOpacity onPress={onPressRight}>
-          <Fontisto name={iconRight} style={[rightIconStyle, { paddingTop }]} color={colorRight ? colorRight : color} />
+          <Emoji name={iconRight} style={rightIconStyle} />
         </TouchableOpacity>
       )}
     </View>
   )
 })
-
+{
+  /* <AntDesign
+              name={iconRight}
+              style={[rightIconStyle, { paddingTop }]}
+              color={colorRight ? colorRight : color}
+            /> */
+}
 export { Header }

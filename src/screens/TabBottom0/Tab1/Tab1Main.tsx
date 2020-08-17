@@ -2,47 +2,26 @@ import React, { useState, useEffect, ReactElement, useReducer } from 'react'
 import { FlatList } from 'react-native'
 import { Auth, API, graphqlOperation } from 'aws-amplify'
 import { AppContainer, Space, Header, Card } from '../../../components'
-import { uniqBy } from 'lodash'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
-import { goBack, onScreen, mustard, white } from '../../../constants'
+import { goBack, onScreen, white, mustard } from '../../../constants'
 import { RootStackParamList, ObjT } from '../../../AppNavigator'
 import { listJavaScripts } from '../../../graphql/queries'
-import { onCreateEnglish, onUpdateEnglish, onDeleteEnglish } from '../../../graphql/subscriptions'
+import { onCreateJavaScript, onUpdateJavaScript, onDeleteJavaScript } from '../../../graphql/subscriptions'
+import { uniqBy } from 'lodash'
+import { ActionT, StateT } from '../../helper'
 
-type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB0_MAIN'>
-type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB0_MAIN'>
+type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB1_MAIN'>
+type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB1_MAIN'>
 
-type Tab0MainT = {
+type Tab1MainT = {
   navigation: ProfileScreenNavigationProp
   route: ProfileScreenRouteProp
 }
 
 interface ItemT {
   item: ObjT
-}
-
-const initialState = {
-  data: [
-    {
-      id: '0',
-      title: 'Alphabet',
-      description: 'Learning the basics of the English language.',
-      img: 'https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/Alphabet.png',
-      uri: 'LLTxI1jyo-4',
-      json: ''
-    }
-  ]
-}
-
-interface ActionT {
-  type: string
-  data: ObjT
-}
-interface StateT {
-  type: string
-  data: ObjT
 }
 
 const reducer = (state: StateT, action: ActionT) => {
@@ -66,7 +45,20 @@ const reducer = (state: StateT, action: ActionT) => {
   }
 }
 
-const Tab1Main = ({ navigation }: Tab0MainT): ReactElement => {
+const initialState = {
+  data: [
+    {
+      id: '0',
+      title: 'Data types',
+      description: 'Learning the basics of the Java Script language.',
+      img: 'https://s3.eu-central-1.wasabisys.com/ghashtag/JSForKids/00',
+      uri: 'OifJhMwsC8Q',
+      json: ''
+    }
+  ]
+}
+
+const Tab1Main = ({ navigation }: Tab1MainT): ReactElement => {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const [admin, setAdmin] = useState<boolean>(false)
@@ -96,17 +88,18 @@ const Tab1Main = ({ navigation }: Tab0MainT): ReactElement => {
     fetchData()
 
     // @ts-expect-error
-    const subscriptionCreate = API.graphql(graphqlOperation(onCreateEnglish)).subscribe({
-      next: (data: any) => dispatch({ type: 'CREATE', data: data.value.data.onCreateEnglish })
+    const subscriptionCreate = API.graphql(graphqlOperation(onCreateJavaScript)).subscribe({
+      next: (data: any) => dispatch({ type: 'CREATE', data: data.value.data.onCreateJavaScript })
     })
     // @ts-expect-error
-    const subscriptionUpdate = API.graphql(graphqlOperation(onUpdateEnglish)).subscribe({
-      next: (data: any) => dispatch({ type: 'UPDATE', data: data.value.data.onUpdateEnglish })
+    const subscriptionUpdate = API.graphql(graphqlOperation(onUpdateJavaScript)).subscribe({
+      next: (data: any) => dispatch({ type: 'UPDATE', data: data.value.data.onUpdateJavaScript })
     })
     // @ts-expect-error
-    const subscriptionDelete = API.graphql(graphqlOperation(onDeleteEnglish)).subscribe({
-      next: (data: any) => dispatch({ type: 'DELETE', data: data.value.data.onDeleteEnglish })
+    const subscriptionDelete = API.graphql(graphqlOperation(onDeleteJavaScript)).subscribe({
+      next: (data: any) => dispatch({ type: 'DELETE', data: data.value.data.onDeleteJavaScript })
     })
+
     return () => {
       subscriptionCreate.unsubscribe()
       subscriptionUpdate.unsubscribe()
@@ -121,8 +114,8 @@ const Tab1Main = ({ navigation }: Tab0MainT): ReactElement => {
         <Card
           admin={admin}
           item={item}
-          onPress={onScreen('TAB0_DETAIL', navigation, item)}
-          onPressAdmin={onScreen('TAB0_ADD', navigation, item)}
+          onPress={onScreen('TAB1_DETAIL', navigation, item)}
+          onPressAdmin={onScreen('TAB1_ADD', navigation, item)}
         />
         <Space height={20} />
       </>
@@ -132,7 +125,7 @@ const Tab1Main = ({ navigation }: Tab0MainT): ReactElement => {
   const _keyExtractor = (obj: any) => obj.id.toString()
 
   return (
-    <AppContainer onPress={goBack(navigation)} loading={loading} flatList message={error} color={mustard}>
+    <AppContainer onPress={goBack(navigation)} loading={loading} flatList color={mustard}>
       <FlatList
         scrollEventThrottle={16}
         data={state.data}
@@ -141,9 +134,9 @@ const Tab1Main = ({ navigation }: Tab0MainT): ReactElement => {
         onEndReachedThreshold={0.5}
         ListHeaderComponent={
           <Header
-            onPressRight={onScreen('TAB0_ADD', navigation)}
+            onPressRight={onScreen('TAB1_ADD', navigation)}
             iconLeft="angle-dobule-left"
-            iconRight={admin ? 'plus-a' : null}
+            iconRight={admin ? ':heavy_plus_sign:' : null}
             colorLeft="transparent"
             admin={admin}
             colorRight={white}

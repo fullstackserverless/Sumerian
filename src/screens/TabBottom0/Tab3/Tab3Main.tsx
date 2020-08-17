@@ -1,14 +1,16 @@
-import React, { useState, useEffect, ReactElement } from 'react'
+import React, { useState, useEffect, ReactElement, useReducer } from 'react'
 import { FlatList } from 'react-native'
-import { Auth } from 'aws-amplify'
-import { DataStore } from '@aws-amplify/datastore'
+import { Auth, API, graphqlOperation } from 'aws-amplify'
+import { AppContainer, Space, Header, Card } from '../../../components'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
-import { TypeScript } from '../../../models'
-import { goBack, onScreen, trueBlue } from '../../../constants'
+import { goBack, onScreen, white, trueBlue } from '../../../constants'
 import { RootStackParamList, ObjT } from '../../../AppNavigator'
-import { AppContainer, Space, Header, Card } from '../../../components'
+import { listTypeScripts } from '../../../graphql/queries'
+import { onCreateTypeScript, onDeleteTypeScript, onUpdateTypeScript } from '../../../graphql/subscriptions'
+import { uniqBy } from 'lodash'
+import { ActionT, StateT } from '../../helper'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB3_MAIN'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB3_MAIN'>
@@ -22,29 +24,61 @@ interface ItemT {
   item: ObjT
 }
 
-const Tab3Main = ({ navigation }: Tab3MainT): ReactElement => {
-  const [error, setError] = useState<string>('')
-  const [admin, setAdmin] = useState<boolean>(false)
-  const [data, updateData] = useState<Array<ObjT>>([
+const reducer = (state: StateT, action: ActionT) => {
+  switch (action.type) {
+    case 'CREATE':
+      return {
+        data: uniqBy([action.data, ...state.data], 'id')
+      }
+    case 'READ':
+      return { data: action.data }
+    case 'UPDATE':
+      return {
+        ...state,
+        data: uniqBy([action.data, ...state.data], 'id')
+      }
+    case 'DELETE':
+      return {
+        ...state,
+        data: [...state.data].filter(({ id }) => id !== action.data.id)
+      }
+  }
+}
+
+const initialState = {
+  data: [
     {
       id: '0',
-      title: 'Alphabet',
-      description: 'Learning the basics of the English language.',
-      img: 'https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/Alphabet.png',
-      uri: 'https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/Alphabet.mov'
+      title: 'Data types',
+      description: 'Learning the basics of the Type Script language.',
+      img: 'https://s3.eu-central-1.wasabisys.com/ghashtag/JSForKids/00',
+      uri: 'OifJhMwsC8Q',
+      json: ''
     }
-  ])
+  ]
+}
+
+const Tab3Main = ({ navigation }: Tab3MainT): ReactElement => {
+  const [loading, setLoading] = useState<boolean>(false)
+  const [error, setError] = useState<string>('')
+  const [admin, setAdmin] = useState<boolean>(false)
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   const fetchData = async () => {
     try {
-      const arr = await DataStore.query(TypeScript)
-      updateData(arr)
+      const arr = await API.graphql(graphqlOperation(listTypeScripts))
+      // @ts-expect-error
+      dispatch({ type: 'READ', data: arr.data.listTypeScripts.items })
+      setLoading(false)
     } catch (err) {
       setError(err)
+      setLoading(false)
     }
   }
 
   useEffect(() => {
+    let isSubscribed: boolean = true // eslint-disable-line
+    setLoading(true)
     // @ts-expect-error
     const check = Auth.user.signInUserSession.idToken.payload['cognito:groups']
     const adm =
@@ -52,9 +86,25 @@ const Tab3Main = ({ navigation }: Tab3MainT): ReactElement => {
       check !== undefined ? Auth.user.signInUserSession.idToken.payload['cognito:groups'][0] === 'Admin' : false
     setAdmin(adm)
     fetchData()
-    const subscription = DataStore.observe(TypeScript).subscribe(() => fetchData())
+
+    // @ts-expect-error
+    const subscriptionCreate = API.graphql(graphqlOperation(onCreateTypeScript)).subscribe({
+      next: (data: any) => dispatch({ type: 'CREATE', data: data.value.data.onCreateTypeScript })
+    })
+    // @ts-expect-error
+    const subscriptionUpdate = API.graphql(graphqlOperation(onUpdateTypeScript)).subscribe({
+      next: (data: any) => dispatch({ type: 'UPDATE', data: data.value.data.onUpdateTypeScript })
+    })
+    // @ts-expect-error
+    const subscriptionDelete = API.graphql(graphqlOperation(onDeleteTypeScript)).subscribe({
+      next: (data: any) => dispatch({ type: 'DELETE', data: data.value.data.onDeleteTypeScript })
+    })
+
     return () => {
-      subscription.unsubscribe()
+      subscriptionCreate.unsubscribe()
+      subscriptionUpdate.unsubscribe()
+      subscriptionDelete.unsubscribe()
+      isSubscribed = false
     }
   }, [navigation])
 
@@ -75,10 +125,10 @@ const Tab3Main = ({ navigation }: Tab3MainT): ReactElement => {
   const _keyExtractor = (obj: any) => obj.id.toString()
 
   return (
-    <AppContainer onPress={goBack(navigation)} flatList message={error}>
+    <AppContainer onPress={goBack(navigation)} loading={loading} flatList color={trueBlue}>
       <FlatList
         scrollEventThrottle={16}
-        data={data}
+        data={state.data}
         renderItem={_renderItem}
         keyExtractor={_keyExtractor}
         onEndReachedThreshold={0.5}
@@ -86,10 +136,10 @@ const Tab3Main = ({ navigation }: Tab3MainT): ReactElement => {
           <Header
             onPressRight={onScreen('TAB3_ADD', navigation)}
             iconLeft="angle-dobule-left"
-            iconRight={admin ? 'plus-a' : null}
+            iconRight={admin ? ':heavy_plus_sign:' : null}
             colorLeft="transparent"
-            colorRight={trueBlue}
             admin={admin}
+            colorRight={white}
           />
         }
         stickyHeaderIndices={[0]}

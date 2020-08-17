@@ -2,7 +2,7 @@ import { Storage } from 'aws-amplify'
 import uuid from 'react-native-uuid'
 import ImagePicker from 'react-native-image-crop-picker'
 import { S3ObjectT } from '../AppNavigator'
-
+import { ObjT } from '../AppNavigator'
 const fetchImage = async (avatar: S3ObjectT) => {
   try {
     return await Storage.get(avatar.key)
@@ -64,6 +64,15 @@ const pickAva = async (cropping = true, circular = true) => {
   } catch (err) {
     return err
   }
+}
+
+export interface ActionT {
+  type: 'CREATE' | 'READ' | 'UPDATE' | 'DELETE'
+  data: ObjT
+}
+
+export interface StateT {
+  data: ObjT
 }
 
 export { pickAva, createImage, updateImage, fetchImage }

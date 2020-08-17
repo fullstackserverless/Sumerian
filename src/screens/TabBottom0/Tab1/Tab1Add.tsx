@@ -1,15 +1,14 @@
 import React, { useState, useEffect, useRef, ReactElement } from 'react'
-import { View } from 'react-native'
-import { DataStore } from '@aws-amplify/datastore'
+import { API, graphqlOperation } from 'aws-amplify'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
-import { JavaScript } from '../../../models'
-import { goBack, classicRose } from '../../../constants'
+import { goBack, mustard, white } from '../../../constants'
 import { AppContainer, Input, Space, Button, Header, ButtonLink } from '../../../components'
 import { RootStackParamList, ObjT } from '../../../AppNavigator'
+import { createJavaScript, updateJavaScript, deleteJavaScript } from '../../../graphql/mutations'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB1_ADD'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB1_ADD'>
@@ -24,12 +23,12 @@ const Tab1Add = ({ route, navigation }: Tab1AddT): ReactElement => {
   const [check, setOwner] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
 
-  const [input, setObj] = useState<ObjT>({
-    id: '',
+  const [input, setJob] = useState<ObjT>({
     title: 'Data types',
     description: 'Learning the basics of the Java Script language.',
     img: 'https://s3.eu-central-1.wasabisys.com/ghashtag/JSForKids/00',
-    uri: 'https://s3.eu-central-1.wasabisys.com/ghashtag/JSForKids/DataTypes'
+    uri: 'OifJhMwsC8Q',
+    json: ''
   })
 
   const formikRef: any = useRef(null)
@@ -38,60 +37,58 @@ const Tab1Add = ({ route, navigation }: Tab1AddT): ReactElement => {
     const obj = route.params
     if (typeof obj !== 'undefined') {
       setOwner(true)
-      setObj(obj)
+      setJob(obj)
       const { setFieldValue } = formikRef.current
-      const { title, description, img, uri } = obj
+      const { id, title, description, img, uri, json } = obj
+      setFieldValue('id', id)
       setFieldValue('title', title)
       setFieldValue('description', description)
       setFieldValue('img', img)
       setFieldValue('uri', uri)
+      setFieldValue('json', json)
     }
   }, [route.params])
 
   const createObj = async (values: ObjT) => {
+    setLoading(true)
     try {
-      const obj = await DataStore.save(new JavaScript({ ...values }))
-      obj && goBack(navigation)()
-    } catch (err) {
-      setError(err)
-    }
-  }
-
-  const updateObj = async ({ title, description, img, uri }: ObjT) => {
-    try {
-      setLoading(true)
-      const original = await DataStore.query(JavaScript, input.id)
-      const update = await DataStore.save(
-        JavaScript.copyOf(original, (updated) => {
-          updated.title = title
-          updated.description = description
-          updated.img = img
-          updated.uri = uri
-        })
-      )
-      update && goBack(navigation)()
+      await API.graphql(graphqlOperation(createJavaScript, { input: values }))
+      goBack(navigation)()
       setLoading(false)
     } catch (err) {
       setError(err)
+      setLoading(false)
     }
   }
 
-  const deleteObj = async () => {
+  const updateObj = async (values: ObjT) => {
+    setLoading(true)
     try {
-      setLoading(true)
-      const obj = await DataStore.query(JavaScript, input.id)
-      const del = await DataStore.delete(obj)
-      del && goBack(navigation)()
+      await API.graphql(graphqlOperation(updateJavaScript, { input: values }))
+      goBack(navigation)()
       setLoading(false)
     } catch (err) {
       setError(err)
+      setLoading(false)
+    }
+  }
+
+  const deleteObj = async ({ id }: ObjT) => {
+    setLoading(true)
+    try {
+      await API.graphql(graphqlOperation(deleteJavaScript, { input: { id } }))
+      goBack(navigation)()
+      setLoading(false)
+    } catch (err) {
+      setError(err)
+      setLoading(false)
     }
   }
 
   return (
-    <AppContainer onPress={goBack(navigation)} loading={loading} message={error}>
-      <Header onPress={goBack(navigation)} iconLeft="angle-dobule-left" colorLeft={classicRose} />
-      <Space height={20} />
+    <AppContainer onPress={goBack(navigation)} loading={loading} color={mustard}>
+      <Header onPress={goBack(navigation)} iconLeft="angle-dobule-left" colorLeft={white} />
+      <Space height={70} />
       <Formik
         innerRef={formikRef}
         initialValues={input}
@@ -100,7 +97,8 @@ const Tab1Add = ({ route, navigation }: Tab1AddT): ReactElement => {
           title: Yup.string().min(3).required(),
           description: Yup.string().min(3).required(),
           img: Yup.string().min(3).required(),
-          uri: Yup.string().min(3).required()
+          uri: Yup.string().min(3).required(),
+          json: Yup.string().min(0)
         })}
       >
         {({ values, handleChange, errors, setFieldTouched, touched, handleSubmit }) => (
@@ -113,7 +111,7 @@ const Tab1Add = ({ route, navigation }: Tab1AddT): ReactElement => {
               placeholder="Title"
               touched={touched}
               errors={errors}
-              color={classicRose}
+              color={white}
             />
             <Input
               name="description"
@@ -123,7 +121,7 @@ const Tab1Add = ({ route, navigation }: Tab1AddT): ReactElement => {
               placeholder="Description"
               touched={touched}
               errors={errors}
-              color={classicRose}
+              color={white}
             />
             <Input
               name="img"
@@ -133,7 +131,7 @@ const Tab1Add = ({ route, navigation }: Tab1AddT): ReactElement => {
               placeholder="Image path"
               touched={touched}
               errors={errors}
-              color={classicRose}
+              color={white}
             />
             <Input
               name="uri"
@@ -143,16 +141,28 @@ const Tab1Add = ({ route, navigation }: Tab1AddT): ReactElement => {
               placeholder="Video path"
               touched={touched}
               errors={errors}
-              color={classicRose}
+              color={white}
+            />
+            <Input
+              name="json"
+              value={values.json}
+              onChangeText={handleChange('json')}
+              onBlur={() => setFieldTouched('json')}
+              placeholder="Test path (JSON)"
+              touched={touched}
+              errors={errors}
+              color={white}
             />
             <Space height={40} />
-            <Button title={check ? 'Update' : 'Create'} onPress={handleSubmit} />
+            <Button title={check ? 'Update' : 'Create'} onPress={handleSubmit} color={mustard} />
             {check && (
               <>
                 <Space height={10} />
                 <ButtonLink title="or" textStyle={{ alignSelf: 'center' }} />
-                <Space height={15} />
-                <Button title="DELETE" onPress={deleteObj} cancel />
+                <>
+                  <Space height={15} />
+                  <Button title="DELETE" onPress={() => deleteObj(values)} cancel color={mustard} />
+                </>
               </>
             )}
           </>

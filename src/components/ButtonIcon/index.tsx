@@ -1,12 +1,12 @@
 import React, { memo } from 'react'
 import { Platform, StyleProp, ViewStyle, View, TouchableOpacity } from 'react-native'
-import { ScaledSheet, scale } from 'react-native-size-matters'
+import { ScaledSheet, ms } from 'react-native-size-matters'
 import Emoji from 'react-native-emoji'
 import { useTheme } from '@react-navigation/native'
 import { black, white } from '../../constants'
 import { Txt } from '../Txt'
 
-const diameter = scale(88)
+const diameter = ms(88, 0.6)
 
 const circle = {
   width: diameter,
@@ -16,7 +16,8 @@ const circle = {
 
 const styles = ScaledSheet.create({
   container: {
-    alignSelf: 'center'
+    alignSelf: 'center',
+    padding: 1
   },
   blue: {
     ...circle,

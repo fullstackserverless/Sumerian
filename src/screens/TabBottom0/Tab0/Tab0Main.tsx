@@ -2,7 +2,6 @@ import React, { useState, useEffect, ReactElement, useReducer } from 'react'
 import { FlatList } from 'react-native'
 import { Auth, API, graphqlOperation } from 'aws-amplify'
 import { AppContainer, Space, Header, Card } from '../../../components'
-import { uniqBy } from 'lodash'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
@@ -10,6 +9,8 @@ import { goBack, onScreen, classicRose, white } from '../../../constants'
 import { RootStackParamList, ObjT } from '../../../AppNavigator'
 import { listEnglishs } from '../../../graphql/queries'
 import { onCreateEnglish, onUpdateEnglish, onDeleteEnglish } from '../../../graphql/subscriptions'
+import { uniqBy } from 'lodash'
+import { ActionT, StateT } from '../../helper'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB0_MAIN'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB0_MAIN'>
@@ -36,28 +37,28 @@ const initialState = {
   ]
 }
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'CREATE':
-      return {
-        data: uniqBy([action.data, ...state.data], 'id')
-      }
-    case 'READ':
-      return { data: action.data }
-    case 'UPDATE':
-      return {
-        ...state,
-        data: uniqBy([action.data, ...state.data], 'id')
-      }
-    case 'DELETE':
-      return {
-        ...state,
-        data: [...state.data].filter(({ id }) => id !== action.data.id)
-      }
-  }
-}
-
 const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
+  const reducer = (state: StateT, action: ActionT) => {
+    switch (action.type) {
+      case 'CREATE':
+        return {
+          data: uniqBy([action.data, ...state.data], 'id')
+        }
+      case 'READ':
+        return { data: action.data }
+      case 'UPDATE':
+        return {
+          ...state,
+          data: uniqBy([action.data, ...state.data], 'id')
+        }
+      case 'DELETE':
+        return {
+          ...state,
+          data: [...state.data].filter(({ id }) => id !== action.data.id)
+        }
+    }
+  }
+
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const [admin, setAdmin] = useState<boolean>(false)
@@ -123,7 +124,7 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
   const _keyExtractor = (obj: any) => obj.id.toString()
 
   return (
-    <AppContainer onPress={goBack(navigation)} loading={loading} flatList message={error} color={classicRose}>
+    <AppContainer onPress={goBack(navigation)} loading={loading} flatList color={classicRose}>
       <FlatList
         scrollEventThrottle={16}
         data={state.data}
@@ -133,11 +134,8 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
         ListHeaderComponent={
           <Header
             onPressRight={onScreen('TAB0_ADD', navigation)}
-            iconLeft="angle-dobule-left"
-            iconRight={admin ? 'plus-a' : null}
-            colorLeft="transparent"
+            iconRight={admin ? ':heavy_plus_sign:' : null}
             admin={admin}
-            colorRight={white}
           />
         }
         stickyHeaderIndices={[0]}

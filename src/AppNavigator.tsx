@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { enableScreens } from 'react-native-screens' // eslint-disable-line
 import { Stack0 } from './screens'
-import { Tab0Main, Tab0Add, Tab0Detail, Tab0Test } from './screens/TabBottom0/Tab0'
+import { Tab0Main, Tab0Add, Tab0Detail, Tab0Test, Tab0Learn } from './screens/TabBottom0/Tab0'
 import { Tab1Main, Tab1Add, Tab1Detail } from './screens/TabBottom0/Tab1'
 import { Tab2Main, Tab2Add, Tab2Detail } from './screens/TabBottom0/Tab2'
 import { Tab3Main, Tab3Add, Tab3Detail } from './screens/TabBottom0/Tab3'
@@ -142,6 +142,7 @@ const AppNavigator = (): React.ReactElement => {
         <Stack.Screen name="TAB0_DETAIL" component={Tab0Detail} />
         <Stack.Screen name="TAB0_ADD" component={Tab0Add} />
         <Stack.Screen name="TAB0_TEST" component={Tab0Test} />
+        <Stack.Screen name="TAB0_LEARN" component={Tab0Learn} />
 
         <Stack.Screen name="TAB1_MAIN" component={Tab1Main} />
         <Stack.Screen name="TAB1_DETAIL" component={Tab1Detail} />
