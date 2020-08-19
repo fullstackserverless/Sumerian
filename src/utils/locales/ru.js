@@ -19,5 +19,6 @@ export default {
   lastName: 'Фамилия',
   done: 'Сохранить',
   test: 'Тест',
-  learn: 'Учить'
+  learn: 'Учить',
+  win: 'Победа'
 }

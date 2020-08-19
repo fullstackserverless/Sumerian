@@ -45,6 +45,35 @@ export const listProfiles = /* GraphQL */ `
     }
   }
 `;
+export const getEnglishProg = /* GraphQL */ `
+  query GetEnglishProg($id: ID!) {
+    getEnglishProg(id: $id) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listEnglishProgs = /* GraphQL */ `
+  query ListEnglishProgs(
+    $filter: ModelEnglishProgFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listEnglishProgs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        doneId
+        owner
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const getEnglish = /* GraphQL */ `
   query GetEnglish($id: ID!) {
     getEnglish(id: $id) {

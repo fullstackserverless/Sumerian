@@ -134,12 +134,9 @@ const Tab2Main = ({ navigation }: Tab2MainT): ReactElement => {
         onEndReachedThreshold={0.5}
         ListHeaderComponent={
           <Header
-            onPressRight={onScreen('TAB2_ADD', navigation)}
-            iconLeft="angle-dobule-left"
+            onPressRight={onScreen('TAB0_ADD', navigation)}
             iconRight={admin ? ':heavy_plus_sign:' : null}
-            colorLeft="transparent"
             admin={admin}
-            colorRight={white}
           />
         }
         stickyHeaderIndices={[0]}

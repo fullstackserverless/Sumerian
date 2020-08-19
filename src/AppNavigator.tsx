@@ -38,6 +38,13 @@ export interface ObjT {
   uri: string
   json: string
   owner?: string
+  done?: boolean
+}
+
+export interface ProgT {
+  id: string
+  doneId: string
+  owner?: string
 }
 
 export interface UserT {

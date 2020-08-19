@@ -56,6 +56,39 @@ export const onDeleteProfile = /* GraphQL */ `
     }
   }
 `;
+export const onCreateEnglishProg = /* GraphQL */ `
+  subscription OnCreateEnglishProg {
+    onCreateEnglishProg {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateEnglishProg = /* GraphQL */ `
+  subscription OnUpdateEnglishProg {
+    onUpdateEnglishProg {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteEnglishProg = /* GraphQL */ `
+  subscription OnDeleteEnglishProg {
+    onDeleteEnglishProg {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateEnglish = /* GraphQL */ `
   subscription OnCreateEnglish {
     onCreateEnglish {

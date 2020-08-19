@@ -2,16 +2,16 @@ import React, { memo } from 'react'
 import { Platform, StyleProp, TextStyle, View, TouchableOpacity } from 'react-native'
 import { useTheme } from '@react-navigation/native'
 import { ScaledSheet, scale, ms, s } from 'react-native-size-matters'
-import { W, white, black } from '../../constants'
+import { white, black } from '../../constants'
 import { Txt } from '../Txt'
 
-const diametr = 200
+const diametr = 130
 
 const styles = ScaledSheet.create({
   container: {
     alignSelf: 'center',
-    width: W - (Platform.OS === 'ios' ? ms(diametr, 1.8) : ms(diametr, 1.8)),
-    height: Platform.OS === 'ios' ? ms(60, 1.8) : ms(diametr, 1.8),
+    width: Platform.OS === 'ios' ? ms(diametr, 1) : ms(diametr, 1),
+    height: Platform.OS === 'ios' ? ms(60, 0.6) : ms(50, 1),
     borderRadius: Platform.OS === 'ios' ? scale(40) : scale(35),
     borderWidth: 1,
     paddingTop: Platform.OS === 'ios' ? s(3) : s(0),

@@ -7,6 +7,12 @@ type Profile @model @auth(rules: [{ allow: owner, ownerField: "owner", operation
   owner: String
 }
 
+type EnglishProg @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
+  id: ID!
+  doneId: String!
+  owner: String
+}
+
 type S3Object {
   bucket: String!
   region: String!

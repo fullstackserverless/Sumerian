@@ -79,6 +79,29 @@ export type DeleteProfileInput = {
   id?: string | null,
 };
 
+export type CreateEnglishProgInput = {
+  id?: string | null,
+  doneId: string,
+  owner?: string | null,
+};
+
+export type ModelEnglishProgConditionInput = {
+  doneId?: ModelStringInput | null,
+  and?: Array< ModelEnglishProgConditionInput | null > | null,
+  or?: Array< ModelEnglishProgConditionInput | null > | null,
+  not?: ModelEnglishProgConditionInput | null,
+};
+
+export type UpdateEnglishProgInput = {
+  id: string,
+  doneId?: string | null,
+  owner?: string | null,
+};
+
+export type DeleteEnglishProgInput = {
+  id?: string | null,
+};
+
 export type CreateEnglishInput = {
   id?: string | null,
   title: string,
@@ -281,6 +304,15 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
+export type ModelEnglishProgFilterInput = {
+  id?: ModelIDInput | null,
+  doneId?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
+  and?: Array< ModelEnglishProgFilterInput | null > | null,
+  or?: Array< ModelEnglishProgFilterInput | null > | null,
+  not?: ModelEnglishProgFilterInput | null,
+};
+
 export type ModelEnglishFilterInput = {
   id?: ModelIDInput | null,
   title?: ModelStringInput | null,
@@ -412,6 +444,54 @@ export type DeleteProfileMutation = {
       region: string,
       key: string,
     } | null,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type CreateEnglishProgMutationVariables = {
+  input: CreateEnglishProgInput,
+  condition?: ModelEnglishProgConditionInput | null,
+};
+
+export type CreateEnglishProgMutation = {
+  createEnglishProg:  {
+    __typename: "EnglishProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateEnglishProgMutationVariables = {
+  input: UpdateEnglishProgInput,
+  condition?: ModelEnglishProgConditionInput | null,
+};
+
+export type UpdateEnglishProgMutation = {
+  updateEnglishProg:  {
+    __typename: "EnglishProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteEnglishProgMutationVariables = {
+  input: DeleteEnglishProgInput,
+  condition?: ModelEnglishProgConditionInput | null,
+};
+
+export type DeleteEnglishProgMutation = {
+  deleteEnglishProg:  {
+    __typename: "EnglishProg",
+    id: string,
+    doneId: string,
     owner: string | null,
     createdAt: string,
     updatedAt: string,
@@ -770,6 +850,42 @@ export type ListProfilesQuery = {
   } | null,
 };
 
+export type GetEnglishProgQueryVariables = {
+  id: string,
+};
+
+export type GetEnglishProgQuery = {
+  getEnglishProg:  {
+    __typename: "EnglishProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListEnglishProgsQueryVariables = {
+  filter?: ModelEnglishProgFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListEnglishProgsQuery = {
+  listEnglishProgs:  {
+    __typename: "ModelEnglishProgConnection",
+    items:  Array< {
+      __typename: "EnglishProg",
+      id: string,
+      doneId: string,
+      owner: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
 export type GetEnglishQueryVariables = {
   id: string,
 };
@@ -1041,6 +1157,39 @@ export type OnDeleteProfileSubscription = {
       region: string,
       key: string,
     } | null,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateEnglishProgSubscription = {
+  onCreateEnglishProg:  {
+    __typename: "EnglishProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateEnglishProgSubscription = {
+  onUpdateEnglishProg:  {
+    __typename: "EnglishProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteEnglishProgSubscription = {
+  onDeleteEnglishProg:  {
+    __typename: "EnglishProg",
+    id: string,
+    doneId: string,
     owner: string | null,
     createdAt: string,
     updatedAt: string,

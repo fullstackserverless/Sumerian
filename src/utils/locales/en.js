@@ -19,5 +19,6 @@ export default {
   lastName: 'Last name',
   done: 'Done',
   test: 'Test',
-  learn: 'Learn'
+  learn: 'Learn',
+  win: 'Win'
 }

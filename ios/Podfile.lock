@@ -328,6 +328,8 @@ PODS:
     - React-Core (= 0.63.0)
     - React-cxxreact (= 0.63.0)
     - React-jsi (= 0.63.0)
+  - ReactNativeART (1.2.0):
+    - React
   - RNAWSCognito (4.3.3):
     - JKBigInteger2 (= 0.0.5)
     - React
@@ -424,6 +426,7 @@ DEPENDENCIES:
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "ReactNativeART (from `../node_modules/@react-native-community/art`)"
   - RNAWSCognito (from `../node_modules/amazon-cognito-identity-js`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - RNFastImage (from `../node_modules/react-native-fast-image`)
@@ -525,6 +528,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Vibration"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  ReactNativeART:
+    :path: "../node_modules/@react-native-community/art"
   RNAWSCognito:
     :path: "../node_modules/amazon-cognito-identity-js"
   RNCAsyncStorage:
@@ -594,6 +599,7 @@ SPEC CHECKSUMS:
   React-RCTText: ba503bf4cce41881ca258ba789c33e017955efdd
   React-RCTVibration: 77ab1cf4a5eb854b88ad5ed3e9d8509ed124525e
   ReactCommon: f63556ee9e41e9802257228237e5e660451a03cf
+  ReactNativeART: 78edc68dd4a1e675338cd0cd113319cf3a65f2ab
   RNAWSCognito: 08567d55159547e8ac2a1ce4350cd44a67f3db96
   RNCAsyncStorage: d059c3ee71738c39834a627476322a5a8cd5bf36
   RNFastImage: e19ba191922e7dab9d932a4d59d62d76660aa222

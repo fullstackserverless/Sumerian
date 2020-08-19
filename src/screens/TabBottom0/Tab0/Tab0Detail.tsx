@@ -28,7 +28,7 @@ const styles = ScaledSheet.create({
 })
 
 const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
-  const { json, uri } = route.params
+  const { json, uri, done, id } = route.params
   const defautState = {
     id: '0',
     name: '',
@@ -62,7 +62,11 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
             onPress={onScreen('TAB0_LEARN', navigation, data)}
             color={classicRose}
           />
-          <ButtonSquare title={I18n.t('test')} onPress={onScreen('TAB0_TEST', navigation, data)} color={classicRose} />
+          <ButtonSquare
+            title={I18n.t('test')}
+            onPress={onScreen('TAB0_TEST', navigation, [data, done, id])}
+            color={classicRose}
+          />
         </View>
       )}
     </AppContainer>

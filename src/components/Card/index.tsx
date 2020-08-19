@@ -4,6 +4,7 @@ import { ScaledSheet, s } from 'react-native-size-matters'
 import { W } from '../../constants'
 import { Loading } from '../Loading'
 import { ButtonIconCircle } from '../ButtonIconCircle'
+import { EmojiView } from '../EmojiView'
 
 const styles = ScaledSheet.create({
   container: {
@@ -18,6 +19,10 @@ const styles = ScaledSheet.create({
     alignSelf: 'flex-end',
     right: s(10),
     bottom: s(50)
+  },
+  emojiView: {
+    alignSelf: 'flex-start',
+    bottom: s(50)
   }
 })
 
@@ -26,15 +31,16 @@ interface CardT {
   onPress?: () => void
   onPressAdmin?: () => void
   viewStyle?: StyleProp<ViewStyle>
+  done: boolean
   item: {
     title: string
     img: string
   }
 }
 
-const Card = memo(({ admin, item, onPress, onPressAdmin, viewStyle }: CardT) => {
+const Card = memo(({ done, admin, item, onPress, onPressAdmin, viewStyle }: CardT) => {
   const [value, setValue] = useState<boolean>(false)
-  const { container, imageStyle, iconStyle } = styles
+  const { container, imageStyle, iconStyle, emojiView } = styles
   const { img } = item
 
   return (
@@ -42,6 +48,7 @@ const Card = memo(({ admin, item, onPress, onPressAdmin, viewStyle }: CardT) => 
       <Image style={imageStyle} source={{ uri: img }} onLoadEnd={(): void => setValue(true)} />
       {!value && <Loading type="Pulse" />}
       {admin && <ButtonIconCircle name=":lower_left_ballpoint_pen:" viewStyle={iconStyle} onPress={onPressAdmin} />}
+      {done && <EmojiView name=":heavy_check_mark:" fontSize={40} viewStyle={emojiView} />}
     </TouchableOpacity>
   )
 })

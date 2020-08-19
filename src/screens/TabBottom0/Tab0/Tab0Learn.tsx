@@ -9,9 +9,8 @@ import { RouteProp } from '@react-navigation/native'
 import { RootStackParamList, TestT } from '../../../AppNavigator'
 
 import { AppContainer, EmojiView, Row, Space } from '../../../components'
-import { goBack, classicRose, errSoundOne, errSoundTwo, white } from '../../../constants'
+import { goBack, classicRose, white } from '../../../constants'
 import { useOrientation } from '../../../hooks'
-import { CookieStorage } from 'amazon-cognito-identity-js'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB0_TEST'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB0_TEST'>

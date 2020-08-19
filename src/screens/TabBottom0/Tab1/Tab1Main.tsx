@@ -135,11 +135,8 @@ const Tab1Main = ({ navigation }: Tab1MainT): ReactElement => {
         ListHeaderComponent={
           <Header
             onPressRight={onScreen('TAB1_ADD', navigation)}
-            iconLeft="angle-dobule-left"
             iconRight={admin ? ':heavy_plus_sign:' : null}
-            colorLeft="transparent"
             admin={admin}
-            colorRight={white}
           />
         }
         stickyHeaderIndices={[0]}

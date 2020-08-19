@@ -65,6 +65,48 @@ export const deleteProfile = /* GraphQL */ `
     }
   }
 `;
+export const createEnglishProg = /* GraphQL */ `
+  mutation CreateEnglishProg(
+    $input: CreateEnglishProgInput!
+    $condition: ModelEnglishProgConditionInput
+  ) {
+    createEnglishProg(input: $input, condition: $condition) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateEnglishProg = /* GraphQL */ `
+  mutation UpdateEnglishProg(
+    $input: UpdateEnglishProgInput!
+    $condition: ModelEnglishProgConditionInput
+  ) {
+    updateEnglishProg(input: $input, condition: $condition) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteEnglishProg = /* GraphQL */ `
+  mutation DeleteEnglishProg(
+    $input: DeleteEnglishProgInput!
+    $condition: ModelEnglishProgConditionInput
+  ) {
+    deleteEnglishProg(input: $input, condition: $condition) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const createEnglish = /* GraphQL */ `
   mutation CreateEnglish(
     $input: CreateEnglishInput!

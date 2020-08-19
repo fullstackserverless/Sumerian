@@ -1,14 +1,15 @@
 import React, { useState, useEffect, ReactElement, useReducer } from 'react'
-import { FlatList } from 'react-native'
+import { FlatList, View } from 'react-native'
 import { Auth, API, graphqlOperation } from 'aws-amplify'
-import { AppContainer, Space, Header, Card } from '../../../components'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
+import * as Progress from 'react-native-progress'
+import { AppContainer, Space, Header, Card } from '../../../components'
 import { RouteProp } from '@react-navigation/native'
 import { goBack, onScreen, classicRose, white } from '../../../constants'
-import { RootStackParamList, ObjT } from '../../../AppNavigator'
-import { listEnglishs } from '../../../graphql/queries'
-import { onCreateEnglish, onUpdateEnglish, onDeleteEnglish } from '../../../graphql/subscriptions'
+import { RootStackParamList, ObjT, ProgT } from '../../../AppNavigator'
+import { listEnglishs, listEnglishProgs } from '../../../graphql/queries'
+import { onCreateEnglish, onCreateEnglishProg, onUpdateEnglish, onDeleteEnglish } from '../../../graphql/subscriptions'
 import { uniqBy } from 'lodash'
 import { ActionT, StateT } from '../../helper'
 
@@ -34,6 +35,12 @@ const initialState = {
       uri: 'LLTxI1jyo-4',
       json: ''
     }
+  ],
+  prog: [
+    {
+      id: '0',
+      doneId: '0'
+    }
   ]
 }
 
@@ -45,7 +52,10 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
           data: uniqBy([action.data, ...state.data], 'id')
         }
       case 'READ':
-        return { data: action.data }
+        return {
+          data: action.data,
+          prog: action.prog
+        }
       case 'UPDATE':
         return {
           ...state,
@@ -66,9 +76,22 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
 
   const fetchData = async () => {
     try {
-      const arr = await API.graphql(graphqlOperation(listEnglishs))
-      // @ts-expect-error
-      dispatch({ type: 'READ', data: arr.data.listEnglishs.items })
+      const owner = Auth.user.attributes.sub
+      const arr = await API.graphql(graphqlOperation(listEnglishs, { limit: 1000 }))
+      const arrProg = await API.graphql(
+        graphqlOperation(listEnglishProgs, {
+          filter: {
+            owner: {
+              eq: owner
+            }
+          },
+          limit: 1000
+        })
+      )
+
+      const data = arr.data.listEnglishs.items
+      const prog = arrProg.data.listEnglishProgs.items
+      dispatch({ type: 'READ', data, prog })
       setLoading(false)
     } catch (err) {
       setError(err)
@@ -79,23 +102,21 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
   useEffect(() => {
     let isSubscribed: boolean = true // eslint-disable-line
     setLoading(true)
-    // @ts-expect-error
+    fetchData()
     const check = Auth.user.signInUserSession.idToken.payload['cognito:groups']
     const adm =
-      // @ts-expect-error
       check !== undefined ? Auth.user.signInUserSession.idToken.payload['cognito:groups'][0] === 'Admin' : false
     setAdmin(adm)
-    fetchData()
 
-    // @ts-expect-error
     const subscriptionCreate = API.graphql(graphqlOperation(onCreateEnglish)).subscribe({
       next: (data: any) => dispatch({ type: 'CREATE', data: data.value.data.onCreateEnglish })
     })
-    // @ts-expect-error
+    const subscriptionCreateProgress = API.graphql(graphqlOperation(onCreateEnglishProg)).subscribe({
+      next: () => fetchData()
+    })
     const subscriptionUpdate = API.graphql(graphqlOperation(onUpdateEnglish)).subscribe({
       next: (data: any) => dispatch({ type: 'UPDATE', data: data.value.data.onUpdateEnglish })
     })
-    // @ts-expect-error
     const subscriptionDelete = API.graphql(graphqlOperation(onDeleteEnglish)).subscribe({
       next: (data: any) => dispatch({ type: 'DELETE', data: data.value.data.onDeleteEnglish })
     })
@@ -103,17 +124,24 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
       subscriptionCreate.unsubscribe()
       subscriptionUpdate.unsubscribe()
       subscriptionDelete.unsubscribe()
+      subscriptionCreateProgress.unsubscribe()
       isSubscribed = false
     }
   }, [navigation])
 
+  const { data, prog } = state
+
   const _renderItem = ({ item }: ItemT) => {
+    const search = prog.filter((x: ProgT) => x.doneId === item.id)
+    const done = search.length != 0
+    const id = item.id
     return (
       <>
         <Card
           admin={admin}
           item={item}
-          onPress={onScreen('TAB0_DETAIL', navigation, item)}
+          done={done}
+          onPress={onScreen('TAB0_DETAIL', navigation, { ...item, done, id })}
           onPressAdmin={onScreen('TAB0_ADD', navigation, item)}
         />
         <Space height={20} />
@@ -123,22 +151,34 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
 
   const _keyExtractor = (obj: any) => obj.id.toString()
 
+  const formatText = () => `${(prog.length / data.length) * 100}%`
+
   return (
     <AppContainer onPress={goBack(navigation)} loading={loading} flatList color={classicRose}>
       <FlatList
         scrollEventThrottle={16}
-        data={state.data}
+        data={data}
         renderItem={_renderItem}
         keyExtractor={_keyExtractor}
         onEndReachedThreshold={0.5}
         ListHeaderComponent={
-          <Header
-            onPressRight={onScreen('TAB0_ADD', navigation)}
-            iconRight={admin ? ':heavy_plus_sign:' : null}
-            admin={admin}
-          />
+          <>
+            <View style={{ alignSelf: 'center', padding: 20 }}>
+              <Progress.Circle
+                progress={prog.length / data.length}
+                showsText={true}
+                formatText={formatText}
+                size={80}
+                color={white}
+              />
+            </View>
+            <Header
+              onPressRight={onScreen('TAB0_ADD', navigation)}
+              iconRight={admin ? ':heavy_plus_sign:' : null}
+              admin={admin}
+            />
+          </>
         }
-        stickyHeaderIndices={[0]}
       />
     </AppContainer>
   )
