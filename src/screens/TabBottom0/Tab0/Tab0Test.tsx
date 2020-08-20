@@ -112,7 +112,7 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
   const orientation = useOrientation()
   const width = orientation === 'LANDSCAPE' ? ms(450, 0.7) : ms(300, 0.7)
   const height = orientation === 'LANDSCAPE' ? ms(150, 0.9) : s(200)
-  const bottom = orientation === 'LANDSCAPE' ? s(135) : s(190)
+  const bottom = orientation === 'LANDSCAPE' ? ms(155, 0.7) : s(190)
   const bottomProgress = orientation === 'LANDSCAPE' ? s(10) : s(30)
   const bottomContainer = orientation === 'LANDSCAPE' ? ms(-65, 0.5) : ms(-130, 0.4)
 
@@ -120,6 +120,7 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
     setAnswer(0)
     goBack(navigation)()
   }
+
   const length = data.length
   const progress = answer / length
   const setProgress = async () => {
@@ -133,10 +134,22 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
       setLoading(false)
     }
   }
+  const title = displayName.title.length > 1 ? displayName.title : 'Alphabet'
 
+  // const compare = (a, b) => {
+  //   if (a.title < b.title) {
+  //     return -1
+  //   }
+  //   if (a.title > b.title) {
+  //     return 1
+  //   }
+  //   return 0
+  // }
+
+  // console.log('data', data.sort(compare))
   return (
     <AppContainer
-      title={length !== answer ? displayName.title : I18n.t('win')}
+      title={length !== answer ? title : I18n.t('win')}
       onPress={back}
       colorLeft={color}
       color={classicRose}

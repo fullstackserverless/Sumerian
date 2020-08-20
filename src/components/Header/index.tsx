@@ -8,14 +8,14 @@ import { useOrientation } from '../../hooks'
 
 const styles = ScaledSheet.create({
   container: {
-    height: 100,
+    height: 120,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingBottom: 20
   },
   leftIconStyle: {
-    fontSize: 40,
+    fontSize: 33,
     width: 60,
     height: 60,
     textAlign: 'center',
@@ -23,24 +23,22 @@ const styles = ScaledSheet.create({
     left: Platform.OS === 'ios' ? 10 : 25
   },
   rightIconStyle: {
-    fontSize: 40,
+    fontSize: 33,
     width: 60,
     height: 60,
     textAlign: 'center',
     top: 20
-    //paddingHorizontal: Platform.OS === 'ios' ? 10 : 25
   },
   titleStyle: {
     color: '#fff',
     fontSize: 28,
     width: W - s(120),
     textAlign: 'center',
-    paddingTop: ms(35, 0.5)
+    paddingTop: 25
   }
 })
 
 interface HeaderT {
-  admin?: boolean
   title?: string
   iconLeft?: string
   iconRight?: string | null
@@ -48,10 +46,11 @@ interface HeaderT {
   onPressRight?: (event: GestureResponderEvent) => void
 }
 
-const Header = memo<HeaderT>(({ title, admin = false, iconLeft, iconRight, onPress, onPressRight }) => {
+const Header = memo<HeaderT>(({ title, iconLeft, iconRight, onPress, onPressRight }) => {
   const { container, leftIconStyle, rightIconStyle, titleStyle } = styles
   const orientation = useOrientation()
   const width = orientation === 'LANDSCAPE' ? H : W
+
   return (
     <View style={[container, { width }]}>
       {iconLeft && (
@@ -68,11 +67,5 @@ const Header = memo<HeaderT>(({ title, admin = false, iconLeft, iconRight, onPre
     </View>
   )
 })
-{
-  /* <AntDesign
-              name={iconRight}
-              style={[rightIconStyle, { paddingTop }]}
-              color={colorRight ? colorRight : color}
-            /> */
-}
+
 export { Header }

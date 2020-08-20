@@ -56,12 +56,12 @@ Amplify.configure({
 const App = (): ReactElement => {
   //const [value] = useState(false)
   const scheme = useColorScheme()
-  const theme = scheme !== 'dark' ? DarkTheme : LightTheme
-
+  const theme = scheme === 'dark' ? DarkTheme : LightTheme
+  const color = scheme === 'dark' ? 'light' : 'dark'
   useEffect(() => {
     SplashScreen.hide()
   }, [])
-  const color = scheme !== 'dark' ? 'light' : 'dark'
+
   return (
     <>
       <StatusBar barStyle={`${color}-content`} />

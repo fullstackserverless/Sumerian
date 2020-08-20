@@ -163,11 +163,7 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
           <>
             <ProgressBar progress={prog.length / data.length} />
             {admin && (
-              <Header
-                onPressRight={onScreen('TAB0_ADD', navigation)}
-                iconRight={admin ? ':heavy_plus_sign:' : null}
-                admin={admin}
-              />
+              <Header onPressRight={onScreen('TAB0_ADD', navigation)} iconRight={admin ? ':heavy_plus_sign:' : null} />
             )}
           </>
         }

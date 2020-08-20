@@ -15,7 +15,7 @@ const styles = ScaledSheet.create({
     borderRadius: 20
   },
   iconStyle: {
-    alignSelf: 'flex-start',
+    alignSelf: 'flex-end',
     right: s(10),
     bottom: s(50)
   },

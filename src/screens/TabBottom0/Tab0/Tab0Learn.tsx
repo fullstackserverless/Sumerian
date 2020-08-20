@@ -58,7 +58,7 @@ const Tab0Learn = ({ route, navigation }: Tab0LearnT) => {
   useEffect(() => {
     const array = route.params
     const name: TestT[] = array[count]
-    //console.log('array.length', array.length)
+
     const timer = async () => {
       await delay(3000)
       if (count < array.length - 1) {
