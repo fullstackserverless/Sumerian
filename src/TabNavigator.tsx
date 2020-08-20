@@ -1,12 +1,13 @@
 import * as React from 'react'
-import { View, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
+import { ScaledSheet, s, ms } from 'react-native-size-matters'
 import { useTheme, useNavigationBuilder, createNavigatorFactory } from '@react-navigation/native'
 import { TabRouter, TabActions } from '@react-navigation/routers'
 import { ifIphoneX } from 'react-native-iphone-x-helper'
 import { Tab } from './components'
 import { black, white } from './constants'
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   container: {
     shadowColor: '#000',
     shadowOffset: {
@@ -17,14 +18,15 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
     justifyContent: 'space-around',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+    paddingTop: s(10),
     flexDirection: 'row',
     ...ifIphoneX(
       {
-        height: 80
+        height: s(80)
       },
       {
-        height: 50
+        height: ms(50, 1.1)
       }
     )
   },
@@ -76,7 +78,7 @@ const TabNavigator = ({ initialRouteName, children, screenOptions, tabBarStyle, 
             >
               <Tab
                 title={`TAB_BOTTOM_${index}` === name ? `TAB_BOTTOM_${index}` : `${name}_DISABLE`}
-                imageStyle={{ alignSelf: 'flex-end' }}
+                imageStyle={{ alignSelf: 'flex-start' }}
               />
             </TouchableOpacity>
           )

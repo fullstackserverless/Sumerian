@@ -17,7 +17,7 @@ const circle = {
 const styles = ScaledSheet.create({
   container: {
     alignSelf: 'center',
-    padding: 1
+    padding: 3
   },
   blue: {
     ...circle,
@@ -26,7 +26,7 @@ const styles = ScaledSheet.create({
   },
   pink: {
     ...circle,
-    top: 1,
+    top: 2,
     height: diameter
   },
   iconBg: {

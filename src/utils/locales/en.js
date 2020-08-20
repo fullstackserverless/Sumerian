@@ -20,5 +20,7 @@ export default {
   done: 'Done',
   test: 'Test',
   learn: 'Learn',
-  win: 'Win'
+  win: 'Win',
+  disconnected:
+    'Your phone is currently disconnected from the internet.\nPlease wait for it to reconnect and try again.'
 }

@@ -54,7 +54,7 @@ const SignIn = ({ navigation }: SignUpT): ReactElement => {
   const color = dark ? white : black
   // initialValues={{ email: 'reactnativeinitru@gmail.com', password: 'qwerty123' }}
   return (
-    <AppContainer onPress={goBack(navigation)} title="Sign In" loading={loading} colorLeft={color}>
+    <AppContainer onPress={goBack(navigation)} title=" " loading={loading} colorLeft={color}>
       <Formik
         initialValues={{ email: '', password: '' }}
         onSubmit={(values): Promise<void> => _onPress(values)}

@@ -56,7 +56,7 @@ const ConfirmSignUp = ({ route, navigation }: ConfirmSignUpT): ReactElement => {
   const color = dark ? white : black
 
   return (
-    <AppContainer title="Confirmation" onPress={goBack(navigation)} loading={loading} colorLeft={color}>
+    <AppContainer title=" " onPress={goBack(navigation)} loading={loading} colorLeft={color}>
       <Formik
         initialValues={{ code: '' }}
         onSubmit={(values): Promise<void> => _onPress(values)}

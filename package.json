@@ -16,7 +16,7 @@
     "@aws-amplify/datastore": "^2.2.6",
     "@react-native-community/art": "^1.2.0",
     "@react-native-community/async-storage": "^1.11.0",
-    "@react-native-community/netinfo": "^5.9.4",
+    "@react-native-community/netinfo": "^5.9.6",
     "@react-native-community/toolbar-android": "^0.1.0-rc.2",
     "@react-navigation/native": "^5.7.0",
     "@react-navigation/native-stack": "^5.0.5",

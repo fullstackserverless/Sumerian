@@ -81,7 +81,7 @@ const SignUpUsername = ({ route, navigation }: SignUpUsernameT): ReactElement =>
   const color = dark ? white : black
 
   return (
-    <AppContainer onPress={goBack(navigation)} title="Sign Up" message={error} colorLeft={color}>
+    <AppContainer onPress={goBack(navigation)} title=" " message={error} colorLeft={color}>
       <Space height={30} />
       <Formik
         innerRef={(r) => (formikRef.current = r || undefined)}

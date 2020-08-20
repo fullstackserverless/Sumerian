@@ -1,19 +1,21 @@
 // @flow
 import React, { memo } from 'react'
-import { StyleSheet, Image, ImageStyle, StyleProp } from 'react-native'
+import { Image, ImageStyle, StyleProp } from 'react-native'
 import { ifIphoneX } from 'react-native-iphone-x-helper'
 import { ICONS } from './images'
+import { ScaledSheet, s, ms } from 'react-native-size-matters'
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   img: {
     ...ifIphoneX(
       {
-        width: 40,
-        height: 40
+        width: s(70),
+        height: s(40),
+        marginRight: s(10)
       },
       {
-        width: 65,
-        height: 35
+        width: ms(65, 0.5),
+        height: ms(35, 0.5)
       }
     )
   }

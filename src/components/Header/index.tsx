@@ -1,6 +1,5 @@
 import React, { memo } from 'react'
 import { TouchableOpacity, View, GestureResponderEvent, Platform } from 'react-native'
-import { ifIphoneX } from 'react-native-iphone-x-helper'
 import Emoji from 'react-native-emoji'
 import { ScaledSheet, s, ms } from 'react-native-size-matters'
 import { W, white, H } from '../../constants'
@@ -9,6 +8,7 @@ import { useOrientation } from '../../hooks'
 
 const styles = ScaledSheet.create({
   container: {
+    height: 100,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -35,14 +35,7 @@ const styles = ScaledSheet.create({
     fontSize: 28,
     width: W - s(120),
     textAlign: 'center',
-    ...ifIphoneX(
-      {
-        paddingTop: s(75)
-      },
-      {
-        paddingTop: ms(35, 0.5)
-      }
-    )
+    paddingTop: ms(35, 0.5)
   }
 })
 

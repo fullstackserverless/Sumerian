@@ -1,12 +1,12 @@
 import React, { useState, useEffect, ReactElement, useReducer } from 'react'
-import { FlatList, View } from 'react-native'
+import { FlatList } from 'react-native'
 import { Auth, API, graphqlOperation } from 'aws-amplify'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
-import * as Progress from 'react-native-progress'
-import { AppContainer, Space, Header, Card } from '../../../components'
+import { s } from 'react-native-size-matters'
+import { AppContainer, Space, Header, Card, ProgressBar } from '../../../components'
 import { RouteProp } from '@react-navigation/native'
-import { goBack, onScreen, classicRose, white } from '../../../constants'
+import { goBack, onScreen, classicRose } from '../../../constants'
 import { RootStackParamList, ObjT, ProgT } from '../../../AppNavigator'
 import { listEnglishs, listEnglishProgs } from '../../../graphql/queries'
 import { onCreateEnglish, onCreateEnglishProg, onUpdateEnglish, onDeleteEnglish } from '../../../graphql/subscriptions'
@@ -144,14 +144,12 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
           onPress={onScreen('TAB0_DETAIL', navigation, { ...item, done, id })}
           onPressAdmin={onScreen('TAB0_ADD', navigation, item)}
         />
-        <Space height={20} />
+        <Space height={s(10)} />
       </>
     )
   }
 
   const _keyExtractor = (obj: any) => obj.id.toString()
-
-  const formatText = () => `${(prog.length / data.length) * 100}%`
 
   return (
     <AppContainer onPress={goBack(navigation)} loading={loading} flatList color={classicRose}>
@@ -163,20 +161,14 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
         onEndReachedThreshold={0.5}
         ListHeaderComponent={
           <>
-            <View style={{ alignSelf: 'center', padding: 20 }}>
-              <Progress.Circle
-                progress={prog.length / data.length}
-                showsText={true}
-                formatText={formatText}
-                size={80}
-                color={white}
+            <ProgressBar progress={prog.length / data.length} />
+            {admin && (
+              <Header
+                onPressRight={onScreen('TAB0_ADD', navigation)}
+                iconRight={admin ? ':heavy_plus_sign:' : null}
+                admin={admin}
               />
-            </View>
-            <Header
-              onPressRight={onScreen('TAB0_ADD', navigation)}
-              iconRight={admin ? ':heavy_plus_sign:' : null}
-              admin={admin}
-            />
+            )}
           </>
         }
       />

@@ -112,7 +112,7 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
   const orientation = useOrientation()
   const width = orientation === 'LANDSCAPE' ? ms(450, 0.7) : ms(300, 0.7)
   const height = orientation === 'LANDSCAPE' ? ms(150, 0.9) : s(200)
-  const bottom = orientation === 'LANDSCAPE' ? s(135) : s(180)
+  const bottom = orientation === 'LANDSCAPE' ? s(135) : s(190)
   const bottomProgress = orientation === 'LANDSCAPE' ? s(10) : s(30)
   const bottomContainer = orientation === 'LANDSCAPE' ? ms(-65, 0.5) : ms(-130, 0.4)
 

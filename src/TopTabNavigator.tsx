@@ -1,12 +1,13 @@
 import * as React from 'react'
-import { View, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
+import { ScaledSheet, s, ms } from 'react-native-size-matters'
 import { useTheme, useNavigationBuilder, createNavigatorFactory } from '@react-navigation/native'
 import { ifIphoneX } from 'react-native-iphone-x-helper'
 import { TabRouter, TabActions } from '@react-navigation/routers'
 import { Tab } from './components'
 import { black, white } from './constants'
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   container: {
     justifyContent: 'space-around',
     alignItems: 'flex-end',
@@ -19,10 +20,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     ...ifIphoneX(
       {
-        height: 95
+        height: s(95)
       },
       {
-        height: 70
+        height: ms(70, 0.5)
       }
     )
   },
