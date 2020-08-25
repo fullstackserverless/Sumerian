@@ -45,35 +45,6 @@ export const listProfiles = /* GraphQL */ `
     }
   }
 `;
-export const getEnglishProg = /* GraphQL */ `
-  query GetEnglishProg($id: ID!) {
-    getEnglishProg(id: $id) {
-      id
-      doneId
-      owner
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listEnglishProgs = /* GraphQL */ `
-  query ListEnglishProgs(
-    $filter: ModelEnglishProgFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listEnglishProgs(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        doneId
-        owner
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
 export const getEnglish = /* GraphQL */ `
   query GetEnglish($id: ID!) {
     getEnglish(id: $id) {
@@ -251,6 +222,155 @@ export const listAmplifys = /* GraphQL */ `
         img
         uri
         json
+        owner
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getEnglishProg = /* GraphQL */ `
+  query GetEnglishProg($id: ID!) {
+    getEnglishProg(id: $id) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listEnglishProgs = /* GraphQL */ `
+  query ListEnglishProgs(
+    $filter: ModelEnglishProgFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listEnglishProgs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        doneId
+        owner
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getJavaScriptProg = /* GraphQL */ `
+  query GetJavaScriptProg($id: ID!) {
+    getJavaScriptProg(id: $id) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listJavaScriptProgs = /* GraphQL */ `
+  query ListJavaScriptProgs(
+    $filter: ModelJavaScriptProgFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listJavaScriptProgs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        doneId
+        owner
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getReactNativeProg = /* GraphQL */ `
+  query GetReactNativeProg($id: ID!) {
+    getReactNativeProg(id: $id) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listReactNativeProgs = /* GraphQL */ `
+  query ListReactNativeProgs(
+    $filter: ModelReactNativeProgFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listReactNativeProgs(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        doneId
+        owner
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getTypeScriptProg = /* GraphQL */ `
+  query GetTypeScriptProg($id: ID!) {
+    getTypeScriptProg(id: $id) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listTypeScriptProgs = /* GraphQL */ `
+  query ListTypeScriptProgs(
+    $filter: ModelTypeScriptProgFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTypeScriptProgs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        doneId
+        owner
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getAmplifyProg = /* GraphQL */ `
+  query GetAmplifyProg($id: ID!) {
+    getAmplifyProg(id: $id) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listAmplifyProgs = /* GraphQL */ `
+  query ListAmplifyProgs(
+    $filter: ModelAmplifyProgFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listAmplifyProgs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        doneId
         owner
         createdAt
         updatedAt

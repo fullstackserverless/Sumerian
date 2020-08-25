@@ -8,7 +8,7 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp } from '@react-navigation/native'
 
 import { createProfile } from '../../../graphql/mutations'
-import { AppContainer, Avatar, Space, Button, Input } from '../../../components'
+import { AppContainer, Space, Button, Input } from '../../../components'
 import { onScreen, goBack, white, black } from '../../../constants'
 import { RootStackParamList, S3ObjectT, UserT } from '../../../AppNavigator'
 import config from '../../../../aws-exports'
@@ -43,8 +43,7 @@ const SignUpUsername = ({ route, navigation }: SignUpUsernameT): ReactElement =>
       obj && onScreen('MAIN', navigation)()
       setLoading(false)
     } catch (err) {
-      console.log('err', err)
-      //setError(err.message)
+      setError(err.message)
     }
   }
 
@@ -81,7 +80,7 @@ const SignUpUsername = ({ route, navigation }: SignUpUsernameT): ReactElement =>
   const color = dark ? white : black
 
   return (
-    <AppContainer onPress={goBack(navigation)} title=" " message={error} colorLeft={color}>
+    <AppContainer onPress={goBack(navigation)} title=" " colorLeft={color}>
       <Space height={30} />
       <Formik
         innerRef={(r) => (formikRef.current = r || undefined)}

@@ -92,7 +92,7 @@ const SignIn = ({ navigation }: SignUpT): ReactElement => {
             {error === I18n.t('forgotPassword') && (
               <ButtonLink
                 title={error}
-                onPress={onScreen('FORGOT', navigation, userInfo)}
+                onPress={onScreen('FORGOT', navigation, { email: userInfo })}
                 textStyle={{ alignSelf: 'center' }}
               />
             )}

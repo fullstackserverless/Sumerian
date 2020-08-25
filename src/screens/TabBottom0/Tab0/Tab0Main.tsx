@@ -103,9 +103,8 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
     let isSubscribed: boolean = true // eslint-disable-line
     setLoading(true)
     fetchData()
-    const check = Auth.user.signInUserSession.idToken.payload['cognito:groups']
-    const adm =
-      check !== undefined ? Auth.user.signInUserSession.idToken.payload['cognito:groups'][0] === 'Admin' : false
+    const check = Auth.user !== null && Auth.user.signInUserSession.idToken.payload['cognito:groups']
+    const adm = check !== false ? Auth.user.signInUserSession.idToken.payload['cognito:groups'][0] === 'Admin' : false
     setAdmin(adm)
 
     const subscriptionCreate = API.graphql(graphqlOperation(onCreateEnglish)).subscribe({

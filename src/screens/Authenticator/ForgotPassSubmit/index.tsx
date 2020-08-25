@@ -31,7 +31,8 @@ const ForgotPassSubmit = ({ route, navigation }: ForgotPassSubmitT): ReactElemen
       const { email, code, password } = values
       await Auth.forgotPasswordSubmit(email, code, password)
       await Keychain.setInternetCredentials('auth', email, password)
-      onScreen('USER', navigation)()
+      await Auth.signIn(email, password)
+      onScreen('MAIN', navigation)()
       setLoading(false)
     } catch (err) {
       setLoading(false)
@@ -44,7 +45,7 @@ const ForgotPassSubmit = ({ route, navigation }: ForgotPassSubmitT): ReactElemen
 
   return (
     <>
-      <AppContainer title=" " onPress={goBack(navigation)} loading={loading} message={error} colorLeft={color}>
+      <AppContainer title=" " onPress={goBack(navigation)} loading={loading} colorLeft={color}>
         <Space height={Platform.OS === 'ios' ? 20 : 150} />
         <Formik
           initialValues={{ email: route.params.email, code: '', password: '', passwordConfirmation: '' }}

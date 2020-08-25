@@ -79,29 +79,6 @@ export type DeleteProfileInput = {
   id?: string | null,
 };
 
-export type CreateEnglishProgInput = {
-  id?: string | null,
-  doneId: string,
-  owner?: string | null,
-};
-
-export type ModelEnglishProgConditionInput = {
-  doneId?: ModelStringInput | null,
-  and?: Array< ModelEnglishProgConditionInput | null > | null,
-  or?: Array< ModelEnglishProgConditionInput | null > | null,
-  not?: ModelEnglishProgConditionInput | null,
-};
-
-export type UpdateEnglishProgInput = {
-  id: string,
-  doneId?: string | null,
-  owner?: string | null,
-};
-
-export type DeleteEnglishProgInput = {
-  id?: string | null,
-};
-
 export type CreateEnglishInput = {
   id?: string | null,
   title: string,
@@ -277,6 +254,121 @@ export type DeleteAmplifyInput = {
   id?: string | null,
 };
 
+export type CreateEnglishProgInput = {
+  id?: string | null,
+  doneId: string,
+  owner?: string | null,
+};
+
+export type ModelEnglishProgConditionInput = {
+  doneId?: ModelStringInput | null,
+  and?: Array< ModelEnglishProgConditionInput | null > | null,
+  or?: Array< ModelEnglishProgConditionInput | null > | null,
+  not?: ModelEnglishProgConditionInput | null,
+};
+
+export type UpdateEnglishProgInput = {
+  id: string,
+  doneId?: string | null,
+  owner?: string | null,
+};
+
+export type DeleteEnglishProgInput = {
+  id?: string | null,
+};
+
+export type CreateJavaScriptProgInput = {
+  id?: string | null,
+  doneId: string,
+  owner?: string | null,
+};
+
+export type ModelJavaScriptProgConditionInput = {
+  doneId?: ModelStringInput | null,
+  and?: Array< ModelJavaScriptProgConditionInput | null > | null,
+  or?: Array< ModelJavaScriptProgConditionInput | null > | null,
+  not?: ModelJavaScriptProgConditionInput | null,
+};
+
+export type UpdateJavaScriptProgInput = {
+  id: string,
+  doneId?: string | null,
+  owner?: string | null,
+};
+
+export type DeleteJavaScriptProgInput = {
+  id?: string | null,
+};
+
+export type CreateReactNativeProgInput = {
+  id?: string | null,
+  doneId: string,
+  owner?: string | null,
+};
+
+export type ModelReactNativeProgConditionInput = {
+  doneId?: ModelStringInput | null,
+  and?: Array< ModelReactNativeProgConditionInput | null > | null,
+  or?: Array< ModelReactNativeProgConditionInput | null > | null,
+  not?: ModelReactNativeProgConditionInput | null,
+};
+
+export type UpdateReactNativeProgInput = {
+  id: string,
+  doneId?: string | null,
+  owner?: string | null,
+};
+
+export type DeleteReactNativeProgInput = {
+  id?: string | null,
+};
+
+export type CreateTypeScriptProgInput = {
+  id?: string | null,
+  doneId: string,
+  owner?: string | null,
+};
+
+export type ModelTypeScriptProgConditionInput = {
+  doneId?: ModelStringInput | null,
+  and?: Array< ModelTypeScriptProgConditionInput | null > | null,
+  or?: Array< ModelTypeScriptProgConditionInput | null > | null,
+  not?: ModelTypeScriptProgConditionInput | null,
+};
+
+export type UpdateTypeScriptProgInput = {
+  id: string,
+  doneId?: string | null,
+  owner?: string | null,
+};
+
+export type DeleteTypeScriptProgInput = {
+  id?: string | null,
+};
+
+export type CreateAmplifyProgInput = {
+  id?: string | null,
+  doneId: string,
+  owner?: string | null,
+};
+
+export type ModelAmplifyProgConditionInput = {
+  doneId?: ModelStringInput | null,
+  and?: Array< ModelAmplifyProgConditionInput | null > | null,
+  or?: Array< ModelAmplifyProgConditionInput | null > | null,
+  not?: ModelAmplifyProgConditionInput | null,
+};
+
+export type UpdateAmplifyProgInput = {
+  id: string,
+  doneId?: string | null,
+  owner?: string | null,
+};
+
+export type DeleteAmplifyProgInput = {
+  id?: string | null,
+};
+
 export type ModelProfileFilterInput = {
   id?: ModelIDInput | null,
   firstName?: ModelStringInput | null,
@@ -302,15 +394,6 @@ export type ModelIDInput = {
   attributeExists?: boolean | null,
   attributeType?: ModelAttributeTypes | null,
   size?: ModelSizeInput | null,
-};
-
-export type ModelEnglishProgFilterInput = {
-  id?: ModelIDInput | null,
-  doneId?: ModelStringInput | null,
-  owner?: ModelStringInput | null,
-  and?: Array< ModelEnglishProgFilterInput | null > | null,
-  or?: Array< ModelEnglishProgFilterInput | null > | null,
-  not?: ModelEnglishProgFilterInput | null,
 };
 
 export type ModelEnglishFilterInput = {
@@ -376,6 +459,51 @@ export type ModelAmplifyFilterInput = {
   and?: Array< ModelAmplifyFilterInput | null > | null,
   or?: Array< ModelAmplifyFilterInput | null > | null,
   not?: ModelAmplifyFilterInput | null,
+};
+
+export type ModelEnglishProgFilterInput = {
+  id?: ModelIDInput | null,
+  doneId?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
+  and?: Array< ModelEnglishProgFilterInput | null > | null,
+  or?: Array< ModelEnglishProgFilterInput | null > | null,
+  not?: ModelEnglishProgFilterInput | null,
+};
+
+export type ModelJavaScriptProgFilterInput = {
+  id?: ModelIDInput | null,
+  doneId?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
+  and?: Array< ModelJavaScriptProgFilterInput | null > | null,
+  or?: Array< ModelJavaScriptProgFilterInput | null > | null,
+  not?: ModelJavaScriptProgFilterInput | null,
+};
+
+export type ModelReactNativeProgFilterInput = {
+  id?: ModelIDInput | null,
+  doneId?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
+  and?: Array< ModelReactNativeProgFilterInput | null > | null,
+  or?: Array< ModelReactNativeProgFilterInput | null > | null,
+  not?: ModelReactNativeProgFilterInput | null,
+};
+
+export type ModelTypeScriptProgFilterInput = {
+  id?: ModelIDInput | null,
+  doneId?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
+  and?: Array< ModelTypeScriptProgFilterInput | null > | null,
+  or?: Array< ModelTypeScriptProgFilterInput | null > | null,
+  not?: ModelTypeScriptProgFilterInput | null,
+};
+
+export type ModelAmplifyProgFilterInput = {
+  id?: ModelIDInput | null,
+  doneId?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
+  and?: Array< ModelAmplifyProgFilterInput | null > | null,
+  or?: Array< ModelAmplifyProgFilterInput | null > | null,
+  not?: ModelAmplifyProgFilterInput | null,
 };
 
 export type CreateProfileMutationVariables = {
@@ -444,54 +572,6 @@ export type DeleteProfileMutation = {
       region: string,
       key: string,
     } | null,
-    owner: string | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type CreateEnglishProgMutationVariables = {
-  input: CreateEnglishProgInput,
-  condition?: ModelEnglishProgConditionInput | null,
-};
-
-export type CreateEnglishProgMutation = {
-  createEnglishProg:  {
-    __typename: "EnglishProg",
-    id: string,
-    doneId: string,
-    owner: string | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type UpdateEnglishProgMutationVariables = {
-  input: UpdateEnglishProgInput,
-  condition?: ModelEnglishProgConditionInput | null,
-};
-
-export type UpdateEnglishProgMutation = {
-  updateEnglishProg:  {
-    __typename: "EnglishProg",
-    id: string,
-    doneId: string,
-    owner: string | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type DeleteEnglishProgMutationVariables = {
-  input: DeleteEnglishProgInput,
-  condition?: ModelEnglishProgConditionInput | null,
-};
-
-export type DeleteEnglishProgMutation = {
-  deleteEnglishProg:  {
-    __typename: "EnglishProg",
-    id: string,
-    doneId: string,
     owner: string | null,
     createdAt: string,
     updatedAt: string,
@@ -798,6 +878,246 @@ export type DeleteAmplifyMutation = {
   } | null,
 };
 
+export type CreateEnglishProgMutationVariables = {
+  input: CreateEnglishProgInput,
+  condition?: ModelEnglishProgConditionInput | null,
+};
+
+export type CreateEnglishProgMutation = {
+  createEnglishProg:  {
+    __typename: "EnglishProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateEnglishProgMutationVariables = {
+  input: UpdateEnglishProgInput,
+  condition?: ModelEnglishProgConditionInput | null,
+};
+
+export type UpdateEnglishProgMutation = {
+  updateEnglishProg:  {
+    __typename: "EnglishProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteEnglishProgMutationVariables = {
+  input: DeleteEnglishProgInput,
+  condition?: ModelEnglishProgConditionInput | null,
+};
+
+export type DeleteEnglishProgMutation = {
+  deleteEnglishProg:  {
+    __typename: "EnglishProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type CreateJavaScriptProgMutationVariables = {
+  input: CreateJavaScriptProgInput,
+  condition?: ModelJavaScriptProgConditionInput | null,
+};
+
+export type CreateJavaScriptProgMutation = {
+  createJavaScriptProg:  {
+    __typename: "JavaScriptProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateJavaScriptProgMutationVariables = {
+  input: UpdateJavaScriptProgInput,
+  condition?: ModelJavaScriptProgConditionInput | null,
+};
+
+export type UpdateJavaScriptProgMutation = {
+  updateJavaScriptProg:  {
+    __typename: "JavaScriptProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteJavaScriptProgMutationVariables = {
+  input: DeleteJavaScriptProgInput,
+  condition?: ModelJavaScriptProgConditionInput | null,
+};
+
+export type DeleteJavaScriptProgMutation = {
+  deleteJavaScriptProg:  {
+    __typename: "JavaScriptProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type CreateReactNativeProgMutationVariables = {
+  input: CreateReactNativeProgInput,
+  condition?: ModelReactNativeProgConditionInput | null,
+};
+
+export type CreateReactNativeProgMutation = {
+  createReactNativeProg:  {
+    __typename: "ReactNativeProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateReactNativeProgMutationVariables = {
+  input: UpdateReactNativeProgInput,
+  condition?: ModelReactNativeProgConditionInput | null,
+};
+
+export type UpdateReactNativeProgMutation = {
+  updateReactNativeProg:  {
+    __typename: "ReactNativeProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteReactNativeProgMutationVariables = {
+  input: DeleteReactNativeProgInput,
+  condition?: ModelReactNativeProgConditionInput | null,
+};
+
+export type DeleteReactNativeProgMutation = {
+  deleteReactNativeProg:  {
+    __typename: "ReactNativeProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type CreateTypeScriptProgMutationVariables = {
+  input: CreateTypeScriptProgInput,
+  condition?: ModelTypeScriptProgConditionInput | null,
+};
+
+export type CreateTypeScriptProgMutation = {
+  createTypeScriptProg:  {
+    __typename: "TypeScriptProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateTypeScriptProgMutationVariables = {
+  input: UpdateTypeScriptProgInput,
+  condition?: ModelTypeScriptProgConditionInput | null,
+};
+
+export type UpdateTypeScriptProgMutation = {
+  updateTypeScriptProg:  {
+    __typename: "TypeScriptProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteTypeScriptProgMutationVariables = {
+  input: DeleteTypeScriptProgInput,
+  condition?: ModelTypeScriptProgConditionInput | null,
+};
+
+export type DeleteTypeScriptProgMutation = {
+  deleteTypeScriptProg:  {
+    __typename: "TypeScriptProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type CreateAmplifyProgMutationVariables = {
+  input: CreateAmplifyProgInput,
+  condition?: ModelAmplifyProgConditionInput | null,
+};
+
+export type CreateAmplifyProgMutation = {
+  createAmplifyProg:  {
+    __typename: "AmplifyProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateAmplifyProgMutationVariables = {
+  input: UpdateAmplifyProgInput,
+  condition?: ModelAmplifyProgConditionInput | null,
+};
+
+export type UpdateAmplifyProgMutation = {
+  updateAmplifyProg:  {
+    __typename: "AmplifyProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteAmplifyProgMutationVariables = {
+  input: DeleteAmplifyProgInput,
+  condition?: ModelAmplifyProgConditionInput | null,
+};
+
+export type DeleteAmplifyProgMutation = {
+  deleteAmplifyProg:  {
+    __typename: "AmplifyProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
 export type GetProfileQueryVariables = {
   id: string,
 };
@@ -842,42 +1162,6 @@ export type ListProfilesQuery = {
         region: string,
         key: string,
       } | null,
-      owner: string | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null > | null,
-    nextToken: string | null,
-  } | null,
-};
-
-export type GetEnglishProgQueryVariables = {
-  id: string,
-};
-
-export type GetEnglishProgQuery = {
-  getEnglishProg:  {
-    __typename: "EnglishProg",
-    id: string,
-    doneId: string,
-    owner: string | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type ListEnglishProgsQueryVariables = {
-  filter?: ModelEnglishProgFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListEnglishProgsQuery = {
-  listEnglishProgs:  {
-    __typename: "ModelEnglishProgConnection",
-    items:  Array< {
-      __typename: "EnglishProg",
-      id: string,
-      doneId: string,
       owner: string | null,
       createdAt: string,
       updatedAt: string,
@@ -1106,6 +1390,186 @@ export type ListAmplifysQuery = {
   } | null,
 };
 
+export type GetEnglishProgQueryVariables = {
+  id: string,
+};
+
+export type GetEnglishProgQuery = {
+  getEnglishProg:  {
+    __typename: "EnglishProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListEnglishProgsQueryVariables = {
+  filter?: ModelEnglishProgFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListEnglishProgsQuery = {
+  listEnglishProgs:  {
+    __typename: "ModelEnglishProgConnection",
+    items:  Array< {
+      __typename: "EnglishProg",
+      id: string,
+      doneId: string,
+      owner: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type GetJavaScriptProgQueryVariables = {
+  id: string,
+};
+
+export type GetJavaScriptProgQuery = {
+  getJavaScriptProg:  {
+    __typename: "JavaScriptProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListJavaScriptProgsQueryVariables = {
+  filter?: ModelJavaScriptProgFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListJavaScriptProgsQuery = {
+  listJavaScriptProgs:  {
+    __typename: "ModelJavaScriptProgConnection",
+    items:  Array< {
+      __typename: "JavaScriptProg",
+      id: string,
+      doneId: string,
+      owner: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type GetReactNativeProgQueryVariables = {
+  id: string,
+};
+
+export type GetReactNativeProgQuery = {
+  getReactNativeProg:  {
+    __typename: "ReactNativeProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListReactNativeProgsQueryVariables = {
+  filter?: ModelReactNativeProgFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListReactNativeProgsQuery = {
+  listReactNativeProgs:  {
+    __typename: "ModelReactNativeProgConnection",
+    items:  Array< {
+      __typename: "ReactNativeProg",
+      id: string,
+      doneId: string,
+      owner: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type GetTypeScriptProgQueryVariables = {
+  id: string,
+};
+
+export type GetTypeScriptProgQuery = {
+  getTypeScriptProg:  {
+    __typename: "TypeScriptProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListTypeScriptProgsQueryVariables = {
+  filter?: ModelTypeScriptProgFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListTypeScriptProgsQuery = {
+  listTypeScriptProgs:  {
+    __typename: "ModelTypeScriptProgConnection",
+    items:  Array< {
+      __typename: "TypeScriptProg",
+      id: string,
+      doneId: string,
+      owner: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type GetAmplifyProgQueryVariables = {
+  id: string,
+};
+
+export type GetAmplifyProgQuery = {
+  getAmplifyProg:  {
+    __typename: "AmplifyProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListAmplifyProgsQueryVariables = {
+  filter?: ModelAmplifyProgFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListAmplifyProgsQuery = {
+  listAmplifyProgs:  {
+    __typename: "ModelAmplifyProgConnection",
+    items:  Array< {
+      __typename: "AmplifyProg",
+      id: string,
+      doneId: string,
+      owner: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
 export type OnCreateProfileSubscription = {
   onCreateProfile:  {
     __typename: "Profile",
@@ -1157,39 +1621,6 @@ export type OnDeleteProfileSubscription = {
       region: string,
       key: string,
     } | null,
-    owner: string | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnCreateEnglishProgSubscription = {
-  onCreateEnglishProg:  {
-    __typename: "EnglishProg",
-    id: string,
-    doneId: string,
-    owner: string | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnUpdateEnglishProgSubscription = {
-  onUpdateEnglishProg:  {
-    __typename: "EnglishProg",
-    id: string,
-    doneId: string,
-    owner: string | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnDeleteEnglishProgSubscription = {
-  onDeleteEnglishProg:  {
-    __typename: "EnglishProg",
-    id: string,
-    doneId: string,
     owner: string | null,
     createdAt: string,
     updatedAt: string,
@@ -1415,6 +1846,171 @@ export type OnDeleteAmplifySubscription = {
     img: string,
     uri: string,
     json: string | null,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateEnglishProgSubscription = {
+  onCreateEnglishProg:  {
+    __typename: "EnglishProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateEnglishProgSubscription = {
+  onUpdateEnglishProg:  {
+    __typename: "EnglishProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteEnglishProgSubscription = {
+  onDeleteEnglishProg:  {
+    __typename: "EnglishProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateJavaScriptProgSubscription = {
+  onCreateJavaScriptProg:  {
+    __typename: "JavaScriptProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateJavaScriptProgSubscription = {
+  onUpdateJavaScriptProg:  {
+    __typename: "JavaScriptProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteJavaScriptProgSubscription = {
+  onDeleteJavaScriptProg:  {
+    __typename: "JavaScriptProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateReactNativeProgSubscription = {
+  onCreateReactNativeProg:  {
+    __typename: "ReactNativeProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateReactNativeProgSubscription = {
+  onUpdateReactNativeProg:  {
+    __typename: "ReactNativeProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteReactNativeProgSubscription = {
+  onDeleteReactNativeProg:  {
+    __typename: "ReactNativeProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateTypeScriptProgSubscription = {
+  onCreateTypeScriptProg:  {
+    __typename: "TypeScriptProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateTypeScriptProgSubscription = {
+  onUpdateTypeScriptProg:  {
+    __typename: "TypeScriptProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteTypeScriptProgSubscription = {
+  onDeleteTypeScriptProg:  {
+    __typename: "TypeScriptProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateAmplifyProgSubscription = {
+  onCreateAmplifyProg:  {
+    __typename: "AmplifyProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateAmplifyProgSubscription = {
+  onUpdateAmplifyProg:  {
+    __typename: "AmplifyProg",
+    id: string,
+    doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteAmplifyProgSubscription = {
+  onDeleteAmplifyProg:  {
+    __typename: "AmplifyProg",
+    id: string,
+    doneId: string,
     owner: string | null,
     createdAt: string,
     updatedAt: string,

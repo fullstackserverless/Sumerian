@@ -28,10 +28,10 @@ const Forgot = ({ route, navigation }: ForgotT): ReactElement => {
     try {
       const { email } = values
       const user = await Auth.forgotPassword(email)
-      user && onScreen('FORGOT_PASSWORD_SUBMIT', navigation, email)()
+      user && onScreen('FORGOT_PASSWORD_SUBMIT', navigation, { email })()
       setLoading(false)
     } catch (err) {
-      setError(error)
+      setError(err.message)
     }
   }
 
@@ -40,7 +40,7 @@ const Forgot = ({ route, navigation }: ForgotT): ReactElement => {
 
   return (
     <>
-      <AppContainer title=" " onPress={goBack(navigation)} loading={loading} message={error} colorLeft={color}>
+      <AppContainer title=" " onPress={goBack(navigation)} message={error} loading={loading} colorLeft={color}>
         <Formik
           initialValues={{ email: route.params.email }}
           onSubmit={(values): Promise<void> => _onPress(values)}

@@ -1,48 +1,33 @@
 import React, { useState, useEffect, ReactElement, useReducer } from 'react'
 import { FlatList } from 'react-native'
 import { Auth, API, graphqlOperation } from 'aws-amplify'
-import { AppContainer, Space, Header, Card } from '../../../components'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
+import { s } from 'react-native-size-matters'
+import { AppContainer, Space, Header, Card, ProgressBar } from '../../../components'
 import { RouteProp } from '@react-navigation/native'
-import { goBack, onScreen, white, mustard } from '../../../constants'
-import { RootStackParamList, ObjT } from '../../../AppNavigator'
+import { goBack, onScreen, mustard, black } from '../../../constants'
+import { RootStackParamList, ObjT, ProgT } from '../../../AppNavigator'
 import { listJavaScripts } from '../../../graphql/queries'
-import { onCreateJavaScript, onUpdateJavaScript, onDeleteJavaScript } from '../../../graphql/subscriptions'
+import {
+  onCreateJavaScript,
+  onUpdateJavaScript,
+  onDeleteJavaScript,
+  onCreateJavaScriptProg
+} from '../../../graphql/subscriptions'
 import { uniqBy } from 'lodash'
 import { ActionT, StateT } from '../../helper'
 
-type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB1_MAIN'>
-type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB1_MAIN'>
+type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB0_MAIN'>
+type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB0_MAIN'>
 
-type Tab1MainT = {
+type Tab0MainT = {
   navigation: ProfileScreenNavigationProp
   route: ProfileScreenRouteProp
 }
 
 interface ItemT {
   item: ObjT
-}
-
-const reducer = (state: StateT, action: ActionT) => {
-  switch (action.type) {
-    case 'CREATE':
-      return {
-        data: uniqBy([action.data, ...state.data], 'id')
-      }
-    case 'READ':
-      return { data: action.data }
-    case 'UPDATE':
-      return {
-        ...state,
-        data: uniqBy([action.data, ...state.data], 'id')
-      }
-    case 'DELETE':
-      return {
-        ...state,
-        data: [...state.data].filter(({ id }) => id !== action.data.id)
-      }
-  }
 }
 
 const initialState = {
@@ -55,10 +40,40 @@ const initialState = {
       uri: 'OifJhMwsC8Q',
       json: ''
     }
+  ],
+  prog: [
+    {
+      id: '0',
+      doneId: '0'
+    }
   ]
 }
 
-const Tab1Main = ({ navigation }: Tab1MainT): ReactElement => {
+const Tab1Main = ({ navigation }: Tab0MainT): ReactElement => {
+  const reducer = (state: StateT, action: ActionT) => {
+    switch (action.type) {
+      case 'CREATE':
+        return {
+          data: uniqBy([action.data, ...state.data], 'id')
+        }
+      case 'READ':
+        return {
+          data: action.data,
+          prog: action.prog
+        }
+      case 'UPDATE':
+        return {
+          ...state,
+          data: uniqBy([action.data, ...state.data], 'id')
+        }
+      case 'DELETE':
+        return {
+          ...state,
+          data: [...state.data].filter(({ id }) => id !== action.data.id)
+        }
+    }
+  }
+
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
   const [admin, setAdmin] = useState<boolean>(false)
@@ -66,9 +81,21 @@ const Tab1Main = ({ navigation }: Tab1MainT): ReactElement => {
 
   const fetchData = async () => {
     try {
-      const arr = await API.graphql(graphqlOperation(listJavaScripts))
-      // @ts-expect-error
-      dispatch({ type: 'READ', data: arr.data.listJavaScripts.items })
+      const owner = Auth.user.attributes.sub
+      const arr = await API.graphql(graphqlOperation(listJavaScripts, { limit: 1000 }))
+      const arrProg = await API.graphql(
+        graphqlOperation(listJavaScripts, {
+          filter: {
+            owner: {
+              eq: owner
+            }
+          },
+          limit: 1000
+        })
+      )
+      const data = arr.data.listJavaScripts.items
+      const prog = arrProg.data.listJavaScripts.items
+      dispatch({ type: 'READ', data, prog })
       setLoading(false)
     } catch (err) {
       setError(err)
@@ -79,45 +106,49 @@ const Tab1Main = ({ navigation }: Tab1MainT): ReactElement => {
   useEffect(() => {
     let isSubscribed: boolean = true // eslint-disable-line
     setLoading(true)
-    // @ts-expect-error
+    fetchData()
     const check = Auth.user.signInUserSession.idToken.payload['cognito:groups']
     const adm =
-      // @ts-expect-error
       check !== undefined ? Auth.user.signInUserSession.idToken.payload['cognito:groups'][0] === 'Admin' : false
     setAdmin(adm)
-    fetchData()
 
-    // @ts-expect-error
     const subscriptionCreate = API.graphql(graphqlOperation(onCreateJavaScript)).subscribe({
       next: (data: any) => dispatch({ type: 'CREATE', data: data.value.data.onCreateJavaScript })
     })
-    // @ts-expect-error
+    const subscriptionCreateProgress = API.graphql(graphqlOperation(onCreateJavaScriptProg)).subscribe({
+      next: () => fetchData()
+    })
     const subscriptionUpdate = API.graphql(graphqlOperation(onUpdateJavaScript)).subscribe({
       next: (data: any) => dispatch({ type: 'UPDATE', data: data.value.data.onUpdateJavaScript })
     })
-    // @ts-expect-error
     const subscriptionDelete = API.graphql(graphqlOperation(onDeleteJavaScript)).subscribe({
       next: (data: any) => dispatch({ type: 'DELETE', data: data.value.data.onDeleteJavaScript })
     })
-
     return () => {
       subscriptionCreate.unsubscribe()
       subscriptionUpdate.unsubscribe()
       subscriptionDelete.unsubscribe()
+      subscriptionCreateProgress.unsubscribe()
       isSubscribed = false
     }
   }, [navigation])
 
+  const { data, prog } = state
+
   const _renderItem = ({ item }: ItemT) => {
+    const search = prog.filter((x: ProgT) => x.doneId === item.id)
+    const done = search.length != 0
+    const id = item.id
     return (
       <>
         <Card
           admin={admin}
           item={item}
-          onPress={onScreen('TAB1_DETAIL', navigation, item)}
+          done={done}
+          onPress={onScreen('TAB1_DETAIL', navigation, { ...item, done, id })}
           onPressAdmin={onScreen('TAB1_ADD', navigation, item)}
         />
-        <Space height={20} />
+        <Space height={s(10)} />
       </>
     )
   }
@@ -128,18 +159,18 @@ const Tab1Main = ({ navigation }: Tab1MainT): ReactElement => {
     <AppContainer onPress={goBack(navigation)} loading={loading} flatList color={mustard}>
       <FlatList
         scrollEventThrottle={16}
-        data={state.data}
+        data={data}
         renderItem={_renderItem}
         keyExtractor={_keyExtractor}
         onEndReachedThreshold={0.5}
         ListHeaderComponent={
-          <Header
-            onPressRight={onScreen('TAB1_ADD', navigation)}
-            iconRight={admin ? ':heavy_plus_sign:' : null}
-            admin={admin}
-          />
+          <>
+            <ProgressBar progress={prog.length / data.length} color={black} />
+            {admin && (
+              <Header onPressRight={onScreen('TAB1_ADD', navigation)} iconRight={admin ? ':heavy_plus_sign:' : null} />
+            )}
+          </>
         }
-        stickyHeaderIndices={[0]}
       />
     </AppContainer>
   )

@@ -65,48 +65,6 @@ export const deleteProfile = /* GraphQL */ `
     }
   }
 `;
-export const createEnglishProg = /* GraphQL */ `
-  mutation CreateEnglishProg(
-    $input: CreateEnglishProgInput!
-    $condition: ModelEnglishProgConditionInput
-  ) {
-    createEnglishProg(input: $input, condition: $condition) {
-      id
-      doneId
-      owner
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateEnglishProg = /* GraphQL */ `
-  mutation UpdateEnglishProg(
-    $input: UpdateEnglishProgInput!
-    $condition: ModelEnglishProgConditionInput
-  ) {
-    updateEnglishProg(input: $input, condition: $condition) {
-      id
-      doneId
-      owner
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteEnglishProg = /* GraphQL */ `
-  mutation DeleteEnglishProg(
-    $input: DeleteEnglishProgInput!
-    $condition: ModelEnglishProgConditionInput
-  ) {
-    deleteEnglishProg(input: $input, condition: $condition) {
-      id
-      doneId
-      owner
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const createEnglish = /* GraphQL */ `
   mutation CreateEnglish(
     $input: CreateEnglishInput!
@@ -371,6 +329,216 @@ export const deleteAmplify = /* GraphQL */ `
       img
       uri
       json
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createEnglishProg = /* GraphQL */ `
+  mutation CreateEnglishProg(
+    $input: CreateEnglishProgInput!
+    $condition: ModelEnglishProgConditionInput
+  ) {
+    createEnglishProg(input: $input, condition: $condition) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateEnglishProg = /* GraphQL */ `
+  mutation UpdateEnglishProg(
+    $input: UpdateEnglishProgInput!
+    $condition: ModelEnglishProgConditionInput
+  ) {
+    updateEnglishProg(input: $input, condition: $condition) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteEnglishProg = /* GraphQL */ `
+  mutation DeleteEnglishProg(
+    $input: DeleteEnglishProgInput!
+    $condition: ModelEnglishProgConditionInput
+  ) {
+    deleteEnglishProg(input: $input, condition: $condition) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createJavaScriptProg = /* GraphQL */ `
+  mutation CreateJavaScriptProg(
+    $input: CreateJavaScriptProgInput!
+    $condition: ModelJavaScriptProgConditionInput
+  ) {
+    createJavaScriptProg(input: $input, condition: $condition) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateJavaScriptProg = /* GraphQL */ `
+  mutation UpdateJavaScriptProg(
+    $input: UpdateJavaScriptProgInput!
+    $condition: ModelJavaScriptProgConditionInput
+  ) {
+    updateJavaScriptProg(input: $input, condition: $condition) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteJavaScriptProg = /* GraphQL */ `
+  mutation DeleteJavaScriptProg(
+    $input: DeleteJavaScriptProgInput!
+    $condition: ModelJavaScriptProgConditionInput
+  ) {
+    deleteJavaScriptProg(input: $input, condition: $condition) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createReactNativeProg = /* GraphQL */ `
+  mutation CreateReactNativeProg(
+    $input: CreateReactNativeProgInput!
+    $condition: ModelReactNativeProgConditionInput
+  ) {
+    createReactNativeProg(input: $input, condition: $condition) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateReactNativeProg = /* GraphQL */ `
+  mutation UpdateReactNativeProg(
+    $input: UpdateReactNativeProgInput!
+    $condition: ModelReactNativeProgConditionInput
+  ) {
+    updateReactNativeProg(input: $input, condition: $condition) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteReactNativeProg = /* GraphQL */ `
+  mutation DeleteReactNativeProg(
+    $input: DeleteReactNativeProgInput!
+    $condition: ModelReactNativeProgConditionInput
+  ) {
+    deleteReactNativeProg(input: $input, condition: $condition) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createTypeScriptProg = /* GraphQL */ `
+  mutation CreateTypeScriptProg(
+    $input: CreateTypeScriptProgInput!
+    $condition: ModelTypeScriptProgConditionInput
+  ) {
+    createTypeScriptProg(input: $input, condition: $condition) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateTypeScriptProg = /* GraphQL */ `
+  mutation UpdateTypeScriptProg(
+    $input: UpdateTypeScriptProgInput!
+    $condition: ModelTypeScriptProgConditionInput
+  ) {
+    updateTypeScriptProg(input: $input, condition: $condition) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteTypeScriptProg = /* GraphQL */ `
+  mutation DeleteTypeScriptProg(
+    $input: DeleteTypeScriptProgInput!
+    $condition: ModelTypeScriptProgConditionInput
+  ) {
+    deleteTypeScriptProg(input: $input, condition: $condition) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createAmplifyProg = /* GraphQL */ `
+  mutation CreateAmplifyProg(
+    $input: CreateAmplifyProgInput!
+    $condition: ModelAmplifyProgConditionInput
+  ) {
+    createAmplifyProg(input: $input, condition: $condition) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateAmplifyProg = /* GraphQL */ `
+  mutation UpdateAmplifyProg(
+    $input: UpdateAmplifyProgInput!
+    $condition: ModelAmplifyProgConditionInput
+  ) {
+    updateAmplifyProg(input: $input, condition: $condition) {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteAmplifyProg = /* GraphQL */ `
+  mutation DeleteAmplifyProg(
+    $input: DeleteAmplifyProgInput!
+    $condition: ModelAmplifyProgConditionInput
+  ) {
+    deleteAmplifyProg(input: $input, condition: $condition) {
+      id
+      doneId
       owner
       createdAt
       updatedAt

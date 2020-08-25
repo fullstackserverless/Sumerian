@@ -133,11 +133,11 @@ const Tab2Main = ({ navigation }: Tab2MainT): ReactElement => {
         keyExtractor={_keyExtractor}
         onEndReachedThreshold={0.5}
         ListHeaderComponent={
-          <Header
-            onPressRight={onScreen('TAB0_ADD', navigation)}
-            iconRight={admin ? ':heavy_plus_sign:' : null}
-            admin={admin}
-          />
+          <>
+            {admin && (
+              <Header onPressRight={onScreen('TAB2_ADD', navigation)} iconRight={admin ? ':heavy_plus_sign:' : null} />
+            )}
+          </>
         }
         stickyHeaderIndices={[0]}
       />

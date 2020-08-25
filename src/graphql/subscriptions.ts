@@ -56,39 +56,6 @@ export const onDeleteProfile = /* GraphQL */ `
     }
   }
 `;
-export const onCreateEnglishProg = /* GraphQL */ `
-  subscription OnCreateEnglishProg {
-    onCreateEnglishProg {
-      id
-      doneId
-      owner
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateEnglishProg = /* GraphQL */ `
-  subscription OnUpdateEnglishProg {
-    onUpdateEnglishProg {
-      id
-      doneId
-      owner
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteEnglishProg = /* GraphQL */ `
-  subscription OnDeleteEnglishProg {
-    onDeleteEnglishProg {
-      id
-      doneId
-      owner
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const onCreateEnglish = /* GraphQL */ `
   subscription OnCreateEnglish {
     onCreateEnglish {
@@ -308,6 +275,171 @@ export const onDeleteAmplify = /* GraphQL */ `
       img
       uri
       json
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateEnglishProg = /* GraphQL */ `
+  subscription OnCreateEnglishProg {
+    onCreateEnglishProg {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateEnglishProg = /* GraphQL */ `
+  subscription OnUpdateEnglishProg {
+    onUpdateEnglishProg {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteEnglishProg = /* GraphQL */ `
+  subscription OnDeleteEnglishProg {
+    onDeleteEnglishProg {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateJavaScriptProg = /* GraphQL */ `
+  subscription OnCreateJavaScriptProg {
+    onCreateJavaScriptProg {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateJavaScriptProg = /* GraphQL */ `
+  subscription OnUpdateJavaScriptProg {
+    onUpdateJavaScriptProg {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteJavaScriptProg = /* GraphQL */ `
+  subscription OnDeleteJavaScriptProg {
+    onDeleteJavaScriptProg {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateReactNativeProg = /* GraphQL */ `
+  subscription OnCreateReactNativeProg {
+    onCreateReactNativeProg {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateReactNativeProg = /* GraphQL */ `
+  subscription OnUpdateReactNativeProg {
+    onUpdateReactNativeProg {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteReactNativeProg = /* GraphQL */ `
+  subscription OnDeleteReactNativeProg {
+    onDeleteReactNativeProg {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateTypeScriptProg = /* GraphQL */ `
+  subscription OnCreateTypeScriptProg {
+    onCreateTypeScriptProg {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateTypeScriptProg = /* GraphQL */ `
+  subscription OnUpdateTypeScriptProg {
+    onUpdateTypeScriptProg {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteTypeScriptProg = /* GraphQL */ `
+  subscription OnDeleteTypeScriptProg {
+    onDeleteTypeScriptProg {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateAmplifyProg = /* GraphQL */ `
+  subscription OnCreateAmplifyProg {
+    onCreateAmplifyProg {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateAmplifyProg = /* GraphQL */ `
+  subscription OnUpdateAmplifyProg {
+    onUpdateAmplifyProg {
+      id
+      doneId
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteAmplifyProg = /* GraphQL */ `
+  subscription OnDeleteAmplifyProg {
+    onDeleteAmplifyProg {
+      id
+      doneId
       owner
       createdAt
       updatedAt

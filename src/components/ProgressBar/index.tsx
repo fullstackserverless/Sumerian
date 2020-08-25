@@ -15,14 +15,22 @@ const styles = ScaledSheet.create({
 
 interface ProgressBarT {
   progress: number
+  color?: string
 }
 
-const ProgressBar = memo<ProgressBarT>(({ progress }) => {
+const ProgressBar = memo<ProgressBarT>(({ progress, color = white }) => {
   const { container } = styles
   const formatText = () => `${progress * 100}%`
   return (
     <View style={container}>
-      <Progress.Circle progress={progress} showsText={true} formatText={formatText} size={s(80)} color={white} />
+      <Progress.Circle
+        progress={progress}
+        showsText={true}
+        formatText={formatText}
+        size={s(80)}
+        color={color}
+        borderWidth={1.5}
+      />
     </View>
   )
 })
