@@ -87,7 +87,7 @@ const styles = ScaledSheet.create({
     color: lightGray
   },
   h6Style: {
-    fontSize: Platform.OS === 'ios' ? '13@s' : '13@s',
+    fontSize: Platform.OS === 'ios' ? '15@s' : '15@s',
     fontFamily: 'Avenir Next',
     width: W - 90,
     textAlign: 'center',
@@ -96,7 +96,7 @@ const styles = ScaledSheet.create({
     color: black
   },
   h6StyleDark: {
-    fontSize: Platform.OS === 'ios' ? '13@s' : '13@s',
+    fontSize: Platform.OS === 'ios' ? '15@s' : '15@s',
     fontFamily: 'Avenir Next',
     width: W - 90,
     textAlign: 'center',

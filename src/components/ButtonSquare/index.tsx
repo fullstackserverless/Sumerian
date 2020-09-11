@@ -5,7 +5,7 @@ import { ScaledSheet, scale, ms, s } from 'react-native-size-matters'
 import { white, black } from '../../constants'
 import { Txt } from '../Txt'
 
-const diametr = 130
+const diametr = 150
 
 const styles = ScaledSheet.create({
   container: {
@@ -26,23 +26,26 @@ const styles = ScaledSheet.create({
 interface ButtonSquareT {
   title: string
   color?: string
+  textColor?: string
+  borderColor?: string
   cancel?: boolean
   onPress?: () => void
   textStyle?: StyleProp<TextStyle>
 }
 
-const ButtonSquare = memo<ButtonSquareT>(({ title, onPress, textStyle, color = white }) => {
-  const { container, h } = styles
-  const borderColor = white
-  const { dark } = useTheme()
-  const backgroundColor = dark ? black : color
-  return (
-    <TouchableOpacity onPress={onPress}>
-      <View style={[container, { backgroundColor, borderColor }]}>
-        <Txt h0 textStyle={[h, textStyle]} title={title} color={white} />
-      </View>
-    </TouchableOpacity>
-  )
-})
+const ButtonSquare = memo<ButtonSquareT>(
+  ({ title, onPress, textStyle, color = white, borderColor = white, textColor = white }) => {
+    const { container, h } = styles
+    const { dark } = useTheme()
+    const backgroundColor = dark ? black : color
+    return (
+      <TouchableOpacity onPress={onPress}>
+        <View style={[container, { backgroundColor, borderColor }]}>
+          <Txt h0 textStyle={[h, textStyle]} title={title} color={textColor} />
+        </View>
+      </TouchableOpacity>
+    )
+  }
+)
 
 export { ButtonSquare }

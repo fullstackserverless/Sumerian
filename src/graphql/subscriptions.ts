@@ -56,6 +56,51 @@ export const onDeleteProfile = /* GraphQL */ `
     }
   }
 `;
+export const onCreateExam = /* GraphQL */ `
+  subscription OnCreateExam {
+    onCreateExam {
+      id
+      english
+      javaScript
+      reactNative
+      typeScript
+      amplify
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateExam = /* GraphQL */ `
+  subscription OnUpdateExam {
+    onUpdateExam {
+      id
+      english
+      javaScript
+      reactNative
+      typeScript
+      amplify
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteExam = /* GraphQL */ `
+  subscription OnDeleteExam {
+    onDeleteExam {
+      id
+      english
+      javaScript
+      reactNative
+      typeScript
+      amplify
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
 export const onCreateEnglish = /* GraphQL */ `
   subscription OnCreateEnglish {
     onCreateEnglish {

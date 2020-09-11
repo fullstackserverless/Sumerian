@@ -13,7 +13,8 @@ import { RootStackParamList, TestT } from '../../../AppNavigator'
 import { AppContainer, Txt, ButtonIcon } from '../../../components'
 import { goBack, classicRose, errSoundOne, errSoundTwo, white, W } from '../../../constants'
 import { useOrientation } from '../../../hooks'
-import { createEnglishProg } from '../../../graphql/mutations'
+import { createEnglishProg, createExam } from '../../../graphql/mutations'
+import useAudio from '../../../hooks/useAudio'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB0_TEST'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB0_TEST'>
@@ -26,7 +27,6 @@ type Tab0TestT = {
 const styles = ScaledSheet.create({
   container: {
     alignSelf: 'center'
-    //paddingHorizontal: s(10)
   },
   display: {},
   sub: {
@@ -58,10 +58,11 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
   const [displayName, setDisplayName] = useState<TestT>(defautState)
   const [count, setCount] = useState<number>(0)
   const [answer, setAnswer] = useState<number>(0)
+  const [setPlay] = useAudio(require('../../../sounds/magicSpell.mp3'))
 
   const { container, display, sub, gif } = styles
-
-  const [data, done, id] = route.params
+  const { data, done, id, checkExam } = route.params
+  console.log('checkExam', checkExam)
 
   const shake = () => {
     const shuff = shuffle(data)
@@ -76,6 +77,7 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
 
   useEffect(() => {
     const { random, sliceArray } = shake()
+    //setPlay(true)
     setDisplayName(random)
     updateData(sliceArray)
     return () => {
@@ -123,30 +125,29 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
 
   const length = data.length
   const progress = answer / length
+
   const setProgress = async () => {
     stopRender(true)
     setLoading(true)
+    setPlay(true)
+    console.log('setProgress')
     try {
-      !done && (await API.graphql(graphqlOperation(createEnglishProg, { input: { doneId: id } })))
+      // done !== undefined &&
+      //   !done &&
+      //   console.log('done')
+      //   //await API.graphql(graphqlOperation(createEnglishProg, { input: { doneId: id } }))
+      // !checkExam && console.log('done')
+      //await API.graphql(graphqlOperation(createExam, { input: { english: true } }))
+
       setLoading(false)
     } catch (err) {
+      console.log('err', err)
       setError(err)
       setLoading(false)
     }
   }
   const title = displayName.title.length > 1 ? displayName.title : 'Alphabet'
 
-  // const compare = (a, b) => {
-  //   if (a.title < b.title) {
-  //     return -1
-  //   }
-  //   if (a.title > b.title) {
-  //     return 1
-  //   }
-  //   return 0
-  // }
-
-  // console.log('data', data.sort(compare))
   return (
     <AppContainer
       title={length !== answer ? title : I18n.t('win')}
@@ -154,8 +155,9 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
       colorLeft={color}
       color={classicRose}
       iconLeft=":back:"
-      iconRight=":loud_sound:"
+      iconRight={Platform.OS === 'ios' && ':loud_sound:'}
       onPressRight={onPressPlay}
+      loading={loading}
     >
       <View style={{ bottom: bottomProgress }}>
         <Progress.Bar progress={progress} width={W - s(150)} color={white} height={s(6)} />
@@ -184,21 +186,3 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
 }
 
 export { Tab0Test }
-
-// const permissions = async () => {
-//   if (Platform.OS === 'android') {
-//     try {
-//       const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.RECORD_AUDIO, {
-//         title: 'title',
-//         message: 'message',
-//         buttonPositive: 'OK'
-//       })
-//       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-//       } else {
-//         return
-//       }
-//     } catch (err) {
-//       return
-//     }
-//   }
-// }

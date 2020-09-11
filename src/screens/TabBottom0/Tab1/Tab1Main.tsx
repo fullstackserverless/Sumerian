@@ -4,10 +4,12 @@ import { Auth, API, graphqlOperation } from 'aws-amplify'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { s } from 'react-native-size-matters'
-import { AppContainer, Space, Header, Card, ProgressBar } from '../../../components'
 import { RouteProp } from '@react-navigation/native'
+import { uniqBy } from 'lodash'
+import { AppContainer, Space, Header, Card, Row, ProgressBar, ButtonSquare } from '../../../components'
 import { goBack, onScreen, mustard, black } from '../../../constants'
 import { RootStackParamList, ObjT, ProgT } from '../../../AppNavigator'
+import CheckBox from 'react-native-animated-checkbox'
 import { listJavaScripts } from '../../../graphql/queries'
 import {
   onCreateJavaScript,
@@ -15,8 +17,8 @@ import {
   onDeleteJavaScript,
   onCreateJavaScriptProg
 } from '../../../graphql/subscriptions'
-import { uniqBy } from 'lodash'
-import { ActionT, StateT } from '../../helper'
+import I18n from '../../../utils'
+import { ActionT, StateT, fetchTest } from '../../helper'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB0_MAIN'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB0_MAIN'>
@@ -78,6 +80,7 @@ const Tab1Main = ({ navigation }: Tab0MainT): ReactElement => {
   const [error, setError] = useState<string>('')
   const [admin, setAdmin] = useState<boolean>(false)
   const [state, dispatch] = useReducer(reducer, initialState)
+  const [test, setTest] = useState({})
 
   const fetchData = async () => {
     try {
@@ -105,6 +108,7 @@ const Tab1Main = ({ navigation }: Tab0MainT): ReactElement => {
 
   useEffect(() => {
     let isSubscribed: boolean = true // eslint-disable-line
+    fetchTest('https://s3.eu-central-1.wasabisys.com/ghashtag/JSForKids/00-HelloWorld/ru.json').then((x) => setTest(x))
     setLoading(true)
     fetchData()
     const check = Auth.user.signInUserSession.idToken.payload['cognito:groups']
@@ -165,7 +169,18 @@ const Tab1Main = ({ navigation }: Tab0MainT): ReactElement => {
         onEndReachedThreshold={0.5}
         ListHeaderComponent={
           <>
-            <ProgressBar progress={prog.length / data.length} color={black} />
+            <Row>
+              <ProgressBar progress={prog.length / data.length} color={black} />
+              <ButtonSquare
+                title={I18n.t('test')}
+                onPress={onScreen('TAB1_TEST', navigation, test)}
+                color={mustard}
+                textColor={black}
+                borderColor={mustard}
+              />
+              <CheckBox checked={true} color={'green'} />
+            </Row>
+
             {admin && (
               <Header onPressRight={onScreen('TAB1_ADD', navigation)} iconRight={admin ? ':heavy_plus_sign:' : null} />
             )}

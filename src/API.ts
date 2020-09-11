@@ -79,6 +79,48 @@ export type DeleteProfileInput = {
   id?: string | null,
 };
 
+export type CreateExamInput = {
+  id?: string | null,
+  english: boolean,
+  javaScript: boolean,
+  reactNative: boolean,
+  typeScript: boolean,
+  amplify: boolean,
+  owner?: string | null,
+};
+
+export type ModelExamConditionInput = {
+  english?: ModelBooleanInput | null,
+  javaScript?: ModelBooleanInput | null,
+  reactNative?: ModelBooleanInput | null,
+  typeScript?: ModelBooleanInput | null,
+  amplify?: ModelBooleanInput | null,
+  and?: Array< ModelExamConditionInput | null > | null,
+  or?: Array< ModelExamConditionInput | null > | null,
+  not?: ModelExamConditionInput | null,
+};
+
+export type ModelBooleanInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
+export type UpdateExamInput = {
+  id: string,
+  english?: boolean | null,
+  javaScript?: boolean | null,
+  reactNative?: boolean | null,
+  typeScript?: boolean | null,
+  amplify?: boolean | null,
+  owner?: string | null,
+};
+
+export type DeleteExamInput = {
+  id?: string | null,
+};
+
 export type CreateEnglishInput = {
   id?: string | null,
   title: string,
@@ -396,6 +438,19 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
+export type ModelExamFilterInput = {
+  id?: ModelIDInput | null,
+  english?: ModelBooleanInput | null,
+  javaScript?: ModelBooleanInput | null,
+  reactNative?: ModelBooleanInput | null,
+  typeScript?: ModelBooleanInput | null,
+  amplify?: ModelBooleanInput | null,
+  owner?: ModelStringInput | null,
+  and?: Array< ModelExamFilterInput | null > | null,
+  or?: Array< ModelExamFilterInput | null > | null,
+  not?: ModelExamFilterInput | null,
+};
+
 export type ModelEnglishFilterInput = {
   id?: ModelIDInput | null,
   title?: ModelStringInput | null,
@@ -572,6 +627,66 @@ export type DeleteProfileMutation = {
       region: string,
       key: string,
     } | null,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type CreateExamMutationVariables = {
+  input: CreateExamInput,
+  condition?: ModelExamConditionInput | null,
+};
+
+export type CreateExamMutation = {
+  createExam:  {
+    __typename: "Exam",
+    id: string,
+    english: boolean,
+    javaScript: boolean,
+    reactNative: boolean,
+    typeScript: boolean,
+    amplify: boolean,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateExamMutationVariables = {
+  input: UpdateExamInput,
+  condition?: ModelExamConditionInput | null,
+};
+
+export type UpdateExamMutation = {
+  updateExam:  {
+    __typename: "Exam",
+    id: string,
+    english: boolean,
+    javaScript: boolean,
+    reactNative: boolean,
+    typeScript: boolean,
+    amplify: boolean,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteExamMutationVariables = {
+  input: DeleteExamInput,
+  condition?: ModelExamConditionInput | null,
+};
+
+export type DeleteExamMutation = {
+  deleteExam:  {
+    __typename: "Exam",
+    id: string,
+    english: boolean,
+    javaScript: boolean,
+    reactNative: boolean,
+    typeScript: boolean,
+    amplify: boolean,
     owner: string | null,
     createdAt: string,
     updatedAt: string,
@@ -1170,6 +1285,50 @@ export type ListProfilesQuery = {
   } | null,
 };
 
+export type GetExamQueryVariables = {
+  id: string,
+};
+
+export type GetExamQuery = {
+  getExam:  {
+    __typename: "Exam",
+    id: string,
+    english: boolean,
+    javaScript: boolean,
+    reactNative: boolean,
+    typeScript: boolean,
+    amplify: boolean,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListExamsQueryVariables = {
+  filter?: ModelExamFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListExamsQuery = {
+  listExams:  {
+    __typename: "ModelExamConnection",
+    items:  Array< {
+      __typename: "Exam",
+      id: string,
+      english: boolean,
+      javaScript: boolean,
+      reactNative: boolean,
+      typeScript: boolean,
+      amplify: boolean,
+      owner: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
 export type GetEnglishQueryVariables = {
   id: string,
 };
@@ -1621,6 +1780,51 @@ export type OnDeleteProfileSubscription = {
       region: string,
       key: string,
     } | null,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateExamSubscription = {
+  onCreateExam:  {
+    __typename: "Exam",
+    id: string,
+    english: boolean,
+    javaScript: boolean,
+    reactNative: boolean,
+    typeScript: boolean,
+    amplify: boolean,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateExamSubscription = {
+  onUpdateExam:  {
+    __typename: "Exam",
+    id: string,
+    english: boolean,
+    javaScript: boolean,
+    reactNative: boolean,
+    typeScript: boolean,
+    amplify: boolean,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteExamSubscription = {
+  onDeleteExam:  {
+    __typename: "Exam",
+    id: string,
+    english: boolean,
+    javaScript: boolean,
+    reactNative: boolean,
+    typeScript: boolean,
+    amplify: boolean,
     owner: string | null,
     createdAt: string,
     updatedAt: string,

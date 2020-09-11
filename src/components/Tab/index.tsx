@@ -1,6 +1,6 @@
 // @flow
 import React, { memo } from 'react'
-import { Image, ImageStyle, StyleProp } from 'react-native'
+import { Image, Platform, ImageStyle, StyleProp } from 'react-native'
 import { ifIphoneX } from 'react-native-iphone-x-helper'
 import { ICONS } from './images'
 import { ScaledSheet, s, ms } from 'react-native-size-matters'
@@ -15,7 +15,7 @@ const styles = ScaledSheet.create({
       },
       {
         width: ms(65, 0.5),
-        height: ms(35, 0.5)
+        height: Platform.OS === 'ios' ? ms(35, 0.5) : ms(30, 0.5)
       }
     )
   }

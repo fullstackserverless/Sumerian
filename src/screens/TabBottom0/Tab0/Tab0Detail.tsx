@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
-import { RouteProp } from '@react-navigation/native'
+import { RouteProp, useNavigation } from '@react-navigation/native'
 import { RootStackParamList, TestT } from '../../../AppNavigator'
 import { AppContainer, YouTubePlayer, ButtonSquare, Space } from '../../../components'
 import I18n from '../../../utils'
@@ -37,12 +37,36 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
     json: ''
   }
 
+  const { addListener } = useNavigation()
+  const [play, setPlay] = useState(true)
+
+  useEffect(() => {
+    const unsubsfocus = addListener('focus', () => {
+      setPlay(true)
+    })
+    const unsubsblur = addListener('blur', () => {
+      setPlay(false)
+    })
+
+    return () => {
+      unsubsfocus()
+      unsubsblur()
+      setPlay(false)
+    }
+  }, [addListener])
+
   const [data, setData] = useState<Array<TestT>>([defautState])
 
   const fetchData = async () => {
-    const response = await fetch(json)
-    const data = await response.json()
-    setData(data)
+    try {
+      const url = `https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/04-Activity/data.json`
+      const response = await fetch(url)
+      //const response = await fetch(json)
+      const data = await response.json()
+      setData(data)
+    } catch (error) {
+      //console.log('error', error)
+    }
   }
 
   useEffect(() => {
@@ -53,7 +77,7 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
 
   return (
     <AppContainer title=" " onPress={goBack(navigation)} colorLeft={white} color={classicRose}>
-      <YouTubePlayer uri={uri} />
+      {play && <YouTubePlayer play={play} uri={uri} />}
       <Space height={20} />
       {json && (
         <View style={container}>
@@ -64,7 +88,7 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
           />
           <ButtonSquare
             title={I18n.t('test')}
-            onPress={onScreen('TAB0_TEST', navigation, [data, done, id])}
+            onPress={onScreen('TAB0_TEST', navigation, { data, done, id })}
             color={classicRose}
           />
         </View>

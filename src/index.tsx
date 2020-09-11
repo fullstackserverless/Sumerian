@@ -7,7 +7,7 @@
  */
 ///* eslint-disable */
 import React, { useEffect, ReactElement } from 'react'
-import { StatusBar } from 'react-native'
+import { StatusBar, Platform } from 'react-native'
 import { AppearanceProvider, useColorScheme } from 'react-native-appearance'
 
 import Amplify from '@aws-amplify/core'
@@ -17,6 +17,7 @@ import { NetworkCheckingModal } from './components'
 import { ThemeProvider, DarkTheme, LightTheme } from './theme'
 import AppNavigator from './AppNavigator'
 import awsconfig from '../aws-exports'
+import { white, black } from './constants'
 
 const MEMORY_KEY_PREFIX = '@MyStorage:'
 let dataMemory: any = {}
@@ -53,6 +54,8 @@ Amplify.configure({
   storage: MyStorage
 })
 
+const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight
+
 const App = (): ReactElement => {
   //const [value] = useState(false)
   const scheme = useColorScheme()
@@ -64,7 +67,7 @@ const App = (): ReactElement => {
 
   return (
     <>
-      <StatusBar barStyle={`${color}-content`} />
+      <StatusBar backgroundColor={scheme === 'dark' ? black : white} barStyle={`${color}-content`} />
       <NetworkCheckingModal />
       <AppearanceProvider>
         <ThemeProvider theme={theme}>

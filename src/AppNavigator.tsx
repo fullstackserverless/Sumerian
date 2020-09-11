@@ -4,7 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { enableScreens } from 'react-native-screens' // eslint-disable-line
 import { Stack0 } from './screens'
 import { Tab0Main, Tab0Add, Tab0Detail, Tab0Test, Tab0Learn } from './screens/TabBottom0/Tab0'
-import { Tab1Main, Tab1Add, Tab1Detail } from './screens/TabBottom0/Tab1'
+import { Tab1Main, Tab1Add, Tab1Detail, Tab1Test } from './screens/TabBottom0/Tab1'
 import { Tab2Main, Tab2Add, Tab2Detail } from './screens/TabBottom0/Tab2'
 import { Tab3Main, Tab3Add, Tab3Detail } from './screens/TabBottom0/Tab3'
 import { Tab4Main, Tab4Add, Tab4Detail } from './screens/TabBottom0/Tab4'
@@ -47,12 +47,27 @@ export interface ProgT {
   owner?: string
 }
 
+export interface ExamT {
+  id: string
+  english: boolean
+  javaScript: boolean
+  reactNative: boolean
+  typeScript: boolean
+  amplify: boolean
+  owner?: string
+}
+
 export interface UserT {
   id: string
   firstName: string
   lastName: string
   avatar: S3ObjectT
   email: string
+  allEnglish: boolean
+  allJavaScript: boolean
+  allReactNative: boolean
+  allAmplify: boolean
+  allTypeScript: boolean
   owner?: string
 }
 
@@ -61,6 +76,7 @@ export interface TestT {
   name: string
   title: string
   url: string
+  answer?: string
 }
 
 export type RootStackParamList = {
@@ -77,10 +93,11 @@ export type RootStackParamList = {
   TAB0_MAIN: undefined
   TAB0_DETAIL: ObjT
   TAB0_ADD: ObjT
-  TAB0_TEST: { data: TestT }
+  TAB0_TEST: { data: TestT; done: boolean; id: string; checkExam?: boolean }
   TAB1_MAIN: undefined
   TAB1_DETAIL: ObjT
   TAB1_ADD: ObjT
+  TAB1_TEST: { data: TestT }
   TAB2_MAIN: undefined
   TAB2_DETAIL: ObjT
   TAB2_ADD: ObjT
@@ -154,6 +171,7 @@ const AppNavigator = (): React.ReactElement => {
         <Stack.Screen name="TAB1_MAIN" component={Tab1Main} />
         <Stack.Screen name="TAB1_DETAIL" component={Tab1Detail} />
         <Stack.Screen name="TAB1_ADD" component={Tab1Add} />
+        <Stack.Screen name="TAB1_TEST" component={Tab1Test} />
 
         <Stack.Screen name="TAB2_MAIN" component={Tab2Main} />
         <Stack.Screen name="TAB2_DETAIL" component={Tab2Detail} />

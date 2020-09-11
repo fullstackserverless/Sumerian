@@ -1,5 +1,5 @@
 import { Dimensions, Platform } from 'react-native'
-
+import Sound from 'react-native-sound'
 export const primary = '#50E3C2'
 export const secondary = '#ff06f4'
 export const gray = '#949494'
@@ -24,7 +24,7 @@ export const W = win.width
 export const H = win.height
 export const errSoundOne = 'https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/00-Alphabet/mp3/error.wav'
 export const errSoundTwo = 'https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/00-Alphabet/mp3/error2.wav'
-
+export const winSound = 'https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/sounds/Magic-Spell.mp3'
 export const Device = {
   // eslint-disable-next-line
   select(variants: any) {

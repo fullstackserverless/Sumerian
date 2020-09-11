@@ -19,6 +19,7 @@ export default {
   lastName: 'Last name',
   done: 'Done',
   test: 'Test',
+  exam: 'Exam',
   learn: 'Learn',
   win: 'Win',
   disconnected:

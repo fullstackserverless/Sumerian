@@ -7,6 +7,16 @@ type Profile @model @auth(rules: [{ allow: owner, ownerField: "owner", operation
   owner: String
 }
 
+type Exam @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
+  id: ID!
+  english: Boolean!
+  javaScript: Boolean!
+  reactNative: Boolean!
+  typeScript: Boolean!
+  amplify: Boolean!
+  owner: String
+}
+
 type S3Object {
   bucket: String!
   region: String!

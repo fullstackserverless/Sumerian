@@ -4,14 +4,22 @@ import { Auth, API, graphqlOperation } from 'aws-amplify'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { s } from 'react-native-size-matters'
-import { AppContainer, Space, Header, Card, ProgressBar } from '../../../components'
 import { RouteProp } from '@react-navigation/native'
-import { goBack, onScreen, classicRose } from '../../../constants'
+import { AppContainer, ButtonSquare, Row, Space, Header, Card, ProgressBar } from '../../../components'
+import I18n from '../../../utils'
+import CheckBox from 'react-native-animated-checkbox'
+import { goBack, onScreen, classicRose, mustard, white } from '../../../constants'
 import { RootStackParamList, ObjT, ProgT } from '../../../AppNavigator'
-import { listEnglishs, listEnglishProgs } from '../../../graphql/queries'
-import { onCreateEnglish, onCreateEnglishProg, onUpdateEnglish, onDeleteEnglish } from '../../../graphql/subscriptions'
+import { listEnglishs, listExams, listEnglishProgs } from '../../../graphql/queries'
+import {
+  onCreateEnglish,
+  onCreateEnglishProg,
+  onUpdateEnglish,
+  onDeleteEnglish,
+  onCreateExam
+} from '../../../graphql/subscriptions'
 import { uniqBy } from 'lodash'
-import { ActionT, StateT } from '../../helper'
+import { ActionT, StateT, compareCreatedAt, fetchExam, filterQuery } from '../../helper'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB0_MAIN'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB0_MAIN'>
@@ -41,7 +49,8 @@ const initialState = {
       id: '0',
       doneId: '0'
     }
-  ]
+  ],
+  exam: []
 }
 
 const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
@@ -54,7 +63,8 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
       case 'READ':
         return {
           data: action.data,
-          prog: action.prog
+          prog: action.prog,
+          exam: action.exam
         }
       case 'UPDATE':
         return {
@@ -73,28 +83,21 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
   const [error, setError] = useState<string>('')
   const [admin, setAdmin] = useState<boolean>(false)
   const [state, dispatch] = useReducer(reducer, initialState)
+  const [test, setTest] = useState({})
 
   const fetchData = async () => {
     try {
-      const owner = Auth.user.attributes.sub
       const arr = await API.graphql(graphqlOperation(listEnglishs, { limit: 1000 }))
-      const arrProg = await API.graphql(
-        graphqlOperation(listEnglishProgs, {
-          filter: {
-            owner: {
-              eq: owner
-            }
-          },
-          limit: 1000
-        })
-      )
-
+      const arrProg = await API.graphql(graphqlOperation(listEnglishProgs, filterQuery))
+      const arrExam = await API.graphql(graphqlOperation(listExams, filterQuery))
       const data = arr.data.listEnglishs.items
       const prog = arrProg.data.listEnglishProgs.items
-      dispatch({ type: 'READ', data, prog })
+      const exam = arrExam.data.listExams.items
+      dispatch({ type: 'READ', data, prog, exam })
       setLoading(false)
     } catch (err) {
       setError(err)
+      console.log('err', err)
       setLoading(false)
     }
   }
@@ -103,6 +106,7 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
     let isSubscribed: boolean = true // eslint-disable-line
     setLoading(true)
     fetchData()
+    fetchExam('https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/00-Numbers/data.json').then((x) => setTest(x))
     const check = Auth.user.signInUserSession.idToken.payload['cognito:groups']
     const adm =
       check !== undefined ? Auth.user.signInUserSession.idToken.payload['cognito:groups'][0] === 'Admin' : false
@@ -112,6 +116,9 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
       next: (data: any) => dispatch({ type: 'CREATE', data: data.value.data.onCreateEnglish })
     })
     const subscriptionCreateProgress = API.graphql(graphqlOperation(onCreateEnglishProg)).subscribe({
+      next: () => fetchData()
+    })
+    const subscriptionCreateExam = API.graphql(graphqlOperation(onCreateExam)).subscribe({
       next: () => fetchData()
     })
     const subscriptionUpdate = API.graphql(graphqlOperation(onUpdateEnglish)).subscribe({
@@ -125,11 +132,12 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
       subscriptionUpdate.unsubscribe()
       subscriptionDelete.unsubscribe()
       subscriptionCreateProgress.unsubscribe()
+      subscriptionCreateExam.unsubscribe()
       isSubscribed = false
     }
   }, [navigation])
 
-  const { data, prog } = state
+  const { data, prog, exam } = state
 
   const _renderItem = ({ item }: ItemT) => {
     const search = prog.filter((x: ProgT) => x.doneId === item.id)
@@ -151,17 +159,29 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
 
   const _keyExtractor = (obj: any) => obj.id.toString()
 
+  const checkExam = exam.length === 0 ? false : exam.english
+
   return (
     <AppContainer onPress={goBack(navigation)} loading={loading} flatList color={classicRose}>
       <FlatList
         scrollEventThrottle={16}
-        data={data}
+        data={data.sort(compareCreatedAt)}
         renderItem={_renderItem}
         keyExtractor={_keyExtractor}
         onEndReachedThreshold={0.5}
         ListHeaderComponent={
           <>
-            <ProgressBar progress={prog.length / data.length} />
+            <Row>
+              <ProgressBar progress={prog.length / data.length} />
+              <ButtonSquare
+                title={I18n.t('exam')}
+                onPress={onScreen('TAB0_TEST', navigation, { data: test, checkExam })}
+                color={classicRose}
+                textColor={white}
+                borderColor={classicRose}
+              />
+              <CheckBox checked={checkExam} color={'green'} />
+            </Row>
             {admin && (
               <Header onPressRight={onScreen('TAB0_ADD', navigation)} iconRight={admin ? ':heavy_plus_sign:' : null} />
             )}

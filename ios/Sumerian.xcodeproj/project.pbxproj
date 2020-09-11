@@ -19,6 +19,10 @@
 		3BA531C5EF8C41B8AD3866F7 /* IBM-Logo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 069011C691154E1DBE9B353D /* IBM-Logo.ttf */; };
 		44A9CF3B29ED4D599FD5B489 /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48858D7A7E4D4EE0B9539729 /* RNPlaceholder.swift */; };
 		6DE1035BF7DE317FE9E328C2 /* libPods-Sumerian.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B32E30124374EF66F22F144 /* libPods-Sumerian.a */; };
+		732C229B250765C6002B76C4 /* magicSpell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 732C229A250765C6002B76C4 /* magicSpell.mp3 */; };
+		732C229C250765C6002B76C4 /* magicSpell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 732C229A250765C6002B76C4 /* magicSpell.mp3 */; };
+		732C229E25076655002B76C4 /* error.wav in Resources */ = {isa = PBXBuildFile; fileRef = 732C229D25076655002B76C4 /* error.wav */; };
+		732C229F25076655002B76C4 /* error.wav in Resources */ = {isa = PBXBuildFile; fileRef = 732C229D25076655002B76C4 /* error.wav */; };
 		734A58D524D6ADEE000A577D /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48858D7A7E4D4EE0B9539729 /* RNPlaceholder.swift */; };
 		734A58D624D6ADEE000A577D /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48858D7A7E4D4EE0B9539729 /* RNPlaceholder.swift */; };
 		734A58D724D6ADEE000A577D /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48858D7A7E4D4EE0B9539729 /* RNPlaceholder.swift */; };
@@ -73,6 +77,8 @@
 		66837611B6614C3CB174017D /* 3270Narrow.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = 3270Narrow.ttf; path = ../assets/fonts/3270Narrow.ttf; sourceTree = "<group>"; };
 		699A736B67294BA09CAC4E1D /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		70C45373164443DF8C2475D3 /* KLMN_Flash_Pix.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = KLMN_Flash_Pix.ttf; path = ../assets/fonts/KLMN_Flash_Pix.ttf; sourceTree = "<group>"; };
+		732C229A250765C6002B76C4 /* magicSpell.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = magicSpell.mp3; path = ../src/sounds/magicSpell.mp3; sourceTree = "<group>"; };
+		732C229D25076655002B76C4 /* error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = error.wav; path = ../src/sounds/error.wav; sourceTree = "<group>"; };
 		7EB1616576C047E39C6BC97C /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		8042FA068E8D4ED6BDD2FC21 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Sumerian/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -146,7 +152,9 @@
 		13B07FAE1A68108700A75B9A /* Sumerian */ = {
 			isa = PBXGroup;
 			children = (
+				732C229A250765C6002B76C4 /* magicSpell.mp3 */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
+				732C229D25076655002B76C4 /* error.wav */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -385,6 +393,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				732C229C250765C6002B76C4 /* magicSpell.mp3 in Resources */,
+				732C229F25076655002B76C4 /* error.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +407,8 @@
 				F222BDAF46B548F1A777EE29 /* 3270Narrow.ttf in Resources */,
 				3BA531C5EF8C41B8AD3866F7 /* IBM-Logo.ttf in Resources */,
 				09A8439ED74F4FC49B615CE2 /* KLMN_Flash_Pix.ttf in Resources */,
+				732C229E25076655002B76C4 /* error.wav in Resources */,
+				732C229B250765C6002B76C4 /* magicSpell.mp3 in Resources */,
 				F33DC404810B468DB2AAE7C2 /* TheDolbak-Brush.ttf in Resources */,
 				8B59DC37A7C4437AB6F6B762 /* etna-free-font.otf in Resources */,
 			);
@@ -752,7 +764,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 5EM4M85VSQ;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Sumerian/Info.plist;
@@ -777,7 +789,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 5EM4M85VSQ;
 				INFOPLIST_FILE = Sumerian/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

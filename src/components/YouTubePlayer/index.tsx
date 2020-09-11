@@ -8,12 +8,13 @@ const styles = StyleSheet.create({
 })
 
 type YouTubePlayerT = {
+  play: boolean
   uri: string
 }
 const apiKey = 'AIzaSyDLM6S57hfLoFfkovMzxdmO-sCdS8USQqY'
 
-const YouTubePlayer = memo(({ uri }: YouTubePlayerT) => (
-  <YouTube apiKey={apiKey} videoId={uri} loop style={styles.container} />
+const YouTubePlayer = memo(({ play, uri }: YouTubePlayerT) => (
+  <YouTube apiKey={apiKey} play={play} resumePlayAndroid={false} videoId={uri} loop style={styles.container} />
 ))
 
 export { YouTubePlayer }

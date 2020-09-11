@@ -1,0 +1,823 @@
+[
+  {
+    "id": "0",
+    "title": "What URL (address) must be entered in the address bar of Chrome to open a completely blank browser tab?",
+    "answer": "about:blank",
+    "random": ["about:blank", "about:add", "about:new"]
+  },
+  {
+    "id": "1",
+    "title": "What keyboard shortcut opens the console in Chrome?",
+    "answer": "CTRL+SHIFT+J (COMMAND+OPTION+J for Mac).",
+    "random": [
+      "CTRL+SHIFT+J (COMMAND+OPTION+J for Mac).",
+      "CTRL+SHIFT+C (COMMAND+OPTION+C for Mac).",
+      "CTRL+SHIFT+K (COMMAND+OPTION+K for Mac)."
+    ]
+  },
+  {
+    "id": "2",
+    "title": "What are the two keywords we've shown that may be used to declare a new variable?",
+    "answer": "let and var",
+    "random": ["let and var", "const and var", "let and const"]
+  },
+  {
+    "id": "3",
+    "title": "What character means divided by when writing code?",
+    "answer": "/",
+    "random": ["/", "$", "\\"]
+  },
+  {
+    "id": "4",
+    "title": "What is the shortened form of the word “parenthesis”?",
+    "answer": "paren (parens is the plural form)",
+    "random": [
+      "paren (parens is the plural form)",
+      "parenth (parensth is the plural form)",
+      "par (par is the plural form)"
+    ]
+  },
+  {
+    "id": "5",
+    "title": "What kind of error would you get if you tried to run this statement? \nlet sum = (9 + ; 3)",
+    "answer": "SyntaxError (the ; was unexpected there. It should've been moved to the right side of the closing paren).",
+    "random": [
+      "SyntaxError (the ; was unexpected there. It should've been moved to the right side of the closing paren).",
+      "undefined",
+      "11;"
+    ]
+  },
+  {
+    "id": "6",
+    "title": "What kind of capitalization (i.e., casing) should you use with variable names in JavaScript?",
+    "answer": "camelCase",
+    "random": ["camelCase", "case", "camel"]
+  },
+  {
+    "id": "7",
+    "title": "Whenever you have an opening ___, you always need to also have a closing ___.",
+    "answer": "paren (would also accept quote mark)",
+    "random": ["paren (would also accept quote mark)", "variable", "constant"]
+  },
+  {
+    "id": "8",
+    "title": "Is this valid JavaScript syntax? If not, why not? let myMood = \"Curious about JavaScript\" \n let myMood = \"Excited to use my new superpowers\"\n myMood",
+    "answer": "Not valid because the let keyword should not be there in the second line.",
+    "random": ["Not valid because the let keyword should not be there in the second line.", "Valid", "SyntaxError"]
+  },
+  {
+    "id": "9",
+    "title": "What does a single equals sign imply in a statement?",
+    "answer": "Assignment—a value is being assigned to a variable (example: let myAge = 10)",
+    "random": ["Assignment—a value is being assigned to a variable (example: let myAge = 10)", "Compare", "Equality"]
+  },
+  {
+    "id": "10",
+    "title": "What does the + symbol mean when doing mathematical operations in JavaScript?",
+    "answer": "Plus sign indicates addition—adding numbers together",
+    "random": [
+      "Plus sign indicates addition—adding numbers together",
+      "concatenation",
+      "Assignment—a value is being assigned to a variable (example: let myAge = 10)"
+    ]
+  },
+  {
+    "id": "11",
+    "title": "In JavaScript, what symbol is used for multiplication?",
+    "answer": "*",
+    "random": ["*", "x", "%"]
+  },
+  {
+    "id": "12",
+    "title": "Which data type is this? 302",
+    "answer": "Number",
+    "random": ["Number", "String", "Integer"]
+  },
+  {
+    "id": "13",
+    "title": "What does the \"/\" symbol mean when doing mathematical operations in JavaScript?",
+    "answer": "Forward slash indicates division—dividing one number by another number",
+    "random": [
+      "Forward slash indicates division—dividing one number by another number",
+      "Forward slash indicates multiplication—multiplication one number by another number",
+      "It is not a symbol for mathematical operations."
+    ]
+  },
+  {
+    "id": "14",
+    "title": "What is the data type of the variable whatTypeAmI after running this statement? \n let whatTypeAmI = 5",
+    "answer": "Number",
+    "random": ["Number", "String", "Integer"]
+  },
+  {
+    "id": "15",
+    "title": "What special symbol could you use to simplify this assignment? \n myVariable = myVariable * 2",
+    "answer": "*= (myVariable *= 2)",
+    "random": ["*= (myVariable *= 2)", "=* (myVariable =* 2)", "* (myVariable * 2)"]
+  },
+  {
+    "id": "16",
+    "title": "What symbol is used for modulo in JavaScript?",
+    "answer": "% (percent sign)",
+    "random": ["% (percent sign)", "$ (dollar sign)", "& (ampersand sign)"]
+  },
+  {
+    "id": "17",
+    "title": "What is the simplest (i.e., shortest) way to write this (using a special symbol)? What is the special symbol called?\n myVariable = myVariable + 1",
+    "answer": "myVariable++ (increment operator)",
+    "random": ["myVariable++ (increment operator)", "+ (increment operator)", "++ (decrement operator)"]
+  },
+  {
+    "id": "18",
+    "title": "What is the simplest (i.e., shortest) way to write this (using a special symbol)? What is the special symbol called?\n myVariable = myVariable - 1",
+    "answer": "myVariable-- (decrement operator)",
+    "random": ["myVariable-- (decrement operator)", "myVariable++ (increment operator)", "++ (decrement operator)"]
+  },
+  {
+    "id": "19",
+    "title": "How would you change this statement to make it say \"three times the sum of 4 plus 1\" (Hint: the response should be 15 when run in the console)? \n 3 * 4 + 1",
+    "answer": "3*(4+1)",
+    "random": ["3*(4+1)", "(3*4)+1", "3*4+1"]
+  },
+  {
+    "id": "20",
+    "title": "If you were writing a program to determine if a value was odd or even, what number would you use after the modulo operator?",
+    "answer": "2",
+    "random": ["2", "4", "0"]
+  },
+  {
+    "id": "21",
+    "title": "What special symbol could you use to simplify this assignment?\n myValue = myValue - 8",
+    "answer": "-= (myValue -= 8)",
+    "random": ["-= (myValue -= 8)", "- (myValue - 8)", "=- (myValue =- 8)"]
+  },
+  {
+    "id": "22",
+    "title": "How many unique (i.e., different) values could you possibly get if you did a long series of integer operations that all ended in \"modulo 5\" (example: 11 % 5; 12 % 5; 13 % 5; etc.)?",
+    "answer": "5 different values (0, 1, 2, 3, or 4)",
+    "random": ["5 different values (0, 1, 2, 3, or 4)", "4 different values (0, 1, 2, or 3)", "0 different values (0)"]
+  },
+  {
+    "id": "23",
+    "title": "What is the collective name for the symbols that first perform an operation on a variable and then assign the new value to that same variable (e.g. +=, -=, *=, and /=)?",
+    "answer": "Augmented assignments",
+    "random": ["Augmented assignments", "Multiple statements", "Assignment (assigning to a variable)"]
+  },
+  {
+    "id": "24",
+    "title": "Comments in code are intended for the ____ to read.",
+    "answer": "human",
+    "random": ["human", "JavaScript interpreter", "console"]
+  },
+  {
+    "id": "25",
+    "title": "Which data type is arguably the most commonly used data type in JavaScript?",
+    "answer": "string",
+    "random": ["string", "number", "null"]
+  },
+  {
+    "id": "26",
+    "title": "The JavaScript interpreter will ____ any comments it finds.",
+    "answer": "ignore",
+    "random": ["ignore", "execute (run)", "compile"]
+  },
+  {
+    "id": "27",
+    "title": "What symbol indicates a single-line comment?",
+    "answer": "//",
+    "random": ["//", "\\", "||"]
+  },
+  {
+    "id": "28",
+    "title": "What is the key combination to create a break return when typing in the console?",
+    "answer": "SHIFT+ENTER",
+    "random": ["SHIFT+ENTER", "SHIFT+/", "SHIFT+ESC"]
+  },
+  {
+    "id": "29",
+    "title": "A JavaScript string is usually surrounded by _____.",
+    "answer": "quotes (single quotes or double quotes)",
+    "random": ["quotes (single quotes or double quotes)", "single quotes", "double quotes"]
+  },
+  {
+    "id": "30",
+    "title": "Which characters must you type to start a block comment?",
+    "answer": "/*",
+    "random": ["/*", "*\\", "//"]
+  },
+  {
+    "id": "31",
+    "title": "Which characters indicate the end of a block comment?",
+    "answer": "*/",
+    "random": ["/*", "*\\", "//"]
+  },
+  {
+    "id": "32",
+    "title": "When dealing with strings, it's generally much better to use double quotes than to use single quotes.",
+    "answer": "false",
+    "random": ["false", "true"]
+  },
+  {
+    "id": "33",
+    "title": "A string is made up of one or more individual ___.",
+    "answer": "characters",
+    "random": ["characters", "arguments", "parameters"]
+  },
+  {
+    "id": "34",
+    "title": "What does the \"+\" symbol mean when working with strings in JavaScript?",
+    "answer": "concatenation",
+    "random": ["concatenation", "addition", "multiplication"]
+  },
+  {
+    "id": "35",
+    "title": "What single character can you add to this statement to avoid a Syntax Error?\n let movieQuote = 'The name's Bond. James Bond.'",
+    "answer": "Add a '\\' before the apostrophe: 'The name\\'s Bond. James Bond.'",
+    "random": [
+      "Add a '\\' before the apostrophe: 'The name\\'s Bond. James Bond.'",
+      "Add a '/' before the apostrophe: 'The name/'s Bond. James Bond.'"
+    ]
+  },
+  {
+    "id": "36",
+    "title": "How can you change (not add) two existing characters in this next line to avoid a Syntax Error?\n let differentMovieQuote = 'Here's looking at you, kid.'",
+    "answer": "Change the single quotes to double quotes: \"Here's looking at you, kid.\"",
+    "random": [
+      "Change the single quotes to double quotes: \"Here's looking at you, kid.\"",
+      "Change the single quotes to double quotes: 'Here's looking at you, kid.'"
+    ]
+  },
+  {
+    "id": "37",
+    "title": "What is the name for a separated block of code that can be called to perform a specific task?",
+    "answer": "function",
+    "random": ["function", "state", "quotes"]
+  },
+  {
+    "id": "38",
+    "title": "Which symbols surround the body of a function?",
+    "answer": "Curly braces { and }.",
+    "random": ["Curly braces { and }", "()", "=>"]
+  },
+  {
+    "id": "39",
+    "title": "After creating a function, I can use it later. Calling the function is referred to as ____ the function.",
+    "answer": "invoking (or calling)",
+    "random": ["invoking (or calling)", "launching", "pressing"]
+  },
+  {
+    "id": "40",
+    "title": "What kind of capitalization should be used for function names?",
+    "answer": "camelCase",
+    "random": ["camelCase", "case", "camel"]
+  },
+  {
+    "id": "41",
+    "title": "What part of the function sends something back when the function is called?",
+    "answer": "return",
+    "random": ["return", "=>", "{}"]
+  },
+  {
+    "id": "42",
+    "title": "At the top of a function declaration, there may be variable names (called _______) inside of parens. When invoking this function, values (called _______) may be passed-in to be assigned to these variables.",
+    "answer": "parameters / arguments",
+    "random": ["parameters / arguments", "arguments / parameters"]
+  },
+  {
+    "id": "43",
+    "title": "What is the acronym used to describe the intention of good developers to avoid writing similar blocks of code over and over again?",
+    "answer": "D.R.Y. (Don't Repeat Yourself)",
+    "random": ["D.R.Y. (Don't Repeat Yourself)", "R.Y. (Repeat Yourself)"]
+  },
+  {
+    "id": "44",
+    "title": "Which of the four built-in functions discussed in this chapter would probably annoy users if they encountered it several times on a website?",
+    "answer": "alert()",
+    "random": ["alert()", "console.log()"]
+  },
+  {
+    "id": "45",
+    "title": "If passing multiple values into a function, what symbol is used to separate them?",
+    "answer": ",",
+    "random": [".", ",", "/"]
+  },
+  {
+    "id": "46",
+    "title": "Which built-in function is good for sending secret messages to developers (or to yourself while you're debugging your own website) that users probably won't see?",
+    "answer": "console.log()",
+    "random": ["console.log()", "alert()", "congirm()"]
+  },
+  {
+    "id": "47",
+    "title": "Even if a function accepts no input, it still needs what symbols in order to use it?",
+    "answer": "()",
+    "random": ["()", "{}", "=>"]
+  },
+  {
+    "id": "48",
+    "title": "The built-in randomization function returns a value that is greater than ___ but less than ___.",
+    "answer": "0 and 1(Math.random())",
+    "random": ["0 and 1(Math.random())", "1 and 0(Math.random())", "0 and 100(Math.random())"]
+  },
+  {
+    "id": "49",
+    "title": "Which built-in function rounds any number down to the nearest integer?",
+    "answer": "Math.floor()",
+    "random": ["Math.floor()", "Math.max()", "Math.random()"]
+  },
+  {
+    "id": "50",
+    "title": "A function can be wrapped inside another function.",
+    "answer": "true",
+    "random": ["true", "false"]
+  },
+  {
+    "id": "51",
+    "title": "When evaluating nested function calls, the interpreter will evaluate them from the inside out.",
+    "answer": "true",
+    "random": ["true", "false"]
+  },
+  {
+    "id": "52",
+    "title": "Which key on the keyboard is used for indenting your code (for example, inside the body of a function)?",
+    "answer": "TAB",
+    "random": ["TAB", "ESC", "ENTER"]
+  },
+  {
+    "id": "53",
+    "title": "What do you type in order to create a new line in the console?",
+    "answer": "\n",
+    "random": ["\n", "/n", "//"]
+  },
+  {
+    "id": "54",
+    "title": "What is the name for the primitive data type that must always be one of two values: either true or false?",
+    "answer": "boolean",
+    "random": ["boolean", "bool", "null"]
+  },
+  {
+    "id": "55",
+    "title": "What is the symbol for the comparison operator that checks if the value on the left side is smaller than the value on the right side?",
+    "answer": "< ('less than')",
+    "random": ["< ('less than')", "> ('greater than')", "= ('equal')"]
+  },
+  {
+    "id": "56",
+    "title": "\"This one's tricky.\" !== 'This one's tricky.'",
+    "answer": "false",
+    "random": ["false", "true"]
+  },
+  {
+    "id": "57",
+    "title": "What is the preferred comparison operator for checking if two values are not equivalent?",
+    "answer": "!==",
+    "random": ["!==", "===", "!"]
+  },
+  {
+    "id": "58",
+    "title": "Which are the two comparison operators that recommend you should not use in any of your own code?",
+    "answer": "== and !=",
+    "random": ["== and !=", "> and <", "=> and <="]
+  },
+  {
+    "id": "59",
+    "title": "Which comparison operator checks if the value on the right is less than or equal to the value on the left?",
+    "answer": ">=",
+    "random": [">=", "<=", "=>"]
+  },
+  {
+    "id": "60",
+    "title": "What general kind of statement in coding is used to perform certain blocks of code based on a given condition?",
+    "answer": "conditional",
+    "random": ["conditional", "boolean", "different"]
+  },
+  {
+    "id": "61",
+    "title": "What kind of statement is run only when the condition for an if block has resolved to false?",
+    "answer": "else",
+    "random": ["else", "if", "else if"]
+  },
+  {
+    "id": "62",
+    "title": "Comparison operators always result in a value of true or false.",
+    "answer": "true",
+    "random": ["true", "false"]
+  },
+  {
+    "id": "63",
+    "title": "Comparison operators are often used inside the parens of an if block.",
+    "answer": "true",
+    "random": ["true", "false"]
+  },
+  {
+    "id": "64",
+    "title": "Comparison operators may sometimes be used inside the parens of an else statement.",
+    "answer": "false",
+    "random": ["false", "true"]
+  },
+  {
+    "id": "65",
+    "title": "An if/else statement may only be used outside of a function.",
+    "answer": "false",
+    "random": ["false", "true"]
+  },
+  {
+    "id": "66",
+    "title": "What is the name for the primitive data type that means no other value has been assigned?",
+    "answer": "undefined",
+    "random": ["undefined", "null", "boolean"]
+  },
+  {
+    "id": "67",
+    "title": "Similar to the comparison operators, the _____ operators (&&, ||, and !) work great in conditional statements.",
+    "answer": "logical",
+    "random": ["logical", "conditional", "comparison"]
+  },
+  {
+    "id": "68",
+    "title": "What is the name for the primitive data type that basically means nothing (not zero, not empty string, not undefined, not false, etc.)?",
+    "answer": "null",
+    "random": ["null", "undefined", "boolean"]
+  },
+  {
+    "id": "69",
+    "title": "If a function definition has four parameters, but only two arguments are passed in, what are the values that the third and fourth parameters receive?",
+    "answer": "undefined",
+    "random": ["undefined", "null", "true"]
+  },
+  {
+    "id": "70",
+    "title": "What is the name for the logical operator that will only return falsy if it has falsy values on both sides? What is the symbol for this logical operator?",
+    "answer": "||",
+    "random": ["||", "&&", "!"]
+  },
+  {
+    "id": "71",
+    "title": "How many possible values are there for the null data type?",
+    "answer": "1 possible value (null)",
+    "random": ["1 possible value (null)", "2 possible values (null, undefined)"]
+  },
+  {
+    "id": "72",
+    "title": "53 >= 53 && !(51 <= 52)",
+    "answer": "false",
+    "random": ["false", "true"]
+  },
+  {
+    "id": "73",
+    "title": "If the condition inside the parens of an if block returns falsy, what syntax might you use to check a different condition before resolving to the else block?",
+    "answer": "else if",
+    "random": ["else if", "if", "else"]
+  },
+  {
+    "id": "74",
+    "title": "What is the name for the only logical operator that always returns a boolean? What is the symbol for this logical operator?",
+    "answer": "!",
+    "random": ["!", "||", "&&"]
+  },
+  {
+    "id": "75",
+    "title": "Any/Every value in JavaScript can either be considered truthy or falsy?",
+    "answer": "true",
+    "random": ["true", "false"]
+  },
+  {
+    "id": "76",
+    "title": "What is the name for the logical operator that will return truthy if it has a truthy value on either side? What is the symbol for this logical operator?",
+    "answer": "||",
+    "random": ["||", "&&", "!"]
+  },
+  {
+    "id": "77",
+    "title": "true || false",
+    "answer": "true",
+    "random": ["true", "false"]
+  },
+  {
+    "id": "78",
+    "title": "false || (true && false)",
+    "answer": "false",
+    "random": ["false", "true"]
+  },
+  {
+    "id": "79",
+    "title": "null and undefined are both falsy values.",
+    "answer": "true",
+    "random": ["true", "false"]
+  },
+  {
+    "id": "80",
+    "title": "What is the name for the logical operator that will return falsy if it has a falsy value on either side? What is the symbol for this logical operator?",
+    "answer": "&&",
+    "random": ["&&", "||", "!"]
+  },
+  {
+    "id": "81",
+    "title": "null || false !== undefined",
+    "answer": "true",
+    "random": ["true", "false"]
+  },
+  {
+    "id": "82",
+    "title": "What is the value of myMessage after this line? \nlet myMessage",
+    "answer": "undefined",
+    "random": ["undefined", "null", "SyntaxError"]
+  },
+  {
+    "id": "83",
+    "title": "How many possible values are there for the undefined data type?",
+    "answer": "1 possible value (undefined)",
+    "random": ["1 possible value (undefined)", "2 possible values (undefined, null)"]
+  },
+  {
+    "id": "84",
+    "title": "(null || false) || ((0 || true) || undefined)",
+    "answer": "true",
+    "random": ["true", "false"]
+  },
+  {
+    "id": "85",
+    "title": "What is the value of imFeeling after this line?\n var imFeeling = !'sure' || !!'confused'",
+    "answer": "true",
+    "random": ["true", "false"]
+  },
+  {
+    "id": "86",
+    "title": "What is the name for the logical operator that will only return truthy if it has truthy values on both sides? What is the symbol for this logical operator?",
+    "answer": "&&",
+    "random": ["&&", "||", "!"]
+  },
+  {
+    "id": "87",
+    "title": "The values null, false, '', 0, and undefined are all ____, whereas true, 'string', and 1 are all ___ values.",
+    "answer": "falsy / truthy",
+    "random": ["falsy / truthy", "truthy / falsy"]
+  },
+  {
+    "id": "88",
+    "title": "What's the value of theGreatestOfThese after this line?\n var theGreatestOfThese = 'faith' && 'hope' && 'love'",
+    "answer": "love",
+    "random": ["love", "faith", "true"]
+  },
+  {
+    "id": "89",
+    "title": "In JavaScript, an object is a collection of properties (named values).",
+    "answer": "true",
+    "random": ["true", "false"]
+  },
+  {
+    "id": "90",
+    "title": "What method (function) can you use to convert a string to using all capital letters?",
+    "answer": "toUpperCase()",
+    "random": ["toUpperCase()", "toLowerCase()", "confirm()"]
+  },
+  {
+    "id": "91",
+    "title": "What keyword should you use to create any variable that you know will not be changed?",
+    "answer": "const",
+    "random": ["const", "let", "var"]
+  },
+  {
+    "id": "92",
+    "title": "When should you use the let keyword in your own code?",
+    "answer": "When you know that the value of a variable might change.",
+    "random": [
+      "When you know that the value of a variable might change.",
+      "When you know that the value of a variable cannot change."
+    ]
+  },
+  {
+    "id": "93",
+    "title": "What built-in function(s) will cause the JavaScript interpreter to wait for the user to click a button before continuing with the rest of the code?",
+    "answer": "confirm(), prompt(), and alert()",
+    "random": ["confirm(), prompt(), and alert()", "none", "console.log()"]
+  },
+  {
+    "id": "94",
+    "title": "What term refers to code that has helpfully-named variables and descriptive function names so that it's easy for a developer to understand the purpose of the code as he reads it (without much need for explanatory comments)?",
+    "answer": "Self-documenting",
+    "random": ["Self-documenting", "My-documenting", "Our-documenting"]
+  },
+  {
+    "id": "95",
+    "title": "What method can you use to convert a string to using all non-capital letters?",
+    "answer": "toLowerCase()",
+    "random": ["toLowerCase()", "toUpperCase()", "confirm()"]
+  },
+  {
+    "id": "96",
+    "title": "When should you use the var keyword in your own code?",
+    "answer": "Never",
+    "random": ["Never", "Always", "Often"]
+  },
+  {
+    "id": "97",
+    "title": "When an object's property is a function, it goes by a special name: \"mothered\".",
+    "answer": "false. It goes by a special name: \"method\"",
+    "random": ["false. It goes by a special name: \"method\"", "true", "false. It goes by a special name: \"class\""]
+  },
+  {
+    "id": "98",
+    "title": "What built-in function will cause the JavaScript interpreter to wait for the user to type information before continuing with the rest of the code?",
+    "answer": "prompt()",
+    "random": ["prompt()", "confirm()", "alert()"]
+  },
+  {
+    "id": "99",
+    "title": "Which keyword will you probably use most of the time to create variables?",
+    "answer": "const",
+    "random": ["const", "let", "var"]
+  },
+  {
+    "id": "100",
+    "title": "The prompt() function always returns a boolean.",
+    "answer": "false. It always returns a string (or null).",
+    "random": ["false. It always returns a string (or null).", "true"]
+  },
+  {
+    "id": "101",
+    "title": "The alert(), confirm(), and prompt() functions are widely used by professionals because they create an elegant user experience.",
+    "answer": "false. They create a poor user experience and block the rest of the code from running. For these reasons, professionals don't often use these functions anymore.",
+    "random": [
+      "false. They create a poor user experience and block the rest of the code from running. For these reasons, professionals don't often use these functions anymore.",
+      "true"
+    ]
+  },
+  {
+    "id": "102",
+    "title": "What is the JavaScript name for a list of values in a specific order?",
+    "answer": "array",
+    "random": ["array", "method", "function"]
+  },
+  {
+    "id": "103",
+    "title": "What does the .length of an array refer to?",
+    "answer": "Number of items in the array",
+    "random": ["Number of items in the array", "string", "boolean"]
+  },
+  {
+    "id": "104",
+    "title": "The ____ in an array is the number representing any given item's position in the array.",
+    "answer": "index",
+    "random": ["index", "length", "function"]
+  },
+  {
+    "id": "105",
+    "title": "To retrieve the first item in an array, what value should go between the square brackets? \n myArray[ ]",
+    "answer": "0",
+    "random": ["0", "1", "2"]
+  },
+  {
+    "id": "106",
+    "title": "An array may contain a mix of different data types.",
+    "answer": "true",
+    "random": ["true", "false"]
+  },
+  {
+    "id": "107",
+    "title": "What built-in method can you use to add a new item to the end of an array?",
+    "answer": ".push()",
+    "random": [".push()", ".pop()", ".shift()"]
+  },
+  {
+    "id": "108",
+    "title": "When using myArray.toString() on an array, the return value will be a string that includes all of the items from the array separated by semicolons.",
+    "answer": "false. The return value will be a string that includes all of the items separated by commas.",
+    "random": ["false. The return value will be a string that includes all of the items separated by commas.", "true"]
+  },
+  {
+    "id": "109",
+    "title": "Using the .pop() method on an array will _____ and _____ the last item of the array.",
+    "answer": "remove / return",
+    "random": ["remove / return", "return / remove"]
+  },
+  {
+    "id": "110",
+    "title": "After running this code, the textbooks array will have a .length of 4. \n const textbooks = ['english', 'biology'] \n textbooks.concat(['math', 'spanish'])",
+    "answer": "false. The textbooks array will not be changed. It will still have a .length of 2.",
+    "random": ["false. The textbooks array will not be changed. It will still have a .length of 2.", "true"]
+  },
+  {
+    "id": "111",
+    "title": "What term refers to the practice of repeatedly calling one method after another on an object, in one continuous line of code?",
+    "answer": "chaining",
+    "random": ["chaining", "steping", "fitness"]
+  },
+  {
+    "id": "112",
+    "title": "Answer this before testing it out in the console: What will be the result of this code? \n const sewingSupplies = ['thread', 'needle', 'thimble']\n sewingSupplies.sort()[1]",
+    "answer": "thimble",
+    "random": ["thimble", "thread", "needle"]
+  },
+  {
+    "id": "113",
+    "title": "When using myArray.join(\"\n\") on an array, the string \"\n\" is known as the separator: the string that will go between each array item.",
+    "answer": "true",
+    "random": ["true", "false"]
+  },
+  {
+    "id": "114",
+    "title": "The .unshift() method can be used to add an item to the beginning of the array while the ____ method will take an item off the beginning of the array.",
+    "answer": ".shift()",
+    "random": [".shift()", ".pop()", ".push()"]
+  },
+  {
+    "id": "115",
+    "title": "What value will be returned from the following line?\n const hairProducts = ['shampoo', 'hairspray', 'gel']\n const myFaveProductIndex = 2 \n hairProducts[myFaveProductIndex]",
+    "answer": "gel",
+    "random": ["gel", "shampoo", "hairspray"]
+  },
+  {
+    "id": "116",
+    "title": "When using myArray.join(' or ') on an array, the return value will be a new array that includes all of the items from the original array separated by the string \" or \".",
+    "answer": "false. The return value will be a string that includes all of the items from the original array separated by the string \" or \".",
+    "random": [
+      "false. The return value will be a string that includes all of the items from the original array separated by the string \" or \".",
+      "true"
+    ]
+  },
+  {
+    "id": "117",
+    "title": "What will be the result of this code?\n['D', 'C', 'A', 'B'].toString().toLowerCase().split(',').sort()[3]",
+    "answer": "d",
+    "random": ["d", "b", "c"]
+  },
+  {
+    "id": "118",
+    "title": "On a technical level, the .join() method does not actually convert an array to a string, but rather creates a new string based on the values from the array.",
+    "answer": "true",
+    "random": ["true", "false"]
+  },
+  {
+    "id": "119",
+    "title": "What is the term for a block of code that will repeat itself over and over again as long as some condition remains truthy?",
+    "answer": "loop",
+    "random": ["loop", "while", "if else"]
+  },
+  {
+    "id": "120",
+    "title": "What word could you put in the blank space in this block of code?\nlet i = 0\n _____ (i < 5) { \nconsole.log(i) \n i++\n}",
+    "answer": "while",
+    "random": ["while", "for", "if"]
+  },
+  {
+    "id": "121",
+    "title": "Of the two kinds of loops that we discussed in this chapter, which is more commonly used for arrays?",
+    "answer": "for",
+    "random": ["for", "while"]
+  },
+  {
+    "id": "122",
+    "title": "Your code may get trapped in a never-ending _____ if the _____ always remains truthy.",
+    "answer": "loop / condition",
+    "random": ["loop / condition", "condition / loop"]
+  },
+  {
+    "id": "123",
+    "title": "How many individual messages (lines) will be logged to the console using this code?\nconst countyNums = [1, 2, 3, 5, 6]\nfor (let j = 0; j < countyNums.length; j++) {\nconsole.log(j + ' => ' + countyNums[j]) \n}",
+    "answer": "5",
+    "random": ["5", "6", "4"]
+  },
+  {
+    "id": "124",
+    "title": "When a decision or style is not required, but it is a common accepted practice in the industry, we call this a coding ________.",
+    "answer": "convention",
+    "random": ["convention", "document", "loop"]
+  },
+  {
+    "id": "125",
+    "title": "How many individual messages (lines) will be logged to the console using this code?let k = 0\n while (k < 7) {\nconsole.log('line!')\n}",
+    "answer": "Infinite! there is no incrementer, so code will be trapped in a never-ending loop!",
+    "random": ["Infinite! there is no incrementer, so code will be trapped in a never-ending loop!", "6", "7"]
+  },
+  {
+    "id": "126",
+    "title": "What character is used to separate each of the three sections inside the parens of a for loop?",
+    "answer": ";",
+    "random": [";", ",", "."]
+  },
+  {
+    "id": "127",
+    "title": "Of the three sections inside the parens of a for loop, what is the middle section called?",
+    "answer": "condition",
+    "random": ["condition", "convention", "loop"]
+  },
+  {
+    "id": "128",
+    "title": "How many individual messages (lines) will be logged to the console using this code?\nconst maxCounter = 17\n let n = 0\nwhile (n <= maxCounter) {\nconsole.log('count it! ' + n)\nn++\n }",
+    "answer": "18 (remember that it starts at 0)",
+    "random": ["18 (remember that it starts at 0)", "17", "0"]
+  },
+  {
+    "id": "129",
+    "title": "What word refers to a single pass through of a looped code block?",
+    "answer": "iteration",
+    "random": ["iteration", "condition", "convention"]
+  },
+  {
+    "id": "130",
+    "title": "What should you put in the blank space in this block of code?\nconst hats = ['cowboy', 'bowler', 'chef', 'top']\n for (let p = 0; p < ________; p++) {\n    console.log('I like to wear a ' + hats[p] + ' hat.')\n }",
+    "answer": "hats.length",
+    "random": ["hats.length", "hats", "length"]
+  }
+]

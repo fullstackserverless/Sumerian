@@ -20,7 +20,7 @@ const styles = ScaledSheet.create({
     height: 60,
     textAlign: 'center',
     top: 20,
-    left: Platform.OS === 'ios' ? 10 : 25
+    left: 5
   },
   rightIconStyle: {
     fontSize: 33,
@@ -34,7 +34,7 @@ const styles = ScaledSheet.create({
     fontSize: 28,
     width: W - s(120),
     textAlign: 'center',
-    paddingTop: 25
+    paddingTop: 20
   }
 })
 
@@ -59,10 +59,12 @@ const Header = memo<HeaderT>(({ title, iconLeft, iconRight, onPress, onPressRigh
         </TouchableOpacity>
       )}
       {title && <Txt h0 title={title} color={white} textStyle={titleStyle} />}
-      {iconRight && (
+      {iconRight ? (
         <TouchableOpacity onPress={onPressRight}>
           <Emoji name={iconRight} style={rightIconStyle} />
         </TouchableOpacity>
+      ) : (
+        <View style={rightIconStyle} />
       )}
     </View>
   )

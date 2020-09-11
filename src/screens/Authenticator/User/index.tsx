@@ -5,7 +5,7 @@ import I18n from '../../../utils'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppContainer, Button } from '../../../components'
-import { goHome, white } from '../../../constants'
+import { goHome } from '../../../constants'
 import { RootStackParamList } from '../../../AppNavigator'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'HELLO'>

@@ -45,6 +45,43 @@ export const listProfiles = /* GraphQL */ `
     }
   }
 `;
+export const getExam = /* GraphQL */ `
+  query GetExam($id: ID!) {
+    getExam(id: $id) {
+      id
+      english
+      javaScript
+      reactNative
+      typeScript
+      amplify
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listExams = /* GraphQL */ `
+  query ListExams(
+    $filter: ModelExamFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listExams(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        english
+        javaScript
+        reactNative
+        typeScript
+        amplify
+        owner
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const getEnglish = /* GraphQL */ `
   query GetEnglish($id: ID!) {
     getEnglish(id: $id) {

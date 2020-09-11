@@ -38,9 +38,7 @@ function useCounter(initialCount = 0) {
 }
 
 const delay = (duration: number) => new Promise((resolve) => setTimeout(resolve, duration))
-
 const Tab0Learn = ({ route, navigation }: Tab0LearnT) => {
-  const [bool, setBool] = useState<boolean>(true)
   const defautState = {
     id: '0',
     name: '',
@@ -48,11 +46,8 @@ const Tab0Learn = ({ route, navigation }: Tab0LearnT) => {
     url: ''
   }
 
-  // const [data, updateData] = useState<Array<TestT>>([defautState])
   const [displayName, setDisplayName] = useState<TestT>(defautState)
-
   const { container } = styles
-
   const { count, increment, reset } = useCounter(0)
 
   useEffect(() => {
@@ -76,71 +71,21 @@ const Tab0Learn = ({ route, navigation }: Tab0LearnT) => {
 
   const uri = displayName.url
 
-  const onPressPlay = () => {
-    setBool(true)
-    playerRef.current?.seek(0)
-  }
-
   const color = Platform.OS === 'ios' ? white : classicRose
 
   const orientation = useOrientation()
   const width = orientation === 'LANDSCAPE' ? ms(450, 0.7) : ms(300, 0.7)
   const height = orientation === 'LANDSCAPE' ? ms(150, 0.9) : s(200)
   const { title } = displayName
-  const fontSize = Platform.OS === 'ios' ? s(150) : s(150)
-
-  // const onPress = () => console.log('object')
-
-  // const data = [
-  //   {
-  //     id: 1,
-  //     title: ':repeat:'
-  //   },
-  //   {
-  //     id: 2,
-  //     title: ':twisted_rightwards_arrows:'
-  //   }
-  // ]
-
-  // const numbers = ['one', 'two']
-
-  // const [value, setValue] = useState({
-  //   one: true,
-  //   two: false
-  // })
-
-  // const _onChangeState = (number) => () => {
-  //   const defaultObject = numbers.reduce((acc, el) => ({ ...acc, [el]: false }), {})
-  //   setValue({ ...defaultObject, [numbers[number - 1]]: true })
-  // }
+  const fontSize = Platform.OS === 'ios' ? s(150) : s(120)
 
   return (
-    <AppContainer
-      title={title}
-      onPress={goBack(navigation)}
-      colorLeft={color}
-      color={classicRose}
-      iconLeft=":back:"
-      iconRight=":loud_sound:"
-      onPressRight={onPressPlay}
-    >
+    <AppContainer title={title} onPress={goBack(navigation)} colorLeft={color} color={classicRose} iconLeft=":back:">
       <View style={[container, { height, width }]}>
         <Video ref={playerRef} source={{ uri }} audioOnly />
         {displayName.name !== '' && <EmojiView name={displayName.name} fontSize={fontSize} />}
       </View>
       <Space height={s(100)} />
-      {/* <Row>
-        {data.map(({ id, title }) => {
-          const check = value[numbers[id - 1]]
-          const opacity = check ? 0.6 : 1
-          return (
-            <TouchableOpacity onPress={_onChangeState(id)} key={id}>
-              <EmojiView name={title} fontSize={40} opacity={opacity} />
-              <Space width={s(15)} />
-            </TouchableOpacity>
-          )
-        })}
-      </Row> */}
     </AppContainer>
   )
 }
