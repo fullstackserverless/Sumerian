@@ -339,8 +339,6 @@ PODS:
     - React
     - SDWebImage (~> 5.8)
     - SDWebImageWebPCoder (~> 0.6.1)
-  - RNFS (2.16.6):
-    - React
   - RNImageCropPicker (0.32.2):
     - React-Core
     - React-RCTImage
@@ -437,7 +435,6 @@ DEPENDENCIES:
   - RNAWSCognito (from `../node_modules/amazon-cognito-identity-js`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - RNFastImage (from `../node_modules/react-native-fast-image`)
-  - RNFS (from `../node_modules/react-native-fs`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNKeychain (from `../node_modules/react-native-keychain`)
   - RNLocalize (from `../node_modules/react-native-localize`)
@@ -545,8 +542,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/async-storage"
   RNFastImage:
     :path: "../node_modules/react-native-fast-image"
-  RNFS:
-    :path: "../node_modules/react-native-fs"
   RNImageCropPicker:
     :path: "../node_modules/react-native-image-crop-picker"
   RNKeychain:
@@ -616,7 +611,6 @@ SPEC CHECKSUMS:
   RNAWSCognito: 08567d55159547e8ac2a1ce4350cd44a67f3db96
   RNCAsyncStorage: d059c3ee71738c39834a627476322a5a8cd5bf36
   RNFastImage: e19ba191922e7dab9d932a4d59d62d76660aa222
-  RNFS: 2bd9eb49dc82fa9676382f0585b992c424cd59df
   RNImageCropPicker: f0557a908758c4a3f83978894ec7227651529b45
   RNKeychain: db956c02a018f7dd3a0ea8a6cf3087bc1894bf2b
   RNLocalize: 49634a6a605dcdeb319e9c42a5c2f1aec508694b

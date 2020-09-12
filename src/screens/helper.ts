@@ -1,13 +1,11 @@
 import { Storage } from 'aws-amplify'
 import uuid from 'react-native-uuid'
 import ImagePicker from 'react-native-image-crop-picker'
-import { Auth, API, graphqlOperation } from 'aws-amplify'
+import { API, graphqlOperation } from 'aws-amplify'
 import { S3ObjectT } from '../AppNavigator'
 import { ObjT, ProgT, ExamT } from '../AppNavigator'
 import { listProfiles } from '../../src/graphql/queries'
 import * as Keychain from 'react-native-keychain'
-
-const owner = Auth.user.attributes.sub
 
 const fetchImage = async (avatar: S3ObjectT) => {
   try {
@@ -107,6 +105,7 @@ const compareTitle = (a: { title: string }, b: { title: string }) => {
 
 const sortTitle = (data: any) => data.sort(compareTitle)
 const sortCreatedAt = (data: any) => data.sort(compareCreatedAt)
+
 const onlyTitleInArray = (data: any) => data.map((x: any) => x.title)
 
 const fetchExam = async (url: string) => {
@@ -138,15 +137,6 @@ const user = async () => {
   return obj && updateData(obj.data.listProfiles.items[0])
 }
 
-const filterQuery = {
-  filter: {
-    owner: {
-      eq: owner
-    }
-  },
-  limit: 50
-}
-
 export {
   pickAva,
   createImage,
@@ -159,6 +149,5 @@ export {
   jsonToString,
   onlyTitleInArray,
   compareCreatedAt,
-  user,
-  filterQuery
+  user
 }

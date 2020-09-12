@@ -93,11 +93,11 @@ export type RootStackParamList = {
   TAB0_MAIN: undefined
   TAB0_DETAIL: ObjT
   TAB0_ADD: ObjT
-  TAB0_TEST: { data: TestT; done: boolean; id: string; checkExam?: boolean }
+  TAB0_TEST: { data: TestT; done: boolean; id: string; checkExam?: boolean; examId?: string }
   TAB1_MAIN: undefined
   TAB1_DETAIL: ObjT
   TAB1_ADD: ObjT
-  TAB1_TEST: { data: TestT }
+  TAB1_TEST: { data: TestT; done: boolean; id: string; checkExam?: boolean; examId?: string }
   TAB2_MAIN: undefined
   TAB2_DETAIL: ObjT
   TAB2_ADD: ObjT
@@ -118,7 +118,7 @@ const Stack = createNativeStackNavigator()
 const TabsTop = (): React.ReactElement => {
   return (
     // @ts-expect-error
-    <TopTabNavigator.Navigator initialRouteName="TabTop0">
+    <TopTabNavigator.Navigator initialRouteName="TabTop1">
       <TopTabNavigator.Screen name="TabTop0" component={Tab0Main} />
       <TopTabNavigator.Screen name="TabTop1" component={Tab1Main} />
       <TopTabNavigator.Screen name="TabTop2" component={Tab2Main} />

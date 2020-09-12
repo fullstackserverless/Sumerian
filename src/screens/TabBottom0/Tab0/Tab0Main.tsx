@@ -8,7 +8,7 @@ import { RouteProp } from '@react-navigation/native'
 import { AppContainer, ButtonSquare, Row, Space, Header, Card, ProgressBar } from '../../../components'
 import I18n from '../../../utils'
 import CheckBox from 'react-native-animated-checkbox'
-import { goBack, onScreen, classicRose, mustard, white } from '../../../constants'
+import { goBack, onScreen, classicRose, white } from '../../../constants'
 import { RootStackParamList, ObjT, ProgT } from '../../../AppNavigator'
 import { listEnglishs, listExams, listEnglishProgs } from '../../../graphql/queries'
 import {
@@ -16,10 +16,11 @@ import {
   onCreateEnglishProg,
   onUpdateEnglish,
   onDeleteEnglish,
-  onCreateExam
+  onCreateExam,
+  onUpdateExam
 } from '../../../graphql/subscriptions'
 import { uniqBy } from 'lodash'
-import { ActionT, StateT, compareCreatedAt, fetchExam, filterQuery } from '../../helper'
+import { ActionT, StateT, compareCreatedAt, fetchExam } from '../../helper'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB0_MAIN'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB0_MAIN'>
@@ -87,12 +88,22 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
 
   const fetchData = async () => {
     try {
-      const arr = await API.graphql(graphqlOperation(listEnglishs, { limit: 1000 }))
+      const owner = Auth.user.attributes.sub
+      const filterQuery = {
+        filter: {
+          owner: {
+            eq: owner
+          }
+        },
+        limit: 50
+      }
+      const arr = await API.graphql(graphqlOperation(listEnglishs, { limit: 100 }))
       const arrProg = await API.graphql(graphqlOperation(listEnglishProgs, filterQuery))
       const arrExam = await API.graphql(graphqlOperation(listExams, filterQuery))
       const data = arr.data.listEnglishs.items
       const prog = arrProg.data.listEnglishProgs.items
       const exam = arrExam.data.listExams.items
+      console.log('examEnglishFetch', exam)
       dispatch({ type: 'READ', data, prog, exam })
       setLoading(false)
     } catch (err) {
@@ -121,6 +132,9 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
     const subscriptionCreateExam = API.graphql(graphqlOperation(onCreateExam)).subscribe({
       next: () => fetchData()
     })
+    const subscriptionUpdateExam = API.graphql(graphqlOperation(onUpdateExam)).subscribe({
+      next: () => fetchData()
+    })
     const subscriptionUpdate = API.graphql(graphqlOperation(onUpdateEnglish)).subscribe({
       next: (data: any) => dispatch({ type: 'UPDATE', data: data.value.data.onUpdateEnglish })
     })
@@ -133,11 +147,13 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
       subscriptionDelete.unsubscribe()
       subscriptionCreateProgress.unsubscribe()
       subscriptionCreateExam.unsubscribe()
+      subscriptionUpdateExam.unsubscribe()
       isSubscribed = false
     }
   }, [navigation])
 
   const { data, prog, exam } = state
+  console.log('examEnglish', exam)
 
   const _renderItem = ({ item }: ItemT) => {
     const search = prog.filter((x: ProgT) => x.doneId === item.id)
@@ -159,8 +175,8 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
 
   const _keyExtractor = (obj: any) => obj.id.toString()
 
-  const checkExam = exam.length === 0 ? false : exam.english
-
+  const checkExam = exam.length === 0 ? false : exam[0].english
+  const examId = exam.length === 0 ? false : exam[0].id
   return (
     <AppContainer onPress={goBack(navigation)} loading={loading} flatList color={classicRose}>
       <FlatList
@@ -175,7 +191,7 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
               <ProgressBar progress={prog.length / data.length} />
               <ButtonSquare
                 title={I18n.t('exam')}
-                onPress={onScreen('TAB0_TEST', navigation, { data: test, checkExam })}
+                onPress={onScreen('TAB0_TEST', navigation, { data: test, checkExam, examId })}
                 color={classicRose}
                 textColor={white}
                 borderColor={classicRose}

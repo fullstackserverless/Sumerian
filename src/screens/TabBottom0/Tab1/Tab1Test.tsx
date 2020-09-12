@@ -13,8 +13,9 @@ import { RootStackParamList, TestT } from '../../../AppNavigator'
 import { AppContainer, Txt, Space, ButtonAnswer } from '../../../components'
 import { goBack, classicRose, errSoundOne, errSoundTwo, white, W, mustard } from '../../../constants'
 import { useOrientation } from '../../../hooks'
-import { createEnglishProg } from '../../../graphql/mutations'
+import { createJavaScriptProg, updateExam, createExam } from '../../../graphql/mutations'
 import { getReactNative } from '../../../graphql/queries'
+import useAudio from '../../../hooks/useAudio'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB1_TEST'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB1_TEST'>
@@ -25,17 +26,6 @@ type Tab1TestT = {
 }
 
 const styles = ScaledSheet.create({
-  container: {
-    alignSelf: 'center'
-  },
-  display: {},
-  sub: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    position: 'absolute',
-    bottom: s(-10)
-  },
   gif: {
     height: s(200),
     width: s(200),
@@ -58,13 +48,12 @@ const Tab1Test = ({ route, navigation }: Tab1TestT) => {
   const [displayName, setDisplayName] = useState<TestT>(defautState)
   const [count, setCount] = useState<number>(0)
   const [answer, setAnswer] = useState<number>(0)
-
-  const { container, display, sub, gif } = styles
-  // console.log('displayName.title', displayName.title)
-  // console.log('randomData', randomData)
+  const [setPlay] = useAudio(require('../../../sounds/magicSpell.mp3'))
+  const { data, done, id, checkExam, examId } = route.params
+  console.log('examId', examId)
 
   useEffect(() => {
-    const array = shuffle(route.params)
+    const array = shuffle(data)
     setDisplayName(array[answer])
     updateData(array)
     return () => {
@@ -107,16 +96,25 @@ const Tab1Test = ({ route, navigation }: Tab1TestT) => {
     goBack(navigation)()
   }
 
-  const length = route.params.length
+  const length = data.length
   const progress = answer / length
 
   const setProgress = async () => {
     stopRender(true)
     setLoading(true)
+    setPlay(true)
     try {
-      // !done && (await API.graphql(graphqlOperation(createEnglishProg, { input: { doneId: id } })))
+      done !== undefined &&
+        !done &&
+        (await API.graphql(graphqlOperation(createJavaScriptProg, { input: { doneId: id } })))
+      if (examId) {
+        await API.graphql(graphqlOperation(updateExam, { input: { id: examId, javaScript: true } }))
+      } else {
+        await API.graphql(graphqlOperation(createExam, { input: { javaScript: true } }))
+      }
       setLoading(false)
     } catch (err) {
+      console.log('err', err)
       setError(err)
       setLoading(false)
     }
@@ -124,6 +122,7 @@ const Tab1Test = ({ route, navigation }: Tab1TestT) => {
 
   const title = displayName.title
 
+  const { gif } = styles
   return (
     <AppContainer
       title={length !== answer ? String(bool) : I18n.t('win')}
@@ -131,7 +130,7 @@ const Tab1Test = ({ route, navigation }: Tab1TestT) => {
       colorLeft={color}
       color={mustard}
       iconLeft=":back:"
-      onPressRight={onPressPlay}
+      //onPressRight={onPressPlay}
     >
       <View style={{ position: 'absolute', top: bottomProgress }}>
         <Progress.Bar progress={progress} width={W - s(150)} color={white} height={s(6)} />
@@ -156,21 +155,3 @@ const Tab1Test = ({ route, navigation }: Tab1TestT) => {
 }
 
 export { Tab1Test }
-
-// const permissions = async () => {
-//   if (Platform.OS === 'android') {
-//     try {
-//       const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.RECORD_AUDIO, {
-//         title: 'title',
-//         message: 'message',
-//         buttonPositive: 'OK'
-//       })
-//       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-//       } else {
-//         return
-//       }
-//     } catch (err) {
-//       return
-//     }
-//   }
-// }

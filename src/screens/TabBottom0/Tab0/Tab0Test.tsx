@@ -13,7 +13,7 @@ import { RootStackParamList, TestT } from '../../../AppNavigator'
 import { AppContainer, Txt, ButtonIcon } from '../../../components'
 import { goBack, classicRose, errSoundOne, errSoundTwo, white, W } from '../../../constants'
 import { useOrientation } from '../../../hooks'
-import { createEnglishProg, createExam } from '../../../graphql/mutations'
+import { createEnglishProg, updateExam, createExam } from '../../../graphql/mutations'
 import useAudio from '../../../hooks/useAudio'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB0_TEST'>
@@ -61,8 +61,7 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
   const [setPlay] = useAudio(require('../../../sounds/magicSpell.mp3'))
 
   const { container, display, sub, gif } = styles
-  const { data, done, id, checkExam } = route.params
-  console.log('checkExam', checkExam)
+  const { data, done, id, checkExam, examId } = route.params
 
   const shake = () => {
     const shuff = shuffle(data)
@@ -130,15 +129,13 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
     stopRender(true)
     setLoading(true)
     setPlay(true)
-    console.log('setProgress')
     try {
-      // done !== undefined &&
-      //   !done &&
-      //   console.log('done')
-      //   //await API.graphql(graphqlOperation(createEnglishProg, { input: { doneId: id } }))
-      // !checkExam && console.log('done')
-      //await API.graphql(graphqlOperation(createExam, { input: { english: true } }))
-
+      done !== undefined && !done && (await API.graphql(graphqlOperation(createEnglishProg, { input: { doneId: id } })))
+      if (examId) {
+        await API.graphql(graphqlOperation(updateExam, { input: { id: examId, english: true } }))
+      } else {
+        await API.graphql(graphqlOperation(createExam, { input: { english: true } }))
+      }
       setLoading(false)
     } catch (err) {
       console.log('err', err)

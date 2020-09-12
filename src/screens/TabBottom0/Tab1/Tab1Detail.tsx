@@ -6,6 +6,7 @@ import { RootStackParamList, TestT } from '../../../AppNavigator'
 import { AppContainer, YouTubePlayer, Button, Space } from '../../../components'
 import I18n from '../../../utils'
 import { goBack, onScreen, white, mustard } from '../../../constants'
+import { onlyTitleInArray } from '../../helper'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB1_DETAIL'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB1_DETAIL'>
@@ -32,6 +33,7 @@ const Tab1Detail = ({ route, navigation }: Tab1DetailT) => {
     if (json) {
       const response = await fetch(json)
       const data = await response.json()
+      onlyTitleInArray(data)
       setData(data)
     }
   }

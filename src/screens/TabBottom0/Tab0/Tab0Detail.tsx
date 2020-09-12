@@ -8,6 +8,7 @@ import I18n from '../../../utils'
 import { ScaledSheet } from 'react-native-size-matters'
 import { goBack, classicRose, onScreen, white } from '../../../constants'
 import { View } from 'react-native'
+import { onlyTitleInArray } from '../../helper'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB0_DETAIL'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB0_DETAIL'>
@@ -59,10 +60,11 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
 
   const fetchData = async () => {
     try {
-      const url = `https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/04-Activity/data.json`
+      const url = `https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/05-Dress/data.json`
       const response = await fetch(url)
       //const response = await fetch(json)
       const data = await response.json()
+      //console.log(onlyTitleInArray(data))
       setData(data)
     } catch (error) {
       //console.log('error', error)
