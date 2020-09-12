@@ -6,9 +6,9 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import { s } from 'react-native-size-matters'
 import { RouteProp } from '@react-navigation/native'
 import { AppContainer, ButtonSquare, Row, Space, Header, Card, ProgressBar } from '../../../components'
-import I18n from '../../../utils'
+import I18n, { lang } from '../../../utils'
 import CheckBox from 'react-native-animated-checkbox'
-import { goBack, onScreen, mustard, white, black } from '../../../constants'
+import { goBack, onScreen, mustard, black } from '../../../constants'
 import { RootStackParamList, ObjT, ProgT } from '../../../AppNavigator'
 import { listJavaScripts, listExams, listJavaScriptProgs } from '../../../graphql/queries'
 import {
@@ -19,7 +19,7 @@ import {
   onCreateExam,
   onUpdateExam
 } from '../../../graphql/subscriptions'
-import { clamp, uniqBy } from 'lodash'
+import { uniqBy } from 'lodash'
 import { ActionT, StateT, compareCreatedAt, fetchExam } from '../../helper'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB1_MAIN'>
@@ -108,17 +108,15 @@ const Tab1Main = ({ navigation }: Tab1MainT): ReactElement => {
       setLoading(false)
     } catch (err) {
       setError(err)
-      console.log('err', err)
       setLoading(false)
     }
   }
 
   useEffect(() => {
     let isSubscribed: boolean = true // eslint-disable-line
-
     setLoading(true)
     fetchData()
-    fetchExam('https://s3.eu-central-1.wasabisys.com/ghashtag/JSForKids/forTest/test.json').then((x) => setTest(x))
+    fetchExam(`https://s3.eu-central-1.wasabisys.com/ghashtag/JSForKids/forTest/${lang}.json`).then((x) => setTest(x))
     const check = Auth.user.signInUserSession.idToken.payload['cognito:groups']
     const adm =
       check !== undefined ? Auth.user.signInUserSession.idToken.payload['cognito:groups'][0] === 'Admin' : false
@@ -174,7 +172,7 @@ const Tab1Main = ({ navigation }: Tab1MainT): ReactElement => {
   }
 
   const _keyExtractor = (obj: any) => obj.id.toString()
-  console.log('exam', exam)
+
   const checkExam = exam.length === 0 ? false : exam[0].javaScript
   const examId = exam.length === 0 ? false : exam[0].id
 
@@ -192,7 +190,7 @@ const Tab1Main = ({ navigation }: Tab1MainT): ReactElement => {
               <ProgressBar progress={prog.length / data.length} color={black} />
               <ButtonSquare
                 title={I18n.t('exam')}
-                onPress={onScreen('TAB1_TEST', navigation, { data: test, checkExam, examId })}
+                onPress={onScreen('TAB1_TEST', navigation, { data: test, examId })}
                 color={mustard}
                 textColor={black}
                 borderColor={mustard}

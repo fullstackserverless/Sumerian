@@ -14,7 +14,6 @@ import { AppContainer, Txt, Space, ButtonAnswer } from '../../../components'
 import { goBack, classicRose, errSoundOne, errSoundTwo, white, W, mustard } from '../../../constants'
 import { useOrientation } from '../../../hooks'
 import { createJavaScriptProg, updateExam, createExam } from '../../../graphql/mutations'
-import { getReactNative } from '../../../graphql/queries'
 import useAudio from '../../../hooks/useAudio'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB1_TEST'>
@@ -49,8 +48,7 @@ const Tab1Test = ({ route, navigation }: Tab1TestT) => {
   const [count, setCount] = useState<number>(0)
   const [answer, setAnswer] = useState<number>(0)
   const [setPlay] = useAudio(require('../../../sounds/magicSpell.mp3'))
-  const { data, done, id, checkExam, examId } = route.params
-  console.log('examId', examId)
+  const { data, done, id, examId } = route.params
 
   useEffect(() => {
     const array = shuffle(data)
@@ -81,10 +79,10 @@ const Tab1Test = ({ route, navigation }: Tab1TestT) => {
   const err = count % 2 === 0 ? errSoundTwo : errSoundOne
   const uri = bool ? displayName.url : err
 
-  const onPressPlay = () => {
-    setBool(true)
-    playerRef.current?.seek(0)
-  }
+  // const onPressPlay = () => {
+  //   setBool(true)
+  //   playerRef.current?.seek(0)
+  // }
 
   const color = Platform.OS === 'ios' ? white : classicRose
 
@@ -130,6 +128,7 @@ const Tab1Test = ({ route, navigation }: Tab1TestT) => {
       colorLeft={color}
       color={mustard}
       iconLeft=":back:"
+      loading={loading}
       //onPressRight={onPressPlay}
     >
       <View style={{ position: 'absolute', top: bottomProgress }}>

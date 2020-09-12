@@ -61,7 +61,7 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
   const [setPlay] = useAudio(require('../../../sounds/magicSpell.mp3'))
 
   const { container, display, sub, gif } = styles
-  const { data, done, id, checkExam, examId } = route.params
+  const { data, done, id, examId } = route.params
 
   const shake = () => {
     const shuff = shuffle(data)
@@ -76,7 +76,6 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
 
   useEffect(() => {
     const { random, sliceArray } = shake()
-    //setPlay(true)
     setDisplayName(random)
     updateData(sliceArray)
     return () => {

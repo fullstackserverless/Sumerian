@@ -103,7 +103,6 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
       const data = arr.data.listEnglishs.items
       const prog = arrProg.data.listEnglishProgs.items
       const exam = arrExam.data.listExams.items
-      console.log('examEnglishFetch', exam)
       dispatch({ type: 'READ', data, prog, exam })
       setLoading(false)
     } catch (err) {
@@ -117,7 +116,7 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
     let isSubscribed: boolean = true // eslint-disable-line
     setLoading(true)
     fetchData()
-    fetchExam('https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/00-Numbers/data.json').then((x) => setTest(x))
+    fetchExam('https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/00-Numbers/en.json').then((x) => setTest(x))
     const check = Auth.user.signInUserSession.idToken.payload['cognito:groups']
     const adm =
       check !== undefined ? Auth.user.signInUserSession.idToken.payload['cognito:groups'][0] === 'Admin' : false
@@ -153,7 +152,6 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
   }, [navigation])
 
   const { data, prog, exam } = state
-  console.log('examEnglish', exam)
 
   const _renderItem = ({ item }: ItemT) => {
     const search = prog.filter((x: ProgT) => x.doneId === item.id)
@@ -191,7 +189,7 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
               <ProgressBar progress={prog.length / data.length} />
               <ButtonSquare
                 title={I18n.t('exam')}
-                onPress={onScreen('TAB0_TEST', navigation, { data: test, checkExam, examId })}
+                onPress={onScreen('TAB0_TEST', navigation, { data: test, examId })}
                 color={classicRose}
                 textColor={white}
                 borderColor={classicRose}
