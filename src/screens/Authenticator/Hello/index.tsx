@@ -1,6 +1,6 @@
 import React, { useEffect, useState, ReactElement } from 'react'
-import { StyleSheet } from 'react-native'
 import { Auth } from 'aws-amplify'
+import { ScaledSheet, ms } from 'react-native-size-matters'
 import * as Keychain from 'react-native-keychain'
 import I18n from '../../../utils'
 // @ts-expect-error
@@ -8,7 +8,6 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import { AppContainer, Button, Space, Txt, Sumerian } from '../../../components'
 import { onScreen, white, black } from '../../../constants'
 import { RootStackParamList } from '../../../AppNavigator'
-
 import { useTheme } from '@react-navigation/native'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'HELLO'>
@@ -17,12 +16,12 @@ type HelloT = {
   navigation: ProfileScreenNavigationProp
 }
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   img: {
     justifyContent: 'center',
     alignSelf: 'center',
-    height: 150,
-    width: 150
+    height: ms(150, 0.5),
+    width: ms(150, 0.5)
   },
   h6: { alignSelf: 'center' }
 })
@@ -38,7 +37,6 @@ const Hello = ({ navigation }: HelloT): ReactElement => {
     try {
       //await Keychain.resetInternetCredentials('auth')
       const credentials = await Keychain.getInternetCredentials('auth')
-
       if (credentials) {
         const { username, password } = credentials
         const user = await Auth.signIn(username, password)
@@ -48,13 +46,13 @@ const Hello = ({ navigation }: HelloT): ReactElement => {
         setLoading(false)
       }
     } catch (err) {
+      console.log('err', err)
       setError(err.message)
       setLoading(false)
     }
   }
 
   useEffect(() => {
-    //deleteObj()
     setLoading(true)
     key()
   }, [])
@@ -62,8 +60,9 @@ const Hello = ({ navigation }: HelloT): ReactElement => {
   const { img, h6 } = styles
 
   return (
-    <AppContainer loading={loading}>
+    <AppContainer backgroundColor={dark ? black : white} loading={loading}>
       <Sumerian imageStyle={img} />
+
       <Space height={100} />
       <Button title={I18n.t('signIn')} onPress={onScreen('SIGN_IN', navigation)} color={color} />
       <Space height={10} />

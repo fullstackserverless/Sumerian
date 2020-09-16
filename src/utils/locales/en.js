@@ -22,6 +22,7 @@ export default {
   exam: 'Exam',
   learn: 'Learn',
   win: 'Win',
+  newVersion: 'Download the new version of the application',
   disconnected:
     'Your phone is currently disconnected from the internet.\nPlease wait for it to reconnect and try again.'
 }

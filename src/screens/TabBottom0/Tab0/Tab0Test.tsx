@@ -3,15 +3,15 @@ import { View, Platform, Image } from 'react-native'
 import { shuffle } from 'lodash'
 import Video from 'react-native-video'
 import I18n from 'i18n-js'
-import { API, graphqlOperation } from 'aws-amplify'
+import { API, Analytics, graphqlOperation } from 'aws-amplify'
 import * as Progress from 'react-native-progress'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { ScaledSheet, s, ms } from 'react-native-size-matters'
-import { RouteProp } from '@react-navigation/native'
+import { RouteProp, useTheme } from '@react-navigation/native'
 import { RootStackParamList, TestT } from '../../../AppNavigator'
 import { AppContainer, Txt, ButtonIcon } from '../../../components'
-import { goBack, classicRose, errSoundOne, errSoundTwo, white, W } from '../../../constants'
+import { goBack, classicRose, errSoundOne, errSoundTwo, white, W, black } from '../../../constants'
 import { useOrientation } from '../../../hooks'
 import { createEnglishProg, updateExam, createExam } from '../../../graphql/mutations'
 import useAudio from '../../../hooks/useAudio'
@@ -53,12 +53,13 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
   }
   const [loading, setLoading] = useState<boolean>(false)
   const [stop, stopRender] = useState<boolean>(false)
-  const [error, setError] = useState<string>('')
   const [randomData, updateData] = useState<Array<TestT>>([defautState])
   const [displayName, setDisplayName] = useState<TestT>(defautState)
   const [count, setCount] = useState<number>(0)
   const [answer, setAnswer] = useState<number>(0)
   const [setPlay] = useAudio(require('../../../sounds/magicSpell.mp3'))
+  const { dark } = useTheme()
+  const [paused, setPaused] = React.useState<boolean>(false)
 
   const { container, display, sub, gif } = styles
   const { data, done, id, examId } = route.params
@@ -105,6 +106,7 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
   const onPressPlay = () => {
     setBool(true)
     playerRef.current?.seek(0)
+    setPaused(paused)
   }
 
   const color = Platform.OS === 'ios' ? white : classicRose
@@ -137,8 +139,10 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
       }
       setLoading(false)
     } catch (err) {
-      console.log('err', err)
-      setError(err)
+      Analytics.record({
+        name: 'Tab0Main - setProgress',
+        attributes: err
+      })
       setLoading(false)
     }
   }
@@ -149,9 +153,11 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
       title={length !== answer ? title : I18n.t('win')}
       onPress={back}
       colorLeft={color}
-      color={classicRose}
+      color={dark ? classicRose : white}
+      backgroundColor={dark ? black : classicRose}
       iconLeft=":back:"
-      iconRight={Platform.OS === 'ios' && ':loud_sound:'}
+      //iconRight={Platform.OS === 'ios' && ':loud_sound:'}
+      iconRight={':loud_sound:'}
       onPressRight={onPressPlay}
       loading={loading}
     >
@@ -162,7 +168,17 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
       <View style={[container, { height, width, bottom: bottomContainer }]}>
         {length !== answer ? (
           <>
-            <Video ref={playerRef} source={{ uri }} audioOnly />
+            <Video
+              ignoreSilentSwitch="ignore"
+              paused={paused}
+              ref={playerRef}
+              //repeat
+              source={{ uri }}
+              audioOnly
+              onEnd={() => {
+                setPaused(false)
+              }}
+            />
             <View style={sub}>
               {randomData.map(({ id, name, title }) => (
                 <ButtonIcon key={id} name={name} onPress={() => onPress(title)} color={classicRose} />

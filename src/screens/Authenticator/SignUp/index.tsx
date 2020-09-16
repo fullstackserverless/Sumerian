@@ -60,7 +60,13 @@ const SignUp = ({ navigation }: SignUpT): ReactElement => {
   //   passwordConfirmation: 'qwerty123'
   // }}
   return (
-    <AppContainer onPress={goBack(navigation)} title=" " loading={loading} colorLeft={color}>
+    <AppContainer
+      backgroundColor={dark ? black : white}
+      onPress={goBack(navigation)}
+      title=" "
+      loading={loading}
+      colorLeft={color}
+    >
       <Formik
         initialValues={{
           email: '',

@@ -83,7 +83,7 @@ const TabBottom1 = memo(({ navigation }: TabBottom1T) => {
   const color = dark ? white : black
 
   return (
-    <AppContainer loading={loading} message={error}>
+    <AppContainer backgroundColor={dark ? black : white} loading={loading} message={error}>
       <HeaderMaster user={data} onPress={onScreen('USER_EDIT', navigation, data)} loading={loading} />
       <Button title={I18n.t('signOut')} onPress={_onPress} color={color} />
     </AppContainer>

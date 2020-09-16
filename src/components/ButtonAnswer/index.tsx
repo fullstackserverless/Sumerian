@@ -7,29 +7,27 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'flex-start',
-    borderColor: black,
+
     borderWidth: 1,
     padding: 20,
     margin: 10
-  },
-  h: {
-    color: secondary
   }
 })
 
 interface ButtonAnswerT {
   title: string
+  color?: string
   viewStyle?: StyleProp<ViewStyle>
   onPress?: () => void
   textStyle?: StyleProp<TextStyle>
 }
 
-const ButtonAnswer = memo<ButtonAnswerT>(({ title, viewStyle, textStyle, onPress }) => {
+const ButtonAnswer = memo<ButtonAnswerT>(({ title, color = black, viewStyle, textStyle, onPress }) => {
   const { container, h } = styles
 
   return (
-    <TouchableOpacity onPress={onPress} style={[container, viewStyle, { shadowColor: black }]}>
-      <Txt h6 title={title} textStyle={[h, textStyle]} color={secondary} />
+    <TouchableOpacity onPress={onPress} style={[container, viewStyle, { borderColor: color, shadowColor: color }]}>
+      <Txt h6 title={title} textStyle={[textStyle]} color={color} />
     </TouchableOpacity>
   )
 })

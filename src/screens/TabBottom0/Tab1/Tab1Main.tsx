@@ -1,10 +1,10 @@
 import React, { useState, useEffect, ReactElement, useReducer } from 'react'
 import { FlatList } from 'react-native'
-import { Auth, API, graphqlOperation } from 'aws-amplify'
+import { Auth, Analytics, API, graphqlOperation } from 'aws-amplify'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { s } from 'react-native-size-matters'
-import { RouteProp } from '@react-navigation/native'
+import { RouteProp, useTheme } from '@react-navigation/native'
 import { AppContainer, ButtonSquare, Row, Space, Header, Card, ProgressBar } from '../../../components'
 import I18n, { lang } from '../../../utils'
 import CheckBox from 'react-native-animated-checkbox'
@@ -81,10 +81,10 @@ const Tab1Main = ({ navigation }: Tab1MainT): ReactElement => {
   }
 
   const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string>('')
   const [admin, setAdmin] = useState<boolean>(false)
   const [state, dispatch] = useReducer(reducer, initialState)
   const [test, setTest] = useState({})
+  const { dark } = useTheme()
 
   const fetchData = async () => {
     try {
@@ -107,7 +107,10 @@ const Tab1Main = ({ navigation }: Tab1MainT): ReactElement => {
       dispatch({ type: 'READ', data, prog, exam })
       setLoading(false)
     } catch (err) {
-      setError(err)
+      Analytics.record({
+        name: 'Tab1Main - fetchData',
+        attributes: err
+      })
       setLoading(false)
     }
   }
@@ -175,9 +178,15 @@ const Tab1Main = ({ navigation }: Tab1MainT): ReactElement => {
 
   const checkExam = exam.length === 0 ? false : exam[0].javaScript
   const examId = exam.length === 0 ? false : exam[0].id
-
+  const percent = (prog.length / data.length).toFixed(2)
   return (
-    <AppContainer onPress={goBack(navigation)} loading={loading} flatList color={mustard}>
+    <AppContainer
+      backgroundColor={dark ? black : mustard}
+      onPress={goBack(navigation)}
+      loading={loading}
+      flatList
+      color={mustard}
+    >
       <FlatList
         scrollEventThrottle={16}
         data={data.sort(compareCreatedAt)}
@@ -187,15 +196,15 @@ const Tab1Main = ({ navigation }: Tab1MainT): ReactElement => {
         ListHeaderComponent={
           <>
             <Row>
-              <ProgressBar progress={prog.length / data.length} color={black} />
+              <ProgressBar progress={Number(percent)} color={dark ? mustard : black} />
               <ButtonSquare
                 title={I18n.t('exam')}
                 onPress={onScreen('TAB1_TEST', navigation, { data: test, examId })}
                 color={mustard}
-                textColor={black}
-                borderColor={mustard}
+                textColor={dark ? mustard : black}
+                borderColor={dark ? black : mustard}
               />
-              <CheckBox checked={checkExam} color={'green'} />
+              <CheckBox checked={checkExam} color={dark ? mustard : black} iconSize={s(25)} />
             </Row>
             {admin && (
               <Header onPressRight={onScreen('TAB1_ADD', navigation)} iconRight={admin ? ':heavy_plus_sign:' : null} />

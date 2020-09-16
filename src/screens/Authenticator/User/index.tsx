@@ -2,10 +2,11 @@ import React, { useState, useEffect, ReactElement } from 'react'
 import { Auth } from 'aws-amplify'
 import * as Keychain from 'react-native-keychain'
 import I18n from '../../../utils'
+import { useTheme } from '@react-navigation/native'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { AppContainer, Button } from '../../../components'
-import { goHome } from '../../../constants'
+import { black, goHome, white } from '../../../constants'
 import { RootStackParamList } from '../../../AppNavigator'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'HELLO'>
@@ -35,9 +36,9 @@ const User = ({ navigation }: UserT): ReactElement => {
       setError(err.message)
     }
   }
-
+  const { dark } = useTheme()
   return (
-    <AppContainer loading={loading}>
+    <AppContainer backgroundColor={dark ? black : white} loading={loading}>
       <Button title={I18n.t('signOut')} onPress={_onPress} />
     </AppContainer>
   )

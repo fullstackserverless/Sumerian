@@ -491,3 +491,36 @@ export const onDeleteAmplifyProg = /* GraphQL */ `
     }
   }
 `;
+export const onCreateMinimalVersion = /* GraphQL */ `
+  subscription OnCreateMinimalVersion {
+    onCreateMinimalVersion {
+      id
+      build
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateMinimalVersion = /* GraphQL */ `
+  subscription OnUpdateMinimalVersion {
+    onUpdateMinimalVersion {
+      id
+      build
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteMinimalVersion = /* GraphQL */ `
+  subscription OnDeleteMinimalVersion {
+    onDeleteMinimalVersion {
+      id
+      build
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;

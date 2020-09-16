@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { TouchableOpacity, View, GestureResponderEvent, Platform } from 'react-native'
 import Emoji from 'react-native-emoji'
-import { ScaledSheet, s, ms } from 'react-native-size-matters'
+import { ScaledSheet, s } from 'react-native-size-matters'
 import { W, white, H } from '../../constants'
 import { Txt } from '../Txt'
 import { useOrientation } from '../../hooks'
@@ -32,7 +32,7 @@ const styles = ScaledSheet.create({
   titleStyle: {
     color: '#fff',
     fontSize: 28,
-    width: W - s(120),
+    width: W - s(110),
     textAlign: 'center',
     paddingTop: 20
   }
@@ -40,13 +40,14 @@ const styles = ScaledSheet.create({
 
 interface HeaderT {
   title?: string
+  color?: string
   iconLeft?: string
   iconRight?: string | null
   onPress?: (event: GestureResponderEvent) => void
   onPressRight?: (event: GestureResponderEvent) => void
 }
 
-const Header = memo<HeaderT>(({ title, iconLeft, iconRight, onPress, onPressRight }) => {
+const Header = memo<HeaderT>(({ color = white, title, iconLeft, iconRight, onPress, onPressRight }) => {
   const { container, leftIconStyle, rightIconStyle, titleStyle } = styles
   const orientation = useOrientation()
   const width = orientation === 'LANDSCAPE' ? H : W
@@ -58,7 +59,7 @@ const Header = memo<HeaderT>(({ title, iconLeft, iconRight, onPress, onPressRigh
           <Emoji name={iconLeft} style={leftIconStyle} />
         </TouchableOpacity>
       )}
-      {title && <Txt h0 title={title} color={white} textStyle={titleStyle} />}
+      {title && <Txt h0 title={title} color={color} textStyle={titleStyle} />}
       {iconRight ? (
         <TouchableOpacity onPress={onPressRight}>
           <Emoji name={iconRight} style={rightIconStyle} />

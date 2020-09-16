@@ -27,6 +27,7 @@ interface AppContainerT {
   flatList?: boolean
   iconLeft?: string
   color?: string
+  backgroundColor?: string
   colorLeft?: string
   onPress?: ((event: GestureResponderEvent) => void) | undefined
   onPressRight?: (event: GestureResponderEvent) => void | undefined
@@ -46,6 +47,7 @@ const AppContainer = memo<AppContainerT>(
     color = white,
     onPress = null,
     onPressRight = null,
+    backgroundColor,
     iconRight,
     children,
     message = '',
@@ -54,7 +56,7 @@ const AppContainer = memo<AppContainerT>(
   }) => {
     const { container, sub } = styles
     const { dark } = useTheme()
-    const backgroundColor = dark ? black : color
+    //const backgroundColor = dark ? black : color
 
     return (
       <View style={[container, { backgroundColor }]}>
@@ -69,6 +71,7 @@ const AppContainer = memo<AppContainerT>(
         />
         {title && (
           <Header
+            color={color}
             title={title}
             onPress={onPress}
             onPressRight={onPressRight}
@@ -79,7 +82,7 @@ const AppContainer = memo<AppContainerT>(
         )}
         <>
           {loading ? (
-            <Spin />
+            <Spin color={color} />
           ) : (
             <>
               {!flatList ? (

@@ -599,3 +599,45 @@ export const deleteAmplifyProg = /* GraphQL */ `
     }
   }
 `;
+export const createMinimalVersion = /* GraphQL */ `
+  mutation CreateMinimalVersion(
+    $input: CreateMinimalVersionInput!
+    $condition: ModelMinimalVersionConditionInput
+  ) {
+    createMinimalVersion(input: $input, condition: $condition) {
+      id
+      build
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateMinimalVersion = /* GraphQL */ `
+  mutation UpdateMinimalVersion(
+    $input: UpdateMinimalVersionInput!
+    $condition: ModelMinimalVersionConditionInput
+  ) {
+    updateMinimalVersion(input: $input, condition: $condition) {
+      id
+      build
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteMinimalVersion = /* GraphQL */ `
+  mutation DeleteMinimalVersion(
+    $input: DeleteMinimalVersionInput!
+    $condition: ModelMinimalVersionConditionInput
+  ) {
+    deleteMinimalVersion(input: $input, condition: $condition) {
+      id
+      build
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;

@@ -416,3 +416,32 @@ export const listAmplifyProgs = /* GraphQL */ `
     }
   }
 `;
+export const getMinimalVersion = /* GraphQL */ `
+  query GetMinimalVersion($id: ID!) {
+    getMinimalVersion(id: $id) {
+      id
+      build
+      owner
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listMinimalVersions = /* GraphQL */ `
+  query ListMinimalVersions(
+    $filter: ModelMinimalVersionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listMinimalVersions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        build
+        owner
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

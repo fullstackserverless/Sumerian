@@ -118,7 +118,7 @@ const Stack = createNativeStackNavigator()
 const TabsTop = (): React.ReactElement => {
   return (
     // @ts-expect-error
-    <TopTabNavigator.Navigator initialRouteName="TabTop1">
+    <TopTabNavigator.Navigator initialRouteName="TabTop0">
       <TopTabNavigator.Screen name="TabTop0" component={Tab0Main} />
       <TopTabNavigator.Screen name="TabTop1" component={Tab1Main} />
       <TopTabNavigator.Screen name="TabTop2" component={Tab2Main} />

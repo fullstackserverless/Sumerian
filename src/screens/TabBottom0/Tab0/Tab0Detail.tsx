@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react'
+import { Platform } from 'react-native'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
-import { RouteProp, useNavigation } from '@react-navigation/native'
+import { RouteProp, useTheme, useNavigation } from '@react-navigation/native'
 import { RootStackParamList, TestT } from '../../../AppNavigator'
 import { AppContainer, YouTubePlayer, ButtonSquare, Space } from '../../../components'
 import I18n from '../../../utils'
 import { ScaledSheet } from 'react-native-size-matters'
-import { goBack, classicRose, onScreen, white } from '../../../constants'
+import { goBack, classicRose, onScreen, black, white } from '../../../constants'
+//import { arrayWithNewId, onlyTitleInArray } from '../../helper'
 import { View } from 'react-native'
-import { onlyTitleInArray } from '../../helper'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB0_DETAIL'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB0_DETAIL'>
@@ -37,7 +38,7 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
     url: '',
     json: ''
   }
-
+  const { dark } = useTheme()
   const { addListener } = useNavigation()
   const [play, setPlay] = useState(true)
 
@@ -60,10 +61,11 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
 
   const fetchData = async () => {
     try {
-      const url = `https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/05-Dress/data.json`
+      const url = `https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/06-Smileys/data.json`
       const response = await fetch(url)
-      //const response = await fetch(json)
+      // const response = await fetch(json)
       const data = await response.json()
+      //console.log('arrayWithNewId', arrayWithNewId(data))
       //console.log(onlyTitleInArray(data))
       setData(data)
     } catch (error) {
@@ -78,20 +80,31 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
   const { container } = styles
 
   return (
-    <AppContainer title=" " onPress={goBack(navigation)} colorLeft={white} color={classicRose}>
+    <AppContainer
+      backgroundColor={dark ? black : classicRose}
+      title=" "
+      onPress={goBack(navigation)}
+      colorLeft={white}
+      color={classicRose}
+    >
       {play && <YouTubePlayer play={play} uri={uri} />}
       <Space height={20} />
       {json && (
         <View style={container}>
-          <ButtonSquare
-            title={I18n.t('learn')}
-            onPress={onScreen('TAB0_LEARN', navigation, data)}
-            color={classicRose}
-          />
+          {Platform.OS === 'ios' && (
+            <ButtonSquare
+              title={I18n.t('learn')}
+              onPress={onScreen('TAB0_LEARN', navigation, data)}
+              textColor={dark ? classicRose : white}
+              borderColor={dark ? classicRose : white}
+            />
+          )}
+
           <ButtonSquare
             title={I18n.t('test')}
             onPress={onScreen('TAB0_TEST', navigation, { data, done, id })}
-            color={classicRose}
+            textColor={dark ? classicRose : white}
+            borderColor={dark ? classicRose : white}
           />
         </View>
       )}

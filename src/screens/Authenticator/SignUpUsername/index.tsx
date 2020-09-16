@@ -5,7 +5,7 @@ import * as Yup from 'yup'
 import I18n from '../../../utils'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
-import { RouteProp } from '@react-navigation/native'
+import { RouteProp, useTheme } from '@react-navigation/native'
 
 import { createProfile } from '../../../graphql/mutations'
 import { AppContainer, Space, Button, Input } from '../../../components'
@@ -13,7 +13,6 @@ import { onScreen, goBack, white, black } from '../../../constants'
 import { RootStackParamList, S3ObjectT, UserT } from '../../../AppNavigator'
 import config from '../../../../aws-exports'
 //import { pickAva, createImage } from '../../../screens/helper'
-import { useTheme } from '@react-navigation/native'
 
 const { aws_user_files_s3_bucket_region: region, aws_user_files_s3_bucket: bucket } = config
 
@@ -80,7 +79,7 @@ const SignUpUsername = ({ route, navigation }: SignUpUsernameT): ReactElement =>
   const color = dark ? white : black
 
   return (
-    <AppContainer onPress={goBack(navigation)} title=" " colorLeft={color}>
+    <AppContainer backgroundColor={dark ? black : white} onPress={goBack(navigation)} title=" " colorLeft={color}>
       <Space height={30} />
       <Formik
         innerRef={(r) => (formikRef.current = r || undefined)}

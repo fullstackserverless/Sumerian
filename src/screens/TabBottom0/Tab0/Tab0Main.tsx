@@ -1,16 +1,25 @@
 import React, { useState, useEffect, ReactElement, useReducer } from 'react'
 import { FlatList } from 'react-native'
-import { Auth, API, graphqlOperation } from 'aws-amplify'
+import { Auth, Analytics, API, graphqlOperation } from 'aws-amplify'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { s } from 'react-native-size-matters'
-import { RouteProp } from '@react-navigation/native'
-import { AppContainer, ButtonSquare, Row, Space, Header, Card, ProgressBar } from '../../../components'
+import { RouteProp, useTheme } from '@react-navigation/native'
+import {
+  AppContainer,
+  ButtonSquare,
+  Row,
+  Space,
+  Header,
+  Card,
+  ProgressBar,
+  ModalMinimalVersion
+} from '../../../components'
 import I18n from '../../../utils'
 import CheckBox from 'react-native-animated-checkbox'
-import { goBack, onScreen, classicRose, white } from '../../../constants'
+import { goBack, onScreen, classicRose, black } from '../../../constants'
 import { RootStackParamList, ObjT, ProgT } from '../../../AppNavigator'
-import { listEnglishs, listExams, listEnglishProgs } from '../../../graphql/queries'
+import { listEnglishs, listEnglishProgs, listExams, listMinimalVersions } from '../../../graphql/queries'
 import {
   onCreateEnglish,
   onCreateEnglishProg,
@@ -21,6 +30,7 @@ import {
 } from '../../../graphql/subscriptions'
 import { uniqBy } from 'lodash'
 import { ActionT, StateT, compareCreatedAt, fetchExam } from '../../helper'
+import { build } from '../../../../package.json'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB0_MAIN'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB0_MAIN'>
@@ -81,12 +91,26 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
   }
 
   const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string>('')
   const [admin, setAdmin] = useState<boolean>(false)
   const [state, dispatch] = useReducer(reducer, initialState)
   const [test, setTest] = useState({})
+  const [downloadApp, setDownloadApp] = useState<boolean>(false)
+  const { dark } = useTheme()
 
-  const fetchData = async () => {
+  const getMinimalVersion = async (): Promise<void> => {
+    try {
+      const ver = await API.graphql(graphqlOperation(listMinimalVersions))
+      const minimalVersion = ver.data.listMinimalVersions.items[0].build
+      setDownloadApp(minimalVersion > build)
+    } catch (err) {
+      Analytics.record({
+        name: 'Tab0Main - getMinimalVersion',
+        attributes: err
+      })
+    }
+  }
+
+  const fetchData = async (): Promise<void> => {
     try {
       const owner = Auth.user.attributes.sub
       const filterQuery = {
@@ -97,6 +121,7 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
         },
         limit: 50
       }
+
       const arr = await API.graphql(graphqlOperation(listEnglishs, { limit: 100 }))
       const arrProg = await API.graphql(graphqlOperation(listEnglishProgs, filterQuery))
       const arrExam = await API.graphql(graphqlOperation(listExams, filterQuery))
@@ -106,15 +131,18 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
       dispatch({ type: 'READ', data, prog, exam })
       setLoading(false)
     } catch (err) {
-      setError(err)
-      console.log('err', err)
+      Analytics.record({
+        name: 'Tab0Main - fetchData',
+        attributes: err
+      })
       setLoading(false)
     }
   }
 
   useEffect(() => {
-    let isSubscribed: boolean = true // eslint-disable-line
     setLoading(true)
+    let isSubscribed: boolean = true // eslint-disable-lin
+    getMinimalVersion()
     fetchData()
     fetchExam('https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/00-Numbers/en.json').then((x) => setTest(x))
     const check = Auth.user.signInUserSession.idToken.payload['cognito:groups']
@@ -175,8 +203,15 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
 
   const checkExam = exam.length === 0 ? false : exam[0].english
   const examId = exam.length === 0 ? false : exam[0].id
+  const percent = (prog.length / data.length).toFixed(2)
   return (
-    <AppContainer onPress={goBack(navigation)} loading={loading} flatList color={classicRose}>
+    <AppContainer
+      backgroundColor={dark ? black : classicRose}
+      onPress={goBack(navigation)}
+      loading={loading}
+      flatList
+      color={classicRose}
+    >
       <FlatList
         scrollEventThrottle={16}
         data={data.sort(compareCreatedAt)}
@@ -186,19 +221,20 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
         ListHeaderComponent={
           <>
             <Row>
-              <ProgressBar progress={prog.length / data.length} />
+              <ProgressBar color={dark ? classicRose : black} progress={Number(percent)} />
               <ButtonSquare
                 title={I18n.t('exam')}
                 onPress={onScreen('TAB0_TEST', navigation, { data: test, examId })}
                 color={classicRose}
-                textColor={white}
-                borderColor={classicRose}
+                textColor={dark ? classicRose : black}
+                borderColor={dark ? black : classicRose}
               />
-              <CheckBox checked={checkExam} color={'green'} />
+              <CheckBox checked={checkExam} color={dark ? classicRose : black} iconSize={s(25)} />
             </Row>
             {admin && (
               <Header onPressRight={onScreen('TAB0_ADD', navigation)} iconRight={admin ? ':heavy_plus_sign:' : null} />
             )}
+            <ModalMinimalVersion visible={downloadApp} />
           </>
         }
       />

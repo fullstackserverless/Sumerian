@@ -37,7 +37,7 @@ export const schema = {
                     "type": {
                         "nonModel": "S3Object"
                     },
-                    "isRequired": true,
+                    "isRequired": false,
                     "attributes": []
                 },
                 "owner": {
@@ -50,6 +50,86 @@ export const schema = {
             },
             "syncable": true,
             "pluralName": "Profiles",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "provider": "userPools",
+                                "ownerField": "owner",
+                                "allow": "owner",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete"
+                                ],
+                                "identityClaim": "cognito:username"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "Exam": {
+            "name": "Exam",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "english": {
+                    "name": "english",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "javaScript": {
+                    "name": "javaScript",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "reactNative": {
+                    "name": "reactNative",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "typeScript": {
+                    "name": "typeScript",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "amplify": {
+                    "name": "amplify",
+                    "isArray": false,
+                    "type": "Boolean",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "owner": {
+                    "name": "owner",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "Exams",
             "attributes": [
                 {
                     "type": "model",
@@ -111,6 +191,13 @@ export const schema = {
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
+                    "attributes": []
+                },
+                "json": {
+                    "name": "json",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
                     "attributes": []
                 },
                 "owner": {
@@ -186,6 +273,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "json": {
+                    "name": "json",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "owner": {
                     "name": "owner",
                     "isArray": false,
@@ -257,6 +351,13 @@ export const schema = {
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
+                    "attributes": []
+                },
+                "json": {
+                    "name": "json",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
                     "attributes": []
                 },
                 "owner": {
@@ -332,6 +433,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "json": {
+                    "name": "json",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "owner": {
                     "name": "owner",
                     "isArray": false,
@@ -405,6 +513,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "json": {
+                    "name": "json",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "owner": {
                     "name": "owner",
                     "isArray": false,
@@ -415,6 +530,266 @@ export const schema = {
             },
             "syncable": true,
             "pluralName": "Amplifies",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "provider": "userPools",
+                                "ownerField": "owner",
+                                "allow": "owner",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete"
+                                ],
+                                "identityClaim": "cognito:username"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "EnglishProg": {
+            "name": "EnglishProg",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "doneId": {
+                    "name": "doneId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "owner": {
+                    "name": "owner",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "EnglishProgs",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "provider": "userPools",
+                                "ownerField": "owner",
+                                "allow": "owner",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete"
+                                ],
+                                "identityClaim": "cognito:username"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "JavaScriptProg": {
+            "name": "JavaScriptProg",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "doneId": {
+                    "name": "doneId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "owner": {
+                    "name": "owner",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "JavaScriptProgs",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "provider": "userPools",
+                                "ownerField": "owner",
+                                "allow": "owner",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete"
+                                ],
+                                "identityClaim": "cognito:username"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "ReactNativeProg": {
+            "name": "ReactNativeProg",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "doneId": {
+                    "name": "doneId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "owner": {
+                    "name": "owner",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "ReactNativeProgs",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "provider": "userPools",
+                                "ownerField": "owner",
+                                "allow": "owner",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete"
+                                ],
+                                "identityClaim": "cognito:username"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "TypeScriptProg": {
+            "name": "TypeScriptProg",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "doneId": {
+                    "name": "doneId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "owner": {
+                    "name": "owner",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "TypeScriptProgs",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "provider": "userPools",
+                                "ownerField": "owner",
+                                "allow": "owner",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete"
+                                ],
+                                "identityClaim": "cognito:username"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "AmplifyProg": {
+            "name": "AmplifyProg",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "doneId": {
+                    "name": "doneId",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "owner": {
+                    "name": "owner",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                }
+            },
+            "syncable": true,
+            "pluralName": "AmplifyProgs",
             "attributes": [
                 {
                     "type": "model",
@@ -468,7 +843,26 @@ export const schema = {
                     "attributes": []
                 }
             }
+        },
+        "minimalVersion": {
+            "name": "minimalVersion",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "version": {
+                    "name": "version",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                }
+            }
         }
     },
-    "version": "f590d495ac97ce1a6f03be8a524975ff"
+    "version": "2b8ba0a1d46a3e9a1c3452d9897f7d91"
 };

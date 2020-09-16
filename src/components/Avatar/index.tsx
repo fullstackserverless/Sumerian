@@ -1,5 +1,6 @@
 import React, { memo, useState, useEffect } from 'react'
-import { StyleSheet, StyleProp, ViewStyle, TouchableOpacity, View, ImageSourcePropType } from 'react-native'
+import { StyleSheet, StyleProp, ViewStyle, TouchableOpacity, View } from 'react-native'
+import { Analytics } from 'aws-amplify'
 import { primary, secondary } from '../../constants'
 import { fetchImage } from '../../screens/helper'
 import { S3ObjectT } from '../../AppNavigator'
@@ -132,8 +133,11 @@ const Avatar = memo<AvatarT>(({ loading, avatar, size = 'large', onPress, viewSt
       const check = avatar.key !== ''
       const uri = await fetchImage(avatar)
       check && setUri(uri)
-    } catch (error) {
-      console.log('error', error)
+    } catch (err) {
+      Analytics.record({
+        name: 'Avatar - fetchData',
+        attributes: err
+      })
     }
   }
 

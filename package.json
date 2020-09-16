@@ -1,11 +1,13 @@
 {
   "name": "Sumerian",
-  "version": "0.0.1",
+  "version": "1.0.11",
+  "build": 2,
   "private": true,
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios --simulator='iPhone SE'",
     "iosx": "react-native run-ios --simulator='iPhone 8 Plus'",
+    "androidBuild": "cd android && ./gradlew bundleRelease",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
@@ -29,7 +31,6 @@
     "aws-amplify-react-native": "^4.2.1",
     "faker": "^4.1.0",
     "formik": "^2.1.5",
-    "graphql-default-value-transformer": "^2.0.1",
     "i18n-js": "^3.7.1",
     "lodash": "^4.17.19",
     "react": "16.13.1",

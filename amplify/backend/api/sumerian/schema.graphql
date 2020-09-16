@@ -9,11 +9,11 @@ type Profile @model @auth(rules: [{ allow: owner, ownerField: "owner", operation
 
 type Exam @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
   id: ID!
-  english: Boolean!
-  javaScript: Boolean!
-  reactNative: Boolean!
-  typeScript: Boolean!
-  amplify: Boolean!
+  english: Boolean
+  javaScript: Boolean
+  reactNative: Boolean
+  typeScript: Boolean
+  amplify: Boolean
   owner: String
 }
 
@@ -102,5 +102,11 @@ type TypeScriptProg @model @auth(rules: [{ allow: owner, ownerField: "owner", op
 type AmplifyProg @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
   id: ID!
   doneId: String!
+  owner: String
+}
+
+type MinimalVersion @model @auth(rules: [{ allow: owner, ownerField: "owner", operations: [create, update, delete] }]) {
+  id: ID!
+  build: String!
   owner: String
 }

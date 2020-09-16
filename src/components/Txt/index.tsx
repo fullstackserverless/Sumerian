@@ -91,19 +91,13 @@ const styles = ScaledSheet.create({
     fontFamily: 'Avenir Next',
     width: W - 90,
     textAlign: 'center',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 1,
-    color: black
+    textShadowRadius: 1
   },
   h6StyleDark: {
     fontSize: Platform.OS === 'ios' ? '15@s' : '15@s',
     fontFamily: 'Avenir Next',
     width: W - 90,
-    textAlign: 'center',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 1,
-    textShadowColor: primary,
-    color: white
+    textAlign: 'center'
   },
   h7Style: {
     fontSize: Platform.OS === 'ios' ? '12@s' : '12@s',
@@ -138,6 +132,19 @@ const styles = ScaledSheet.create({
   h10StyleDark: {
     fontSize: Platform.OS === 'ios' ? '150@ms' : '150@ms',
     fontFamily: Etna
+  },
+  h11Style: {
+    fontSize: Platform.OS === 'ios' ? '30@s' : '30@s',
+    fontFamily: 'Avenir Next',
+    width: W - 50,
+    fontWeight: 'bold',
+    textAlign: 'center'
+  },
+  h11StyleDark: {
+    fontSize: Platform.OS === 'ios' ? '35@s' : '25@s',
+    fontFamily: 'Avenir Next',
+    width: W - 50,
+    textAlign: 'center'
   },
   errorStyle: {
     fontSize: Platform.OS === 'ios' ? '23@s' : '23@s',
@@ -187,6 +194,7 @@ interface TxtT {
   h8?: boolean
   h9?: boolean
   h10?: boolean
+  h11?: boolean
   color?: string
   body?: boolean
   error?: boolean
@@ -209,6 +217,7 @@ const Txt = memo<TxtT>(
     h8,
     h9,
     h10,
+    h11,
     body,
     title,
     textStyle,
@@ -230,6 +239,7 @@ const Txt = memo<TxtT>(
       h8Style,
       h9Style,
       h10Style,
+      h11Style,
       bodyStyle,
       errorStyle,
       h0StyleDark,
@@ -243,6 +253,7 @@ const Txt = memo<TxtT>(
       h8StyleDark,
       h9StyleDark,
       h10StyleDark,
+      h11StyleDark,
       bodyStyleDark,
       errorStyleDark
     } = styles
@@ -258,11 +269,12 @@ const Txt = memo<TxtT>(
           h3 && StyleSheet.flatten([dark ? h3StyleDark : h3Style]),
           h4 && StyleSheet.flatten([dark ? h4StyleDark : h4Style]),
           h5 && StyleSheet.flatten([dark ? h5StyleDark : h5Style]),
-          h6 && StyleSheet.flatten([dark ? h6StyleDark : h6Style]),
+          h6 && StyleSheet.flatten([dark ? h6StyleDark : h6Style, { color }]),
           h7 && StyleSheet.flatten([dark ? h7StyleDark : h7Style]),
           h8 && StyleSheet.flatten([dark ? h8StyleDark : h8Style]),
           h9 && StyleSheet.flatten([dark ? h9StyleDark : h9Style]),
-          h10 && StyleSheet.flatten([dark ? h10StyleDark : h10Style, , { color }]),
+          h10 && StyleSheet.flatten([dark ? h10StyleDark : h10Style, { color }]),
+          h11 && StyleSheet.flatten([dark ? h11StyleDark : h11Style, { color }]),
           error && StyleSheet.flatten([dark ? errorStyleDark : errorStyle]),
           body && StyleSheet.flatten([dark ? bodyStyleDark : bodyStyle])
         ]}

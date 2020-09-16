@@ -27,7 +27,7 @@ const ProgressBar = memo<ProgressBarT>(({ progress, color = white }) => {
         progress={progress}
         showsText={true}
         formatText={formatText}
-        size={s(70)}
+        size={s(80)}
         color={color}
         borderWidth={1.5}
       />

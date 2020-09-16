@@ -3,15 +3,15 @@ import { View, Platform, Image } from 'react-native'
 import { shuffle } from 'lodash'
 import Video from 'react-native-video'
 import I18n from 'i18n-js'
-import { API, graphqlOperation } from 'aws-amplify'
+import { API, Analytics, graphqlOperation } from 'aws-amplify'
 import * as Progress from 'react-native-progress'
+import { RouteProp, useTheme } from '@react-navigation/native'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
-import { ScaledSheet, s, ms } from 'react-native-size-matters'
-import { RouteProp } from '@react-navigation/native'
+import { ScaledSheet, s } from 'react-native-size-matters'
 import { RootStackParamList, TestT } from '../../../AppNavigator'
 import { AppContainer, Txt, Space, ButtonAnswer } from '../../../components'
-import { goBack, classicRose, errSoundOne, errSoundTwo, white, W, mustard } from '../../../constants'
+import { goBack, classicRose, errSoundOne, errSoundTwo, white, W, mustard, black } from '../../../constants'
 import { useOrientation } from '../../../hooks'
 import { createJavaScriptProg, updateExam, createExam } from '../../../graphql/mutations'
 import useAudio from '../../../hooks/useAudio'
@@ -42,13 +42,13 @@ const Tab1Test = ({ route, navigation }: Tab1TestT) => {
   }
   const [loading, setLoading] = useState<boolean>(false)
   const [stop, stopRender] = useState<boolean>(false)
-  const [error, setError] = useState<string>('')
   const [randomData, updateData] = useState<Array<TestT>>([defautState])
   const [displayName, setDisplayName] = useState<TestT>(defautState)
   const [count, setCount] = useState<number>(0)
   const [answer, setAnswer] = useState<number>(0)
   const [setPlay] = useAudio(require('../../../sounds/magicSpell.mp3'))
   const { data, done, id, examId } = route.params
+  const { dark } = useTheme()
 
   useEffect(() => {
     const array = shuffle(data)
@@ -112,8 +112,10 @@ const Tab1Test = ({ route, navigation }: Tab1TestT) => {
       }
       setLoading(false)
     } catch (err) {
-      console.log('err', err)
-      setError(err)
+      Analytics.record({
+        name: 'Tab1Main - setProgress',
+        attributes: err
+      })
       setLoading(false)
     }
   }
@@ -123,25 +125,28 @@ const Tab1Test = ({ route, navigation }: Tab1TestT) => {
   const { gif } = styles
   return (
     <AppContainer
+      backgroundColor={dark ? black : mustard}
       title={length !== answer ? String(bool) : I18n.t('win')}
       onPress={back}
       colorLeft={color}
-      color={mustard}
+      color={dark ? mustard : black}
       iconLeft=":back:"
       loading={loading}
       //onPressRight={onPressPlay}
     >
       <View style={{ position: 'absolute', top: bottomProgress }}>
-        <Progress.Bar progress={progress} width={W - s(150)} color={white} height={s(6)} />
+        <Progress.Bar progress={progress} width={W - s(150)} color={dark ? mustard : black} height={s(6)} />
       </View>
 
       {length !== answer ? (
         <>
           <Video ref={playerRef} source={{ uri }} audioOnly />
-          <Txt h6 title={title} />
+          <Txt h6 title={title} color={dark ? mustard : black} />
           <Space height={20} />
           {displayName.random &&
-            shuffle(displayName.random).map((x) => <ButtonAnswer key={x} title={x} onPress={() => onPress(x)} />)}
+            shuffle(displayName.random).map((x) => (
+              <ButtonAnswer color={dark ? mustard : black} key={x} title={x} onPress={() => onPress(x)} />
+            ))}
         </>
       ) : (
         <>

@@ -125,7 +125,7 @@ const Tab2Main = ({ navigation }: Tab2MainT): ReactElement => {
   const _keyExtractor = (obj: any) => obj.id.toString()
 
   return (
-    <AppContainer onPress={goBack(navigation)} loading={loading} flatList color={paleBlue}>
+    <AppContainer backgroundColor={paleBlue} onPress={goBack(navigation)} loading={loading} flatList color={paleBlue}>
       <FlatList
         scrollEventThrottle={16}
         data={state.data}

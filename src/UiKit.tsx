@@ -38,7 +38,7 @@ const UIKit = memo<UIKitT>(({ children }) => {
     dark,
     colors: { backgroundColor }
   } = useTheme()
-  const _onPress = () => console.log('click') // eslint-disable-line
+  const _onPress = () => {} // eslint-disable-line
   return (
     <>
       <ScrollView style={[scrollView, { backgroundColor }]}>

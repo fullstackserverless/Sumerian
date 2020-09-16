@@ -103,7 +103,13 @@ const UserEdit = ({ route, navigation }: UserEditT): ReactElement => {
 
   return (
     <>
-      <AppContainer onPress={goBack(navigation)} title=" " loading={loading} colorLeft={black}>
+      <AppContainer
+        backgroundColor={dark ? black : white}
+        onPress={goBack(navigation)}
+        title=" "
+        loading={loading}
+        colorLeft={black}
+      >
         <Space height={30} />
         <Formik
           innerRef={(r) => (formikRef.current = r || undefined)}

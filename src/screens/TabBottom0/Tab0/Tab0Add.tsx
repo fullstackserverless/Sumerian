@@ -4,7 +4,7 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
-import { RouteProp } from '@react-navigation/native'
+import { RouteProp, useTheme } from '@react-navigation/native'
 import { goBack, classicRose, white } from '../../../constants'
 import { AppContainer, Input, Space, Button, Header, ButtonLink } from '../../../components'
 import { RootStackParamList, ObjT } from '../../../AppNavigator'
@@ -22,6 +22,7 @@ const Tab0Add = ({ route, navigation }: Tab0AddT): ReactElement => {
   const [loading, setLoading] = useState<boolean>(false)
   const [check, setOwner] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
+  const { dark } = useTheme()
 
   const [input, setJob] = useState<ObjT>({
     title: 'Animals',
@@ -86,7 +87,13 @@ const Tab0Add = ({ route, navigation }: Tab0AddT): ReactElement => {
   }
 
   return (
-    <AppContainer title=" " onPress={goBack(navigation)} colorLeft={white} color={classicRose}>
+    <AppContainer
+      backgroundColor={dark ? black : classicRose}
+      title=" "
+      onPress={goBack(navigation)}
+      colorLeft={white}
+      color={classicRose}
+    >
       <Space height={70} />
       <Formik
         innerRef={formikRef}

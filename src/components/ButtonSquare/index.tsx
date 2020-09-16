@@ -25,19 +25,17 @@ const styles = ScaledSheet.create({
 
 interface ButtonSquareT {
   title: string
-  color?: string
   textColor?: string
   borderColor?: string
+  backgroundColor?: string
   cancel?: boolean
   onPress?: () => void
   textStyle?: StyleProp<TextStyle>
 }
 
 const ButtonSquare = memo<ButtonSquareT>(
-  ({ title, onPress, textStyle, color = white, borderColor = white, textColor = white }) => {
+  ({ title, onPress, textStyle, backgroundColor, borderColor = white, textColor = white }) => {
     const { container, h } = styles
-    const { dark } = useTheme()
-    const backgroundColor = dark ? black : color
     return (
       <TouchableOpacity onPress={onPress}>
         <View style={[container, { backgroundColor, borderColor }]}>

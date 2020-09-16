@@ -81,11 +81,11 @@ export type DeleteProfileInput = {
 
 export type CreateExamInput = {
   id?: string | null,
-  english: boolean,
-  javaScript: boolean,
-  reactNative: boolean,
-  typeScript: boolean,
-  amplify: boolean,
+  english?: boolean | null,
+  javaScript?: boolean | null,
+  reactNative?: boolean | null,
+  typeScript?: boolean | null,
+  amplify?: boolean | null,
   owner?: string | null,
 };
 
@@ -411,6 +411,29 @@ export type DeleteAmplifyProgInput = {
   id?: string | null,
 };
 
+export type CreateMinimalVersionInput = {
+  id?: string | null,
+  build: string,
+  owner?: string | null,
+};
+
+export type ModelMinimalVersionConditionInput = {
+  build?: ModelStringInput | null,
+  and?: Array< ModelMinimalVersionConditionInput | null > | null,
+  or?: Array< ModelMinimalVersionConditionInput | null > | null,
+  not?: ModelMinimalVersionConditionInput | null,
+};
+
+export type UpdateMinimalVersionInput = {
+  id: string,
+  build?: string | null,
+  owner?: string | null,
+};
+
+export type DeleteMinimalVersionInput = {
+  id?: string | null,
+};
+
 export type ModelProfileFilterInput = {
   id?: ModelIDInput | null,
   firstName?: ModelStringInput | null,
@@ -561,6 +584,15 @@ export type ModelAmplifyProgFilterInput = {
   not?: ModelAmplifyProgFilterInput | null,
 };
 
+export type ModelMinimalVersionFilterInput = {
+  id?: ModelIDInput | null,
+  build?: ModelStringInput | null,
+  owner?: ModelStringInput | null,
+  and?: Array< ModelMinimalVersionFilterInput | null > | null,
+  or?: Array< ModelMinimalVersionFilterInput | null > | null,
+  not?: ModelMinimalVersionFilterInput | null,
+};
+
 export type CreateProfileMutationVariables = {
   input: CreateProfileInput,
   condition?: ModelProfileConditionInput | null,
@@ -642,11 +674,11 @@ export type CreateExamMutation = {
   createExam:  {
     __typename: "Exam",
     id: string,
-    english: boolean,
-    javaScript: boolean,
-    reactNative: boolean,
-    typeScript: boolean,
-    amplify: boolean,
+    english: boolean | null,
+    javaScript: boolean | null,
+    reactNative: boolean | null,
+    typeScript: boolean | null,
+    amplify: boolean | null,
     owner: string | null,
     createdAt: string,
     updatedAt: string,
@@ -662,11 +694,11 @@ export type UpdateExamMutation = {
   updateExam:  {
     __typename: "Exam",
     id: string,
-    english: boolean,
-    javaScript: boolean,
-    reactNative: boolean,
-    typeScript: boolean,
-    amplify: boolean,
+    english: boolean | null,
+    javaScript: boolean | null,
+    reactNative: boolean | null,
+    typeScript: boolean | null,
+    amplify: boolean | null,
     owner: string | null,
     createdAt: string,
     updatedAt: string,
@@ -682,11 +714,11 @@ export type DeleteExamMutation = {
   deleteExam:  {
     __typename: "Exam",
     id: string,
-    english: boolean,
-    javaScript: boolean,
-    reactNative: boolean,
-    typeScript: boolean,
-    amplify: boolean,
+    english: boolean | null,
+    javaScript: boolean | null,
+    reactNative: boolean | null,
+    typeScript: boolean | null,
+    amplify: boolean | null,
     owner: string | null,
     createdAt: string,
     updatedAt: string,
@@ -1233,6 +1265,54 @@ export type DeleteAmplifyProgMutation = {
   } | null,
 };
 
+export type CreateMinimalVersionMutationVariables = {
+  input: CreateMinimalVersionInput,
+  condition?: ModelMinimalVersionConditionInput | null,
+};
+
+export type CreateMinimalVersionMutation = {
+  createMinimalVersion:  {
+    __typename: "MinimalVersion",
+    id: string,
+    build: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateMinimalVersionMutationVariables = {
+  input: UpdateMinimalVersionInput,
+  condition?: ModelMinimalVersionConditionInput | null,
+};
+
+export type UpdateMinimalVersionMutation = {
+  updateMinimalVersion:  {
+    __typename: "MinimalVersion",
+    id: string,
+    build: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteMinimalVersionMutationVariables = {
+  input: DeleteMinimalVersionInput,
+  condition?: ModelMinimalVersionConditionInput | null,
+};
+
+export type DeleteMinimalVersionMutation = {
+  deleteMinimalVersion:  {
+    __typename: "MinimalVersion",
+    id: string,
+    build: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
 export type GetProfileQueryVariables = {
   id: string,
 };
@@ -1293,11 +1373,11 @@ export type GetExamQuery = {
   getExam:  {
     __typename: "Exam",
     id: string,
-    english: boolean,
-    javaScript: boolean,
-    reactNative: boolean,
-    typeScript: boolean,
-    amplify: boolean,
+    english: boolean | null,
+    javaScript: boolean | null,
+    reactNative: boolean | null,
+    typeScript: boolean | null,
+    amplify: boolean | null,
     owner: string | null,
     createdAt: string,
     updatedAt: string,
@@ -1316,11 +1396,11 @@ export type ListExamsQuery = {
     items:  Array< {
       __typename: "Exam",
       id: string,
-      english: boolean,
-      javaScript: boolean,
-      reactNative: boolean,
-      typeScript: boolean,
-      amplify: boolean,
+      english: boolean | null,
+      javaScript: boolean | null,
+      reactNative: boolean | null,
+      typeScript: boolean | null,
+      amplify: boolean | null,
       owner: string | null,
       createdAt: string,
       updatedAt: string,
@@ -1729,6 +1809,42 @@ export type ListAmplifyProgsQuery = {
   } | null,
 };
 
+export type GetMinimalVersionQueryVariables = {
+  id: string,
+};
+
+export type GetMinimalVersionQuery = {
+  getMinimalVersion:  {
+    __typename: "MinimalVersion",
+    id: string,
+    build: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListMinimalVersionsQueryVariables = {
+  filter?: ModelMinimalVersionFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListMinimalVersionsQuery = {
+  listMinimalVersions:  {
+    __typename: "ModelMinimalVersionConnection",
+    items:  Array< {
+      __typename: "MinimalVersion",
+      id: string,
+      build: string,
+      owner: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
 export type OnCreateProfileSubscription = {
   onCreateProfile:  {
     __typename: "Profile",
@@ -1790,11 +1906,11 @@ export type OnCreateExamSubscription = {
   onCreateExam:  {
     __typename: "Exam",
     id: string,
-    english: boolean,
-    javaScript: boolean,
-    reactNative: boolean,
-    typeScript: boolean,
-    amplify: boolean,
+    english: boolean | null,
+    javaScript: boolean | null,
+    reactNative: boolean | null,
+    typeScript: boolean | null,
+    amplify: boolean | null,
     owner: string | null,
     createdAt: string,
     updatedAt: string,
@@ -1805,11 +1921,11 @@ export type OnUpdateExamSubscription = {
   onUpdateExam:  {
     __typename: "Exam",
     id: string,
-    english: boolean,
-    javaScript: boolean,
-    reactNative: boolean,
-    typeScript: boolean,
-    amplify: boolean,
+    english: boolean | null,
+    javaScript: boolean | null,
+    reactNative: boolean | null,
+    typeScript: boolean | null,
+    amplify: boolean | null,
     owner: string | null,
     createdAt: string,
     updatedAt: string,
@@ -1820,11 +1936,11 @@ export type OnDeleteExamSubscription = {
   onDeleteExam:  {
     __typename: "Exam",
     id: string,
-    english: boolean,
-    javaScript: boolean,
-    reactNative: boolean,
-    typeScript: boolean,
-    amplify: boolean,
+    english: boolean | null,
+    javaScript: boolean | null,
+    reactNative: boolean | null,
+    typeScript: boolean | null,
+    amplify: boolean | null,
     owner: string | null,
     createdAt: string,
     updatedAt: string,
@@ -2215,6 +2331,39 @@ export type OnDeleteAmplifyProgSubscription = {
     __typename: "AmplifyProg",
     id: string,
     doneId: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateMinimalVersionSubscription = {
+  onCreateMinimalVersion:  {
+    __typename: "MinimalVersion",
+    id: string,
+    build: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateMinimalVersionSubscription = {
+  onUpdateMinimalVersion:  {
+    __typename: "MinimalVersion",
+    id: string,
+    build: string,
+    owner: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteMinimalVersionSubscription = {
+  onDeleteMinimalVersion:  {
+    __typename: "MinimalVersion",
+    id: string,
+    build: string,
     owner: string | null,
     createdAt: string,
     updatedAt: string,

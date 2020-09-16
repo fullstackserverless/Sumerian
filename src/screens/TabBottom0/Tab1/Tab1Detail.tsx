@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
-import { RouteProp } from '@react-navigation/native'
+import { RouteProp, useTheme } from '@react-navigation/native'
 import { RootStackParamList, TestT } from '../../../AppNavigator'
-import { AppContainer, YouTubePlayer, Button, Space } from '../../../components'
+import { AppContainer, YouTubePlayer, ButtonSquare, Space } from '../../../components'
 import I18n from '../../../utils'
-import { goBack, onScreen, white, mustard } from '../../../constants'
+import { goBack, onScreen, white, mustard, black } from '../../../constants'
 import { onlyTitleInArray } from '../../helper'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB1_DETAIL'>
@@ -18,7 +18,7 @@ type Tab1DetailT = {
 
 const Tab1Detail = ({ route, navigation }: Tab1DetailT) => {
   const { json, uri } = route.params
-
+  const { dark } = useTheme()
   const defautState = {
     id: '0',
     name: '',
@@ -44,11 +44,22 @@ const Tab1Detail = ({ route, navigation }: Tab1DetailT) => {
 
   //useExitOnBack()
   return (
-    <AppContainer title=" " onPress={goBack(navigation)} colorLeft={white} color={mustard}>
+    <AppContainer
+      backgroundColor={dark ? black : mustard}
+      title=" "
+      onPress={goBack(navigation)}
+      colorLeft={white}
+      color={mustard}
+    >
       <YouTubePlayer uri={uri} />
       <Space height={20} />
       {json !== '' && (
-        <Button title={I18n.t('test')} onPress={onScreen('TAB1_TEST', navigation, data)} color={mustard} />
+        <ButtonSquare
+          title={I18n.t('test')}
+          onPress={onScreen('TAB1_TEST', navigation, data)}
+          textColor={dark ? mustard : black}
+          borderColor={dark ? mustard : black}
+        />
       )}
     </AppContainer>
   )

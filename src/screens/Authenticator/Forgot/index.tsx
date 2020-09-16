@@ -5,11 +5,10 @@ import * as Yup from 'yup'
 import I18n from '../../../utils'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
-import { RouteProp } from '@react-navigation/native'
+import { RouteProp, useTheme } from '@react-navigation/native'
 import { AppContainer, Button, Input } from '../../../components'
 import { onScreen, goBack, white, black } from '../../../constants'
 import { RootStackParamList } from '../../../AppNavigator'
-import { useTheme } from '@react-navigation/native'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'FORGOT'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'FORGOT'>
@@ -40,7 +39,14 @@ const Forgot = ({ route, navigation }: ForgotT): ReactElement => {
 
   return (
     <>
-      <AppContainer title=" " onPress={goBack(navigation)} message={error} loading={loading} colorLeft={color}>
+      <AppContainer
+        backgroundColor={dark ? black : white}
+        title=" "
+        onPress={goBack(navigation)}
+        message={error}
+        loading={loading}
+        colorLeft={color}
+      >
         <Formik
           initialValues={{ email: route.params.email }}
           onSubmit={(values): Promise<void> => _onPress(values)}

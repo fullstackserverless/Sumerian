@@ -12,11 +12,15 @@ const styles = StyleSheet.create({
   }
 })
 
-const Spin = () => {
+interface SpinT {
+  color: string
+}
+
+const Spin = ({ color = secondary }: SpinT) => {
   const { dark } = useTheme()
   return (
     <View style={[styles.container, { backgroundColor: dark ? black : white }]}>
-      <Spinner size={65} type="Pulse" color={secondary} />
+      <Spinner size={65} type="Pulse" color={color} />
     </View>
   )
 }
