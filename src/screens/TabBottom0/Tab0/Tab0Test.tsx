@@ -106,7 +106,7 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
   const onPressPlay = () => {
     setBool(true)
     playerRef.current?.seek(0)
-    setPaused(paused)
+    setPaused(false)
   }
 
   const color = Platform.OS === 'ios' ? white : classicRose
@@ -156,7 +156,6 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
       color={dark ? classicRose : white}
       backgroundColor={dark ? black : classicRose}
       iconLeft=":back:"
-      //iconRight={Platform.OS === 'ios' && ':loud_sound:'}
       iconRight={':loud_sound:'}
       onPressRight={onPressPlay}
       loading={loading}
@@ -170,14 +169,11 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
           <>
             <Video
               ignoreSilentSwitch="ignore"
-              paused={paused}
+              paused={Platform.OS !== 'ios' && paused}
               ref={playerRef}
-              //repeat
               source={{ uri }}
               audioOnly
-              onEnd={() => {
-                setPaused(false)
-              }}
+              //onEnd={() => Platform.OS !== 'ios' && setPaused(true)}
             />
             <View style={sub}>
               {randomData.map(({ id, name, title }) => (

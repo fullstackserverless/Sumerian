@@ -8,8 +8,9 @@ import { AppContainer, YouTubePlayer, ButtonSquare, Space } from '../../../compo
 import I18n from '../../../utils'
 import { ScaledSheet } from 'react-native-size-matters'
 import { goBack, classicRose, onScreen, black, white } from '../../../constants'
-//import { arrayWithNewId, onlyTitleInArray } from '../../helper'
+import { arrayWithNewId, onlyTitleInArray } from '../../helper'
 import { View } from 'react-native'
+import { useOrientation } from '../../../hooks'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB0_DETAIL'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB0_DETAIL'>
@@ -41,6 +42,7 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
   const { dark } = useTheme()
   const { addListener } = useNavigation()
   const [play, setPlay] = useState(true)
+  const orientation = useOrientation()
 
   useEffect(() => {
     const unsubsfocus = addListener('focus', () => {
@@ -58,15 +60,14 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
   }, [addListener])
 
   const [data, setData] = useState<Array<TestT>>([defautState])
-
   const fetchData = async () => {
     try {
-      const url = `https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/06-Smileys/data.json`
+      const url = `https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/06-Travel/data.json`
       const response = await fetch(url)
-      // const response = await fetch(json)
+      //const response = await fetch(json)
       const data = await response.json()
-      //console.log('arrayWithNewId', arrayWithNewId(data))
-      //console.log(onlyTitleInArray(data))
+      // console.log('arrayWithNewId', arrayWithNewId(data))
+      // console.log(onlyTitleInArray(data))
       setData(data)
     } catch (error) {
       //console.log('error', error)
@@ -79,6 +80,8 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
 
   const { container } = styles
 
+  const orient = orientation === 'LANDSCAPE' ? false : true
+  //console.log('orient', orient)
   return (
     <AppContainer
       backgroundColor={dark ? black : classicRose}
@@ -86,6 +89,7 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
       onPress={goBack(navigation)}
       colorLeft={white}
       color={classicRose}
+      header={orient}
     >
       {play && <YouTubePlayer play={play} uri={uri} />}
       <Space height={20} />

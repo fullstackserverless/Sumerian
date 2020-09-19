@@ -17,7 +17,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
-  }
+  },
+  statusStyle: { padding: 5, paddingTop: 5 }
 })
 
 const RED = '#FC2847'
@@ -37,6 +38,7 @@ interface AppContainerT {
   message?: string
   title?: string
   loading?: boolean
+  header?: boolean
 }
 
 const AppContainer = memo<AppContainerT>(
@@ -47,6 +49,7 @@ const AppContainer = memo<AppContainerT>(
     color = white,
     onPress = null,
     onPressRight = null,
+    header = true,
     backgroundColor,
     iconRight,
     children,
@@ -54,7 +57,7 @@ const AppContainer = memo<AppContainerT>(
     title,
     loading = false
   }) => {
-    const { container, sub } = styles
+    const { container, sub, statusStyle } = styles
     const { dark } = useTheme()
     //const backgroundColor = dark ? black : color
 
@@ -67,9 +70,9 @@ const AppContainer = memo<AppContainerT>(
           color="white"
           pulse="background"
           height={40}
-          style={{ padding: 5, paddingTop: 5 }}
+          style={statusStyle}
         />
-        {title && (
+        {title && header && (
           <Header
             color={color}
             title={title}

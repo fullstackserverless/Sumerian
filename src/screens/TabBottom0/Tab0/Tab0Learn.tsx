@@ -51,7 +51,8 @@ const Tab0Learn = ({ route, navigation }: Tab0LearnT) => {
     id: '0',
     name: '',
     title: ' ',
-    url: ''
+    url: '',
+    ru: ''
   }
 
   const [displayName, setDisplayName] = useState<TestT>(defautState)
@@ -65,7 +66,7 @@ const Tab0Learn = ({ route, navigation }: Tab0LearnT) => {
     const name: TestT[] = array[count]
 
     const timer = async () => {
-      await delay(5000)
+      await delay(count === 0 ? 1000 : 2000)
       if (count < array.length - 1) {
         increment()
         setDisplayName(name)

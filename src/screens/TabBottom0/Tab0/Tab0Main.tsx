@@ -17,7 +17,7 @@ import {
 } from '../../../components'
 import I18n from '../../../utils'
 import CheckBox from 'react-native-animated-checkbox'
-import { goBack, onScreen, classicRose, black } from '../../../constants'
+import { goBack, onScreen, classicRose, black, white } from '../../../constants'
 import { RootStackParamList, ObjT, ProgT } from '../../../AppNavigator'
 import { listEnglishs, listEnglishProgs, listExams, listMinimalVersions } from '../../../graphql/queries'
 import {
@@ -204,9 +204,10 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
   const checkExam = exam.length === 0 ? false : exam[0].english
   const examId = exam.length === 0 ? false : exam[0].id
   const percent = (prog.length / data.length).toFixed(2)
+
   return (
     <AppContainer
-      backgroundColor={dark ? black : classicRose}
+      backgroundColor={dark ? white : classicRose}
       onPress={goBack(navigation)}
       loading={loading}
       flatList
@@ -221,15 +222,14 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
         ListHeaderComponent={
           <>
             <Row>
-              <ProgressBar color={dark ? classicRose : black} progress={Number(percent)} />
+              <ProgressBar color={dark ? classicRose : white} progress={Number(percent)} />
               <ButtonSquare
                 title={I18n.t('exam')}
                 onPress={onScreen('TAB0_TEST', navigation, { data: test, examId })}
-                color={classicRose}
-                textColor={dark ? classicRose : black}
+                textColor={dark ? classicRose : white}
                 borderColor={dark ? black : classicRose}
               />
-              <CheckBox checked={checkExam} color={dark ? classicRose : black} iconSize={s(25)} />
+              <CheckBox checked={checkExam} color={dark ? classicRose : white} iconSize={s(25)} />
             </Row>
             {admin && (
               <Header onPressRight={onScreen('TAB0_ADD', navigation)} iconRight={admin ? ':heavy_plus_sign:' : null} />
