@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { TouchableOpacity, View, GestureResponderEvent, Platform } from 'react-native'
+import { TouchableOpacity, View, GestureResponderEvent } from 'react-native'
 import Emoji from 'react-native-emoji'
 import { ScaledSheet, s } from 'react-native-size-matters'
 import { W, white, H } from '../../constants'
@@ -15,26 +15,27 @@ const styles = ScaledSheet.create({
     paddingBottom: 20
   },
   leftIconStyle: {
-    fontSize: 33,
+    fontSize: '33@ms',
     width: 60,
     height: 60,
     textAlign: 'center',
     top: 20,
-    left: 5
+    left: s(5)
   },
   rightIconStyle: {
-    fontSize: 33,
+    fontSize: '33@ms',
     width: 60,
     height: 60,
     textAlign: 'center',
-    top: 20
+    top: 20,
+    right: s(5)
   },
   titleStyle: {
+    flex: 0.9,
     color: '#fff',
     fontSize: 28,
-    width: W - s(110),
     textAlign: 'center',
-    paddingTop: 20
+    marginTop: s(20)
   }
 })
 

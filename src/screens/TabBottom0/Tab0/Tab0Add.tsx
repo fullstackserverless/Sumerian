@@ -5,8 +5,8 @@ import * as Yup from 'yup'
 // @ts-expect-error
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RouteProp, useTheme } from '@react-navigation/native'
-import { goBack, classicRose, white } from '../../../constants'
-import { AppContainer, Input, Space, Button, Header, ButtonLink } from '../../../components'
+import { goBack, classicRose, white, black } from '../../../constants'
+import { AppContainer, Input, Space, Button, ButtonLink } from '../../../components'
 import { RootStackParamList, ObjT } from '../../../AppNavigator'
 import { createEnglish, updateEnglish, deleteEnglish } from '../../../graphql/mutations'
 
@@ -69,6 +69,7 @@ const Tab0Add = ({ route, navigation }: Tab0AddT): ReactElement => {
       goBack(navigation)()
       setLoading(false)
     } catch (err) {
+      // console.log('err', err)
       setError(err)
       setLoading(false)
     }
