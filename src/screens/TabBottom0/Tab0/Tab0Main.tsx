@@ -29,7 +29,7 @@ import {
   onUpdateExam
 } from '../../../graphql/subscriptions'
 import { uniqBy } from 'lodash'
-import { ActionT, StateT, compareCreatedAt, fetchExam } from '../../helper'
+import { ActionT, StateT, compareCreatedAt, fetchExam, arrayWithNewId, onlyTitleInArray, sortTitle } from '../../helper'
 import { build } from '../../../../package.json'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB0_MAIN'>
@@ -138,6 +138,19 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
       setLoading(false)
     }
   }
+
+  // const fetchData = async () => {
+  //   try {
+  //     const url = `https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/en.json`
+  //     const response = await fetch(url)
+  //     const data = await response.json()
+  //     console.log('arrayWithNewId', arrayWithNewId(sortTitle(data)))
+  //     // console.log('sortTitle(', sortTitle(data))
+  //     //console.log(onlyTitleInArray(data))
+  //   } catch (error) {
+  //     console.log('error', error)
+  //   }
+  // }
 
   useEffect(() => {
     setLoading(true)
