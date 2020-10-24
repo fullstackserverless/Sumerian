@@ -28,6 +28,7 @@
 		734A58D724D6ADEE000A577D /* RNPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48858D7A7E4D4EE0B9539729 /* RNPlaceholder.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8B59DC37A7C4437AB6F6B762 /* etna-free-font.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4A35CADBF6C74C7A88963F1D /* etna-free-font.otf */; };
+		AB3EEB67D80845C18C0EFF9B /* NeutraText-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F01117F519A240DD8F017C88 /* NeutraText-Bold.otf */; };
 		C5A2E9E15985BB9A5A338FCD /* libPods-Sumerian-SumerianTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F36FD6641BD6D81442298FE /* libPods-Sumerian-SumerianTests.a */; };
 		F222BDAF46B548F1A777EE29 /* 3270Narrow.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66837611B6614C3CB174017D /* 3270Narrow.ttf */; };
 		F33DC404810B468DB2AAE7C2 /* TheDolbak-Brush.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5749AC04CE364340A9C6A136 /* TheDolbak-Brush.ttf */; };
@@ -94,6 +95,7 @@
 		D86F2225998941FEB4035985 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		F01117F519A240DD8F017C88 /* NeutraText-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "NeutraText-Bold.otf"; path = "../assets/fonts/NeutraText-Bold.otf"; sourceTree = "<group>"; };
 		F3E913972B31574447799D3B /* Pods-Sumerian.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sumerian.debug.xcconfig"; path = "Target Support Files/Pods-Sumerian/Pods-Sumerian.debug.xcconfig"; sourceTree = "<group>"; };
 		FFC60786AF344A6B99C0761B /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -200,6 +202,7 @@
 				095CD5F5195C47638B3988AA /* Octicons.ttf */,
 				9AAD354763904A0C8CC6B7CB /* SimpleLineIcons.ttf */,
 				D764DD7558F547D198D2EE7A /* Zocial.ttf */,
+				F01117F519A240DD8F017C88 /* NeutraText-Bold.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				732C229B250765C6002B76C4 /* magicSpell.mp3 in Resources */,
 				F33DC404810B468DB2AAE7C2 /* TheDolbak-Brush.ttf in Resources */,
 				8B59DC37A7C4437AB6F6B762 /* etna-free-font.otf in Resources */,
+				AB3EEB67D80845C18C0EFF9B /* NeutraText-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -769,7 +773,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Sumerian/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -794,7 +798,7 @@
 				DEVELOPMENT_TEAM = 5EM4M85VSQ;
 				INFOPLIST_FILE = Sumerian/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

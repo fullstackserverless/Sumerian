@@ -3,7 +3,20 @@ import { Platform, StyleProp, TextStyle, ViewStyle, Text, StyleSheet } from 'rea
 import { useTheme } from '@react-navigation/native'
 import { ScaledSheet } from 'react-native-size-matters'
 import { ifIphoneX } from 'react-native-iphone-x-helper'
-import { W, white, black, primary, secondary, gray, dimGray, lightGray, Etna, KLMN, Narrow } from '../../constants'
+import {
+  W,
+  white,
+  black,
+  primary,
+  secondary,
+  gray,
+  dimGray,
+  lightGray,
+  Etna,
+  KLMN,
+  Narrow,
+  Neutra
+} from '../../constants'
 
 const styles = ScaledSheet.create({
   h0Style: {

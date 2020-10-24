@@ -18,6 +18,7 @@ export const KLMN = Platform.OS === 'ios' ? 'KLMN-Flash-Pix' : 'KLMN_Flash_Pix'
 export const Dolbak = Platform.OS === 'ios' ? 'The Dolbak' : 'TheDolbak-Brush'
 export const Etna = Platform.OS === 'ios' ? 'Etna' : 'etna-free-font'
 export const Narrow = '3270Narrow'
+export const Neutra = Platform.OS === 'ios' ? 'NeutraText-Bold' : 'NeutraText-Bold'
 
 export const win = Dimensions.get('window')
 export const W = win.width

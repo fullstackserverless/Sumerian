@@ -144,7 +144,7 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
     let isSubscribed: boolean = true // eslint-disable-lin
     getMinimalVersion()
     fetchData()
-    fetchExam('https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/00-Numbers/en.json').then((x) => setTest(x))
+    fetchExam('https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/en.json').then((x) => setTest(x))
     const check = Auth.user.signInUserSession.idToken.payload['cognito:groups']
     const adm =
       check !== undefined ? Auth.user.signInUserSession.idToken.payload['cognito:groups'][0] === 'Admin' : false
