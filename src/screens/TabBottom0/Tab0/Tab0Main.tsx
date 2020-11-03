@@ -211,7 +211,7 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
 
   return (
     <AppContainer
-      backgroundColor={dark ? white : classicRose}
+      backgroundColor={dark ? black : classicRose}
       onPress={goBack(navigation)}
       loading={loading}
       flatList
