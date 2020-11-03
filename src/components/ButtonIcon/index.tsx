@@ -6,7 +6,7 @@ import { useTheme } from '@react-navigation/native'
 import { black, white } from '../../constants'
 import { Txt } from '../Txt'
 
-const diameter = ms(88, 0.8)
+const diameter = ms(88, 0.7)
 
 const circle = {
   width: diameter,

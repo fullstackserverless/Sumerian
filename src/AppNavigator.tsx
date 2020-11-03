@@ -78,6 +78,7 @@ export interface TestT {
   url: string
   answer?: string
   ru: string
+  length?: number
 }
 
 export type RootStackParamList = {

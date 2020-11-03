@@ -39,6 +39,8 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
     url: '',
     json: ''
   }
+
+
   const { dark } = useTheme()
   const { addListener } = useNavigation()
   const [play, setPlay] = useState(true)
@@ -62,11 +64,11 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
   const [data, setData] = useState<Array<TestT>>([defautState])
   const fetchData = async () => {
     try {
-      const url = `https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/data.json`
-      const response = await fetch(url)
-      //const response = await fetch(json)
+      // const url = `https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/06-Travel/data.json`
+      // const response = await fetch(url)
+      const response = await fetch(json)
       const data = await response.json()
-      // console.log('arrayWithNewId', arrayWithNewId(sortTitle(data)))
+      //console.log('arrayWithNewId', arrayWithNewId(sortTitle(data)))
       // console.log('sortTitle(', sortTitle(data))
       //console.log(onlyTitleInArray(data))
       setData(data)
@@ -82,7 +84,7 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
   const { container } = styles
 
   const orient = orientation === 'LANDSCAPE' ? false : true
-  //console.log('orient', orient)
+
   return (
     <AppContainer
       backgroundColor={dark ? black : classicRose}

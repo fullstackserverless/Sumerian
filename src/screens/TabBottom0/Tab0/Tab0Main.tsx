@@ -94,6 +94,7 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
   const [admin, setAdmin] = useState<boolean>(false)
   const [state, dispatch] = useReducer(reducer, initialState)
   const [test, setTest] = useState({})
+ 
   const [downloadApp, setDownloadApp] = useState<boolean>(false)
   const { dark } = useTheme()
 
@@ -119,7 +120,7 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
             eq: owner
           }
         },
-        limit: 50
+        limit: 99
       }
 
       const arr = await API.graphql(graphqlOperation(listEnglishs, { limit: 100 }))
@@ -139,24 +140,13 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
     }
   }
 
-  // const fetchData = async () => {
-  //   try {
-  //     const url = `https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/en.json`
-  //     const response = await fetch(url)
-  //     const data = await response.json()
-  //     console.log('arrayWithNewId', arrayWithNewId(sortTitle(data)))
-  //     // console.log('sortTitle(', sortTitle(data))
-  //     //console.log(onlyTitleInArray(data))
-  //   } catch (error) {
-  //     console.log('error', error)
-  //   }
-  // }
 
   useEffect(() => {
     setLoading(true)
     let isSubscribed: boolean = true // eslint-disable-lin
     getMinimalVersion()
     fetchData()
+    //console.log('arrayWithNewId', arrayWithNewId(sortTitle('https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/en.json')))
     fetchExam('https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/en.json').then((x) => setTest(x))
     const check = Auth.user.signInUserSession.idToken.payload['cognito:groups']
     const adm =
@@ -217,6 +207,7 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
   const checkExam = exam.length === 0 ? false : exam[0].english
   const examId = exam.length === 0 ? false : exam[0].id
   const percent = (prog.length / data.length).toFixed(2)
+
 
   return (
     <AppContainer

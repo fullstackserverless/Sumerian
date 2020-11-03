@@ -49,7 +49,9 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
     id: '0',
     name: '',
     title: ' ',
-    url: ''
+    url: '',
+    ru: '',
+    lang: ''
   }
   const [loading, setLoading] = useState<boolean>(false)
   const [stop, stopRender] = useState<boolean>(false)
@@ -131,7 +133,9 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
     setLoading(true)
     setPlay(true)
     try {
-      done !== undefined && !done && (await API.graphql(graphqlOperation(createEnglishProg, { input: { doneId: id } })))
+      if (done !== undefined && !done) {
+        await API.graphql(graphqlOperation(createEnglishProg, { input: { doneId: id } }))
+      }
       if (examId) {
         await API.graphql(graphqlOperation(updateExam, { input: { id: examId, english: true } }))
       } else {

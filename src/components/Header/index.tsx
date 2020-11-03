@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 import { TouchableOpacity, View, GestureResponderEvent } from 'react-native'
 import Emoji from 'react-native-emoji'
-import { ScaledSheet, s } from 'react-native-size-matters'
+import { ScaledSheet, s, ms } from 'react-native-size-matters'
 import { W, white, H } from '../../constants'
 import { Txt } from '../Txt'
 import { useOrientation } from '../../hooks'
@@ -12,30 +12,32 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingBottom: 20
+    paddingBottom: s(20)
+    //backgroundColor: 'green'
   },
   leftIconStyle: {
     fontSize: '33@ms',
-    width: 60,
-    height: 60,
+    width: ms(60, 0.5),
+    height: ms(60, 0.5),
     textAlign: 'center',
-    top: 20,
+    top: ms(20, 0.8),
     left: s(5)
   },
   rightIconStyle: {
     fontSize: '33@ms',
-    width: 60,
-    height: 60,
+    width: ms(60, 0.5),
+    height: ms(60, 0.5),
     textAlign: 'center',
-    top: 20,
-    right: s(5)
+    top: ms(20, 0.8),
+    right: s(5),
   },
   titleStyle: {
     flex: 0.9,
     color: '#fff',
     fontSize: 28,
     textAlign: 'center',
-    marginTop: s(20)
+    top: s(10),
+   // backgroundColor: 'gold'
   }
 })
 
@@ -52,7 +54,7 @@ const Header = memo<HeaderT>(({ color = white, title, iconLeft, iconRight, onPre
   const { container, leftIconStyle, rightIconStyle, titleStyle } = styles
   const orientation = useOrientation()
   const width = orientation === 'LANDSCAPE' ? H : W
-
+  
   return (
     <View style={[container, { width }]}>
       {iconLeft && (

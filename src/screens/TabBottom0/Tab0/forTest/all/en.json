@@ -3,14 +3,14 @@
     "id": 0,
     "name": ":earth_americas:",
     "title": "America",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/america.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/america.mp3",
     "ru": "Америка"
   },
   {
     "id": 1,
     "name": ":earth_asia:",
     "title": "Asia-Australia",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/asia-australia.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/asia-australia.mp3",
     "ru": "Азия-Австралия"
   },
   {
@@ -228,7 +228,7 @@
     "id": 34,
     "name": ":barely_sunny:",
     "title": "barely sunny",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/barely_sunny.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/barely_sunny.mp3",
     "ru": "едва солнечно"
   },
   {
@@ -339,7 +339,7 @@
     "id": 51,
     "name": ":blossom:",
     "title": "blossom",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/blossom.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/blossom.mp3",
     "ru": "цвести"
   },
   {
@@ -366,7 +366,7 @@
     "id": 55,
     "name": ":bouquet:",
     "title": "bouquet",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/bouquet.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/bouquet.mp3",
     "ru": "букет"
   },
   {
@@ -385,13 +385,7 @@
     "id": 58,
     "name": ":boxing_glove:",
     "title": "boxing glove",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/04-Activity/mp3/boxing_glove.mp3"
-  },
-  {
-    "id": 59,
-    "name": ":boxing_glove:",
-    "title": "boxing glovee",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/07-Objects/mp3/boxing_glovee.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/04-Activity/mp3/boxing_glove.mp3",
     "ru": "боксерские перчатки"
   },
   {
@@ -470,7 +464,7 @@
     "id": 71,
     "name": ":cactus:",
     "title": "cactus",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/cactus.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/cactus.mp3",
     "ru": "кактус"
   },
   {
@@ -593,14 +587,14 @@
     "id": 90,
     "name": ":cherry_blossom:",
     "title": "cherry blossom",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/cherry_blossom.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/cherry_blossom.mp3",
     "ru": "вишня в цвету"
   },
   {
     "id": 91,
     "name": ":chestnut:",
     "title": "chestnut",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/chestnut.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/chestnut.mp3",
     "ru": "каштан"
   },
   {
@@ -639,7 +633,7 @@
     "id": 97,
     "name": ":christmas_tree:",
     "title": "christmas tree",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/christmas_tree.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/christmas_tree.mp3",
     "ru": "рождественоская елка"
   },
   {
@@ -684,7 +678,7 @@
     "id": 104,
     "name": ":cloud:",
     "title": "cloud",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/cloud.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/cloud.mp3",
     "ru": "облако"
   },
   {
@@ -723,7 +717,7 @@
     "id": 110,
     "name": ":comet:",
     "title": "comet",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/comet.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/comet.mp3",
     "ru": "комета"
   },
   {
@@ -830,7 +824,7 @@
     "id": 126,
     "name": ":crescent_moon:",
     "title": "crescent moon",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/crescent_moon.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/crescent_moon.mp3",
     "ru": "полумесяц"
   },
   {
@@ -966,7 +960,7 @@
     "id": 147,
     "name": ":deciduous_tree:",
     "title": "deciduous tree",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/deciduous_tree.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/deciduous_tree.mp3",
     "ru": "лиственное дерево"
   },
   {
@@ -1093,7 +1087,7 @@
     "id": 166,
     "name": ":droplet:",
     "title": "droplet",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/droplet.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/droplet.mp3",
     "ru": "капля"
   },
   {
@@ -1101,13 +1095,6 @@
     "name": ":drum_with_drumsticks:",
     "title": "drum",
     "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/04-Activity/mp3/drum.mp3"
-  },
-  {
-    "id": 168,
-    "name": ":drum_with_drumsticks:",
-    "title": "drum with drumsticks",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/07-Objects/mp3/drum_with_drumsticks.mp3",
-    "ru": "барабанные палочки"
   },
   {
     "id": 169,
@@ -1139,7 +1126,7 @@
     "id": 173,
     "name": ":ear_of_rice:",
     "title": "ear of rice",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/ear_of_rice.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/ear_of_rice.mp3",
     "ru": "початок риса"
   },
   {
@@ -1227,7 +1214,7 @@
     "id": 186,
     "name": ":evergreen_tree:",
     "title": "evergreen tree",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/evergreen_tree.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/evergreen_tree.mp3",
     "ru": "вечнозелёное дерево"
   },
   {
@@ -1464,7 +1451,7 @@
     "id": 220,
     "name": ":fallen_leaf:",
     "title": "fallen leaf",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/fallen_leaf.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/fallen_leaf.mp3",
     "ru": "падающий лист"
   },
   {
@@ -1553,7 +1540,7 @@
     "id": 233,
     "name": ":fire:",
     "title": "fire",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/fire.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/fire.mp3",
     "ru": "пожар"
   },
   {
@@ -1580,7 +1567,7 @@
     "id": 237,
     "name": ":first_quarter_moon:",
     "title": "first quarter moon",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/first_quarter_moon.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/first_quarter_moon.mp3",
     "ru": "первая четверть луны"
   },
   {
@@ -1639,7 +1626,7 @@
     "id": 246,
     "name": ":fog:",
     "title": "fog",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/fog.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/fog.mp3",
     "ru": "туман"
   },
   {
@@ -1678,7 +1665,7 @@
     "id": 252,
     "name": ":four_leaf_clover:",
     "title": "four leaf clover",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/four_leaf_clover.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/four_leaf_clover.mp3",
     "ru": "четырёхлистный клевер"
   },
   {
@@ -1731,7 +1718,7 @@
     "id": 260,
     "name": ":full_moon:",
     "title": "full moon",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/full_moon.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/full_moon.mp3",
     "ru": "полнолуние"
   },
   {
@@ -1784,7 +1771,7 @@
     "id": 268,
     "name": ":earth_africa:",
     "title": "globe europe-africa",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/globe_europe-africa.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/globe_europe-africa.mp3",
     "ru": "глобус Европа-Африка"
   },
   {
@@ -1798,7 +1785,7 @@
     "id": 270,
     "name": ":globe_with_meridians:",
     "title": "globe with meridians",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/globe_with_meridians.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/globe_with_meridians.mp3",
     "ru": "глобус с меридианами"
   },
   {
@@ -1811,7 +1798,7 @@
     "id": 272,
     "name": ":star4:",
     "title": "glowing star",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/glowing_star.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/glowing_star.mp3",
     "ru": "святящаяся звезда"
   },
   {
@@ -1973,12 +1960,6 @@
     "ru": "рукопожатие"
   },
   {
-    "id": 297,
-    "name": ":headphones:",
-    "title": "headphone",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/04-Activity/mp3/headphone.mp3"
-  },
-  {
     "id": 298,
     "name": ":headphones:",
     "title": "headphones",
@@ -2043,14 +2024,14 @@
     "id": 307,
     "name": ":herb:",
     "title": "herb",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/herb.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/herb.mp3",
     "ru": "трава"
   },
   {
     "id": 308,
     "name": ":hibiscus:",
     "title": "hibiscus",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/hibiscus.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/hibiscus.mp3",
     "ru": "гибискус"
   },
   {
@@ -2063,7 +2044,7 @@
     "id": 310,
     "name": ":zap:",
     "title": "high voltage",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/high_voltage.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/high_voltage.mp3",
     "ru": "высокое напряжение"
   },
   {
@@ -2293,7 +2274,7 @@
     "id": 345,
     "name": ":leaves:",
     "title": "leaf fluttering in wind",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/leaf_fluttering_in_wind.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/leaf_fluttering_in_wind.mp3",
     "ru": "лист, развивающийся на ветру"
   },
   {
@@ -2353,7 +2334,7 @@
     "id": 354,
     "name": ":lightning:",
     "title": "lightning",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/lightning.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/lightning.mp3",
     "ru": "молния"
   },
   {
@@ -2482,7 +2463,7 @@
     "id": 373,
     "name": ":maple_leaf:",
     "title": "maple leaf",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/maple_leaf.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/maple_leaf.mp3",
     "ru": "кленовый лист"
   },
   {
@@ -2609,7 +2590,7 @@
     "id": 392,
     "name": ":mostly_sunny:",
     "title": "mostly sunny",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/mostly_sunny.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/mostly_sunny.mp3",
     "ru": "преимущественно солнечно"
   },
   {
@@ -2657,7 +2638,7 @@
     "id": 399,
     "name": ":mushroom:",
     "title": "mushroom",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/mushroom.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/mushroom.mp3",
     "ru": "гриб"
   },
   {
@@ -2717,7 +2698,7 @@
     "id": 408,
     "name": ":new_moon:",
     "title": "new moon",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/new_moon.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/new_moon.mp3",
     "ru": "новолуние"
   },
   {
@@ -2963,7 +2944,7 @@
     "id": 444,
     "name": ":palm_tree:",
     "title": "palm tree",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/palm_tree.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/palm_tree.mp3",
     "ru": "пальма"
   },
   {
@@ -3148,7 +3129,7 @@
     "id": 472,
     "name": ":bamboo:",
     "title": "pine decoration",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/pine_decoration.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/pine_decoration.mp3",
     "ru": "украшение из сосны"
   },
   {
@@ -3340,14 +3321,14 @@
     "id": 501,
     "name": ":rain_cloud:",
     "title": "rain cloud",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/rain_cloud.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/rain_cloud.mp3",
     "ru": "дождливые облака"
   },
   {
     "id": 502,
     "name": ":rainbow:",
     "title": "rainbow",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/rainbow.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/rainbow.mp3",
     "ru": "радуга"
   },
   {
@@ -3486,14 +3467,14 @@
     "id": 523,
     "name": ":rose:",
     "title": "rose",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/rose.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/rose.mp3",
     "ru": "роза"
   },
   {
     "id": 524,
     "name": ":rosette:",
     "title": "rosette",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/rosette.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/rosette.mp3",
     "ru": "розетка"
   },
   {
@@ -3603,7 +3584,7 @@
     "id": 541,
     "name": ":seedling:",
     "title": "seedling",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/seedling.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/seedling.mp3",
     "ru": "сажанец"
   },
   {
@@ -3644,7 +3625,7 @@
     "id": 547,
     "name": ":shamrock:",
     "title": "shamrock",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/shamrock.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/shamrock.mp3",
     "ru": "трилистник"
   },
   {
@@ -3682,7 +3663,7 @@
     "id": 553,
     "name": ":stars:",
     "title": "shooting star",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/shooting_star.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/shooting_star.mp3",
     "ru": "падающая звезда"
   },
   {
@@ -3890,7 +3871,7 @@
     "id": 584,
     "name": ":snow_cloud:",
     "title": "snow cloud",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/snow_cloud.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/snow_cloud.mp3",
     "ru": "снежное облако"
   },
   {
@@ -3903,14 +3884,14 @@
     "id": 586,
     "name": ":snowflake:",
     "title": "snowflake",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/snowflake.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/snowflake.mp3",
     "ru": "снежинки"
   },
   {
     "id": 587,
     "name": ":snowman:",
     "title": "snowman",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/snowman.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/snowman.mp3",
     "ru": "снеговик"
   },
   {
@@ -3941,7 +3922,7 @@
     "id": 592,
     "name": ":sparkles:",
     "title": "sparkles",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/sparkles.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/sparkles.mp3",
     "ru": "блестки"
   },
   {
@@ -4054,14 +4035,14 @@
     "id": 609,
     "name": ":sun_with_face:",
     "title": "sun",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/sun.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/sun.mp3",
     "ru": "солнце"
   },
   {
     "id": 610,
     "name": ":sunflower:",
     "title": "sunflower",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/sunflower.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/sunflower.mp3",
     "ru": "подсолнечник"
   },
   {
@@ -4074,7 +4055,7 @@
     "id": 612,
     "name": ":partly_sunny_rain:",
     "title": "sunny rain",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/sunny_rain.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/sunny_rain.mp3",
     "ru": "солнечный дождь"
   },
   {
@@ -4129,7 +4110,7 @@
     "id": 621,
     "name": ":tanabata_tree:",
     "title": "tanabata tree",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/tanabata_tree.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/tanabata_tree.mp3",
     "ru": "дерево Танабата"
   },
   {
@@ -4322,7 +4303,7 @@
     "id": 650,
     "name": ":tornado:",
     "title": "tornado",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/tornado.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/tornado.mp3",
     "ru": "торнадо"
   },
   {
@@ -4369,7 +4350,7 @@
     "id": 657,
     "name": ":tulip:",
     "title": "tulip",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/tulip.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/tulip.mp3",
     "ru": "тюльпан"
   },
   {
@@ -4428,7 +4409,7 @@
     "id": 666,
     "name": ":umbrella_with_rain_drops:",
     "title": "umbrella with rain drops",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/umbrella_with_rain_drops.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/umbrella_with_rain_drops.mp3",
     "ru": "зонт с каплями дождя"
   },
   {
@@ -4508,7 +4489,7 @@
     "id": 678,
     "name": ":waning_gibbous_moon:",
     "title": "waning gibbous moon",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/waning_gibbous_moon.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/waning_gibbous_moon.mp3",
     "ru": "убывающая луна"
   },
   {
@@ -4555,7 +4536,7 @@
     "id": 685,
     "name": ":ocean:",
     "title": "wave",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/wave.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/wave.mp3",
     "ru": "волна"
   },
   {
@@ -4569,7 +4550,7 @@
     "id": 687,
     "name": ":waxing_crescent_moon:",
     "title": "waxing crescent moon",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/waxing_crescent_moon.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/waxing_crescent_moon.mp3",
     "ru": "растущий полумесяц"
   },
   {
@@ -4609,21 +4590,21 @@
     "id": 693,
     "name": ":white_flower:",
     "title": "white flower",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/white_flower.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/white_flower.mp3",
     "ru": "белый цветок"
   },
   {
     "id": 694,
     "name": ":wilted_flower:",
     "title": "wilted flower",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/wilted_flower.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/wilted_flower.mp3",
     "ru": "увядающий цветок"
   },
   {
     "id": 695,
     "name": ":wind_blowing_face:",
     "title": "wind's blowing",
-    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/14-Nature/mp3/wind's_blowing.mp3",
+    "url": "https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/12-Nature/mp3/wind's_blowing.mp3",
     "ru": "дует ветер"
   },
   {
