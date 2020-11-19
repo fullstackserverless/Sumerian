@@ -7,4 +7,5 @@ module.exports = {
   semi: false,
   useTabs: false,
   jsxBracketSameLine: false,
+  arrowParens: 'avoid',
 };
