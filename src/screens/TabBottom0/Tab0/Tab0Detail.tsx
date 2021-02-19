@@ -8,7 +8,7 @@ import { AppContainer, YouTubePlayer, ButtonSquare, Space } from '../../../compo
 import I18n from '../../../utils'
 import { ScaledSheet } from 'react-native-size-matters'
 import { goBack, classicRose, onScreen, black, white } from '../../../constants'
-import { arrayWithNewId, onlyTitleInArray, sortTitle } from '../../helper'
+// import { arrayWithNewId, onlyTitleInArray, sortTitle } from '../../helper'
 import { View } from 'react-native'
 import { useOrientation } from '../../../hooks'
 
@@ -37,7 +37,8 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
     name: '',
     title: '',
     url: '',
-    json: ''
+    json: '',
+    ru: ''
   }
 
 
@@ -64,7 +65,7 @@ const Tab0Detail = ({ route, navigation }: Tab0DetailT) => {
   const [data, setData] = useState<Array<TestT>>([defautState])
   const fetchData = async () => {
     try {
-      // const url = `https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/06-Travel/data.json`
+      // const url = `https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/en.json`
       // const response = await fetch(url)
       const response = await fetch(json)
       const data = await response.json()

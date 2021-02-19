@@ -6,7 +6,7 @@ import { Auth, API, graphqlOperation } from 'aws-amplify'
 import * as Keychain from 'react-native-keychain'
 import { listProfiles } from '../../../src/graphql/queries'
 import { RootStackParamList, UserT } from '../../AppNavigator'
-import { AppContainer, HeaderMaster, Button } from '../../components'
+import { AppContainer, HeaderMaster, Button, Space, Tab, Row, Txt } from '../../components'
 import { useTheme } from '@react-navigation/native'
 import { goHome, onScreen, white, black } from '../../constants'
 import { onUpdateProfile } from '../../graphql/subscriptions'
@@ -85,6 +85,19 @@ const TabBottom1 = memo(({ navigation }: TabBottom1T) => {
   return (
     <AppContainer backgroundColor={dark ? black : white} loading={loading} message={error}>
       <HeaderMaster user={data} onPress={onScreen('USER_EDIT', navigation, data)} loading={loading} />
+      <Space height={50} />
+      <Txt h7 title="Badges:" />
+      <Space height={10} />
+
+      <Row>
+        <Tab title={true ? `TabTop${0}${dark ? 'B' : 'W'}` : `TabTop0Disable`} />
+        <Tab title={true ? `TabTop${1}${dark ? 'B' : 'W'}` : `TabTop1Disable`} />
+        <Tab title={!true ? `TabTop${2}${dark ? 'B' : 'W'}` : `TabTop2Disable`} />
+        <Tab title={!true ? `TabTop${3}${dark ? 'B' : 'W'}` : `TabTop3Disable`} />
+        <Tab title={!true ? `TabTop${4}${dark ? 'B' : 'W'}` : `TabTop4Disable`} />
+      </Row>
+
+      <Space height={400} />
       <Button title={I18n.t('signOut')} onPress={_onPress} color={color} />
     </AppContainer>
   )

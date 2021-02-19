@@ -209,7 +209,7 @@
     "id": "31",
     "title": "Which characters indicate the end of a block comment?",
     "answer": "*/",
-    "random": ["/*", "*\\", "//"]
+    "random": ["*/", "*\\", "//"]
   },
   {
     "id": "32",
@@ -601,7 +601,7 @@
   {
     "id": "95",
     "title": "What method can you use to convert a string to using all non-capital letters?",
-    "answer": "toLowerCase()",
+    "answer": "toUpperCase()",
     "random": ["toLowerCase()", "toUpperCase()", "confirm()"]
   },
   {

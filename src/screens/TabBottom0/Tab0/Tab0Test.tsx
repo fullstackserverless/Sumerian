@@ -150,6 +150,7 @@ const Tab0Test = ({ route, navigation }: Tab0TestT) => {
       setLoading(false)
     }
   }
+  
   const title = displayName.title.length > 1 ? displayName.title : 'Alphabet'
 
   return (

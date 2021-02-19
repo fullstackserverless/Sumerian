@@ -25,11 +25,11 @@ const Tab0Add = ({ route, navigation }: Tab0AddT): ReactElement => {
   const { dark } = useTheme()
 
   const [input, setJob] = useState<ObjT>({
-    title: 'Animals',
-    description: 'Learning the basics of the English language.',
-    img: 'https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/03-Animals/5-Animals.jpg',
-    uri: 'LLTxI1jyo-4',
-    json: 'https://s3.eu-central-1.wasabisys.com/ghashtag/EnForKids/03-Animals/data.json'
+    title: '',
+    description: '',
+    img: '',
+    uri: '',
+    json: ''
   })
 
   const formikRef: any = useRef(null)

@@ -126,9 +126,11 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
       const arr = await API.graphql(graphqlOperation(listEnglishs, { limit: 100 }))
       const arrProg = await API.graphql(graphqlOperation(listEnglishProgs, filterQuery))
       const arrExam = await API.graphql(graphqlOperation(listExams, filterQuery))
+
       const data = arr.data.listEnglishs.items
       const prog = arrProg.data.listEnglishProgs.items
       const exam = arrExam.data.listExams.items
+ 
       dispatch({ type: 'READ', data, prog, exam })
       setLoading(false)
     } catch (err) {
