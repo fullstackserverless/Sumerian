@@ -148,33 +148,33 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
       check !== undefined ? Auth.user.signInUserSession.idToken.payload['cognito:groups'][0] === 'Admin' : false
     setAdmin(adm)
 
-    // const subscriptionCreate = API.graphql(graphqlOperation(onCreateEnglish)).subscribe({
-    //   next: (data: any) => dispatch({ type: 'CREATE', data: data.value.data.onCreateEnglish })
-    // })
-    // const subscriptionCreateProgress = API.graphql(graphqlOperation(onCreateEnglishProg)).subscribe({
-    //   next: () => fetchData()
-    // })
-    // const subscriptionCreateExam = API.graphql(graphqlOperation(onCreateExam)).subscribe({
-    //   next: () => fetchData()
-    // })
-    // const subscriptionUpdateExam = API.graphql(graphqlOperation(onUpdateExam)).subscribe({
-    //   next: () => fetchData()
-    // })
-    // const subscriptionUpdate = API.graphql(graphqlOperation(onUpdateEnglish)).subscribe({
-    //   next: (data: any) => dispatch({ type: 'UPDATE', data: data.value.data.onUpdateEnglish })
-    // })
-    // const subscriptionDelete = API.graphql(graphqlOperation(onDeleteEnglish)).subscribe({
-    //   next: (data: any) => dispatch({ type: 'DELETE', data: data.value.data.onDeleteEnglish })
-    // })
-    // return () => {
-    //   subscriptionCreate.unsubscribe()
-    //   subscriptionUpdate.unsubscribe()
-    //   subscriptionDelete.unsubscribe()
-    //   subscriptionCreateProgress.unsubscribe()
-    //   subscriptionCreateExam.unsubscribe()
-    //   subscriptionUpdateExam.unsubscribe()
-    //   isSubscribed = false
-    // }
+    const subscriptionCreate = API.graphql(graphqlOperation(onCreateEnglish)).subscribe({
+      next: (data: any) => dispatch({ type: 'CREATE', data: data.value.data.onCreateEnglish })
+    })
+    const subscriptionCreateProgress = API.graphql(graphqlOperation(onCreateEnglishProg)).subscribe({
+      next: () => fetchData()
+    })
+    const subscriptionCreateExam = API.graphql(graphqlOperation(onCreateExam)).subscribe({
+      next: () => fetchData()
+    })
+    const subscriptionUpdateExam = API.graphql(graphqlOperation(onUpdateExam)).subscribe({
+      next: () => fetchData()
+    })
+    const subscriptionUpdate = API.graphql(graphqlOperation(onUpdateEnglish)).subscribe({
+      next: (data: any) => dispatch({ type: 'UPDATE', data: data.value.data.onUpdateEnglish })
+    })
+    const subscriptionDelete = API.graphql(graphqlOperation(onDeleteEnglish)).subscribe({
+      next: (data: any) => dispatch({ type: 'DELETE', data: data.value.data.onDeleteEnglish })
+    })
+    return () => {
+      subscriptionCreate.unsubscribe()
+      subscriptionUpdate.unsubscribe()
+      subscriptionDelete.unsubscribe()
+      subscriptionCreateProgress.unsubscribe()
+      subscriptionCreateExam.unsubscribe()
+      subscriptionUpdateExam.unsubscribe()
+      isSubscribed = false
+    }
   }, [navigation])
 
   const { data, prog, exam } = state
