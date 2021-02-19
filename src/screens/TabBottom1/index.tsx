@@ -9,7 +9,7 @@ import { RootStackParamList, UserT } from '../../AppNavigator'
 import { AppContainer, HeaderMaster, Button, Space, Tab, Row, Txt } from '../../components'
 import { useTheme } from '@react-navigation/native'
 import { goHome, onScreen, white, black } from '../../constants'
-import { onUpdateProfile } from '../../graphql/subscriptions'
+import { onUpdateProfile, onCreateExam, onUpdateExam } from '../../graphql/subscriptions'
 import { ActionT, StateT } from '../helper'
 import { listExams } from '../../graphql/queries'
 
@@ -90,13 +90,21 @@ const TabBottom1 = memo(({ navigation }: TabBottom1T) => {
     fetchData()
     let isSubscribed: boolean = true // eslint-disable-line
     // @ts-expect-error
-    // const subscriptionUpdate = API.graphql(graphqlOperation(onUpdateProfile)).subscribe({
-    //   next: (obj: any) => updateData(obj.value.data.onUpdateProfile)
-    // })
-    // return () => {
-    //   subscriptionUpdate.unsubscribe()
-    //   isSubscribed = false
-    // }
+    const subscriptionUpdate = API.graphql(graphqlOperation(onUpdateProfile)).subscribe({
+      next: (obj: any) => updateData(obj.value.data.onUpdateProfile)
+    })
+    const subscriptionCreateExam = API.graphql(graphqlOperation(onCreateExam)).subscribe({
+      next: () => fetchData()
+    })
+    const subscriptionUpdateExam = API.graphql(graphqlOperation(onUpdateExam)).subscribe({
+      next: () => fetchData()
+    })
+    return () => {
+      subscriptionUpdate.unsubscribe()
+      subscriptionCreateExam.unsubscribe()
+      subscriptionUpdateExam.unsubscribe()
+      isSubscribed = false
+    }
   }, [navigation])
 
   const _onPress = async (): Promise<void> => {

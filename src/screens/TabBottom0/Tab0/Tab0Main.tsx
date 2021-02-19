@@ -31,6 +31,7 @@ import {
 import { uniqBy } from 'lodash'
 import { ActionT, StateT, compareCreatedAt, fetchExam, arrayWithNewId, onlyTitleInArray, sortTitle } from '../../helper'
 import { build } from '../../../../package.json'
+import _ from 'lodash'
 
 type ProfileScreenNavigationProp = StackNavigationProp<RootStackParamList, 'TAB0_MAIN'>
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'TAB0_MAIN'>
@@ -114,14 +115,7 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
   const fetchData = async (): Promise<void> => {
     try {
       const owner = Auth.user.attributes.sub
-      const filterQuery = {
-        filter: {
-          owner: {
-            eq: owner
-          }
-        },
-        limit: 99
-      }
+      const filterQuery = { filter: { owner: { eq: owner } }, limit: 99 }
 
       const arr = await API.graphql(graphqlOperation(listEnglishs, { limit: 100 }))
       const arrProg = await API.graphql(graphqlOperation(listEnglishProgs, filterQuery))
@@ -141,7 +135,6 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
       setLoading(false)
     }
   }
-
 
   useEffect(() => {
     setLoading(true)
@@ -186,6 +179,8 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
 
   const { data, prog, exam } = state
 
+  const uniqProg = _.uniqBy(prog, 'doneId')
+
   const _renderItem = ({ item }: ItemT) => {
     const search = prog.filter((x: ProgT) => x.doneId === item.id)
     const done = search.length != 0
@@ -208,8 +203,7 @@ const Tab0Main = ({ navigation }: Tab0MainT): ReactElement => {
 
   const checkExam = exam.length === 0 ? false : exam[0].english
   const examId = exam.length === 0 ? false : exam[0].id
-  console.warn('checkExam', checkExam)
-  const percent = (prog.length / data.length).toFixed(2)
+  const percent = (uniqProg.length / data.length).toFixed(2)
 
   return (
     <AppContainer
